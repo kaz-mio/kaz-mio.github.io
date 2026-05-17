@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://spectacular-gaufre-397d36.netlify.app/sitemap.xml
