@@ -12,11 +12,13 @@
 <meta property="og:title" content="KAZ & MIOの楽に生きる｜子育て・暮らし・節約の正直レビューブログ">
 <meta property="og:description" content="1児のママMIOと夫KAZが、子育て・暮らし・節約のリアルを北海道・旭川から発信。試してよかったものを正直にレビューします。">
 <meta property="og:url" content="https://kaz-mio.github.io/">
+<meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-hero.png">
 <meta property="og:site_name" content="KAZ & MIOの楽に生きる">
 <meta property="og:locale" content="ja_JP">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KAZ & MIOの楽に生きる">
 <meta name="twitter:description" content="子育て・暮らし・節約のリアルを北海道から発信する正直レビューブログ。">
+<meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-hero.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,7 +48,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#FAF8F3;--paper:#F4F1EA;--warm:#ECE7DC;--terracotta:#C96A3A;--terra-lt:#F0E0D4;--terra-dk:#A0502B;--green:#4A7C5F;--green-lt:#DEF0E6;--sand:#C4A97D;--ink:#1F1D19;--ink2:#4C4843;--ink3:#9A948C;--border:rgba(31,29,25,.09);--r:8px;--sh-s:0 1px 12px rgba(31,29,25,.07);--sh-m:0 4px 28px rgba(31,29,25,.11);--sh-l:0 12px 48px rgba(31,29,25,.15);}
+:root{--cream:#F7F4EC;--paper:#EEEDE4;--warm:#E8DDD1;--terracotta:#B85B3E;--terra-lt:#F2D6C8;--terra-dk:#7C3728;--green:#4D7B66;--green-lt:#DDECE3;--blue:#263F56;--blue-lt:#DDE8EF;--rose:#D99AA2;--gold:#D9B45F;--ink:#1E211F;--ink2:#4F5551;--ink3:#8B8E88;--border:rgba(30,33,31,.1);--r:8px;--sh-s:0 1px 12px rgba(30,33,31,.07);--sh-m:0 4px 28px rgba(30,33,31,.11);--sh-l:0 12px 48px rgba(30,33,31,.15);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
 body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
@@ -63,7 +65,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .hd-nav .nav-cta:hover{background:var(--terra-dk);}
 
 /* HERO */
-.hero{max-width:1180px;margin:0 auto;padding:4.6rem clamp(1.2rem,5vw,3rem) 3.5rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.9fr);gap:4rem;align-items:center;}
+.hero{max-width:1180px;margin:0 auto;padding:4.2rem clamp(1.2rem,5vw,3rem) 3rem;display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:3.6rem;align-items:center;}
 .hero-tag{display:inline-flex;align-items:center;gap:.6rem;font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--terracotta);margin-bottom:1.4rem;}
 .hero-tag::before{content:'';width:22px;height:2px;background:var(--terracotta);}
 .hero-h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.22;margin-bottom:1.6rem;letter-spacing:.01em;}
@@ -77,6 +79,39 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .btn-terra:hover{background:var(--terra-dk);transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,106,58,.35);}
 .btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink);}
 .btn-ghost:hover{background:var(--ink);color:#fff;}
+
+.hero-visual{position:relative;min-height:480px;border-radius:8px;overflow:hidden;box-shadow:var(--sh-l);border:1px solid rgba(30,33,31,.08);background:#ddd;}
+.hero-visual img{width:100%;height:100%;min-height:480px;display:block;object-fit:cover;object-position:center;}
+.hero-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,33,31,0) 48%,rgba(30,33,31,.68) 100%);}
+.hero-cardlet{position:absolute;left:1rem;right:1rem;bottom:1rem;z-index:2;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-radius:8px;padding:1rem 1.1rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:end;border:1px solid rgba(255,255,255,.58);}
+.hero-cardlet strong{font-family:'Shippori Mincho',serif;font-size:1.05rem;line-height:1.45;display:block;}
+.hero-cardlet span{font-size:.76rem;color:var(--ink2);}
+.hero-score{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.8rem;line-height:1;color:var(--terracotta);text-align:right;}
+.hero-score small{display:block;font-size:.58rem;letter-spacing:.14em;color:var(--ink3);margin-top:.3rem;}
+.hero-chip{position:absolute;top:1rem;left:1rem;z-index:2;background:var(--blue);color:#fff;border-radius:999px;padding:.5em .9em;font-family:'Nunito',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
+
+/* DEALS */
+.deals-wrap{max-width:1180px;margin:0 auto;padding:2rem clamp(1.2rem,5vw,3rem) 5rem;}
+.deals-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:1.5rem;}
+.deals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+.deal{background:#fff;border-radius:8px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:var(--sh-s);border:1px solid rgba(30,33,31,.08);display:flex;flex-direction:column;min-width:0;transition:transform .24s,box-shadow .24s;}
+.deal:hover{transform:translateY(-4px);box-shadow:var(--sh-m);}
+.deal-photo{height:170px;background:var(--paper);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.deal-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.deal-photo.logo img{width:82%;height:auto;object-fit:contain;padding:1rem;}
+.deal-photo.dark{background:linear-gradient(135deg,#13151a,#293f56);}
+.phone-mock{width:74px;height:126px;border-radius:18px;background:#0c0f14;border:5px solid #fff;box-shadow:0 20px 40px rgba(0,0,0,.25);position:relative;}
+.phone-mock::before{content:'';position:absolute;inset:16px 10px 22px;border-radius:8px;background:linear-gradient(145deg,#23d5ab,#fb4668 52%,#fff);}
+.deal-badge{position:absolute;left:.7rem;top:.7rem;background:var(--terracotta);color:#fff;border-radius:999px;padding:.3em .7em;font-family:'Nunito',sans-serif;font-size:.56rem;font-weight:800;letter-spacing:.08em;}
+.deal-body{padding:1rem;display:flex;flex-direction:column;gap:.55rem;flex:1;}
+.deal-cat{font-family:'Nunito',sans-serif;font-size:.56rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green);}
+.deal-title{font-family:'Shippori Mincho',serif;font-size:1rem;line-height:1.42;font-weight:700;overflow-wrap:anywhere;}
+.deal-price{display:flex;align-items:baseline;gap:.45rem;flex-wrap:wrap;font-family:'Nunito',sans-serif;}
+.deal-price strong{font-size:1.15rem;color:var(--terracotta);}
+.deal-price del{font-size:.74rem;color:var(--ink3);}
+.deal-copy{font-size:.76rem;line-height:1.65;color:var(--ink2);}
+.deal-link{margin-top:auto;font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:800;color:var(--terracotta);}
+.price-note{margin-top:1rem;font-size:.72rem;line-height:1.7;color:var(--ink3);}
 
 /* HERO CARDS */
 .hero-cards{display:flex;flex-direction:column;gap:1rem;}
@@ -109,7 +144,11 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .ac{background:#fff;border-radius:8px;box-shadow:var(--sh-s);overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .28s,box-shadow .28s;opacity:0;transform:translateY(20px);animation:fadeUp .65s ease forwards;border:1px solid rgba(31,29,25,.05);}
 .ac:nth-child(1){animation-delay:.1s;}.ac:nth-child(2){animation-delay:.22s;}.ac:nth-child(3){animation-delay:.34s;}
 .ac:hover{transform:translateY(-6px);box-shadow:var(--sh-l);}
-.ac-thumb{height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;}
+.ac-thumb{height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden;}
+.ac-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.ac-thumb.product{background:#fff;}
+.ac-thumb.product img{object-fit:cover;}
+.ac-thumb.contain img{object-fit:contain;padding:1.2rem;background:#fff;}
 .ac-thumb.c1{background:linear-gradient(145deg,#F8EDE2,#EEDCCC);}
 .ac-thumb.c2{background:linear-gradient(145deg,#E2F0E8,#C8E4D2);}
 .ac-thumb.c3{background:linear-gradient(145deg,#F8EDDC,#EEE0C0);}
@@ -172,9 +211,10 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
-@media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.2rem;padding-top:3rem;}.hero-cards{max-width:640px;}.sec-head{display:block;}.sec-lead{margin-top:.5rem;}.art-grid{grid-template-columns:1fr;}.brand-cards{grid-template-columns:1fr;}.dark-inner{grid-template-columns:1fr;gap:3rem;}.about{grid-template-columns:1fr;}}
-@media(max-width:640px){.hd{height:auto;min-height:58px;padding:.65rem 1rem;}.hd-logo-ja{font-size:1.03rem;}.hd-nav a:not(.nav-cta){display:none;}.hd-nav .nav-cta{font-size:.68rem;padding:.48rem .76rem;margin-left:0;}.hero{padding:2.6rem 1rem 2.4rem;}.hero-tag{font-size:.56rem;line-height:1.7;letter-spacing:.16em;}.hero-h1{font-size:2.15rem;}.hero-actions .btn{width:100%;justify-content:center;}.hc-thumb{width:82px!important;font-size:2rem;}.hc-body{padding:.9rem 1rem;}.hc-title{font-size:.9rem;}.arts-wrap,.brands,.dark-band,.about,.ft{padding-left:1rem;padding-right:1rem;}.topic-row{gap:.5rem;}.topic{font-size:.74rem;}.ac-thumb{height:150px!important;font-size:3.2rem!important;}.ac-body{padding:1.15rem;}.brands-label span{text-align:center;line-height:1.7;}.stat{padding:1.2rem .9rem;}.about-avi{flex-direction:row;justify-content:center;}.avi{width:82px;height:82px;font-size:2.4rem;}.ft-inner{align-items:flex-start;}.ft-nav{gap:1rem;}}
-@media(max-width:520px){.hd,.hero,.arts-wrap,.brands,.dark-band,.about,.ft{max-width:390px;margin-left:0;margin-right:0;}.hero-cards,.hc{max-width:100%;}.sec-lead,.ac-exc,.about-p{overflow-wrap:anywhere;}}
+@media(max-width:1080px){.deals-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.2rem;padding-top:3rem;}.hero-cards{max-width:640px;}.hero-visual,.hero-visual img{min-height:420px;}.deals-head,.sec-head{display:block;}.deals-head .sec-lead,.sec-lead{margin-top:.5rem;}.art-grid{grid-template-columns:1fr;}.brand-cards{grid-template-columns:1fr;}.dark-inner{grid-template-columns:1fr;gap:3rem;}.about{grid-template-columns:1fr;}}
+@media(max-width:640px){.hd{height:auto;min-height:58px;padding:.65rem 1rem;}.hd-logo-ja{font-size:1.03rem;}.hd-nav a:not(.nav-cta){display:none;}.hd-nav .nav-cta{font-size:.68rem;padding:.48rem .76rem;margin-left:0;}.hero{padding:2.6rem 1rem 2.2rem;}.hero-tag{font-size:.56rem;line-height:1.7;letter-spacing:.16em;}.hero-h1{font-size:2.15rem;}.hero-actions .btn{width:100%;justify-content:center;}.hero-visual,.hero-visual img{min-height:330px;}.hero-cardlet{grid-template-columns:1fr;padding:.85rem;}.hero-score{text-align:left;font-size:1.45rem;}.deals-wrap{padding:1rem 1rem 3.2rem;}.deals-grid{grid-template-columns:1fr;}.deal-photo{height:210px;}.hc-thumb{width:82px!important;font-size:2rem;}.hc-body{padding:.9rem 1rem;}.hc-title{font-size:.9rem;}.arts-wrap,.brands,.dark-band,.about,.ft{padding-left:1rem;padding-right:1rem;}.topic-row{gap:.5rem;}.topic{font-size:.74rem;}.ac-thumb{height:170px!important;font-size:3.2rem!important;}.ac-body{padding:1.15rem;}.brands-label span{text-align:center;line-height:1.7;}.stat{padding:1.2rem .9rem;}.about-avi{flex-direction:row;justify-content:center;}.avi{width:82px;height:82px;font-size:2.4rem;}.ft-inner{align-items:flex-start;}.ft-nav{gap:1rem;}}
+@media(max-width:520px){.hd,.hero,.deals-wrap,.arts-wrap,.brands,.dark-band,.about,.ft{max-width:390px;margin-left:0;margin-right:0;}.hero-cards,.hc{max-width:100%;}.sec-lead,.ac-exc,.about-p,.deal-copy{overflow-wrap:anywhere;}}
 </style>
 </head>
 <body>
@@ -196,45 +236,122 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 <section class="hero">
   <div>
     <div class="hero-tag">北海道・旭川発 ／ 1児のママのリアルブログ</div>
-    <h1 class="hero-h1">がんばりすぎない、<br><em>それが正解。</em></h1>
-    <p class="hero-p">子育て・暮らし・節約について、実際に試してよかったことだけを正直にお届けします。「これ知ってたらよかった！」が見つかるブログです。</p>
+    <h1 class="hero-h1">ムリなく選んで、<br><em>ちゃんと得する。</em></h1>
+    <p class="hero-p">KAZとMIOが、子育て・暮らし・おかいものを夫婦目線で正直レビュー。見た目だけでなく、価格・使いやすさ・買う前の注意点まで、家族の毎日に役立つ形でまとめます。</p>
     <div class="hero-note">
       <span>子育て</span>
       <span>暮らし</span>
       <span>節約</span>
+      <span>価格チェック</span>
       <span>正直レビュー</span>
     </div>
     <div class="hero-actions">
-      <a href="#articles" class="btn btn-terra">記事を読む →</a>
-      <a href="profile.html" class="btn btn-ghost">私たちについて</a>
+      <a href="#deals" class="btn btn-terra">お得レビューを見る →</a>
+      <a href="#articles" class="btn btn-ghost">記事一覧へ</a>
     </div>
   </div>
-  <div class="hero-cards">
-    <a href="tiktokshop_article.html" class="hc featured">
-      <div class="hc-thumb" style="width:100px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem;position:relative;background:linear-gradient(145deg,#1a1a2e,#16213e);"><span class="hc-new">NEW</span>🛍️</div>
-      <div class="hc-body">
-        <div class="hc-tag">暮らし・おかいもの</div>
-        <div class="hc-title">TikTok Shopとは？使ってわかったメリット・注意点</div>
-        <div class="hc-arr">読む →</div>
+  <div class="hero-visual">
+    <span class="hero-chip">KAZ &amp; MIO Review</span>
+    <img src="assets/kaz-mio-hero.png" alt="KAZとMIOをイメージした家族のレビュー風景" width="1536" height="1024">
+    <div class="hero-cardlet">
+      <div>
+        <strong>かっこよく、かわいく、でも生活目線。</strong>
+        <span>写真で商品を見て、価格と使いどころをサッと確認できます。</span>
+      </div>
+      <div class="hero-score">8<small>REVIEWS</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section class="deals-wrap" id="deals">
+  <div class="deals-head">
+    <h2 class="sec-h">お得に選ぶ<em>レビュー</em></h2>
+    <p class="sec-lead">写真で雰囲気を確認しながら、価格・キャンペーン・買う前の注意点へ進める入口です。</p>
+  </div>
+  <div class="deals-grid">
+    <a href="berpy_article.html" class="deal">
+      <div class="deal-photo"><span class="deal-badge">送料無料</span><img src="https://cdn.shopify.com/s/files/1/0520/4259/6520/files/4_629a9a62-67d3-4990-b9e1-65f6a747cf33.png?v=1778131007" alt="Berpy かみかみチキン"></div>
+      <div class="deal-body">
+        <div class="deal-cat">Baby Gift</div>
+        <div class="deal-title">Berpy かみかみチキン</div>
+        <div class="deal-price"><strong>¥1,250</strong><span>単品目安</span></div>
+        <p class="deal-copy">出産祝いにも選びやすい価格帯。セットならストラップ付きで外出時も使いやすい。</p>
+        <div class="deal-link">レビューを見る →</div>
       </div>
     </a>
-    <a href="berpy_article.html" class="hc">
-      <div class="hc-thumb t3">🐔</div>
-      <div class="hc-body">
-        <div class="hc-tag">ベビーグッズ・ギフト</div>
-        <div class="hc-title">出産祝いに迷ったらこれ！かみかみチキンが大正解だった理由</div>
-        <div class="hc-arr">読む →</div>
+    <a href="doridori_article.html" class="deal">
+      <div class="deal-photo"><span class="deal-badge">¥4,551off</span><img src="https://doridori.co.jp/cdn/shop/files/dor40-main-s.jpg?v=1752837894&amp;width=1080" alt="DoriDori ベビーサークル"></div>
+      <div class="deal-body">
+        <div class="deal-cat">Safety</div>
+        <div class="deal-title">DoriDori ベビーサークル</div>
+        <div class="deal-price"><del>¥18,900</del><strong>¥14,349</strong></div>
+        <p class="deal-copy">部屋になじむ安全グッズ。セール表示がある時は、通常価格との差がわかりやすいです。</p>
+        <div class="deal-link">レビューを見る →</div>
       </div>
     </a>
-    <a href="eigodvd_article.html" class="hc">
-      <div class="hc-thumb t3" style="background:linear-gradient(145deg,#E8F4FF,#C8E8FF);">🎬</div>
-      <div class="hc-body">
-        <div class="hc-tag">子育て・英語教育</div>
-        <div class="hc-title">0歳から使える英語DVD、本当に効果ある？1児のママが正直レビュー</div>
-        <div class="hc-arr">読む →</div>
+    <a href="myfirst_article.html" class="deal">
+      <div class="deal-photo"><span class="deal-badge">価格改定</span><img src="https://jp.myfirst.tech/cdn/shop/files/s4-main.jpg?v=1771577866&amp;width=533" alt="myFirst Fone キッズスマートウォッチ"></div>
+      <div class="deal-body">
+        <div class="deal-cat">Kids Watch</div>
+        <div class="deal-title">myFirst Fone シリーズ</div>
+        <div class="deal-price"><strong>¥18,800〜</strong><span>確認時</span></div>
+        <p class="deal-copy">GPS・通話・SOSを1台に。モデルごとの価格差が大きいので、比較して選びやすい商品です。</p>
+        <div class="deal-link">レビューを見る →</div>
+      </div>
+    </a>
+    <a href="eigodvd_article.html" class="deal">
+      <div class="deal-photo contain"><span class="deal-badge">会員価格あり</span><img src="https://eigoden.itembox.cloud/product/000/000000000025/000000000025-01.jpg?size=l&amp;t=20191007111440&amp;w=ODAw" alt="Goomies English for Kids DVD"></div>
+      <div class="deal-body">
+        <div class="deal-cat">English DVD</div>
+        <div class="deal-title">Goomies English for Kids</div>
+        <div class="deal-price"><strong>¥3,960</strong><span>税込</span></div>
+        <p class="deal-copy">ゆうパケット送料無料。スマホを見せすぎたくない家庭のおうち英語に合わせやすい価格帯。</p>
+        <div class="deal-link">レビューを見る →</div>
+      </div>
+    </a>
+    <a href="hyacca_article.html" class="deal">
+      <div class="deal-photo"><span class="deal-badge">ギフト</span><img src="https://asset.hyacca.online/wp-content/uploads/2020/05/01234425/95d41490b6e947b91a26d971d3cfdb4a-1.png" alt="HYACCA ギフトボックス"></div>
+      <div class="deal-body">
+        <div class="deal-cat">Gift</div>
+        <div class="deal-title">HYACCA ギフト</div>
+        <div class="deal-price"><strong>¥2,754〜</strong><span>掲載例</span></div>
+        <p class="deal-copy">出産祝い・内祝い・結婚祝いまで。見た目の高級感と価格帯のバランスを確認できます。</p>
+        <div class="deal-link">レビューを見る →</div>
+      </div>
+    </a>
+    <a href="kashite_article.html" class="deal">
+      <div class="deal-photo logo"><span class="deal-badge">初期費用を圧縮</span><img src="https://www.kasite.com/html/assets/img/common/logo_kashitedotcom.png" alt="かして！どっとこむ"></div>
+      <div class="deal-body">
+        <div class="deal-cat">Rental</div>
+        <div class="deal-title">かして！どっとこむ</div>
+        <div class="deal-price"><strong>レンタル</strong><span>家具・家電</span></div>
+        <p class="deal-copy">引越し・新生活でまとめ買いを避けたい時に。短期利用なら買う前に比較する価値あり。</p>
+        <div class="deal-link">レビューを見る →</div>
+      </div>
+    </a>
+    <a href="tiktokshop_article.html" class="deal">
+      <div class="deal-photo dark"><span class="deal-badge">キャンペーン確認</span><div class="phone-mock" aria-hidden="true"></div></div>
+      <div class="deal-body">
+        <div class="deal-cat">Shopping</div>
+        <div class="deal-title">TikTok Shop</div>
+        <div class="deal-price"><strong>クーポン</strong><span>表示を確認</span></div>
+        <p class="deal-copy">動画で使用感を見てから買えるのが魅力。クーポンや送料無料表示は購入前に要チェック。</p>
+        <div class="deal-link">レビューを見る →</div>
+      </div>
+    </a>
+    <a href="asp_affiliate_article.html" class="deal">
+      <div class="deal-photo" style="background:linear-gradient(135deg,#e7d8c7,#d9e7dd);"><span class="deal-badge">USED</span><span style="font-size:4.6rem;">👕</span></div>
+      <div class="deal-body">
+        <div class="deal-cat">Kids Fashion</div>
+        <div class="deal-title">キャリーオン</div>
+        <div class="deal-price"><strong>USEDで賢く</strong></div>
+        <p class="deal-copy">サイズアウトが早い子供服はリユースも相性よし。ブランド服をムダなく選ぶ入口です。</p>
+        <div class="deal-link">レビューを見る →</div>
       </div>
     </a>
   </div>
+  <p class="price-note">※価格・割引・送料無料・キャンペーンは2026年5月23日時点で確認した公式ページ情報をもとにした目安です。最新条件は各記事内の公式リンク先で確認してください。</p>
 </section>
 
 <!-- ARTICLES -->
@@ -252,7 +369,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
   </div>
   <div class="art-grid">
     <a href="tiktokshop_article.html" class="ac">
-      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#1a1a2e,#16213e);"><span class="ac-num" style="color:rgba(255,255,255,.4);">NEW</span>🛍️</div>
+      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#1a1a2e,#16213e);"><span class="ac-num" style="color:rgba(255,255,255,.5);">NEW</span><div class="phone-mock" aria-hidden="true"></div></div>
       <div class="ac-body">
         <div class="ac-tag">暮らし・節約・おかいもの</div>
         <h3 class="ac-title">TikTok Shopとは？使ってわかったメリット・注意点</h3>
@@ -261,7 +378,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
       </div>
     </a>
     <a href="myfirst_article.html" class="ac" style="animation-delay:.22s;">
-      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#EEE8F8,#DDD0F0);"><span class="ac-num">NEW</span>⌚</div>
+      <div class="ac-thumb product" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:#fff;"><span class="ac-num">NEW</span><img src="https://jp.myfirst.tech/cdn/shop/files/s4-main.jpg?v=1771577866&amp;width=533" alt="myFirst Fone キッズスマートウォッチ" loading="lazy"></div>
       <div class="ac-body">
         <div class="ac-tag">子育て・キッズグッズ</div>
         <h3 class="ac-title">子どもを見守りたいママへ。myFirst FoneがGPS＋スマホのいいとこどりな理由</h3>
@@ -270,7 +387,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
       </div>
     </a>
     <a href="hyacca_article.html" class="ac" style="animation-delay:.34s;">
-      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#F5E8EE,#EDD4DE);"><span class="ac-num">No.03</span>🎁</div>
+      <div class="ac-thumb product" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:#fff;"><span class="ac-num">No.03</span><img src="https://asset.hyacca.online/wp-content/uploads/2020/05/01234425/95d41490b6e947b91a26d971d3cfdb4a-1.png" alt="HYACCA ギフトボックス" loading="lazy"></div>
       <div class="ac-body">
         <div class="ac-tag">ギフト・お祝い</div>
         <h3 class="ac-title">ギフト選びで「センスいいね」と言われたい。HYACCAが選ばれる5つの理由</h3>
@@ -279,7 +396,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
       </div>
     </a>
     <a href="kashite_article.html" class="ac" style="animation-delay:.46s;">
-      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#E8EFF8,#D0DDEF);"><span class="ac-num">No.04</span>🏠</div>
+      <div class="ac-thumb contain" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:#f6f1e7;"><span class="ac-num">No.04</span><img src="https://www.kasite.com/html/assets/img/common/logo_kashitedotcom.png" alt="かして！どっとこむ" loading="lazy"></div>
       <div class="ac-body">
         <div class="ac-tag">暮らし・節約</div>
         <h3 class="ac-title">引越し前に知っておきたい！家電レンタルが「買うより賢い」理由</h3>
@@ -288,7 +405,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
       </div>
     </a>
     <a href="eigodvd_article.html" class="ac" style="animation-delay:.58s;">
-      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#E8F4FF,#C8E8FF);"><span class="ac-num">No.05</span>🎬</div>
+      <div class="ac-thumb contain" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:#fff;"><span class="ac-num">No.05</span><img src="https://eigoden.itembox.cloud/product/000/000000000025/000000000025-01.jpg?size=l&amp;t=20191007111440&amp;w=ODAw" alt="Goomies English for Kids DVD" loading="lazy"></div>
       <div class="ac-body">
         <div class="ac-tag">子育て・英語教育</div>
         <h3 class="ac-title">0歳から使える英語DVD、本当に効果ある？1児のママが正直レビュー</h3>
@@ -297,7 +414,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
       </div>
     </a>
     <a href="berpy_article.html" class="ac" style="animation-delay:.70s;">
-      <div class="ac-thumb c3"><span class="ac-num">No.06</span>🐔</div>
+      <div class="ac-thumb product"><span class="ac-num">No.06</span><img src="https://cdn.shopify.com/s/files/1/0520/4259/6520/files/4_629a9a62-67d3-4990-b9e1-65f6a747cf33.png?v=1778131007" alt="Berpy かみかみチキン" loading="lazy"></div>
       <div class="ac-body">
         <div class="ac-tag">ベビーグッズ・ギフト</div>
         <h3 class="ac-title">出産祝いに迷ったらこれ！SNSで話題のかみかみチキン</h3>
@@ -306,7 +423,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
       </div>
     </a>
     <a href="doridori_article.html" class="ac" style="animation-delay:.82s;">
-      <div class="ac-thumb c2"><span class="ac-num">No.07</span>🍼</div>
+      <div class="ac-thumb product"><span class="ac-num">No.07</span><img src="https://doridori.co.jp/cdn/shop/files/dor40-main-s.jpg?v=1752837894&amp;width=1080" alt="DoriDori ベビーサークル" loading="lazy"></div>
       <div class="ac-body">
         <div class="ac-tag">子育て・安全</div>
         <h3 class="ac-title">ハイハイが始まる前にやっておきたい、安全な部屋づくり</h3>
