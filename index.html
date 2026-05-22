@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="R4_LTr6ogVlBzVQraulLCxlMklt-SKLQ-wnvMtQuFdw">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KAZ & MIOの楽に生きる — 子育て・暮らし・節約を北海道から発信するブログ</title>
-<meta name="description" content="1児のママMIOと夫KAZが、子育て・暮らし・節約のリアルを北海道・旭川から発信。ブランド子供服の賢い選び方、ベビーグッズ、家電レンタルなど試してよかったものを正直にお届けします。">
+<title>KAZ & MIOの楽に生きる｜子育て・暮らし・節約の正直レビューブログ</title>
+<meta name="description" content="1児のママMIOと夫KAZが、子育て・暮らし・節約のリアルを北海道・旭川から発信。ベビーグッズ、子供服、ギフト、家電レンタル、TikTok Shopなど試してよかったものを正直にレビューします。">
 <link rel="canonical" href="https://kaz-mio.github.io/index.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="KAZ & MIOの楽に生きる — 子育て・暮らし・節約ブログ">
-<meta property="og:description" content="1児のママMIOと夫KAZが、子育て・暮らし・節約のリアルを北海道・旭川から発信。試してよかったものだけを正直にお届けします。">
+<meta property="og:title" content="KAZ & MIOの楽に生きる｜子育て・暮らし・節約の正直レビューブログ">
+<meta property="og:description" content="1児のママMIOと夫KAZが、子育て・暮らし・節約のリアルを北海道・旭川から発信。試してよかったものを正直にレビューします。">
 <meta property="og:url" content="https://kaz-mio.github.io/index.html">
 <meta property="og:site_name" content="KAZ & MIOの楽に生きる">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KAZ & MIOの楽に生きる">
-<meta name="twitter:description" content="1児のママMIOと夫KAZが子育て・暮らし・節約のリアルを北海道から発信。">
+<meta name="twitter:description" content="子育て・暮らし・節約のリアルを北海道から発信する正直レビューブログ。">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,12 +62,14 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .hd-nav .nav-cta:hover{background:var(--terra-dk);}
 
 /* HERO */
-.hero{max-width:1180px;margin:0 auto;padding:5rem clamp(1.2rem,5vw,3rem) 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.hero{max-width:1180px;margin:0 auto;padding:4.6rem clamp(1.2rem,5vw,3rem) 3.5rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.9fr);gap:4rem;align-items:center;}
 .hero-tag{display:inline-flex;align-items:center;gap:.6rem;font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--terracotta);margin-bottom:1.4rem;}
 .hero-tag::before{content:'';width:22px;height:2px;background:var(--terracotta);}
 .hero-h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.22;margin-bottom:1.6rem;letter-spacing:.01em;}
 .hero-h1 em{font-style:italic;color:var(--terracotta);}
-.hero-p{font-size:1rem;line-height:2;color:var(--ink2);margin-bottom:2.4rem;max-width:42ch;}
+.hero-p{font-size:1rem;line-height:2;color:var(--ink2);margin-bottom:1.4rem;max-width:42ch;}
+.hero-note{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2.2rem;}
+.hero-note span{font-family:'Nunito',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.08em;color:var(--ink2);background:rgba(255,255,255,.72);border:1px solid var(--border);border-radius:999px;padding:.35em .9em;}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
 .btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Nunito',sans-serif;font-weight:700;letter-spacing:.04em;text-decoration:none;padding:.78em 1.6em;border-radius:30px;transition:all .22s;border:none;cursor:pointer;font-size:.85rem;}
 .btn-terra{background:var(--terracotta);color:#fff;}
@@ -77,28 +79,33 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 
 /* HERO CARDS */
 .hero-cards{display:flex;flex-direction:column;gap:1rem;}
-.hc{display:flex;text-decoration:none;color:inherit;background:#fff;border-radius:12px;box-shadow:var(--sh-m);overflow:hidden;transition:transform .25s,box-shadow .25s;}
+.hc{display:flex;text-decoration:none;color:inherit;background:#fff;border-radius:8px;box-shadow:var(--sh-m);overflow:hidden;transition:transform .25s,box-shadow .25s;border:1px solid rgba(31,29,25,.05);}
 .hc:hover{transform:translateY(-4px);box-shadow:var(--sh-l);}
+.hc.featured{border-color:rgba(201,106,58,.28);}
 .hc-thumb{width:100px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem;position:relative;}
 .hc-thumb.t1{background:linear-gradient(145deg,#F8EDE2,#F0D8C4);}
 .hc-thumb.t2{background:linear-gradient(145deg,#E2F0E8,#C8E4D2);}
 .hc-thumb.t3{background:linear-gradient(145deg,#F8EDDC,#F0E0C0);}
 .hc-new{position:absolute;top:8px;right:6px;background:var(--terracotta);color:#fff;font-family:'Nunito',sans-serif;font-size:.48rem;font-weight:700;letter-spacing:.12em;padding:.2em .6em;border-radius:10px;}
-.hc-body{padding:1rem 1.2rem;flex:1;}
+.hc-body{padding:1rem 1.2rem;flex:1;min-width:0;}
 .hc-tag{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--terracotta);margin-bottom:.3rem;}
-.hc-title{font-family:'Shippori Mincho',serif;font-size:.95rem;font-weight:600;line-height:1.45;margin-bottom:.5rem;}
+.hc-title{font-family:'Shippori Mincho',serif;font-size:.95rem;font-weight:600;line-height:1.45;margin-bottom:.5rem;overflow-wrap:anywhere;}
 .hc-arr{font-family:'Nunito',sans-serif;font-size:.68rem;color:var(--ink3);}
 
 /* SECTION HEAD */
-.sec-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2.2rem;}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:1.6rem;}
 .sec-h{font-family:'Shippori Mincho',serif;font-size:1.7rem;font-weight:700;}
 .sec-h em{color:var(--terracotta);font-style:italic;}
+.sec-lead{font-size:.88rem;line-height:1.9;color:var(--ink2);max-width:34rem;}
+.topic-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.4rem;}
+.topic{display:inline-flex;align-items:center;gap:.45rem;text-decoration:none;color:var(--ink2);background:#fff;border:1px solid var(--border);border-radius:999px;padding:.55em 1em;font-size:.78rem;font-weight:500;box-shadow:var(--sh-s);transition:transform .2s,border-color .2s,color .2s;}
+.topic:hover{transform:translateY(-2px);border-color:var(--terracotta);color:var(--terracotta);}
 
 /* ARTICLES */
 .arts-wrap{max-width:1180px;margin:0 auto;padding:5rem clamp(1.2rem,5vw,3rem);}
 .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
 @media(min-width:961px){.art-grid{grid-template-columns:repeat(2,1fr);}}
-.ac{background:#fff;border-radius:14px;box-shadow:var(--sh-s);overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .28s,box-shadow .28s;opacity:0;transform:translateY(20px);animation:fadeUp .65s ease forwards;}
+.ac{background:#fff;border-radius:8px;box-shadow:var(--sh-s);overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .28s,box-shadow .28s;opacity:0;transform:translateY(20px);animation:fadeUp .65s ease forwards;border:1px solid rgba(31,29,25,.05);}
 .ac:nth-child(1){animation-delay:.1s;}.ac:nth-child(2){animation-delay:.22s;}.ac:nth-child(3){animation-delay:.34s;}
 .ac:hover{transform:translateY(-6px);box-shadow:var(--sh-l);}
 .ac-thumb{height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;}
@@ -108,7 +115,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .ac-num{position:absolute;top:11px;left:13px;font-family:'Nunito',sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.1em;color:rgba(31,29,25,.28);}
 .ac-body{padding:1.4rem;flex:1;display:flex;flex-direction:column;}
 .ac-tag{font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--terracotta);margin-bottom:.6rem;}
-.ac-title{font-family:'Shippori Mincho',serif;font-size:1.05rem;font-weight:600;line-height:1.5;flex:1;margin-bottom:.9rem;}
+.ac-title{font-family:'Shippori Mincho',serif;font-size:1.05rem;font-weight:600;line-height:1.5;flex:1;margin-bottom:.9rem;overflow-wrap:anywhere;}
 .ac-exc{font-size:.83rem;line-height:1.8;color:var(--ink2);margin-bottom:1.1rem;}
 .ac-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(31,29,25,.06);padding-top:.9rem;}
 .ac-date{font-family:'Nunito',sans-serif;font-size:.6rem;color:var(--ink3);}
@@ -121,12 +128,12 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .brands-label::before,.brands-label::after{content:'';flex:1;height:1px;background:var(--border);}
 .brands-label span{font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3);}
 .brand-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
-.bc{display:flex;gap:1.1rem;align-items:flex-start;background:#fff;border-radius:12px;padding:1.5rem;box-shadow:var(--sh-s);text-decoration:none;color:inherit;border:1.5px solid transparent;transition:all .22s;}
+.bc{display:flex;gap:1.1rem;align-items:flex-start;background:#fff;border-radius:8px;padding:1.5rem;box-shadow:var(--sh-s);text-decoration:none;color:inherit;border:1.5px solid transparent;transition:all .22s;}
 .bc:hover{border-color:var(--terracotta);transform:translateY(-3px);box-shadow:var(--sh-m);}
 .bc-icon{font-size:2rem;flex-shrink:0;line-height:1.2;}
 .bc-sp{font-family:'Nunito',sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:.2rem;}
 .bc-name{font-family:'Shippori Mincho',serif;font-size:.98rem;font-weight:600;margin-bottom:.35rem;}
-.bc-desc{font-size:.78rem;line-height:1.7;color:var(--ink2);margin-bottom:.7rem;}
+.bc-desc{font-size:.78rem;line-height:1.7;color:var(--ink2);margin-bottom:.7rem;overflow-wrap:anywhere;}
 .bc-arr{font-family:'Nunito',sans-serif;font-size:.65rem;font-weight:700;color:var(--terracotta);}
 
 /* DARK BANNER */
@@ -164,8 +171,9 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
-@media(max-width:960px){.hero{grid-template-columns:1fr;gap:3rem;}.art-grid{grid-template-columns:1fr;}.brand-cards{grid-template-columns:1fr;}.dark-inner{grid-template-columns:1fr;gap:3rem;}.about{grid-template-columns:1fr;}}
-@media(max-width:640px){.hd-nav a:not(.nav-cta){display:none;}}
+@media(max-width:960px){.hero{grid-template-columns:1fr;gap:2.2rem;padding-top:3rem;}.hero-cards{max-width:640px;}.sec-head{display:block;}.sec-lead{margin-top:.5rem;}.art-grid{grid-template-columns:1fr;}.brand-cards{grid-template-columns:1fr;}.dark-inner{grid-template-columns:1fr;gap:3rem;}.about{grid-template-columns:1fr;}}
+@media(max-width:640px){.hd{height:auto;min-height:58px;padding:.65rem 1rem;}.hd-logo-ja{font-size:1.03rem;}.hd-nav a:not(.nav-cta){display:none;}.hd-nav .nav-cta{font-size:.68rem;padding:.48rem .76rem;margin-left:0;}.hero{padding:2.6rem 1rem 2.4rem;}.hero-tag{font-size:.56rem;line-height:1.7;letter-spacing:.16em;}.hero-h1{font-size:2.15rem;}.hero-actions .btn{width:100%;justify-content:center;}.hc-thumb{width:82px!important;font-size:2rem;}.hc-body{padding:.9rem 1rem;}.hc-title{font-size:.9rem;}.arts-wrap,.brands,.dark-band,.about,.ft{padding-left:1rem;padding-right:1rem;}.topic-row{gap:.5rem;}.topic{font-size:.74rem;}.ac-thumb{height:150px!important;font-size:3.2rem!important;}.ac-body{padding:1.15rem;}.brands-label span{text-align:center;line-height:1.7;}.stat{padding:1.2rem .9rem;}.about-avi{flex-direction:row;justify-content:center;}.avi{width:82px;height:82px;font-size:2.4rem;}.ft-inner{align-items:flex-start;}.ft-nav{gap:1rem;}}
+@media(max-width:520px){.hd,.hero,.arts-wrap,.brands,.dark-band,.about,.ft{max-width:390px;margin-left:0;margin-right:0;}.hero-cards,.hc{max-width:100%;}.sec-lead,.ac-exc,.about-p{overflow-wrap:anywhere;}}
 </style>
 </head>
 <body>
@@ -189,17 +197,23 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
     <div class="hero-tag">北海道・旭川発 ／ 1児のママのリアルブログ</div>
     <h1 class="hero-h1">がんばりすぎない、<br><em>それが正解。</em></h1>
     <p class="hero-p">子育て・暮らし・節約について、実際に試してよかったことだけを正直にお届けします。「これ知ってたらよかった！」が見つかるブログです。</p>
+    <div class="hero-note">
+      <span>子育て</span>
+      <span>暮らし</span>
+      <span>節約</span>
+      <span>正直レビュー</span>
+    </div>
     <div class="hero-actions">
       <a href="#articles" class="btn btn-terra">記事を読む →</a>
       <a href="profile.html" class="btn btn-ghost">私たちについて</a>
     </div>
   </div>
   <div class="hero-cards">
-    <a href="tiktokshop_article.html" class="hc">
+    <a href="tiktokshop_article.html" class="hc featured">
       <div class="hc-thumb" style="width:100px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem;position:relative;background:linear-gradient(145deg,#1a1a2e,#16213e);"><span class="hc-new">NEW</span>🛍️</div>
       <div class="hc-body">
         <div class="hc-tag">暮らし・おかいもの</div>
-        <div class="hc-title">「動画で見たまま買える」が革命的。TikTok Shopを使ってみた正直レビュー</div>
+        <div class="hc-title">TikTok Shopとは？使ってわかったメリット・注意点</div>
         <div class="hc-arr">読む →</div>
       </div>
     </a>
@@ -226,33 +240,41 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 <section class="arts-wrap" id="articles">
   <div class="sec-head">
     <h2 class="sec-h">最新<em>記事</em></h2>
+    <p class="sec-lead">新しいレビューから順に並べています。気になるテーマがある方は、下の入口から近い記事へどうぞ。</p>
+  </div>
+  <div class="topic-row" aria-label="テーマ別の記事入口">
+    <a href="tiktokshop_article.html" class="topic">🛍️ おかいもの</a>
+    <a href="myfirst_article.html" class="topic">⌚ 見守りグッズ</a>
+    <a href="hyacca_article.html" class="topic">🎁 ギフト</a>
+    <a href="kashite_article.html" class="topic">🏠 暮らし・節約</a>
+    <a href="eigodvd_article.html" class="topic">🎬 英語教育</a>
   </div>
   <div class="art-grid">
-    <a href="asp_affiliate_article.html" class="ac">
-      <div class="ac-thumb c1"><span class="ac-num">No.01</span>👗</div>
+    <a href="tiktokshop_article.html" class="ac">
+      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#1a1a2e,#16213e);"><span class="ac-num" style="color:rgba(255,255,255,.4);">NEW</span>🛍️</div>
       <div class="ac-body">
-        <div class="ac-tag">子育て・おかいもの</div>
-        <h3 class="ac-title">子どもの服、買いすぎていない？賢いママの選択肢</h3>
-        <p class="ac-exc">成長期はあっという間にサイズアウト。上質なブランド服をリーズナブルに手に入れる方法とは。</p>
-        <div class="ac-foot"><span class="ac-date">2026.04.25</span><span class="ac-read">読む →</span></div>
+        <div class="ac-tag">暮らし・節約・おかいもの</div>
+        <h3 class="ac-title">TikTok Shopとは？使ってわかったメリット・注意点</h3>
+        <p class="ac-exc">動画やライブで商品を確認してアプリ内で購入。便利な点と、買う前に見ておきたいポイントを正直にまとめました。</p>
+        <div class="ac-foot"><span class="ac-date">2026.05.23</span><span class="ac-read">読む →</span></div>
       </div>
     </a>
-    <a href="doridori_article.html" class="ac">
-      <div class="ac-thumb c2"><span class="ac-num">No.02</span>🍼</div>
+    <a href="myfirst_article.html" class="ac" style="animation-delay:.22s;">
+      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#EEE8F8,#DDD0F0);"><span class="ac-num">NEW</span>⌚</div>
       <div class="ac-body">
-        <div class="ac-tag">子育て・安全</div>
-        <h3 class="ac-title">ハイハイが始まる前にやっておきたい、安全な部屋づくり</h3>
-        <p class="ac-exc">仕組みで安全を確保する。デザインと機能性を両立したベビーグッズの選び方。</p>
-        <div class="ac-foot"><span class="ac-date">2026.04.25</span><span class="ac-read">読む →</span></div>
+        <div class="ac-tag">子育て・キッズグッズ</div>
+        <h3 class="ac-title">子どもを見守りたいママへ。myFirst FoneがGPS＋スマホのいいとこどりな理由</h3>
+        <p class="ac-exc">GPS・ビデオ通話・SOS・家族SNSが1台に。キッズスマートウォッチの正直レビュー。</p>
+        <div class="ac-foot"><span class="ac-date">2026.05.23</span><span class="ac-read">読む →</span></div>
       </div>
     </a>
-    <a href="berpy_article.html" class="ac">
-      <div class="ac-thumb c3"><span class="ac-num">No.03</span>🐔</div>
+    <a href="hyacca_article.html" class="ac" style="animation-delay:.34s;">
+      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#F5E8EE,#EDD4DE);"><span class="ac-num">No.03</span>🎁</div>
       <div class="ac-body">
-        <div class="ac-tag">ベビーグッズ・ギフト</div>
-        <h3 class="ac-title">出産祝いに迷ったらこれ！SNSで話題のかみかみチキン</h3>
-        <p class="ac-exc">安全性・デザイン・実用性の三拍子。BerpyのベビーグッズをMIOが正直レビュー。</p>
-        <div class="ac-foot"><span class="ac-date">2026.04.25</span><span class="ac-read">読む →</span></div>
+        <div class="ac-tag">ギフト・お祝い</div>
+        <h3 class="ac-title">ギフト選びで「センスいいね」と言われたい。HYACCAが選ばれる5つの理由</h3>
+        <p class="ac-exc">出産祝い・結婚祝い・内祝いで失敗したくない方へ。住所不要のソーシャルギフト機能も紹介。</p>
+        <div class="ac-foot"><span class="ac-date">2026.05.17</span><span class="ac-read">読む →</span></div>
       </div>
     </a>
     <a href="kashite_article.html" class="ac" style="animation-delay:.46s;">
@@ -273,31 +295,31 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
         <div class="ac-foot"><span class="ac-date">2026.05.02</span><span class="ac-read">読む →</span></div>
       </div>
     </a>
-    <a href="hyacca_article.html" class="ac" style="animation-delay:.70s;">
-      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#F5E8EE,#EDD4DE);"><span class="ac-num">No.06</span>🎁</div>
+    <a href="berpy_article.html" class="ac" style="animation-delay:.70s;">
+      <div class="ac-thumb c3"><span class="ac-num">No.06</span>🐔</div>
       <div class="ac-body">
-        <div class="ac-tag">ギフト・お祝い</div>
-        <h3 class="ac-title">ギフト選びで「センスいいね」と言われたい。HYACCAが選ばれる5つの理由</h3>
-        <p class="ac-exc">出産祝い・結婚祝い・内祝いで失敗したくない方へ。バイヤー厳選のおしゃれギフトと住所不要のソーシャルギフト機能。</p>
-        <div class="ac-foot"><span class="ac-date">2026.05.17</span><span class="ac-read">読む →</span></div>
+        <div class="ac-tag">ベビーグッズ・ギフト</div>
+        <h3 class="ac-title">出産祝いに迷ったらこれ！SNSで話題のかみかみチキン</h3>
+        <p class="ac-exc">安全性・デザイン・実用性の三拍子。BerpyのベビーグッズをMIOが正直レビュー。</p>
+        <div class="ac-foot"><span class="ac-date">2026.04.25</span><span class="ac-read">読む →</span></div>
       </div>
     </a>
-    <a href="myfirst_article.html" class="ac" style="animation-delay:.82s;">
-      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#EEE8F8,#DDD0F0);"><span class="ac-num">No.07</span>⌚</div>
+    <a href="doridori_article.html" class="ac" style="animation-delay:.82s;">
+      <div class="ac-thumb c2"><span class="ac-num">No.07</span>🍼</div>
       <div class="ac-body">
-        <div class="ac-tag">子育て・キッズグッズ</div>
-        <h3 class="ac-title">子どもを見守りたいママへ。myFirst FoneがGPS＋スマホのいいとこどりな理由</h3>
-        <p class="ac-exc">GPS・ビデオ通話・SOS・家族SNSが1台に。ビックカメラでも買えるシンガポール発キッズスマートウォッチ正直レビュー。</p>
-        <div class="ac-foot"><span class="ac-date">2026.05.23</span><span class="ac-read">読む →</span></div>
+        <div class="ac-tag">子育て・安全</div>
+        <h3 class="ac-title">ハイハイが始まる前にやっておきたい、安全な部屋づくり</h3>
+        <p class="ac-exc">仕組みで安全を確保する。デザインと機能性を両立したベビーグッズの選び方。</p>
+        <div class="ac-foot"><span class="ac-date">2026.04.25</span><span class="ac-read">読む →</span></div>
       </div>
     </a>
-    <a href="tiktokshop_article.html" class="ac" style="animation-delay:.94s;">
-      <div class="ac-thumb" style="height:190px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;background:linear-gradient(145deg,#1a1a2e,#16213e);"><span class="ac-num" style="color:rgba(255,255,255,.4);">No.08</span>🛍️</div>
+    <a href="asp_affiliate_article.html" class="ac" style="animation-delay:.94s;">
+      <div class="ac-thumb c1"><span class="ac-num">No.08</span>👗</div>
       <div class="ac-body">
-        <div class="ac-tag">暮らし・節約・おかいもの</div>
-        <h3 class="ac-title">「動画で見たまま買える」が革命的。TikTok Shopを使ってみた正直レビュー</h3>
-        <p class="ac-exc">動画・ライブで商品をリアルに確認してその場で購入。初回クーポン・送料無料も充実の新感覚ショッピング体験。</p>
-        <div class="ac-foot"><span class="ac-date">2026.05.23</span><span class="ac-read">読む →</span></div>
+        <div class="ac-tag">子育て・おかいもの</div>
+        <h3 class="ac-title">子どもの服、買いすぎていない？賢いママの選択肢</h3>
+        <p class="ac-exc">成長期はあっという間にサイズアウト。上質なブランド服をリーズナブルに手に入れる方法とは。</p>
+        <div class="ac-foot"><span class="ac-date">2026.04.25</span><span class="ac-read">読む →</span></div>
       </div>
     </a>
   </div>
@@ -376,7 +398,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
         <div>
           <div class="bc-sp">Sponsored</div>
           <div class="bc-name">TikTok Shop</div>
-          <div class="bc-desc">動画を見たままその場で購入できる新感覚ショッピング。初回クーポン・送料無料キャンペーンも充実。</div>
+          <div class="bc-desc">動画やLIVEで商品を確認しながら、アプリ内で購入を検討できるショッピング機能。</div>
           <div class="bc-arr">記事を読む →</div>
         </div>
       </a>
