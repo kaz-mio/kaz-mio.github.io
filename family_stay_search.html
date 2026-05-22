@@ -175,6 +175,28 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         <label class="label" for="destination">行き先・エリア</label>
         <select id="destination">
           <option value="">行き先を選択してください</option>
+          <optgroup label="地域ブロック">
+            <option value="北海道">北海道エリア</option>
+            <option value="東北">東北エリア</option>
+            <option value="関東">関東エリア</option>
+            <option value="甲信越">甲信越エリア</option>
+            <option value="北陸">北陸エリア</option>
+            <option value="東海">東海エリア</option>
+            <option value="関西">関西エリア</option>
+            <option value="中国地方">中国エリア</option>
+            <option value="四国">四国エリア</option>
+            <option value="九州">九州エリア</option>
+            <option value="沖縄">沖縄エリア</option>
+          </optgroup>
+          <optgroup label="北海道エリア">
+            <option value="札幌 小樽">道央（札幌・小樽）</option>
+            <option value="函館 道南">道南（函館周辺）</option>
+            <option value="富良野 美瑛">富良野・美瑛</option>
+            <option value="動物園周辺">動物園周辺</option>
+            <option value="ニセコ ルスツ">ニセコ・ルスツ</option>
+            <option value="帯広 十勝">十勝・帯広</option>
+            <option value="釧路 知床">道東（釧路・知床）</option>
+          </optgroup>
           <optgroup label="人気エリア">
             <option value="北海道">北海道</option>
             <option value="札幌">札幌</option>
@@ -242,6 +264,28 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         <label class="label" for="foodDestination">食事エリア</label>
         <select id="foodDestination">
           <option value="">エリアを選択してください</option>
+          <optgroup label="地域ブロック">
+            <option value="北海道">北海道エリア</option>
+            <option value="東北">東北エリア</option>
+            <option value="関東">関東エリア</option>
+            <option value="甲信越">甲信越エリア</option>
+            <option value="北陸">北陸エリア</option>
+            <option value="東海">東海エリア</option>
+            <option value="関西">関西エリア</option>
+            <option value="中国地方">中国エリア</option>
+            <option value="四国">四国エリア</option>
+            <option value="九州">九州エリア</option>
+            <option value="沖縄">沖縄エリア</option>
+          </optgroup>
+          <optgroup label="北海道エリア">
+            <option value="札幌 小樽">道央（札幌・小樽）</option>
+            <option value="函館 道南">道南（函館周辺）</option>
+            <option value="富良野 美瑛">富良野・美瑛</option>
+            <option value="動物園周辺">動物園周辺</option>
+            <option value="ニセコ ルスツ">ニセコ・ルスツ</option>
+            <option value="帯広 十勝">十勝・帯広</option>
+            <option value="釧路 知床">道東（釧路・知床）</option>
+          </optgroup>
           <optgroup label="人気エリア">
             <option value="北海道">北海道</option><option value="札幌">札幌</option><option value="函館">函館</option><option value="東京">東京</option><option value="銀座">銀座</option><option value="新宿">新宿</option><option value="横浜">横浜</option><option value="名古屋">名古屋</option><option value="大阪">大阪</option><option value="京都">京都</option><option value="福岡">福岡</option><option value="沖縄">沖縄</option>
           </optgroup>
@@ -410,8 +454,14 @@ const copyText = async (text, button) => {
     button.textContent = 'コピーできませんでした';
   }
 };
-[stayDestination, stayExtra, ...stayChecks].forEach(el => el.addEventListener('input', updateStayLinks));
-[foodDestination, foodExtra, ...foodChecks].forEach(el => el.addEventListener('input', updateFoodLinks));
+[stayDestination, stayExtra, ...stayChecks].forEach(el => {
+  el.addEventListener('input', updateStayLinks);
+  el.addEventListener('change', updateStayLinks);
+});
+[foodDestination, foodExtra, ...foodChecks].forEach(el => {
+  el.addEventListener('input', updateFoodLinks);
+  el.addEventListener('change', updateFoodLinks);
+});
 document.getElementById('copyQuery').addEventListener('click', () => copyText(stayQueryText.textContent, document.getElementById('copyQuery')));
 document.getElementById('copyFoodQuery').addEventListener('click', () => copyText(foodQueryText.textContent, document.getElementById('copyFoodQuery')));
 document.getElementById('copyTemplate').addEventListener('click', () => copyText(document.getElementById('messageTemplate').value, document.getElementById('copyTemplate')));
