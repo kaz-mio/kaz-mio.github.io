@@ -74,9 +74,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .social{display:flex;gap:.55rem;margin-top:1rem;color:#b8b8b8;font-weight:800;}
 .social span{width:26px;height:26px;border:1px solid #d6d2c7;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;}
 .main{margin-left:220px;min-height:100vh;}
-.hero{min-height:760px;display:grid;grid-template-columns:minmax(460px,58vw) 1fr;align-items:center;position:relative;padding:0 4.8rem 5.6rem 0;}
-.hero-visual{height:760px;align-self:start;overflow:hidden;background:#ddd;}
-.hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.hero{position:relative;min-height:230vh;padding:0 4.8rem 0 0;}
+.hero-stage{position:sticky;top:0;min-height:760px;display:grid;grid-template-columns:minmax(460px,58vw) 1fr;align-items:center;}
+.hero-visual{height:760px;align-self:start;overflow:hidden;background:#ddd;position:relative;}
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transform:scale(1.035);filter:saturate(.94) contrast(.98);transition:opacity .72s ease,transform 1.2s ease,filter .72s ease;}
+.hero-slide.is-active{opacity:1;transform:scale(1);filter:saturate(1) contrast(1);}
 .hero-copy{padding:7.2rem 0 0 3.4rem;position:relative;}
 .search-pill{position:absolute;top:2.6rem;left:3.4rem;width:min(260px,80%);height:48px;border-radius:999px;background:#e8e8e6;color:#9a9a9a;font-size:.8rem;display:flex;align-items:center;justify-content:space-between;padding:0 .45rem 0 1.35rem;}
 .search-pill span:last-child{width:42px;height:42px;border-radius:50%;background:#bdbdbd;color:#fff;display:flex;align-items:center;justify-content:center;}
@@ -89,8 +91,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .hero-links a{border:1px solid var(--gold);background:transparent;color:var(--gold2);min-width:150px;text-align:center;padding:.85rem 1rem;font-weight:700;font-size:.82rem;transition:background .2s,color .2s,transform .2s;}
 .hero-links a.primary{background:var(--ink);border-color:var(--ink);color:#fff;}
 .hero-links a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff;}
-.slide-dot{position:absolute;left:calc(58vw + 2rem);bottom:6.6rem;color:#777;font-family:Arial,sans-serif;font-size:.8rem;display:flex;align-items:center;gap:.8rem;}
-.slide-dot::before{content:'';width:7px;height:7px;background:#777;border-radius:50%;box-shadow:0 -22px 0 #c9c9c9,0 -44px 0 #c9c9c9;}
+.slide-nav{position:absolute;left:calc(58vw + 2rem);bottom:6.6rem;color:#777;font-family:Arial,sans-serif;font-size:.8rem;display:flex;align-items:center;gap:.75rem;}
+.slide-dots{display:grid;gap:.82rem;}
+.slide-dot{width:7px;height:7px;border:0;border-radius:50%;background:#c9c9c9;cursor:pointer;padding:0;transition:background .22s,transform .22s;}
+.slide-dot.is-active{background:#777;transform:scale(1.18);}
+.slide-number{min-width:2ch;color:#777;}
 .lead-photo{position:relative;min-height:780px;padding:1.8rem 0 8rem;}
 .lead-photo::before{content:'';position:absolute;right:0;top:0;width:68%;height:520px;background:url('assets/kaz-mio-sea-dino-city-hero.png') center/cover no-repeat;}
 .lead-photo::after{content:'';position:absolute;left:0;bottom:0;width:54%;height:360px;background:url('assets/kaz-mio-adventure-hero.png') center/cover no-repeat;}
@@ -155,14 +160,16 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .mobile-contact{width:42px;height:42px;border-radius:50%;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;}
   .main,.ft{margin-left:0;overflow:hidden;}
   .hero{display:block;padding:0 1rem 4rem;min-height:0;width:100%;max-width:100vw;overflow:hidden;}
-  .hero>*{min-width:0;max-width:100%;}
+  .hero-stage{position:relative;top:auto;display:block;min-height:0;}
+  .hero-stage>*{min-width:0;max-width:100%;}
   .hero-visual{height:430px;order:2;}
   .hero-copy{order:1;padding:5rem 0 2rem;min-width:0;width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .hero h1,.hero-copy p{max-width:calc(100vw - 2rem);overflow-wrap:anywhere;}
   .hero-links,.hero-visual{width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .search-pill{top:1.2rem;left:0;}
   .round-contact{right:1rem;top:1rem;width:112px;height:112px;font-size:.75rem;}
-  .slide-dot{display:none;}
+  .slide-nav{position:relative;left:auto;bottom:auto;margin:.7rem 0 0;justify-content:flex-end;}
+  .slide-dots{display:flex;gap:.65rem;}
   .lead-photo{min-height:auto;padding:2rem 1rem 5rem;}
   .lead-photo::before,.lead-photo::after{position:relative;display:block;width:100%;height:300px;margin-bottom:1rem;}
   .lead-text{width:auto;margin:1rem 0 0;padding:1rem 0;background:transparent;}
@@ -215,22 +222,33 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 </aside>
 
 <main class="main">
-  <section class="hero">
-    <div class="hero-visual">
-      <img src="assets/kaz-mio-sea-dino-city-hero.png" alt="海の生き物と恐竜が現代の街並みに楽しく溶け込むアニメ風イラスト" width="1792" height="1024">
-    </div>
-    <div class="hero-copy">
-      <div class="search-pill">検索する <span>⌕</span></div>
-      <a class="round-contact" href="contact.html">無料相談は<br>こちらから</a>
-      <h1>家族の毎日を、<br><em>新しい発見へ</em></h1>
-      <p>KAZ &amp; MIOは、子育て・暮らし・節約・おかいものを家族目線で正直にまとめるレビューブログです。</p>
-      <p>海の生き物や恐竜が街に溶け込むように、便利なものや楽しい場所を暮らしの中で自然に見つけていきます。</p>
-      <div class="hero-links">
-        <a class="primary" href="#reviews">レビューを見る</a>
-        <a href="family_stay_search.html">宿・食事を探す</a>
+  <section class="hero" id="hero-slideshow">
+    <div class="hero-stage">
+      <div class="hero-visual" aria-label="サイトイメージのスライド">
+        <img class="hero-slide is-active" src="assets/kaz-mio-sea-dino-city-hero.png" alt="海の生き物と恐竜が現代の街並みに楽しく溶け込むアニメ風イラスト" width="1792" height="1024">
+        <img class="hero-slide" src="assets/kaz-mio-sea-dino-golden-street.png" alt="夕方の街に恐竜と海の生き物が溶け込むアニメ風イラスト" width="1792" height="1024">
+        <img class="hero-slide" src="assets/kaz-mio-sea-dino-rain-park.png" alt="雨上がりの街と公園に恐竜と海の生き物がいるアニメ風イラスト" width="1792" height="1024">
+      </div>
+      <div class="hero-copy">
+        <div class="search-pill">検索する <span>⌕</span></div>
+        <a class="round-contact" href="contact.html">無料相談は<br>こちらから</a>
+        <h1>家族の毎日を、<br><em>新しい発見へ</em></h1>
+        <p>KAZ &amp; MIOは、子育て・暮らし・節約・おかいものを家族目線で正直にまとめるレビューブログです。</p>
+        <p>海の生き物や恐竜が街に溶け込むように、便利なものや楽しい場所を暮らしの中で自然に見つけていきます。</p>
+        <div class="hero-links">
+          <a class="primary" href="#reviews">レビューを見る</a>
+          <a href="family_stay_search.html">宿・食事を探す</a>
+        </div>
+      </div>
+      <div class="slide-nav" aria-label="トップ画像の切り替わり">
+        <div class="slide-dots">
+          <button class="slide-dot is-active" type="button" data-slide="0" aria-label="1枚目の画像"></button>
+          <button class="slide-dot" type="button" data-slide="1" aria-label="2枚目の画像"></button>
+          <button class="slide-dot" type="button" data-slide="2" aria-label="3枚目の画像"></button>
+        </div>
+        <span class="slide-number">01</span>
       </div>
     </div>
-    <div class="slide-dot">01</div>
   </section>
 
   <section class="lead-photo" aria-labelledby="concept-title">
@@ -322,11 +340,52 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 </footer>
 <script>
 const toTopButton = document.querySelector('.to-top');
+const hero = document.getElementById('hero-slideshow');
+const heroSlides = [...document.querySelectorAll('.hero-slide')];
+const heroDots = [...document.querySelectorAll('.slide-dot')];
+const heroNumber = document.querySelector('.slide-number');
+let activeHeroSlide = 0;
+
+const setHeroSlide = index => {
+  if (!heroSlides.length || index === activeHeroSlide) return;
+  activeHeroSlide = index;
+  heroSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+  heroDots.forEach((dot, i) => {
+    dot.classList.toggle('is-active', i === index);
+    dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+  });
+  if (heroNumber) heroNumber.textContent = String(index + 1).padStart(2, '0');
+};
+
+const updateHeroSlide = () => {
+  if (!hero || !heroSlides.length) return;
+  const rect = hero.getBoundingClientRect();
+  const scrollSpan = Math.max(hero.offsetHeight - window.innerHeight, 1);
+  const raw = Math.min(Math.max(-rect.top / scrollSpan, 0), .999);
+  const index = Math.min(heroSlides.length - 1, Math.floor(raw * heroSlides.length));
+  setHeroSlide(index);
+};
+
 const updateToTopButton = () => {
   toTopButton.classList.toggle('is-visible', window.scrollY > 640);
 };
+heroDots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    if (!hero) return;
+    const heroTop = window.scrollY + hero.getBoundingClientRect().top;
+    const scrollSpan = Math.max(hero.offsetHeight - window.innerHeight, 1);
+    const ratio = index / heroSlides.length + .02;
+    window.scrollTo({ top: heroTop + scrollSpan * ratio, behavior: 'smooth' });
+    setHeroSlide(index);
+  });
+});
 updateToTopButton();
-window.addEventListener('scroll', updateToTopButton, { passive: true });
+updateHeroSlide();
+window.addEventListener('scroll', () => {
+  updateToTopButton();
+  updateHeroSlide();
+}, { passive: true });
+window.addEventListener('resize', updateHeroSlide);
 </script>
 </body>
 </html>
