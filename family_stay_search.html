@@ -91,8 +91,9 @@ h1 em{font-style:italic;color:var(--blue);}
 .panel-head h2,.section-title{font-family:'Shippori Mincho',serif;font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.25;}
 .panel-head p{max-width:34rem;color:var(--ink2);font-size:.88rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.booking-row{grid-template-columns:1.2fr .72fr .72fr .72fr;}
 label.label{display:block;font-weight:800;font-size:.8rem;color:var(--navy);margin-bottom:.4rem;}
-input[type="text"],select{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff;padding:.88rem 1rem;font:inherit;color:var(--ink);}
+input[type="text"],input[type="date"],input[type="number"],select{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff;padding:.88rem 1rem;font:inherit;color:var(--ink);}
 select{appearance:auto;cursor:pointer;}
 .checks{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin:1rem 0 1.2rem;}
 .check{display:flex;align-items:flex-start;gap:.55rem;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.72rem;min-height:64px;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;}
@@ -106,7 +107,7 @@ select{appearance:auto;cursor:pointer;}
 .panel-tabs a:hover{transform:translateY(-2px);box-shadow:var(--soft);border-color:rgba(239,125,103,.38);}
 .copy-btn{border:none;border-radius:999px;background:var(--navy);color:#fff;font-weight:900;padding:.65rem 1rem;cursor:pointer;transition:transform .2s,background .2s;}
 .copy-btn:hover{transform:translateY(-2px);background:var(--coral-d);}
-.providers{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;}
+.providers{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.75rem;}
 .provider{border:2px solid transparent;border-radius:8px;text-decoration:none;background:var(--coral);color:#fff;padding:.9rem .78rem;text-align:center;font-weight:900;font-size:.82rem;box-shadow:0 10px 24px rgba(239,125,103,.22);transition:transform .2s,box-shadow .2s,background .2s;}
 .provider:hover{transform:translateY(-4px);box-shadow:var(--shadow);background:var(--coral-d);}
 .provider.alt{background:var(--navy);box-shadow:0 10px 24px rgba(24,52,71,.18);}
@@ -130,7 +131,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38);}
 @media(max-width:980px){.hero,.form-row{grid-template-columns:1fr;}.providers{grid-template-columns:repeat(2,1fr);}.checks{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}}
 @media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}.wrap{padding:2.6rem 1rem 4rem;}h1{font-size:2.45rem;}.lead,.panel-head p,.note,.tip p,.memo p{overflow-wrap:anywhere;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.search-panel{padding:1rem;}.panel-head{display:block;}.panel-head p{margin-top:.6rem;}.checks,.providers{grid-template-columns:1fr;}.query-box{grid-template-columns:1fr;}.copy-btn{width:100%;}.ft-inner{align-items:flex-start;flex-direction:column;}}
-@media(max-width:520px){.hd,.wrap,.ft{width:100vw;max-width:390px;margin-left:0;margin-right:0;overflow:hidden;}.hero,.hero-card,.search-panel,.grid,.template,.ft-inner{max-width:358px;}.provider,.check,input[type="text"],select,textarea{max-width:100%;}}
+@media(max-width:520px){.hd,.wrap,.ft{width:100vw;max-width:390px;margin-left:0;margin-right:0;overflow:hidden;}.hero,.hero-card,.search-panel,.grid,.template,.ft-inner{max-width:358px;}.provider,.check,input[type="text"],input[type="date"],input[type="number"],select,textarea{max-width:100%;}}
 </style>
 </head>
 <body>
@@ -168,7 +169,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
   <section class="search-panel" id="stay-search" aria-labelledby="search-title">
     <div class="panel-head">
       <h2 id="search-title">ファミリー条件で横断検索</h2>
-      <p>行き先と条件を選ぶと、各サイトへ渡す検索語を自動で作ります。日付・人数・子どもの年齢は、移動先の予約サイト側で指定してください。</p>
+      <p>行き先・日付・泊数・人数・条件をまとめて、各サイトや比較検索へ渡す検索語を自動で作ります。</p>
     </div>
     <div class="form-row">
       <div>
@@ -226,6 +227,24 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         <input id="extra" type="text" placeholder="例：温泉、駅近、駐車場、朝食">
       </div>
     </div>
+    <div class="form-row booking-row">
+      <div>
+        <label class="label" for="checkinDate">チェックイン日</label>
+        <input id="checkinDate" type="date">
+      </div>
+      <div>
+        <label class="label" for="nights">泊数</label>
+        <input id="nights" type="number" min="1" max="14" value="1">
+      </div>
+      <div>
+        <label class="label" for="adults">大人</label>
+        <input id="adults" type="number" min="1" max="8" value="2">
+      </div>
+      <div>
+        <label class="label" for="children">子ども</label>
+        <input id="children" type="number" min="0" max="6" value="1">
+      </div>
+    </div>
     <div class="checks" id="stayChecks" aria-label="子連れ宿泊で確認したい条件">
       <label class="check"><input type="checkbox" value="ベッドガード"><span>ベッドガード</span></label>
       <label class="check"><input type="checkbox" value="ベビーベッド"><span>ベビーベッド</span></label>
@@ -249,9 +268,12 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <a class="provider" id="jalanLink" target="_blank" rel="noopener">じゃらん</a>
       <a class="provider" id="yahooLink" target="_blank" rel="noopener">Yahoo!トラベル</a>
       <a class="provider" id="ikyuLink" target="_blank" rel="noopener">一休.com</a>
+      <a class="provider" id="bookingLink" target="_blank" rel="noopener">Booking.com</a>
+      <a class="provider alt" id="googleHotelsLink" target="_blank" rel="noopener">Googleホテル比較</a>
+      <a class="provider alt" id="trivagoLink" target="_blank" rel="noopener">トリバゴ検索</a>
       <a class="provider alt" id="googleLink" target="_blank" rel="noopener">Google横断</a>
     </div>
-    <p class="note">※各予約サイトの検索仕様により、入力した条件が完全に絞り込み条件として反映されない場合があります。検索結果から宿ページを開き、設備・貸出品・部屋タイプ・子ども料金を確認してください。</p>
+    <p class="note">※楽天トラベルとじゃらんは日本語の文字化けを避けるため、各サイト内をGoogle経由で探す導線にしています。日付・人数はサイトによって反映範囲が異なるため、移動後の画面でも確認してください。</p>
   </section>
 
   <section class="search-panel" id="food-search" aria-labelledby="food-title">
@@ -384,6 +406,10 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 <script>
 const stayDestination = document.getElementById('destination');
 const stayExtra = document.getElementById('extra');
+const checkinDate = document.getElementById('checkinDate');
+const nightsInput = document.getElementById('nights');
+const adultsInput = document.getElementById('adults');
+const childrenInput = document.getElementById('children');
 const stayQueryText = document.getElementById('queryText');
 const stayChecks = [...document.querySelectorAll('#stayChecks input')];
 const stayDefaults = ['子連れ', '宿', 'ファミリー'];
@@ -392,6 +418,9 @@ const stayLinks = {
   jalan: document.getElementById('jalanLink'),
   yahoo: document.getElementById('yahooLink'),
   ikyu: document.getElementById('ikyuLink'),
+  booking: document.getElementById('bookingLink'),
+  googleHotels: document.getElementById('googleHotelsLink'),
+  trivago: document.getElementById('trivagoLink'),
   google: document.getElementById('googleLink')
 };
 const foodDestination = document.getElementById('foodDestination');
@@ -410,6 +439,7 @@ const buildStayQuery = () => {
   const words = [
     stayDestination.value.trim(),
     ...stayDefaults,
+    ...buildStayMeta(),
     ...stayChecks.filter(input => input.checked).map(input => input.value),
     stayExtra.value.trim()
   ].filter(Boolean);
@@ -424,15 +454,61 @@ const buildFoodQuery = () => {
   ].filter(Boolean);
   return words.join(' ');
 };
+const clampNumber = (value, fallback, min, max) => {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return fallback;
+  return Math.min(Math.max(Math.round(number), min), max);
+};
+const addDays = (dateValue, days) => {
+  if (!dateValue) return '';
+  const [year, month, day] = dateValue.split('-').map(Number);
+  if (![year, month, day].every(Number.isFinite)) return '';
+  const date = new Date(Date.UTC(year, month - 1, day + days));
+  return date.toISOString().slice(0, 10);
+};
+const dateText = dateValue => {
+  if (!dateValue) return '';
+  const [year, month, day] = dateValue.split('-').map(Number);
+  if (![year, month, day].every(Number.isFinite)) return '';
+  return `${year}年${month}月${day}日`;
+};
+const buildStayMeta = () => {
+  const nights = clampNumber(nightsInput.value, 1, 1, 14);
+  const adults = clampNumber(adultsInput.value, 2, 1, 8);
+  const children = clampNumber(childrenInput.value, 1, 0, 6);
+  return [
+    checkinDate.value ? `${dateText(checkinDate.value)}宿泊` : '',
+    `${nights}泊`,
+    `大人${adults}名`,
+    children ? `子ども${children}名` : ''
+  ].filter(Boolean);
+};
+const buildBookingUrl = () => {
+  const params = new URLSearchParams();
+  params.set('ss', stayDestination.value.trim() || '日本');
+  params.set('group_adults', String(clampNumber(adultsInput.value, 2, 1, 8)));
+  params.set('group_children', String(clampNumber(childrenInput.value, 1, 0, 6)));
+  params.set('no_rooms', '1');
+  params.set('lang', 'ja');
+  if (checkinDate.value) {
+    const nights = clampNumber(nightsInput.value, 1, 1, 14);
+    params.set('checkin', checkinDate.value);
+    params.set('checkout', addDays(checkinDate.value, nights));
+  }
+  return `https://www.booking.com/searchresults.ja.html?${params.toString()}`;
+};
 const updateStayLinks = () => {
   const query = buildStayQuery() || '子連れ 宿 ファミリー ベッドガード 畳 洗い場付き風呂';
   stayQueryText.textContent = query;
   const q = encodeURIComponent(query);
   const siteSearch = site => `https://www.google.com/search?q=${encodeURIComponent(query + ' site:' + site)}`;
-  stayLinks.rakuten.href = `https://kw.travel.rakuten.co.jp/keyword/Search.do?f_query=${q}`;
+  stayLinks.rakuten.href = siteSearch('travel.rakuten.co.jp');
   stayLinks.jalan.href = siteSearch('jalan.net');
   stayLinks.yahoo.href = `https://travel.yahoo.co.jp/search?p=${q}`;
   stayLinks.ikyu.href = `https://www.ikyu.com/search?kwd=${q}`;
+  stayLinks.booking.href = buildBookingUrl();
+  stayLinks.googleHotels.href = `https://www.google.com/travel/hotels?q=${q}`;
+  stayLinks.trivago.href = siteSearch('trivago.jp');
   stayLinks.google.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:travel.rakuten.co.jp OR site:jalan.net OR site:travel.yahoo.co.jp OR site:ikyu.com')}`;
 };
 const updateFoodLinks = () => {
@@ -455,7 +531,7 @@ const copyText = async (text, button) => {
     button.textContent = 'コピーできませんでした';
   }
 };
-[stayDestination, stayExtra, ...stayChecks].forEach(el => {
+[stayDestination, stayExtra, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
   el.addEventListener('input', updateStayLinks);
   el.addEventListener('change', updateStayLinks);
 });
@@ -468,6 +544,8 @@ document.getElementById('copyFoodQuery').addEventListener('click', () => copyTex
 document.getElementById('copyTemplate').addEventListener('click', () => copyText(document.getElementById('messageTemplate').value, document.getElementById('copyTemplate')));
 stayChecks.slice(0, 8).forEach(input => { input.checked = true; });
 foodChecks.slice(0, 7).forEach(input => { input.checked = true; });
+const today = new Date();
+checkinDate.min = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 updateStayLinks();
 updateFoodLinks();
 </script>
