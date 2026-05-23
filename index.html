@@ -133,6 +133,13 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .review-title{font-family:'Shippori Mincho',serif;font-size:1.32rem;line-height:1.45;font-weight:600;}
 .review-copy{font-size:.82rem;color:#777;line-height:1.75;}
 .review-link{margin-top:auto;font-size:.75rem;color:#777;border-top:1px solid var(--line);padding-top:.8rem;}
+.shopping-strip{padding:4.2rem 5.8rem;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.shopping-strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;}
+.shopping-strip h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,2.7vw,2.6rem);line-height:1.45;font-weight:500;color:#858585;margin-bottom:.75rem;}
+.shopping-strip p{color:#777;font-size:.9rem;max-width:42rem;}
+.shopping-banner{display:block;background:#f7f5ef;border:1px solid var(--line);padding:.75rem;transition:transform .2s,opacity .2s;}
+.shopping-banner:hover{transform:translateY(-3px);opacity:.86;}
+.shopping-banner img{width:min(468px,100%);height:auto;}
 .articles{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);}
 .article{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:1.35rem 0;border-bottom:1px solid var(--line);transition:padding .2s,color .2s;}
 .article:nth-child(odd){padding-right:1.4rem;border-right:1px solid var(--line);}
@@ -188,6 +195,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .band-cards,.review-grid{grid-template-columns:1fr;}
   .section-head{display:block;}
   .section-head p{margin-top:1rem;}
+  .shopping-strip{padding:3.2rem 1rem;}
+  .shopping-strip-inner{grid-template-columns:1fr;}
   .articles{grid-template-columns:1fr;}
   .article:nth-child(odd),.article:nth-child(even){padding-left:0;padding-right:0;border-right:0;}
   .ft-inner{grid-template-columns:1fr;}
@@ -322,7 +331,18 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="seal_de_name_article.html" class="review-card"><div class="review-photo contain"><img src="https://www22.a8.net/svt/bgt?aid=260523622085&amp;wid=003&amp;eno=01&amp;mid=s00000027380001003000&amp;mc=1" alt="シールDEネーム お名前シール"></div><div class="review-body"><div class="review-cat">Name Sticker</div><h3 class="review-title">シールDEネーム</h3><p class="review-copy">入園・入学準備の名前つけをラクに。</p><div class="review-link">レビューを見る</div></div></a>
       <a href="salad_mamma_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523622086&amp;wid=003&amp;eno=01&amp;mid=s00000027378001003000&amp;mc=1" alt="サラダまんま 野菜サポート"></div><div class="review-body"><div class="review-cat">Kids Meal</div><h3 class="review-title">サラダまんま</h3><p class="review-copy">野菜嫌い・偏食が気になる日のごはんサポート。</p><div class="review-link">レビューを見る</div></div></a>
       <a href="duskin_robot_cleaner_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523621689&amp;wid=003&amp;eno=01&amp;mid=s00000008131010007000&amp;mc=1" alt="ダスキン ロボットクリーナー"></div><div class="review-body"><div class="review-cat">Robot Cleaner</div><h3 class="review-title">ダスキン ロボットクリーナー</h3><p class="review-copy">2週間試せる床掃除レンタル。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="rakuten_market_article.html" class="review-card"><div class="review-photo contain"><img src="https://image.moshimo.com/af-img/0032/000000000620.gif" alt="楽天市場"></div><div class="review-body"><div class="review-cat">Shopping Guide</div><h3 class="review-title">楽天市場の使い方</h3><p class="review-copy">日用品や子育て用品を比べて探す時の見方。</p><div class="review-link">記事を見る</div></div></a>
+    </div>
+  </section>
+
+  <section class="shopping-strip" aria-label="日用品探し">
+    <div class="shopping-strip-inner">
+      <div>
+        <div class="kicker">Daily Shopping</div>
+        <h2>日用品や子育て用品を、必要な時に探しやすく。</h2>
+        <p>おむつ、洗剤、食品、季節用品など、家で使うものを比べたい時のための小さな入口です。価格や送料、発送予定はリンク先で確認してください。</p>
+      </div>
+      <a class="shopping-banner" href="https://af.moshimo.com/af/c/click?a_id=5582658&amp;p_id=54&amp;pc_id=54&amp;pl_id=620" rel="nofollow sponsored noopener" referrerpolicy="no-referrer-when-downgrade" target="_blank" attributionsrc><img src="https://image.moshimo.com/af-img/0032/000000000620.gif" width="468" height="60" alt="楽天市場"></a>
+      <img src="https://i.moshimo.com/af/i/impression?a_id=5582658&amp;p_id=54&amp;pc_id=54&amp;pl_id=620" width="1" height="1" style="border:none;" loading="lazy" alt="">
     </div>
   </section>
 
@@ -346,7 +366,6 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="seal_de_name_article.html" class="article"><span class="article-icon">名</span><div><h3>入園・入学準備のお名前シールで名前つけをラクに</h3><p>子育て・入園準備・名前つけ</p></div><span>→</span></a>
       <a href="salad_mamma_article.html" class="article"><span class="article-icon">食</span><div><h3>子どもの野菜不足が気になる時のサラダまんま</h3><p>子育て・食事・偏食サポート</p></div><span>→</span></a>
       <a href="duskin_robot_cleaner_article.html" class="article"><span class="article-icon">掃</span><div><h3>ロボットクリーナーはレンタルで試すのが安心？</h3><p>暮らし・掃除・家事ラク</p></div><span>→</span></a>
-      <a href="rakuten_market_article.html" class="article"><span class="article-icon">買</span><div><h3>楽天市場で日用品を探す時のムダ買いしない見方</h3><p>暮らし・子育て用品・買い物</p></div><span>→</span></a>
     </div>
   </section>
 
