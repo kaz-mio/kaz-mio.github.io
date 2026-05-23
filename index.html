@@ -373,6 +373,11 @@ const heroSlides = [...document.querySelectorAll('.hero-slide')];
 const heroDots = [...document.querySelectorAll('.slide-dot')];
 const heroNumber = document.querySelector('.slide-number');
 let activeHeroSlide = 0;
+let heroAutoTimer = null;
+let heroAutoRestartTimer = null;
+let lastHeroScrollY = window.scrollY;
+const heroAutoDelay = 5200;
+const heroMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const setHeroSlide = index => {
   if (!heroSlides.length || index === activeHeroSlide) return;
@@ -394,6 +399,28 @@ const updateHeroSlide = () => {
   setHeroSlide(index);
 };
 
+const startHeroAuto = () => {
+  if (!heroSlides.length || heroMotionReduced) return;
+  window.clearInterval(heroAutoTimer);
+  window.clearTimeout(heroAutoRestartTimer);
+  heroAutoTimer = window.setInterval(() => {
+    setHeroSlide((activeHeroSlide + 1) % heroSlides.length);
+  }, heroAutoDelay);
+};
+
+const scheduleHeroAutoRestart = () => {
+  if (heroMotionReduced) return;
+  window.clearInterval(heroAutoTimer);
+  window.clearTimeout(heroAutoRestartTimer);
+  heroAutoRestartTimer = window.setTimeout(startHeroAuto, 1400);
+};
+
+const restartHeroAutoAfterScroll = () => {
+  const delta = Math.abs(window.scrollY - lastHeroScrollY);
+  lastHeroScrollY = window.scrollY;
+  if (delta > 2) scheduleHeroAutoRestart();
+};
+
 const updateToTopButton = () => {
   toTopButton.classList.toggle('is-visible', window.scrollY > 640);
 };
@@ -405,15 +432,21 @@ heroDots.forEach((dot, index) => {
     const ratio = index / heroSlides.length + .02;
     window.scrollTo({ top: heroTop + scrollSpan * ratio, behavior: 'smooth' });
     setHeroSlide(index);
+    scheduleHeroAutoRestart();
   });
 });
 updateToTopButton();
 updateHeroSlide();
+startHeroAuto();
 window.addEventListener('scroll', () => {
   updateToTopButton();
   updateHeroSlide();
+  restartHeroAutoAfterScroll();
 }, { passive: true });
-window.addEventListener('resize', updateHeroSlide);
+window.addEventListener('resize', () => {
+  updateHeroSlide();
+  scheduleHeroAutoRestart();
+});
 </script>
 </body>
 </html>
