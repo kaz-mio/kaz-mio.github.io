@@ -428,8 +428,9 @@ const updateStayLinks = () => {
   const query = buildStayQuery() || '子連れ 宿 ファミリー ベッドガード 畳 洗い場付き風呂';
   stayQueryText.textContent = query;
   const q = encodeURIComponent(query);
-  stayLinks.rakuten.href = `https://travel.rakuten.co.jp/keyword/Search.do?f_query=${q}`;
-  stayLinks.jalan.href = `https://www.jalan.net/uw/uwp2011/uww2011init.do?keyword=${q}`;
+  const siteSearch = site => `https://www.google.com/search?q=${encodeURIComponent(query + ' site:' + site)}`;
+  stayLinks.rakuten.href = `https://kw.travel.rakuten.co.jp/keyword/Search.do?f_query=${q}`;
+  stayLinks.jalan.href = siteSearch('jalan.net');
   stayLinks.yahoo.href = `https://travel.yahoo.co.jp/search?p=${q}`;
   stayLinks.ikyu.href = `https://www.ikyu.com/search?kwd=${q}`;
   stayLinks.google.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:travel.rakuten.co.jp OR site:jalan.net OR site:travel.yahoo.co.jp OR site:ikyu.com')}`;
