@@ -119,6 +119,23 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .band-card:hover{transform:translateY(-5px);border-color:var(--gold);}
 .band-card small{color:var(--gold);font-weight:800;letter-spacing:.12em;}
 .band-card h3{font-family:'Shippori Mincho',serif;font-size:1.45rem;line-height:1.45;font-weight:600;}
+.family-navi{position:relative;padding:5.6rem 5.8rem;background:#f7f5ef;border-bottom:1px solid var(--line);overflow:hidden;}
+.family-navi::before{content:'FAMILY NAVI';position:absolute;right:-.8rem;top:.4rem;font-family:Arial,sans-serif;font-size:clamp(4.2rem,10vw,9rem);font-weight:800;line-height:1;color:rgba(34,34,34,.045);letter-spacing:.1em;white-space:nowrap;}
+.family-navi-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.08fr .92fr;gap:3.6rem;align-items:center;}
+.family-navi-copy h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.8vw,4rem);line-height:1.34;font-weight:500;color:#777;margin-bottom:1.15rem;}
+.family-navi-copy p{color:#777;font-size:.94rem;max-width:42rem;margin-bottom:1.25rem;}
+.navi-tags{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.4rem 0 1.8rem;}
+.navi-tags span{border:1px solid var(--line);background:#fff;color:#777;padding:.42rem .72rem;font-size:.74rem;}
+.family-navi-actions{display:flex;flex-wrap:wrap;gap:.8rem;}
+.family-navi-actions a{min-width:170px;text-align:center;border:1px solid var(--gold);padding:.85rem 1rem;font-size:.82rem;font-weight:800;color:var(--gold2);transition:background .2s,color .2s,transform .2s,border-color .2s;}
+.family-navi-actions a:first-child{background:#1c1c1c;border-color:#1c1c1c;color:#fff;}
+.family-navi-actions a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff;}
+.family-navi-panel{background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;box-shadow:0 22px 60px rgba(40,36,25,.08);}
+.navi-panel-photo{grid-column:1/-1;min-height:230px;background:url('assets/kaz-mio-sea-dino-city-hero.png') center/cover no-repeat;}
+.navi-panel-item{background:#fff;padding:1.25rem;min-height:128px;}
+.navi-panel-item small{display:block;font-family:Arial,sans-serif;color:var(--gold2);font-size:.64rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem;}
+.navi-panel-item strong{display:block;font-family:'Shippori Mincho',serif;font-size:1.14rem;font-weight:600;line-height:1.5;margin-bottom:.25rem;}
+.navi-panel-item span{display:block;color:#888;font-size:.78rem;line-height:1.65;}
 .section{padding:6.2rem 5.8rem;}
 .section-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:2.6rem;}
 .section-head p{max-width:34rem;color:#777;font-size:.92rem;}
@@ -189,9 +206,13 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .lead-photo{min-height:auto;padding:2rem 1rem 5rem;}
   .lead-photo::before,.lead-photo::after{position:relative;display:block;width:100%;height:300px;margin-bottom:1rem;}
   .lead-text{width:auto;margin:1rem 0 0;padding:1rem 0;background:transparent;}
-  .dark-band,.section,.about,.ft{padding:4rem 1rem;}
+  .dark-band,.family-navi,.section,.about,.ft{padding:4rem 1rem;}
   .band-inner,.about-inner{grid-template-columns:1fr;gap:2rem;}
+  .family-navi-inner{grid-template-columns:1fr;gap:2rem;}
+  .family-navi::before{top:1.2rem;font-size:4rem;}
   .band-cards,.review-grid{grid-template-columns:1fr;}
+  .family-navi-panel{grid-template-columns:1fr;}
+  .navi-panel-photo{min-height:210px;}
   .section-head{display:block;}
   .section-head p{margin-top:1rem;}
   .shopping-strip{padding:3.2rem 1rem;}
@@ -207,6 +228,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .brand-marquee.is-secondary{top:33.8rem;}
   .hero-copy p{max-width:320px;word-break:break-all;}
   .lead-text p,.section-head p,.about p{overflow-wrap:anywhere;}
+  .family-navi-actions a{width:100%;}
   .hero-links a{width:100%;}
   .round-contact{display:none;}
   .hero-visual{height:330px;}
@@ -310,6 +332,33 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     </div>
   </section>
 
+  <section class="family-navi" id="family-navi" aria-labelledby="family-navi-title">
+    <div class="family-navi-inner">
+      <div class="family-navi-copy">
+        <div class="kicker">Family Navi</div>
+        <h2 id="family-navi-title">子連れ宿・食事さがしを、<br>ここからまとめて。</h2>
+        <p>ホテル予約サイトをひとつずつ開いて探す前に、子連れで気になる条件を整理して検索できます。広いベッド、畳、低いベッド、ベッドガード、おむつBOX、バス・トイレ別、座敷、個室など、家族で動きやすい場所を探すための専用ナビです。</p>
+        <div class="navi-tags" aria-label="探せる条件">
+          <span>宿さがし</span>
+          <span>食事さがし</span>
+          <span>北海道エリア対応</span>
+          <span>日時・泊数</span>
+          <span>座敷・個室</span>
+          <span>バス・トイレ別</span>
+        </div>
+        <div class="family-navi-actions">
+          <a href="family_stay_search.html">宿・食事を探す</a>
+          <a href="#reviews">レビューも見る</a>
+        </div>
+      </div>
+      <div class="family-navi-panel" aria-hidden="true">
+        <div class="navi-panel-photo"></div>
+        <div class="navi-panel-item"><small>Stay</small><strong>小さい子と泊まりやすい宿</strong><span>畳、低いベッド、貸出備品、お風呂まわりを確認しやすく。</span></div>
+        <div class="navi-panel-item"><small>Food</small><strong>家族で入りやすい食事場所</strong><span>座敷、個室、ベビーカー、子どもメニューを探す入口に。</span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="reviews">
     <div class="section-head">
       <div>
@@ -324,7 +373,6 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="myfirst_article.html" class="review-card"><div class="review-photo"><img src="https://jp.myfirst.tech/cdn/shop/files/s4-main.jpg?v=1771577866&amp;width=533" alt="myFirst Fone キッズスマートウォッチ"></div><div class="review-body"><div class="review-cat">Kids Watch</div><h3 class="review-title">myFirst Fone シリーズ</h3><p class="review-copy">GPS・通話・SOSなど見守り機能を比較。</p><div class="review-link">レビューを見る</div></div></a>
       <a href="eigodvd_article.html" class="review-card"><div class="review-photo contain"><img src="https://eigoden.itembox.cloud/product/000/000000000025/000000000025-01.jpg?size=l&amp;t=20191007111440&amp;w=ODAw" alt="Goomies English for Kids DVD"></div><div class="review-body"><div class="review-cat">English DVD</div><h3 class="review-title">Goomies English for Kids</h3><p class="review-copy">おうち英語に合わせやすいDVD教材。</p><div class="review-link">レビューを見る</div></div></a>
       <a href="hyacca_article.html" class="review-card"><div class="review-photo"><img src="https://asset.hyacca.online/wp-content/uploads/2020/05/01234425/95d41490b6e947b91a26d971d3cfdb4a-1.png" alt="HYACCA ギフトボックス"></div><div class="review-body"><div class="review-cat">Gift</div><h3 class="review-title">HYACCA ギフト</h3><p class="review-copy">出産祝い・内祝いなどのギフト選びに。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="family_stay_search.html" class="review-card"><div class="review-photo"><img src="assets/kaz-mio-sea-dino-city-hero.png" alt="ファミリー向け宿と食事場所さがし"></div><div class="review-body"><div class="review-cat">Stay &amp; Food</div><h3 class="review-title">子連れ宿・食事さがしナビ</h3><p class="review-copy">宿と食事場所を子連れ条件で横断検索。</p><div class="review-link">探してみる</div></div></a>
       <a href="pc_rental_article.html" class="review-card"><div class="review-photo contain"><img src="https://www27.a8.net/svt/bgt?aid=260523621851&amp;wid=003&amp;eno=01&amp;mid=s00000026753002003000&amp;mc=1" alt="パソコンレンタルサービス"></div><div class="review-body"><div class="review-cat">PC Rental</div><h3 class="review-title">低コストPCレンタル</h3><p class="review-copy">短期利用・急なテレワーク・イベントにも。</p><div class="review-link">レビューを見る</div></div></a>
       <a href="digxipop_pet_figure_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523621716&amp;wid=003&amp;eno=01&amp;mid=s00000027357001007000&amp;mc=1" alt="digxipop ペット3Dフィギュア"></div><div class="review-body"><div class="review-cat">Pet Gift</div><h3 class="review-title">ペット3Dフィギュア</h3><p class="review-copy">写真から愛犬・愛猫を形に残すギフト。</p><div class="review-link">レビューを見る</div></div></a>
       <a href="seal_de_name_article.html" class="review-card"><div class="review-photo contain"><img src="https://www22.a8.net/svt/bgt?aid=260523622085&amp;wid=003&amp;eno=01&amp;mid=s00000027380001003000&amp;mc=1" alt="シールDEネーム お名前シール"></div><div class="review-body"><div class="review-cat">Name Sticker</div><h3 class="review-title">シールDEネーム</h3><p class="review-copy">入園・入学準備の名前つけをラクに。</p><div class="review-link">レビューを見る</div></div></a>
@@ -364,7 +412,6 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="myfirst_article.html" class="article"><span class="article-icon">見</span><div><h3>myFirst FoneがGPS＋スマホのいいとこどりな理由</h3><p>子育て・キッズグッズ</p></div><span>→</span></a>
       <a href="hyacca_article.html" class="article"><span class="article-icon">贈</span><div><h3>HYACCAがギフト選びで選ばれる5つの理由</h3><p>ギフト・お祝い</p></div><span>→</span></a>
       <a href="kashite_article.html" class="article"><span class="article-icon">暮</span><div><h3>家電レンタルが「買うより賢い」理由</h3><p>暮らし・節約</p></div><span>→</span></a>
-      <a href="family_stay_search.html" class="article"><span class="article-icon">旅</span><div><h3>小さい子連れで困らない宿・食事場所を探すナビ</h3><p>旅行・宿検索・外食</p></div><span>→</span></a>
       <a href="asp_affiliate_article.html" class="article"><span class="article-icon">服</span><div><h3>子どもの服、買いすぎていない？賢いママの選択肢</h3><p>子育て・おかいもの</p></div><span>→</span></a>
       <a href="pc_rental_article.html" class="article"><span class="article-icon">PC</span><div><h3>急にパソコンが必要なとき、レンタルという選択肢</h3><p>仕事・テレワーク・短期利用</p></div><span>→</span></a>
       <a href="digxipop_pet_figure_article.html" class="article"><span class="article-icon">贈</span><div><h3>ペットの写真から3Dフィギュアを作るメモリアルギフト</h3><p>ペット・ギフト・記念品</p></div><span>→</span></a>
