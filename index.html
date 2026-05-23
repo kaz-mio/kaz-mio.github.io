@@ -134,12 +134,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .review-copy{font-size:.82rem;color:#777;line-height:1.75;}
 .review-link{margin-top:auto;font-size:.75rem;color:#777;border-top:1px solid var(--line);padding-top:.8rem;}
 .shopping-strip{padding:4.2rem 5.8rem;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.shopping-strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;}
+.shopping-strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr minmax(300px,340px);gap:2rem;align-items:center;}
 .shopping-strip h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,2.7vw,2.6rem);line-height:1.45;font-weight:500;color:#858585;margin-bottom:.75rem;}
 .shopping-strip p{color:#777;font-size:.9rem;max-width:42rem;}
-.shopping-banner{display:block;background:#f7f5ef;border:1px solid var(--line);padding:.75rem;transition:transform .2s,opacity .2s;}
-.shopping-banner:hover{transform:translateY(-3px);opacity:.86;}
-.shopping-banner img{width:min(468px,100%);height:auto;}
+.rakuten-widget-box{background:#f7f5ef;border:1px solid var(--line);padding:1rem;min-height:282px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.rakuten-widget-box script{display:none;}
 .articles{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);}
 .article{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:1.35rem 0;border-bottom:1px solid var(--line);transition:padding .2s,color .2s;}
 .article:nth-child(odd){padding-right:1.4rem;border-right:1px solid var(--line);}
@@ -341,8 +340,12 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <h2>日用品や子育て用品を、必要な時に探しやすく。</h2>
         <p>おむつ、洗剤、食品、季節用品など、家で使うものを比べたい時のための小さな入口です。価格や送料、発送予定はリンク先で確認してください。</p>
       </div>
-      <a class="shopping-banner" href="https://af.moshimo.com/af/c/click?a_id=5582658&amp;p_id=54&amp;pc_id=54&amp;pl_id=620" rel="nofollow sponsored noopener" referrerpolicy="no-referrer-when-downgrade" target="_blank" attributionsrc><img src="https://image.moshimo.com/af-img/0032/000000000620.gif" width="468" height="60" alt="楽天市場"></a>
-      <img src="https://i.moshimo.com/af/i/impression?a_id=5582658&amp;p_id=54&amp;pc_id=54&amp;pl_id=620" width="1" height="1" style="border:none;" loading="lazy" alt="">
+      <div class="rakuten-widget-box" aria-label="楽天市場のおすすめ商品">
+        <!-- MAF Rakuten Widget FROM HERE -->
+        <script type="text/javascript">MafRakutenWidgetParam=function(){return{size:'300x250',design:'slide',recommend:'on',auto_mode:'on',a_id:'5582658',border:'off'};};</script>
+        <script type="text/javascript" src="https://dn.msmstatic.com/site/rakuten/widget.js"></script>
+        <!-- MAF Rakuten Widget TO HERE -->
+      </div>
     </div>
   </section>
 
