@@ -1,0 +1,101 @@
+body{
+  background:
+    radial-gradient(circle at 12% 8%,rgba(96,197,213,.18),transparent 30%),
+    radial-gradient(circle at 88% 12%,rgba(201,106,58,.14),transparent 28%),
+    linear-gradient(180deg,#f7f4ed 0%,#eef7f7 48%,#f7f4ed 100%) !important;
+}
+.hd{
+  box-shadow:0 12px 34px rgba(24,36,43,.07);
+}
+.art-layout,.wrap{
+  max-width:1220px !important;
+  gap:clamp(2rem,4vw,4.4rem) !important;
+}
+.art-hero,article>.tag:first-child{
+  position:relative;
+}
+.art-hero::before,article>.tag:first-child::before{
+  content:'';
+  position:absolute;
+  width:72px;
+  height:4px;
+  left:0;
+  top:-1.2rem;
+  border-radius:999px;
+  background:linear-gradient(90deg,#c96a3a,#dfcf98,#60c5d5);
+}
+.art-tag,.tag{
+  color:#a9502b !important;
+  letter-spacing:.2em !important;
+}
+.art-title,.title{
+  letter-spacing:.01em;
+  color:#171717 !important;
+}
+.art-lead,.lead{
+  font-weight:500;
+  color:#555 !important;
+}
+.disclosure{
+  background:rgba(255,255,255,.78) !important;
+  border:1px solid rgba(24,36,43,.08) !important;
+  border-left:4px solid #c96a3a !important;
+  box-shadow:0 10px 26px rgba(24,36,43,.06);
+}
+.mom-review{
+  margin:2rem 0 2.4rem;
+  padding:1.35rem 1.5rem;
+  border-radius:8px;
+  background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(246,239,229,.92));
+  border:1px solid rgba(24,36,43,.08);
+  box-shadow:0 18px 44px rgba(24,36,43,.1);
+  position:relative;
+}
+.mom-review::before{
+  content:'MIO NOTE';
+  display:inline-flex;
+  margin-bottom:.55rem;
+  font-family:'Nunito',sans-serif;
+  font-size:.58rem;
+  font-weight:900;
+  letter-spacing:.18em;
+  color:#c96a3a;
+}
+.mom-review p{
+  margin:0 !important;
+  color:#3f3d39 !important;
+  font-size:.94rem !important;
+  line-height:2 !important;
+}
+.prod-feat,.hero-card,.cta-block,.official-banner,.box,.sb-card{
+  border-radius:8px !important;
+  border:1px solid rgba(24,36,43,.08) !important;
+  box-shadow:0 20px 54px rgba(24,36,43,.12) !important;
+}
+.prod-feat-img,.hero-icon{
+  border-radius:8px !important;
+}
+.art-body h2,.body h2{
+  font-size:clamp(1.45rem,2.5vw,2rem) !important;
+  border-top:1px solid rgba(24,36,43,.1) !important;
+}
+.art-body p,.body p,.art-body li,.body li{
+  color:#56524c !important;
+}
+.cta-block-btn,.cta-banner-btn,.cta,.sb-ad-link{
+  border-radius:999px !important;
+  box-shadow:0 14px 30px rgba(201,106,58,.22);
+}
+.cta-block:hover,.rel-item:hover,.sb-ad-block:hover,.item-card:hover,.box:hover{
+  transform:translateY(-3px);
+}
+.sidebar,.side{
+  top:88px !important;
+}
+@media(max-width:960px){
+  .art-layout,.wrap{gap:2rem !important;}
+}
+@media(max-width:640px){
+  .mom-review{padding:1.1rem 1.15rem;}
+  .art-title,.title{font-size:clamp(1.65rem,8vw,2.25rem) !important;}
+}
