@@ -93,7 +93,7 @@ h1 em{font-style:italic;color:var(--blue);}
 .panel-head p{max-width:34rem;color:var(--ink2);font-size:.88rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
 .form-row>div{background:rgba(255,255,255,.68);border:1px solid rgba(24,36,43,.06);border-radius:8px;padding:.85rem;box-shadow:0 8px 22px rgba(24,52,71,.045);}
-.booking-row{grid-template-columns:1.2fr .72fr .72fr .72fr;}
+.booking-row{grid-template-columns:repeat(auto-fit,minmax(145px,1fr));}
 label.label{display:block;font-weight:800;font-size:.8rem;color:var(--navy);margin-bottom:.4rem;}
 input[type="text"],input[type="date"],input[type="number"],select{width:100%;border:1px solid rgba(24,36,43,.14);border-radius:8px;background:#fff;padding:.88rem 1rem;font:inherit;color:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);transition:border-color .2s,box-shadow .2s,transform .2s;}
 input[type="text"]:hover,input[type="date"]:hover,input[type="number"]:hover,select:hover{border-color:rgba(31,95,122,.34);}
@@ -188,7 +188,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
     </div>
     <div class="form-row">
       <div>
-        <label class="label" for="destination">行き先・エリア</label>
+        <label class="label" for="destination">行き先</label>
         <select id="destination">
           <option value="">行き先を選択してください</option>
           <optgroup label="地域ブロック">
@@ -258,8 +258,10 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         </select>
       </div>
       <div>
-        <label class="label" for="extra">追加したい言葉</label>
-        <input id="extra" type="text" placeholder="例：温泉、駅近、駐車場、朝食">
+        <label class="label" for="stayArea">細かいエリア</label>
+        <select id="stayArea">
+          <option value="">行き先を選ぶと表示されます</option>
+        </select>
       </div>
     </div>
     <div class="form-row booking-row">
@@ -289,6 +291,10 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
           <option value="リニューアル3年以内 新しい客室">リニューアル3年以内</option>
           <option value="リニューアル5年以内 新しい客室">リニューアル5年以内</option>
         </select>
+      </div>
+      <div>
+        <label class="label" for="extra">追加したい言葉</label>
+        <input id="extra" type="text" placeholder="例：温泉、駅近、駐車場、朝食">
       </div>
     </div>
     <div class="checks" id="stayChecks" aria-label="子連れ宿泊で確認したい条件">
@@ -329,7 +335,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
     </div>
     <div class="form-row">
       <div>
-        <label class="label" for="foodDestination">食事エリア</label>
+        <label class="label" for="foodDestination">行き先</label>
         <select id="foodDestination">
           <option value="">エリアを選択してください</option>
           <optgroup label="地域ブロック">
@@ -389,9 +395,13 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         </select>
       </div>
       <div>
-        <label class="label" for="foodExtra">追加したい言葉</label>
-        <input id="foodExtra" type="text" placeholder="例：ランチ、カフェ、駅近、駐車場">
+        <label class="label" for="foodArea">細かいエリア</label>
+        <select id="foodArea">
+          <option value="">行き先を選ぶと表示されます</option>
+        </select>
       </div>
+    </div>
+    <div class="form-row">
       <div>
         <label class="label" for="foodAge">施設の新しさ</label>
         <select id="foodAge">
@@ -402,6 +412,10 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
           <option value="リニューアル3年以内 新しい店内">リニューアル3年以内</option>
           <option value="リニューアル5年以内 新しい店内">リニューアル5年以内</option>
         </select>
+      </div>
+      <div>
+        <label class="label" for="foodExtra">追加したい言葉</label>
+        <input id="foodExtra" type="text" placeholder="例：ランチ、カフェ、駅近、駐車場">
       </div>
     </div>
     <div class="checks" id="foodChecks" aria-label="子連れ食事で確認したい条件">
@@ -482,6 +496,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 
 <script>
 const stayDestination = document.getElementById('destination');
+const stayArea = document.getElementById('stayArea');
 const stayExtra = document.getElementById('extra');
 const checkinDate = document.getElementById('checkinDate');
 const nightsInput = document.getElementById('nights');
@@ -502,6 +517,7 @@ const stayLinks = {
   google: document.getElementById('googleLink')
 };
 const foodDestination = document.getElementById('foodDestination');
+const foodArea = document.getElementById('foodArea');
 const foodExtra = document.getElementById('foodExtra');
 const foodAge = document.getElementById('foodAge');
 const foodQueryText = document.getElementById('foodQueryText');
@@ -514,9 +530,72 @@ const foodLinks = {
   gnavi: document.getElementById('gnaviLink'),
   google: document.getElementById('foodGoogleLink')
 };
+const destinationOptions = [
+  ['北海道', '北海道'],
+  ['東北', '東北'],
+  ['関東', '関東'],
+  ['甲信越', '甲信越'],
+  ['北陸', '北陸'],
+  ['東海', '東海'],
+  ['関西', '関西'],
+  ['中国地方', '中国地方'],
+  ['四国', '四国'],
+  ['九州', '九州'],
+  ['沖縄', '沖縄']
+];
+const areaOptions = {
+  '北海道': [
+    ['札幌 小樽', '道央（札幌・小樽）'],
+    ['札幌 大通 すすきの', '札幌中心部（大通・すすきの）'],
+    ['札幌駅 周辺', '札幌駅周辺'],
+    ['定山渓 温泉', '定山渓温泉'],
+    ['小樽 余市 積丹', '小樽・余市・積丹'],
+    ['千歳 苫小牧 支笏湖', '千歳・苫小牧・支笏湖'],
+    ['登別 洞爺湖 室蘭', '登別・洞爺湖・室蘭'],
+    ['函館 道南', '道南（函館周辺）'],
+    ['函館 湯の川温泉', '函館・湯の川温泉'],
+    ['大沼 七飯 森', '大沼・七飯・森'],
+    ['松前 江差 奥尻', '松前・江差・奥尻'],
+    ['富良野 美瑛', '富良野・美瑛'],
+    ['旭川 旭山動物園', '旭川・旭山動物園周辺'],
+    ['層雲峡 上川', '層雲峡・上川'],
+    ['稚内 利尻 礼文', '稚内・利尻・礼文'],
+    ['留萌 増毛', '留萌・増毛'],
+    ['ニセコ ルスツ', 'ニセコ・ルスツ'],
+    ['洞爺湖 ニセコ ルスツ', '洞爺湖・ニセコ・ルスツ'],
+    ['夕張 岩見沢 空知', '夕張・岩見沢・空知'],
+    ['帯広 十勝', '十勝・帯広'],
+    ['十勝川温泉 帯広', '十勝川温泉・帯広'],
+    ['トマム 占冠', 'トマム・占冠'],
+    ['釧路 知床', '道東（釧路・知床）'],
+    ['釧路 阿寒湖 摩周湖', '釧路・阿寒湖・摩周湖'],
+    ['知床 斜里 羅臼', '知床・斜里・羅臼'],
+    ['網走 北見 紋別', '網走・北見・紋別'],
+    ['根室 中標津', '根室・中標津']
+  ],
+  '東北': [['仙台 松島', '仙台・松島'], ['青森 弘前', '青森・弘前'], ['盛岡 花巻', '盛岡・花巻'], ['秋田 角館', '秋田・角館'], ['山形 蔵王', '山形・蔵王'], ['会津 磐梯', '会津・磐梯']],
+  '関東': [['東京', '東京'], ['東京ディズニーリゾート周辺', '東京ディズニーリゾート周辺'], ['銀座 東京駅', '銀座・東京駅'], ['新宿 渋谷', '新宿・渋谷'], ['横浜 みなとみらい', '横浜・みなとみらい'], ['箱根', '箱根'], ['千葉 幕張', '千葉・幕張'], ['大宮 さいたま', '大宮・さいたま']],
+  '甲信越': [['軽井沢', '軽井沢'], ['長野 松本', '長野・松本'], ['白馬 安曇野', '白馬・安曇野'], ['山梨 河口湖', '山梨・河口湖'], ['新潟 越後湯沢', '新潟・越後湯沢']],
+  '北陸': [['金沢', '金沢'], ['富山', '富山'], ['福井', '福井'], ['加賀温泉郷', '加賀温泉郷']],
+  '東海': [['名古屋', '名古屋'], ['伊勢 志摩', '伊勢・志摩'], ['静岡 浜松', '静岡・浜松'], ['熱海 伊豆', '熱海・伊豆'], ['高山 下呂温泉', '高山・下呂温泉']],
+  '関西': [['大阪', '大阪'], ['京都', '京都'], ['神戸', '神戸'], ['奈良', '奈良'], ['和歌山 白浜', '和歌山・白浜'], ['淡路島', '淡路島']],
+  '中国地方': [['広島 宮島', '広島・宮島'], ['岡山 倉敷', '岡山・倉敷'], ['鳥取 米子', '鳥取・米子'], ['松江 出雲', '松江・出雲'], ['山口 萩', '山口・萩']],
+  '四国': [['高松 小豆島', '高松・小豆島'], ['松山 道後温泉', '松山・道後温泉'], ['高知', '高知'], ['徳島 鳴門', '徳島・鳴門']],
+  '九州': [['福岡 博多', '福岡・博多'], ['長崎', '長崎'], ['熊本 阿蘇', '熊本・阿蘇'], ['別府 湯布院', '別府・湯布院'], ['宮崎', '宮崎'], ['鹿児島', '鹿児島']],
+  '沖縄': [['那覇', '那覇'], ['恩納村', '恩納村'], ['名護 本部', '名護・本部'], ['石垣島', '石垣島'], ['宮古島', '宮古島']]
+};
+const hydrateDestinationSelect = select => {
+  select.innerHTML = '<option value="">行き先を選択してください</option>' + destinationOptions.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
+};
+const updateAreaSelect = (destination, area) => {
+  const areas = areaOptions[destination.value] || [];
+  area.innerHTML = '<option value="">細かいエリアを選択してください</option>' + areas.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
+  area.disabled = !areas.length;
+};
+const destinationWords = (destination, area) => [destination.value.trim(), area.value.trim()].filter(Boolean).join(' ');
 const buildStayQuery = () => {
   const words = [
-    stayDestination.value.trim(),
+    destinationWords(stayDestination, stayArea),
     ...stayDefaults,
     ...buildStayMeta(),
     stayAge.value,
@@ -527,7 +606,7 @@ const buildStayQuery = () => {
 };
 const buildFoodQuery = () => {
   const words = [
-    foodDestination.value.trim(),
+    destinationWords(foodDestination, foodArea),
     ...foodDefaults,
     foodAge.value,
     ...foodChecks.filter(input => input.checked).map(input => input.value),
@@ -566,7 +645,7 @@ const buildStayMeta = () => {
 };
 const buildBookingUrl = () => {
   const params = new URLSearchParams();
-  params.set('ss', stayDestination.value.trim() || '日本');
+  params.set('ss', destinationWords(stayDestination, stayArea) || '日本');
   params.set('group_adults', String(clampNumber(adultsInput.value, 2, 1, 8)));
   params.set('group_children', String(clampNumber(childrenInput.value, 1, 0, 6)));
   params.set('no_rooms', '1');
@@ -612,13 +691,21 @@ const copyText = async (text, button) => {
     button.textContent = 'コピーできませんでした';
   }
 };
-[stayDestination, stayExtra, stayAge, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
+[stayDestination, stayArea, stayExtra, stayAge, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
   el.addEventListener('input', updateStayLinks);
   el.addEventListener('change', updateStayLinks);
 });
-[foodDestination, foodExtra, foodAge, ...foodChecks].forEach(el => {
+[foodDestination, foodArea, foodExtra, foodAge, ...foodChecks].forEach(el => {
   el.addEventListener('input', updateFoodLinks);
   el.addEventListener('change', updateFoodLinks);
+});
+stayDestination.addEventListener('change', () => {
+  updateAreaSelect(stayDestination, stayArea);
+  updateStayLinks();
+});
+foodDestination.addEventListener('change', () => {
+  updateAreaSelect(foodDestination, foodArea);
+  updateFoodLinks();
 });
 document.getElementById('copyQuery').addEventListener('click', () => copyText(stayQueryText.textContent, document.getElementById('copyQuery')));
 document.getElementById('copyFoodQuery').addEventListener('click', () => copyText(foodQueryText.textContent, document.getElementById('copyFoodQuery')));
@@ -627,6 +714,10 @@ stayChecks.slice(0, 8).forEach(input => { input.checked = true; });
 foodChecks.slice(0, 7).forEach(input => { input.checked = true; });
 const today = new Date();
 checkinDate.min = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+hydrateDestinationSelect(stayDestination);
+hydrateDestinationSelect(foodDestination);
+updateAreaSelect(stayDestination, stayArea);
+updateAreaSelect(foodDestination, foodArea);
 updateStayLinks();
 updateFoodLinks();
 </script>
