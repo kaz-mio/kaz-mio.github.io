@@ -81,7 +81,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .social a:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px);}
 .main{margin-left:220px;min-height:100vh;}
 .hero{position:relative;min-height:100vh;padding:0 4.8rem 0 0;}
-.hero-stage{position:sticky;top:0;min-height:760px;display:grid;grid-template-columns:minmax(460px,58vw) 1fr;align-items:center;overflow:hidden;}
+.hero-stage{position:sticky;top:0;min-height:760px;display:grid;grid-template-columns:minmax(460px,54vw) 1fr;align-items:center;overflow:hidden;}
 .brand-marquee{position:absolute;left:0;right:0;bottom:4.8rem;z-index:0;overflow:hidden;white-space:nowrap;pointer-events:none;}
 .brand-marquee-track{display:inline-flex;gap:4rem;min-width:max-content;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,9.4rem);font-weight:800;letter-spacing:.1em;color:rgba(34,34,34,.08);text-transform:uppercase;animation:brandMarquee 28s linear infinite;}
 .brand-marquee-track span{padding-right:4rem;}
@@ -97,9 +97,10 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .site-search input::placeholder{color:#aaa;}
 .site-search button{width:62px;height:100%;border:0;border-left:1px solid var(--line);background:#222;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:background .2s,color .2s;}
 .site-search button:hover{background:var(--gold);color:#fff;}
-.round-contact{position:absolute;right:3.8rem;top:2.2rem;width:154px;height:154px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:.9rem;line-height:1.65;box-shadow:0 16px 36px rgba(160,140,82,.18);transition:transform .2s,box-shadow .2s;}
+.round-contact{position:absolute;right:1.2rem;top:.45rem;width:98px;height:98px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:.72rem;line-height:1.55;box-shadow:0 16px 36px rgba(160,140,82,.18);transition:transform .2s,box-shadow .2s;}
 .round-contact:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(160,140,82,.24);}
-.hero h1{font-family:'Shippori Mincho',serif;font-size:clamp(3.4rem,6vw,6.2rem);line-height:1.35;color:#b8b8b8;font-weight:500;letter-spacing:.04em;margin-bottom:2rem;}
+.hero h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.8rem,4.2vw,4.2rem);line-height:1.35;color:#b8b8b8;font-weight:500;letter-spacing:.04em;margin-bottom:2rem;}
+.hero h1 span,.hero h1 em{display:inline-block;white-space:nowrap;}
 .hero h1 em{font-style:normal;color:#9f9f9f;}
 .hero-copy p{color:#9a9a9a;font-size:.96rem;max-width:33rem;margin-bottom:1.15rem;}
 .hero-links{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem;}
@@ -149,8 +150,14 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .navi-panel-item span{display:block;color:#888;font-size:.78rem;line-height:1.65;}
 .section{padding:6.2rem 5.8rem;}
 .section-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:2.6rem;}
+.section-head h2{white-space:nowrap;}
 .section-head p{max-width:34rem;color:#777;font-size:.92rem;}
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+.review-category{margin-bottom:3.2rem;}
+.review-category:last-child{margin-bottom:0;}
+.category-head{display:flex;justify-content:space-between;gap:1.4rem;align-items:end;margin-bottom:1rem;}
+.category-head h3{font-family:'Shippori Mincho',serif;font-size:clamp(1.35rem,2.4vw,2rem);font-weight:600;line-height:1.4;color:#777;}
+.category-head p{max-width:34rem;color:#777;font-size:.86rem;line-height:1.8;}
 .review-card{background:#fff;min-height:420px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .24s,box-shadow .24s,filter .24s;}
 .review-card:hover{transform:translateY(-7px);box-shadow:0 22px 46px rgba(35,31,22,.16);filter:contrast(1.02);}
 .review-card:hover .review-photo img{transform:scale(1.045);}
@@ -234,6 +241,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .navi-panel-photo{min-height:210px;}
   .section-head{display:block;}
   .section-head p{margin-top:1rem;}
+  .category-head{display:block;}
+  .category-head p{margin-top:.45rem;}
   .shopping-strip{padding:3.2rem 1rem;}
   .shopping-strip-inner{grid-template-columns:1fr;}
   .articles{grid-template-columns:1fr;}
@@ -243,6 +252,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 }
 @media(max-width:520px){
   .hero h1{font-size:2.75rem;}
+  .section-head h2{white-space:normal;}
   .brand-marquee{top:27rem;}
   .brand-marquee.is-secondary{top:33.8rem;}
   .hero-copy p{max-width:320px;word-break:break-all;}
@@ -317,9 +327,9 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       </div>
       <div class="hero-copy">
         <a class="round-contact" href="contact.html">お問い合わせは<br>こちらから</a>
-        <h1>家族の毎日を、<br><em>新しい発見へ</em></h1>
-        <p>KAZ &amp; MIOは、子育て・暮らし・節約・おかいものを家族目線で正直にまとめるレビューブログです。</p>
-        <p>海の生き物や恐竜が街に溶け込むように、便利なものや楽しい場所を暮らしの中で自然に見つけていきます。</p>
+        <h1><span>家族目線の</span><br><em>正直レビュー</em></h1>
+        <p>KAZ &amp; MIOは、育児グッズ、家事ラク用品、節約につながるサービス、子連れ宿・食事探しを家族目線でまとめるレビューブログです。</p>
+        <p>買う前に知りたい良いところ・注意点・どんな家庭に合うかを、暮らしに近い言葉で整理していきます。</p>
         <div class="slide-nav" aria-label="Hero image navigation">
           <div class="slide-dots">
             <button class="slide-dot is-active" type="button" data-slide="0" aria-label="Slide 1"></button>
@@ -336,8 +346,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           <span class="slide-number">01</span>
         </div>
         <div class="hero-links">
-          <a class="primary" href="#reviews">レビューを見る</a>
-          <a href="family_stay_search.html">宿・食事を探す</a>
+          <a class="primary" href="#reviews">悩み別レビューを見る</a>
+          <a href="family_stay_search.html">子連れ宿・食事を探す</a>
         </div>
         <form class="site-search" id="siteSearch" role="search">
           <input id="siteSearchInput" type="search" placeholder="気になる言葉で検索" aria-label="サイト内を検索">
@@ -374,18 +384,19 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <div class="family-navi-inner">
       <div class="family-navi-copy">
         <div class="kicker">Family Navi</div>
-        <h2 id="family-navi-title">子連れ宿・食事さがしを、<br>ここからまとめて。</h2>
-        <p>ホテル予約サイトをひとつずつ開いて探す前に、子連れで気になる条件を整理して検索できます。広いベッド、畳、低いベッド、ベッドガード、おむつBOX、バス・トイレ別、座敷、個室など、家族で動きやすい場所を探すための専用ナビです。</p>
+        <h2 id="family-navi-title">子連れ宿・食事さがしナビを、<br>旅行前の確認リストに。</h2>
+        <p>宿はベッド・畳・お風呂・貸出備品、食事場所は座敷・個室・キッズチェア・ベビーカー可否まで。予約サイトや地図を開く前に、家族で気になる条件を整理して検索できます。</p>
         <div class="navi-tags" aria-label="探せる条件">
           <span>宿さがし</span>
           <span>食事さがし</span>
           <span>北海道エリア対応</span>
           <span>日時・泊数</span>
+          <span>施設の新しさ</span>
           <span>座敷・個室</span>
           <span>バス・トイレ別</span>
         </div>
         <div class="family-navi-actions">
-          <a href="family_stay_search.html">宿・食事を探す</a>
+          <a href="family_stay_search.html">条件を選んで探す</a>
           <a href="#reviews">レビューも見る</a>
         </div>
       </div>
@@ -401,23 +412,59 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <div class="section-head">
       <div>
         <div class="kicker">Review</div>
-        <h2>商品のご案内</h2>
+        <h2>悩み別レビュー</h2>
       </div>
-      <p>気になるジャンルから記事へ。価格・割引・キャンペーンは変動するため、最新条件は各記事内の公式リンク先で確認してください。</p>
+      <p>「何を買うか」より先に、「どんな悩みをラクにしたいか」から選べるように整理しました。価格・割引・キャンペーンは変動するため、最新条件は各記事内の公式リンク先で確認してください。</p>
     </div>
-    <div class="review-grid">
-      <a href="berpy_article.html" class="review-card"><div class="review-photo"><img src="https://cdn.shopify.com/s/files/1/0520/4259/6520/files/4_629a9a62-67d3-4990-b9e1-65f6a747cf33.png?v=1778131007" alt="Berpy かみかみチキン"></div><div class="review-body"><div class="review-cat">Baby Gift</div><h3 class="review-title">Berpy かみかみチキン</h3><p class="review-copy">出産祝いにも選びやすいベビーギフト。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="doridori_article.html" class="review-card"><div class="review-photo"><img src="https://doridori.co.jp/cdn/shop/files/dor40-main-s.jpg?v=1752837894&amp;width=1080" alt="DoriDori ベビーサークル"></div><div class="review-body"><div class="review-cat">Safety</div><h3 class="review-title">DoriDori ベビーサークル</h3><p class="review-copy">部屋になじむ安全グッズを家族目線で確認。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="myfirst_article.html" class="review-card"><div class="review-photo"><img src="https://jp.myfirst.tech/cdn/shop/files/s4-main.jpg?v=1771577866&amp;width=533" alt="myFirst Fone キッズスマートウォッチ"></div><div class="review-body"><div class="review-cat">Kids Watch</div><h3 class="review-title">myFirst Fone シリーズ</h3><p class="review-copy">GPS・通話・SOSなど見守り機能を比較。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="eigodvd_article.html" class="review-card"><div class="review-photo contain"><img src="https://eigoden.itembox.cloud/product/000/000000000025/000000000025-01.jpg?size=l&amp;t=20191007111440&amp;w=ODAw" alt="Goomies English for Kids DVD"></div><div class="review-body"><div class="review-cat">English DVD</div><h3 class="review-title">Goomies English for Kids</h3><p class="review-copy">おうち英語に合わせやすいDVD教材。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="hyacca_article.html" class="review-card"><div class="review-photo"><img src="https://asset.hyacca.online/wp-content/uploads/2020/05/01234425/95d41490b6e947b91a26d971d3cfdb4a-1.png" alt="HYACCA ギフトボックス"></div><div class="review-body"><div class="review-cat">Gift</div><h3 class="review-title">HYACCA ギフト</h3><p class="review-copy">出産祝い・内祝いなどのギフト選びに。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="pc_rental_article.html" class="review-card"><div class="review-photo contain"><img src="https://www27.a8.net/svt/bgt?aid=260523621851&amp;wid=003&amp;eno=01&amp;mid=s00000026753002003000&amp;mc=1" alt="パソコンレンタルサービス"></div><div class="review-body"><div class="review-cat">PC Rental</div><h3 class="review-title">低コストPCレンタル</h3><p class="review-copy">短期利用・急なテレワーク・イベントにも。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="digxipop_pet_figure_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523621716&amp;wid=003&amp;eno=01&amp;mid=s00000027357001007000&amp;mc=1" alt="digxipop ペット3Dフィギュア"></div><div class="review-body"><div class="review-cat">Pet Gift</div><h3 class="review-title">ペット3Dフィギュア</h3><p class="review-copy">写真から愛犬・愛猫を形に残すギフト。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="seal_de_name_article.html" class="review-card"><div class="review-photo contain"><img src="https://www22.a8.net/svt/bgt?aid=260523622085&amp;wid=003&amp;eno=01&amp;mid=s00000027380001003000&amp;mc=1" alt="シールDEネーム お名前シール"></div><div class="review-body"><div class="review-cat">Name Sticker</div><h3 class="review-title">シールDEネーム</h3><p class="review-copy">入園・入学準備の名前つけをラクに。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="salad_mamma_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523622086&amp;wid=003&amp;eno=01&amp;mid=s00000027378001003000&amp;mc=1" alt="サラダまんま 野菜サポート"></div><div class="review-body"><div class="review-cat">Kids Meal</div><h3 class="review-title">サラダまんま</h3><p class="review-copy">野菜嫌い・偏食が気になる日のごはんサポート。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="duskin_robot_cleaner_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523621689&amp;wid=003&amp;eno=01&amp;mid=s00000008131010007000&amp;mc=1" alt="ダスキン ロボットクリーナー"></div><div class="review-body"><div class="review-cat">Robot Cleaner</div><h3 class="review-title">ダスキン ロボットクリーナー</h3><p class="review-copy">2週間試せる床掃除レンタル。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="popomi_baby_circle_article.html" class="review-card"><div class="review-photo contain"><img src="https://thumbnail.image.rakuten.co.jp/@0_mall/happyshop/cabinet/popomi/ppm-circletree04-00.jpg?_ex=128x128" alt="popomi ベビーサークル TREE"></div><div class="review-body"><div class="review-cat">Baby Safety</div><h3 class="review-title">popomi ベビーサークル TREE</h3><p class="review-copy">広めのリビングに安全な遊び場を作る。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="cybex_pallas_g3_article.html" class="review-card"><div class="review-photo contain"><img src="https://thumbnail.image.rakuten.co.jp/@0_mall/dadway-shop/cabinet/cm5/cscx525000955re_01.jpg?_ex=128x128" alt="CYBEX サイベックス パラス G3"></div><div class="review-body"><div class="review-cat">Car Seat</div><h3 class="review-title">サイベックス パラスG3</h3><p class="review-copy">乗せ降ろしがラクだったロングユースシート。</p><div class="review-link">レビューを見る</div></div></a>
+    <div class="review-category">
+      <div class="category-head">
+        <h3>育児グッズ・安全対策</h3>
+        <p>毎日の育児で「これがあると少しラク」を増やすもの。使う場面と注意点が見える記事を集めました。</p>
+      </div>
+      <div class="review-grid">
+      <a href="doridori_article.html" class="review-card"><div class="review-photo"><img src="https://doridori.co.jp/cdn/shop/files/dor40-main-s.jpg?v=1752837894&amp;width=1080" alt="DoriDori ベビーサークル"></div><div class="review-body"><div class="review-cat">Safety</div><h3 class="review-title">DoriDori ベビーサークル</h3><p class="review-copy">リビングの安全対策を、見た目も妥協せず整えたい家庭に。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="popomi_baby_circle_article.html" class="review-card"><div class="review-photo contain"><img src="https://thumbnail.image.rakuten.co.jp/@0_mall/happyshop/cabinet/popomi/ppm-circletree04-00.jpg?_ex=128x128" alt="popomi ベビーサークル TREE"></div><div class="review-body"><div class="review-cat">Baby Safety</div><h3 class="review-title">popomi ベビーサークル TREE</h3><p class="review-copy">広めの遊び場を作りたい時に、サイズ感と置きやすさを確認。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="cybex_pallas_g3_article.html" class="review-card"><div class="review-photo contain"><img src="https://thumbnail.image.rakuten.co.jp/@0_mall/dadway-shop/cabinet/cm5/cscx525000955re_01.jpg?_ex=128x128" alt="CYBEX サイベックス パラス G3"></div><div class="review-body"><div class="review-cat">Car Seat</div><h3 class="review-title">サイベックス パラスG3</h3><p class="review-copy">乗せ降ろしで毎回ぐずる家庭に。実際に買ってよかった点を整理。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="myfirst_article.html" class="review-card"><div class="review-photo"><img src="https://jp.myfirst.tech/cdn/shop/files/s4-main.jpg?v=1771577866&amp;width=533" alt="myFirst Fone キッズスマートウォッチ"></div><div class="review-body"><div class="review-cat">Kids Watch</div><h3 class="review-title">myFirst Fone シリーズ</h3><p class="review-copy">GPS・通話・SOSなど、子どもの見守り機能を比較したい時に。</p><div class="review-link">レビューを見る</div></div></a>
+      </div>
+    </div>
+
+    <div class="review-category">
+      <div class="category-head">
+        <h3>食事・学び・入園準備</h3>
+        <p>偏食、名前つけ、おうち英語など、日々の小さな困りごとに近いレビューです。</p>
+      </div>
+      <div class="review-grid">
+      <a href="salad_mamma_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523622086&amp;wid=003&amp;eno=01&amp;mid=s00000027378001003000&amp;mc=1" alt="サラダまんま 野菜サポート"></div><div class="review-body"><div class="review-cat">Kids Meal</div><h3 class="review-title">サラダまんま</h3><p class="review-copy">野菜を残される日が続く時に、親の気持ちを少し軽くする選択肢。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="seal_de_name_article.html" class="review-card"><div class="review-photo contain"><img src="https://www22.a8.net/svt/bgt?aid=260523622085&amp;wid=003&amp;eno=01&amp;mid=s00000027380001003000&amp;mc=1" alt="シールDEネーム お名前シール"></div><div class="review-body"><div class="review-cat">Name Sticker</div><h3 class="review-title">シールDEネーム</h3><p class="review-copy">入園・入学準備の名前つけを、手書きで抱え込みたくない時に。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="eigodvd_article.html" class="review-card"><div class="review-photo contain"><img src="https://eigoden.itembox.cloud/product/000/000000000025/000000000025-01.jpg?size=l&amp;t=20191007111440&amp;w=ODAw" alt="Goomies English for Kids DVD"></div><div class="review-body"><div class="review-cat">English DVD</div><h3 class="review-title">Goomies English for Kids</h3><p class="review-copy">おうち英語を始めたいけれど、何から流せばいいか迷う家庭に。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="asp_affiliate_article.html" class="review-card"><div class="review-photo contain"><img src="assets/favicon-192.png" alt="子ども服選び"></div><div class="review-body"><div class="review-cat">Kids Clothes</div><h3 class="review-title">子ども服の選び方</h3><p class="review-copy">すぐサイズアウトする服を、買いすぎず選びたい時の考え方。</p><div class="review-link">レビューを見る</div></div></a>
+      </div>
+    </div>
+
+    <div class="review-category">
+      <div class="category-head">
+        <h3>家事・暮らし・節約</h3>
+        <p>買う・借りる・試すを使い分けて、家の負担や出費を少し整えるための記事です。</p>
+      </div>
+      <div class="review-grid">
+      <a href="duskin_robot_cleaner_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523621689&amp;wid=003&amp;eno=01&amp;mid=s00000008131010007000&amp;mc=1" alt="ダスキン ロボットクリーナー"></div><div class="review-body"><div class="review-cat">Robot Cleaner</div><h3 class="review-title">ダスキン ロボットクリーナー</h3><p class="review-copy">床掃除を任せたいけれど、買う前に試したい家庭に。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="kashite_article.html" class="review-card"><div class="review-photo contain"><img src="assets/favicon-192.png" alt="家電レンタル"></div><div class="review-body"><div class="review-cat">Rental</div><h3 class="review-title">家電レンタル</h3><p class="review-copy">短期間だけ必要な家電を、買わずに済ませたい時の選択肢。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="pc_rental_article.html" class="review-card"><div class="review-photo contain"><img src="https://www27.a8.net/svt/bgt?aid=260523621851&amp;wid=003&amp;eno=01&amp;mid=s00000026753002003000&amp;mc=1" alt="パソコンレンタルサービス"></div><div class="review-body"><div class="review-cat">PC Rental</div><h3 class="review-title">低コストPCレンタル</h3><p class="review-copy">急なテレワークや短期イベントで、すぐPCが必要な時に。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="tiktokshop_article.html" class="review-card"><div class="review-photo contain"><img src="assets/favicon-192.png" alt="TikTok Shopの使い方"></div><div class="review-body"><div class="review-cat">Shopping</div><h3 class="review-title">TikTok Shop</h3><p class="review-copy">安さだけで選ばず、買う前に確認したいポイントを整理。</p><div class="review-link">レビューを見る</div></div></a>
+      </div>
+    </div>
+
+    <div class="review-category">
+      <div class="category-head">
+        <h3>ギフト・記念品</h3>
+        <p>出産祝い、内祝い、家族の記念に。贈る相手と場面を考えながら選びたいものです。</p>
+      </div>
+      <div class="review-grid">
+      <a href="hyacca_article.html" class="review-card"><div class="review-photo"><img src="https://asset.hyacca.online/wp-content/uploads/2020/05/01234425/95d41490b6e947b91a26d971d3cfdb4a-1.png" alt="HYACCA ギフトボックス"></div><div class="review-body"><div class="review-cat">Gift</div><h3 class="review-title">HYACCA ギフト</h3><p class="review-copy">出産祝い・内祝いを、相手に合わせてきれいに選びたい時に。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="digxipop_pet_figure_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523621716&amp;wid=003&amp;eno=01&amp;mid=s00000027357001007000&amp;mc=1" alt="digxipop ペット3Dフィギュア"></div><div class="review-body"><div class="review-cat">Pet Gift</div><h3 class="review-title">ペット3Dフィギュア</h3><p class="review-copy">写真だけでなく、家族の姿を形として残したい時に。</p><div class="review-link">レビューを見る</div></div></a>
+      <a href="berpy_article.html" class="review-card"><div class="review-photo"><img src="https://cdn.shopify.com/s/files/1/0520/4259/6520/files/4_629a9a62-67d3-4990-b9e1-65f6a747cf33.png?v=1778131007" alt="Berpy かみかみチキン"></div><div class="review-body"><div class="review-cat">Baby Gift</div><h3 class="review-title">Berpy かみかみチキン</h3><p class="review-copy">かわいさと実用性のどちらも欲しい出産祝い候補に。</p><div class="review-link">レビューを見る</div></div></a>
+      </div>
     </div>
   </section>
 
