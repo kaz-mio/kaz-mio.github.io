@@ -91,8 +91,12 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transform:scale(1.035);filter:saturate(.94) contrast(.98);transition:opacity .72s ease,transform 1.2s ease,filter .72s ease;}
 .hero-slide.is-active{opacity:1;transform:scale(1);filter:saturate(1) contrast(1);}
 .hero-copy{padding:7.2rem 0 0 3.4rem;position:relative;z-index:2;}
-.search-pill{position:absolute;top:2.6rem;left:3.4rem;width:min(260px,80%);height:48px;border-radius:999px;background:#e8e8e6;color:#9a9a9a;font-size:.8rem;display:flex;align-items:center;justify-content:space-between;padding:0 .45rem 0 1.35rem;}
-.search-pill span:last-child{width:42px;height:42px;border-radius:50%;background:#bdbdbd;color:#fff;display:flex;align-items:center;justify-content:center;}
+.site-search{width:min(420px,100%);height:54px;margin:1.15rem 0 0;border:1px solid var(--line);background:#fff;color:#777;font-size:.86rem;display:flex;align-items:center;box-shadow:0 14px 34px rgba(34,34,34,.07);transition:border-color .2s,box-shadow .2s,transform .2s;}
+.site-search:hover,.site-search:focus-within{border-color:rgba(201,182,117,.7);box-shadow:0 20px 42px rgba(34,34,34,.1);transform:translateY(-2px);}
+.site-search input{min-width:0;flex:1;height:100%;border:0;background:transparent;color:#777;font:inherit;outline:0;padding:0 1.05rem;}
+.site-search input::placeholder{color:#aaa;}
+.site-search button{width:62px;height:100%;border:0;border-left:1px solid var(--line);background:#222;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:background .2s,color .2s;}
+.site-search button:hover{background:var(--gold);color:#fff;}
 .round-contact{position:absolute;right:3.8rem;top:2.2rem;width:154px;height:154px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:.9rem;line-height:1.65;box-shadow:0 16px 36px rgba(160,140,82,.18);transition:transform .2s,box-shadow .2s;}
 .round-contact:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(160,140,82,.24);}
 .hero h1{font-family:'Shippori Mincho',serif;font-size:clamp(3.4rem,6vw,6.2rem);line-height:1.35;color:#b8b8b8;font-weight:500;letter-spacing:.04em;margin-bottom:2rem;}
@@ -214,7 +218,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .hero-copy{order:1;padding:5rem 0 2rem;min-width:0;width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .hero h1,.hero-copy p{max-width:calc(100vw - 2rem);overflow-wrap:anywhere;}
   .hero-links,.hero-visual{width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
-  .search-pill{top:1.2rem;left:0;}
+  .site-search{width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .round-contact{right:1rem;top:1rem;width:112px;height:112px;font-size:.75rem;}
   .slide-nav{margin:1rem 0 0;justify-content:flex-start;}
   .slide-dots{display:flex;gap:.65rem;}
@@ -312,7 +316,6 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-10.jpg" alt="タラバガニとチンアナゴとオウギワシが夜の街を彩る図鑑風アニメイラスト" width="1672" height="941">
       </div>
       <div class="hero-copy">
-        <div class="search-pill">検索する <span>⌕</span></div>
         <a class="round-contact" href="contact.html">お問い合わせは<br>こちらから</a>
         <h1>家族の毎日を、<br><em>新しい発見へ</em></h1>
         <p>KAZ &amp; MIOは、子育て・暮らし・節約・おかいものを家族目線で正直にまとめるレビューブログです。</p>
@@ -336,6 +339,10 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           <a class="primary" href="#reviews">レビューを見る</a>
           <a href="family_stay_search.html">宿・食事を探す</a>
         </div>
+        <form class="site-search" id="siteSearch" role="search">
+          <input id="siteSearchInput" type="search" placeholder="気になる言葉で検索" aria-label="サイト内を検索">
+          <button type="submit" aria-label="検索">⌕</button>
+        </form>
       </div>
     </div>
   </section>
@@ -485,6 +492,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 </footer>
 <script>
 const toTopButton = document.querySelector('.to-top');
+const siteSearch = document.getElementById('siteSearch');
+const siteSearchInput = document.getElementById('siteSearchInput');
 const hero = document.getElementById('hero-slideshow');
 const heroVisual = document.querySelector('.hero-visual');
 const heroSlides = [...document.querySelectorAll('.hero-slide')];
@@ -544,6 +553,12 @@ heroVisual?.addEventListener('wheel', event => {
   setHeroSlide(nextIndex);
   scheduleHeroAutoRestart();
 }, { passive: false });
+siteSearch?.addEventListener('submit', event => {
+  event.preventDefault();
+  const keyword = siteSearchInput?.value.trim();
+  const query = keyword ? `site:kaz-mio.github.io ${keyword}` : 'site:kaz-mio.github.io';
+  window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+});
 updateToTopButton();
 startHeroAuto();
 window.addEventListener('scroll', () => {
