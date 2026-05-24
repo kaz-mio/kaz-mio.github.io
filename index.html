@@ -80,7 +80,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .social a::before{content:'X';width:24px;height:24px;border-radius:50%;background:#fff;color:#222;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;}
 .social a:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px);}
 .main{margin-left:220px;min-height:100vh;}
-.hero{position:relative;min-height:520vh;padding:0 4.8rem 0 0;}
+.hero{position:relative;min-height:100vh;padding:0 4.8rem 0 0;}
 .hero-stage{position:sticky;top:0;min-height:760px;display:grid;grid-template-columns:minmax(460px,58vw) 1fr;align-items:center;overflow:hidden;}
 .brand-marquee{position:absolute;left:0;right:0;bottom:4.8rem;z-index:0;overflow:hidden;white-space:nowrap;pointer-events:none;}
 .brand-marquee-track{display:inline-flex;gap:4rem;min-width:max-content;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,9.4rem);font-weight:800;letter-spacing:.1em;color:rgba(34,34,34,.08);text-transform:uppercase;animation:brandMarquee 28s linear infinite;}
@@ -486,13 +486,14 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 <script>
 const toTopButton = document.querySelector('.to-top');
 const hero = document.getElementById('hero-slideshow');
+const heroVisual = document.querySelector('.hero-visual');
 const heroSlides = [...document.querySelectorAll('.hero-slide')];
 const heroDots = [...document.querySelectorAll('.slide-dot')];
 const heroNumber = document.querySelector('.slide-number');
 let activeHeroSlide = 0;
 let heroAutoTimer = null;
 let heroAutoRestartTimer = null;
-let lastHeroScrollY = window.scrollY;
+let lastHeroWheelAt = 0;
 const heroAutoDelay = 5200;
 const heroMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -505,15 +506,6 @@ const setHeroSlide = index => {
     dot.setAttribute('aria-current', i === index ? 'true' : 'false');
   });
   if (heroNumber) heroNumber.textContent = String(index + 1).padStart(2, '0');
-};
-
-const updateHeroSlide = () => {
-  if (!hero || !heroSlides.length) return;
-  const rect = hero.getBoundingClientRect();
-  const scrollSpan = Math.max(hero.offsetHeight - window.innerHeight, 1);
-  const raw = Math.min(Math.max(-rect.top / scrollSpan, 0), .999);
-  const index = Math.min(heroSlides.length - 1, Math.floor(raw * heroSlides.length));
-  setHeroSlide(index);
 };
 
 const startHeroAuto = () => {
@@ -532,38 +524,32 @@ const scheduleHeroAutoRestart = () => {
   heroAutoRestartTimer = window.setTimeout(startHeroAuto, 1400);
 };
 
-const restartHeroAutoAfterScroll = () => {
-  const delta = Math.abs(window.scrollY - lastHeroScrollY);
-  lastHeroScrollY = window.scrollY;
-  if (delta > 2) scheduleHeroAutoRestart();
-};
-
 const updateToTopButton = () => {
   toTopButton.classList.toggle('is-visible', window.scrollY > 640);
 };
 heroDots.forEach((dot, index) => {
   dot.addEventListener('click', () => {
-    if (!hero) return;
-    const heroTop = window.scrollY + hero.getBoundingClientRect().top;
-    const scrollSpan = Math.max(hero.offsetHeight - window.innerHeight, 1);
-    const ratio = index / heroSlides.length + .02;
-    window.scrollTo({ top: heroTop + scrollSpan * ratio, behavior: 'smooth' });
     setHeroSlide(index);
     scheduleHeroAutoRestart();
   });
 });
+heroVisual?.addEventListener('wheel', event => {
+  if (!heroSlides.length) return;
+  event.preventDefault();
+  const now = Date.now();
+  if (now - lastHeroWheelAt < 420) return;
+  lastHeroWheelAt = now;
+  const direction = event.deltaY >= 0 ? 1 : -1;
+  const nextIndex = (activeHeroSlide + direction + heroSlides.length) % heroSlides.length;
+  setHeroSlide(nextIndex);
+  scheduleHeroAutoRestart();
+}, { passive: false });
 updateToTopButton();
-updateHeroSlide();
 startHeroAuto();
 window.addEventListener('scroll', () => {
   updateToTopButton();
-  updateHeroSlide();
-  restartHeroAutoAfterScroll();
 }, { passive: true });
-window.addEventListener('resize', () => {
-  updateHeroSlide();
-  scheduleHeroAutoRestart();
-});
+window.addEventListener('resize', scheduleHeroAutoRestart);
 </script>
 </body>
 </html>
