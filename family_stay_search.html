@@ -10,18 +10,18 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索 | KAZ &amp; MIO | LIFE, LIGHTLY</title>
-<meta name="description" content="小さい子ども連れの宿・食事場所探しに。ベッドガード、畳、洗い場付き風呂、バストイレ別、おむつ用ゴミ箱、座敷、個室、キッズチェアなど、ファミリー向け条件を選んで横断検索できます。">
+<meta name="description" content="小さい子ども連れの宿・食事場所探しに。ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェア、開業・リニューアル年数など、ファミリー向け条件を選んで横断検索できます。">
 <link rel="canonical" href="https://kaz-mio.github.io/family_stay_search.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
-<meta property="og:description" content="ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェアなど、子連れで見たい条件から複数サイトを探せます。">
+<meta property="og:description" content="ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェア、開業・リニューアル年数など、子連れで見たい条件から複数サイトを探せます。">
 <meta property="og:url" content="https://kaz-mio.github.io/family_stay_search.html">
 <meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
-<meta name="twitter:description" content="小さい子連れに便利な宿泊・食事条件で、複数サイトを探せる入口です。">
+<meta name="twitter:description" content="小さい子連れに便利な宿泊・食事条件や開業・リニューアル年数で、複数サイトを探せる入口です。">
 <meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <script type="application/ld+json">
 {
@@ -279,6 +279,17 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         <label class="label" for="children">子ども</label>
         <input id="children" type="number" min="0" max="6" value="1">
       </div>
+      <div>
+        <label class="label" for="stayAge">施設の新しさ</label>
+        <select id="stayAge">
+          <option value="">指定しない</option>
+          <option value="開業1年以内 新しい宿">開業1年以内</option>
+          <option value="開業3年以内 新しい宿">開業3年以内</option>
+          <option value="開業5年以内 新しい宿">開業5年以内</option>
+          <option value="リニューアル3年以内 新しい客室">リニューアル3年以内</option>
+          <option value="リニューアル5年以内 新しい客室">リニューアル5年以内</option>
+        </select>
+      </div>
     </div>
     <div class="checks" id="stayChecks" aria-label="子連れ宿泊で確認したい条件">
       <label class="check"><input type="checkbox" value="ベッドガード"><span>ベッドガード</span></label>
@@ -381,6 +392,17 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         <label class="label" for="foodExtra">追加したい言葉</label>
         <input id="foodExtra" type="text" placeholder="例：ランチ、カフェ、駅近、駐車場">
       </div>
+      <div>
+        <label class="label" for="foodAge">施設の新しさ</label>
+        <select id="foodAge">
+          <option value="">指定しない</option>
+          <option value="オープン1年以内 新しい店">オープン1年以内</option>
+          <option value="オープン3年以内 新しい店">オープン3年以内</option>
+          <option value="オープン5年以内 新しい店">オープン5年以内</option>
+          <option value="リニューアル3年以内 新しい店内">リニューアル3年以内</option>
+          <option value="リニューアル5年以内 新しい店内">リニューアル5年以内</option>
+        </select>
+      </div>
     </div>
     <div class="checks" id="foodChecks" aria-label="子連れ食事で確認したい条件">
       <label class="check"><input type="checkbox" value="座敷"><span>座敷</span></label>
@@ -465,6 +487,7 @@ const checkinDate = document.getElementById('checkinDate');
 const nightsInput = document.getElementById('nights');
 const adultsInput = document.getElementById('adults');
 const childrenInput = document.getElementById('children');
+const stayAge = document.getElementById('stayAge');
 const stayQueryText = document.getElementById('queryText');
 const stayChecks = [...document.querySelectorAll('#stayChecks input')];
 const stayDefaults = ['子連れ', '宿', 'ファミリー'];
@@ -480,6 +503,7 @@ const stayLinks = {
 };
 const foodDestination = document.getElementById('foodDestination');
 const foodExtra = document.getElementById('foodExtra');
+const foodAge = document.getElementById('foodAge');
 const foodQueryText = document.getElementById('foodQueryText');
 const foodChecks = [...document.querySelectorAll('#foodChecks input')];
 const foodDefaults = ['子連れ', '食事', 'レストラン'];
@@ -495,6 +519,7 @@ const buildStayQuery = () => {
     stayDestination.value.trim(),
     ...stayDefaults,
     ...buildStayMeta(),
+    stayAge.value,
     ...stayChecks.filter(input => input.checked).map(input => input.value),
     stayExtra.value.trim()
   ].filter(Boolean);
@@ -504,6 +529,7 @@ const buildFoodQuery = () => {
   const words = [
     foodDestination.value.trim(),
     ...foodDefaults,
+    foodAge.value,
     ...foodChecks.filter(input => input.checked).map(input => input.value),
     foodExtra.value.trim()
   ].filter(Boolean);
@@ -586,11 +612,11 @@ const copyText = async (text, button) => {
     button.textContent = 'コピーできませんでした';
   }
 };
-[stayDestination, stayExtra, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
+[stayDestination, stayExtra, stayAge, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
   el.addEventListener('input', updateStayLinks);
   el.addEventListener('change', updateStayLinks);
 });
-[foodDestination, foodExtra, ...foodChecks].forEach(el => {
+[foodDestination, foodExtra, foodAge, ...foodChecks].forEach(el => {
   el.addEventListener('input', updateFoodLinks);
   el.addEventListener('change', updateFoodLinks);
 });
