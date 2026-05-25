@@ -55,6 +55,8 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .info-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.6rem;box-shadow:var(--sh-s);}
 .info-card h3{font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--terracotta);margin-bottom:1rem;}
 .info-card p{font-size:.9rem;line-height:1.9;color:var(--ink2);}
+.info-card a{color:var(--terracotta);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(201,106,58,.28);}
+.info-card a:hover{border-color:var(--terracotta);}
 .theme-list{list-style:none;margin-top:.5rem;}
 .theme-list li{display:flex;gap:.8rem;align-items:center;padding:.5rem 0;border-bottom:1px solid rgba(31,29,25,.05);font-size:.88rem;color:var(--ink2);}
 .theme-list li::before{content:'→';color:var(--terracotta);font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:700;}
@@ -71,7 +73,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 <body>
 <header class="hd">
   <a href="index.html" class="hd-logo"><span class="hd-logo-en">KAZ &amp; MIO</span><span class="hd-logo-ja">LIFE, LIGHTLY</span></a>
-  <nav class="hd-nav"><a href="index.html">記事一覧</a><a href="profile.html" class="active">プロフィール</a><a href="privacy.html">プライバシー</a><a href="contact.html" class="nav-cta">お問い合わせ</a></nav>
+  <nav class="hd-nav"><a href="index.html">記事一覧</a><a href="profile.html" class="active">プロフィール</a><a href="editorial_policy.html">運営方針</a><a href="privacy.html">プライバシー</a><a href="contact.html" class="nav-cta">お問い合わせ</a></nav>
 </header>
 
 <div class="page-wrap">
@@ -128,7 +130,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
       </div>
       <div class="info-card">
         <h3>広告・提携リンクについて</h3>
-        <p>当ブログには広告・提携リンクを含む場合があります。紹介している商品・サービスは編集部が実際に調査・確認したものです。収益はブログ運営・コンテンツ制作に使われます。</p>
+        <p>当ブログには広告・提携リンクを含む場合があります。紹介している商品・サービスは、実際の使用感や公式情報を確認しながら掲載しています。詳しい考え方は<a href="editorial_policy.html">運営方針</a>にまとめています。</p>
       </div>
       <div class="info-card">
         <h3>お問い合わせ</h3>
@@ -144,7 +146,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 <footer class="ft">
   <div class="ft-inner">
     <a href="index.html" class="hd-logo ft-logo"><span class="hd-logo-en">KAZ &amp; MIO</span><span class="hd-logo-ja">LIFE, LIGHTLY</span></a>
-    <nav class="ft-nav"><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a></nav>
+    <nav class="ft-nav"><a href="editorial_policy.html">運営方針</a><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a></nav>
   </div>
   <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY ─ 広告を含む場合があります</p>
 </footer>

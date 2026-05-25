@@ -38,19 +38,25 @@
   </url>
   <url>
     <loc>https://kaz-mio.github.io/profile.html</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://kaz-mio.github.io/privacy.html</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://kaz-mio.github.io/editorial_policy.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://kaz-mio.github.io/contact.html</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
