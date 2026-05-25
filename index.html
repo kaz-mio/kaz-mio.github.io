@@ -48,6 +48,18 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://kaz-mio.github.io/" }
       ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://kaz-mio.github.io/#featured-reviews",
+      "name": "子育て・暮らし・節約の正直レビュー",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "DoriDori ベビーサークルのレビュー", "url": "https://kaz-mio.github.io/doridori_article.html" },
+        { "@type": "ListItem", "position": 2, "name": "popomi ベビーサークル TREEのレビュー", "url": "https://kaz-mio.github.io/popomi_baby_circle_article.html" },
+        { "@type": "ListItem", "position": 3, "name": "サイベックス パラスG3のレビュー", "url": "https://kaz-mio.github.io/cybex_pallas_g3_article.html" },
+        { "@type": "ListItem", "position": 4, "name": "お名前シール シールDEネームのレビュー", "url": "https://kaz-mio.github.io/seal_de_name_article.html" },
+        { "@type": "ListItem", "position": 5, "name": "子連れ宿・食事さがしナビ", "url": "https://kaz-mio.github.io/family_stay_search.html" }
+      ]
     }
   ]
 }
@@ -148,6 +160,20 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .navi-panel-item small{display:block;font-family:Arial,sans-serif;color:var(--gold2);font-size:.64rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem;}
 .navi-panel-item strong{display:block;font-family:'Shippori Mincho',serif;font-size:1.14rem;font-weight:600;line-height:1.5;margin-bottom:.25rem;}
 .navi-panel-item span{display:block;color:#888;font-size:.78rem;line-height:1.65;}
+.intent-guide{padding:5.2rem 5.8rem;background:#fff;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.intent-guide::before{content:'HOW TO CHOOSE';position:absolute;left:-.5rem;top:.4rem;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,8rem);line-height:1;font-weight:800;letter-spacing:.08em;color:rgba(34,34,34,.04);white-space:nowrap;}
+.intent-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;}
+.intent-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:2.6rem;align-items:end;margin-bottom:2.2rem;}
+.intent-head h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.6vw,3.7rem);line-height:1.35;font-weight:500;color:#858585;}
+.intent-head p{color:#777;font-size:.92rem;}
+.intent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.intent-card{background:#f9f8f4;min-height:255px;padding:1.45rem;display:flex;flex-direction:column;gap:.7rem;transition:transform .24s,box-shadow .24s,background .24s;color:inherit;text-decoration:none;}
+.intent-card:hover{transform:translateY(-6px);background:#fff;box-shadow:0 22px 46px rgba(35,31,22,.13);}
+.intent-card small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.62rem;font-weight:800;color:var(--gold2);}
+.intent-card h3{font-family:'Shippori Mincho',serif;font-size:1.24rem;line-height:1.45;font-weight:600;color:#343434;}
+.intent-card p{color:#777;font-size:.8rem;line-height:1.75;}
+.intent-card ul{list-style:none;display:grid;gap:.38rem;margin-top:auto;color:#777;font-size:.73rem;line-height:1.55;}
+.intent-card li::before{content:'+';color:var(--gold2);font-weight:800;margin-right:.35rem;}
 .section{padding:6.2rem 5.8rem;}
 .section-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:2.6rem;}
 .section-head h2{white-space:nowrap;}
@@ -233,7 +259,10 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .lead-photo::before,.lead-photo::after{position:relative;display:block;width:100%;height:300px;margin-bottom:1rem;}
   .lead-text{width:auto;margin:1rem 0 0;padding:1rem 0;background:transparent;}
   .dark-band,.family-navi,.section,.about,.ft{padding:4rem 1rem;}
+  .intent-guide{padding:4rem 1rem;}
   .band-inner,.about-inner{grid-template-columns:1fr;gap:2rem;}
+  .intent-head{grid-template-columns:1fr;gap:1rem;}
+  .intent-grid{grid-template-columns:repeat(2,1fr);}
   .family-navi-inner{grid-template-columns:1fr;gap:2rem;}
   .family-navi::before{top:1.2rem;font-size:4rem;}
   .band-cards,.review-grid{grid-template-columns:1fr;}
@@ -258,6 +287,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .hero-copy p{max-width:320px;word-break:break-all;}
   .lead-text p,.section-head p,.about p{overflow-wrap:anywhere;}
   .family-navi-actions a{width:100%;}
+  .intent-grid{grid-template-columns:1fr;}
+  .intent-card{min-height:0;}
   .hero-links a{width:100%;}
   .round-contact{display:none;}
   .hero-visual{height:330px;}
@@ -404,6 +435,44 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <div class="navi-panel-photo"></div>
         <div class="navi-panel-item"><small>Stay</small><strong>小さい子と泊まりやすい宿</strong><span>畳、低いベッド、貸出備品、お風呂まわりを確認しやすく。</span></div>
         <div class="navi-panel-item"><small>Food</small><strong>家族で入りやすい食事場所</strong><span>座敷、個室、ベビーカー、子どもメニューを探す入口に。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intent-guide" aria-labelledby="intent-title">
+    <div class="intent-inner">
+      <div class="intent-head">
+        <div>
+          <div class="kicker">Search Intent</div>
+          <h2 id="intent-title">買う前に、<br>見るポイント。</h2>
+        </div>
+        <p>検索でたどり着いた人が迷わないように、悩みごとの入口を用意しました。価格だけでなく、サイズ、使う場面、続けやすさ、子どもとの相性まで確認できる記事に育てていきます。</p>
+      </div>
+      <div class="intent-grid">
+        <a class="intent-card" href="doridori_article.html">
+          <small>Safety</small>
+          <h3>赤ちゃんの安全対策をしたい</h3>
+          <p>ハイハイ前後のリビングづくり、ベビーサークル、転倒・侵入対策を確認。</p>
+          <ul><li>サイズ感</li><li>部屋になじむか</li><li>掃除しやすさ</li></ul>
+        </a>
+        <a class="intent-card" href="salad_mamma_article.html">
+          <small>Meal</small>
+          <h3>偏食・野菜不足が気になる</h3>
+          <p>無理に食べさせるより、親の気持ちが少し軽くなる選択肢を探す入口。</p>
+          <ul><li>毎日続くか</li><li>子どもが嫌がりにくいか</li><li>原材料</li></ul>
+        </a>
+        <a class="intent-card" href="seal_de_name_article.html">
+          <small>School Prep</small>
+          <h3>入園・入学準備をラクにしたい</h3>
+          <p>名前つけ、お弁当グッズ、持ち物管理など、準備の手間を減らす視点で確認。</p>
+          <ul><li>洗濯・食洗機対応</li><li>納期</li><li>デザインの見やすさ</li></ul>
+        </a>
+        <a class="intent-card" href="family_stay_search.html">
+          <small>Trip</small>
+          <h3>子連れで泊まる・食べる場所を探す</h3>
+          <p>畳、洗い場付き風呂、座敷、個室、キッズチェアなどの条件で検索語を作れます。</p>
+          <ul><li>エリア</li><li>日時・泊数</li><li>施設の新しさ</li></ul>
+        </a>
       </div>
     </div>
   </section>
