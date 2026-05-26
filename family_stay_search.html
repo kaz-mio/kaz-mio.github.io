@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索 | KAZ &amp; MIO | LIFE, LIGHTLY</title>
-<meta name="description" content="小さい子ども連れの宿・食事場所探しに。ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェア、開業・リニューアル年数など、ファミリー向け条件を選んで横断検索できます。">
+<meta name="description" content="小さい子ども連れの宿・食事場所探しに。ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェア、施設の新しさなど、ファミリー向け条件を選んで横断検索できます。持ち物チェックへの導線も用意しています。">
 <link rel="canonical" href="https://kaz-mio.github.io/family_stay_search.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
@@ -112,7 +112,7 @@ select{appearance:auto;cursor:pointer;}
 .panel-tabs{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.2rem 0 0;}
 .panel-tabs a{display:inline-flex;text-decoration:none;border-radius:999px;background:#fff;border:1px solid var(--line);padding:.48rem .85rem;font-size:.76rem;font-weight:900;color:var(--navy);transition:transform .2s,box-shadow .2s,border-color .2s;}
 .panel-tabs a:hover{transform:translateY(-2px);box-shadow:var(--soft);border-color:rgba(239,125,103,.38);}
-.copy-btn{border:none;border-radius:999px;background:var(--navy);color:#fff;font-weight:900;padding:.72rem 1.05rem;cursor:pointer;box-shadow:0 12px 24px rgba(24,52,71,.18);transition:transform .2s,background .2s,box-shadow .2s;}
+.copy-btn{border:none;border-radius:999px;background:var(--navy);color:#fff;font-weight:900;padding:.72rem 1.05rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 12px 24px rgba(24,52,71,.18);transition:transform .2s,background .2s,box-shadow .2s;}
 .copy-btn:hover{transform:translateY(-2px);background:var(--coral-d);box-shadow:0 16px 30px rgba(198,83,66,.24);}
 .providers{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.75rem;}
 .provider{border:1px solid rgba(255,255,255,.3);border-radius:8px;text-decoration:none;background:linear-gradient(135deg,var(--coral),var(--coral-d));color:#fff;padding:1rem .82rem;text-align:center;font-weight:900;font-size:.82rem;box-shadow:0 12px 28px rgba(239,125,103,.23);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,filter .2s;}
@@ -136,6 +136,7 @@ select{appearance:auto;cursor:pointer;}
 .template{margin-top:2.2rem;background:var(--navy);color:#fff;border-radius:8px;padding:1.4rem;box-shadow:var(--shadow);}
 .template h2{font-family:'Shippori Mincho',serif;font-size:1.45rem;margin-bottom:.6rem;}
 .template p{color:rgba(255,255,255,.72);font-size:.88rem;margin-bottom:1rem;}
+.template-actions{margin-top:1rem;display:flex;gap:.7rem;flex-wrap:wrap;}
 textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;padding:1rem;font:inherit;line-height:1.8;resize:vertical;}
 .ft{background:var(--navy);color:rgba(255,255,255,.62);padding:3rem clamp(1rem,4vw,3rem) 2rem;}
 .ft-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:1.6rem;margin-bottom:1.4rem;}
@@ -158,6 +159,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
   <nav class="nav">
     <a href="index.html#reviews">レビュー</a>
       <a href="family_stay_search.html" class="active">宿・食事さがし</a>
+    <a href="outing_checklist.html">持ち物リスト</a>
     <a href="profile.html">プロフィール</a>
     <a href="contact.html" class="contact">お問い合わせ</a>
   </nav>
@@ -173,6 +175,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         <a href="#stay-search">宿を探す</a>
         <a href="#food-search">食事場所を探す</a>
         <a href="#checklist">確認ポイント</a>
+        <a href="outing_checklist.html">持ち物チェック</a>
       </div>
     </div>
     <div class="hero-card">
@@ -469,7 +472,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 ・おむつ用ゴミ箱、子ども用イス、ベビーソープ等の貸出はありますか？
 ・畳スペースや低いベッドの部屋はありますか？
 ・子ども連れにおすすめの部屋タイプがあれば教えてください。</textarea>
-    <div style="margin-top:1rem;"><button class="copy-btn" type="button" id="copyTemplate">文例をコピー</button></div>
+    <div class="template-actions"><button class="copy-btn" type="button" id="copyTemplate">文例をコピー</button><a class="copy-btn" href="outing_checklist.html">持ち物チェックリストを開く</a></div>
   </section>
 
   <section style="margin-top:2.2rem;">
@@ -489,7 +492,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
     </a>
-    <nav class="ft-nav"><a href="index.html">トップ</a><a href="profile.html">プロフィール</a><a href="privacy.html">プライバシー</a><a href="contact.html">お問い合わせ</a></nav>
+    <nav class="ft-nav"><a href="index.html">トップ</a><a href="outing_checklist.html">持ち物チェック</a><a href="profile.html">プロフィール</a><a href="privacy.html">プライバシー</a><a href="contact.html">お問い合わせ</a></nav>
   </div>
   <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY ─ 広告を含む場合があります</p>
 </footer>
