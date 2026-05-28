@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="R4_LTr6ogVlBzVQraulLCxlMklt-SKLQ-wnvMtQuFdw">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<title>育児消耗品ストック管理ツール｜おむつ・おしりふき・ミルクの買い足し目安 | KAZ &amp; MIO | LIFE, LIGHTLY</title>
+<meta name="description" content="おむつ、おしりふき、ペットシーツ、ミルク、離乳食、保湿剤など育児消耗品の在庫日数と買い足し目安を計算。家用・園用・外出用を分けて、買いすぎと買い忘れを防ぐストック管理ツールです。">
+<link rel="canonical" href="https://kaz-mio.github.io/baby_stock_manager.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="育児消耗品ストック管理ツール">
+<meta property="og:description" content="育児消耗品の在庫日数と買い足し目安を、コピー・画像保存できる形で整理します。">
+<meta property="og:url" content="https://kaz-mio.github.io/baby_stock_manager.html">
+<meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
+<meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="育児消耗品ストック管理ツール">
+<meta name="twitter:description" content="おむつ・おしりふき・ミルクなどの在庫日数と買い足し目安を確認できます。">
+<meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://kaz-mio.github.io/baby_stock_manager.html#app",
+      "name": "育児消耗品ストック管理ツール",
+      "url": "https://kaz-mio.github.io/baby_stock_manager.html",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Any",
+      "inLanguage": "ja",
+      "description": "育児消耗品の在庫日数、買い足し目安、買いすぎ注意を整理できるツール"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"ホーム","item":"https://kaz-mio.github.io/"},
+        {"@type":"ListItem","position":2,"name":"育児消耗品ストック管理ツール","item":"https://kaz-mio.github.io/baby_stock_manager.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"何日分を目安に残しておくと安心ですか？","acceptedAnswer":{"@type":"Answer","text":"家庭の買い物頻度によりますが、毎日使うものは最低日数に余裕日数を足して考えると買い忘れを防ぎやすくなります。"}},
+        {"@type":"Question","name":"保育園用と家用は分けた方がいいですか？","acceptedAnswer":{"@type":"Answer","text":"園に置いておく在庫と家の在庫は減るタイミングが違うため、別項目にして管理すると不足に気づきやすくなります。"}}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--shell:#fff8ea;--paper:#fffdf7;--sun:#ffd66e;--coral:#ef7d67;--coral-d:#c65342;--aqua:#60c5d5;--blue:#1f5f7a;--navy:#183447;--leaf:#6fa978;--ink:#18242b;--ink2:#52616a;--ink3:#88939a;--line:rgba(24,36,43,.12);--shadow:0 18px 54px rgba(24,52,71,.13);--soft:0 8px 24px rgba(24,52,71,.09);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:radial-gradient(circle at 12% 8%,rgba(255,214,110,.28),transparent 28%),radial-gradient(circle at 88% 14%,rgba(96,197,213,.22),transparent 30%),linear-gradient(180deg,#fff8ea 0%,#eefbfb 48%,#fff8ea 100%);color:var(--ink);font-family:'Noto Sans JP',sans-serif;line-height:1.75;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+button,input,select,textarea{font:inherit;}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(239,125,103,.45);outline-offset:4px;}
+.hd{position:sticky;top:0;z-index:50;height:66px;padding:0 clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;background:rgba(255,248,234,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(24,36,43,.08);box-shadow:0 10px 30px rgba(24,52,71,.06);}
+.brand{display:flex;align-items:center;gap:.7rem;min-width:0;transition:transform .2s,filter .2s;}.brand:hover{transform:translateY(-2px);filter:drop-shadow(0 8px 14px rgba(24,52,71,.1));}
+.brand-mark{width:38px;height:38px;border-radius:50%;background:url('assets/favicon-192.png') center/cover no-repeat;box-shadow:0 0 0 3px rgba(255,255,255,.85);}
+.brand-text{display:flex;flex-direction:column;line-height:1.05;}.brand-en{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.22em;color:var(--coral);text-transform:uppercase;}.brand-ja{font-family:'Shippori Mincho',serif;font-size:1.1rem;font-weight:800;color:var(--ink);}
+.nav{display:flex;align-items:center;gap:.25rem;}.nav a{font-family:'Nunito',sans-serif;font-size:.74rem;font-weight:900;letter-spacing:.05em;color:var(--navy);padding:.52rem .9rem;border-radius:999px;transition:background .2s,color .2s,transform .2s,box-shadow .2s;}.nav a:hover,.nav a.active{background:#fff;color:var(--coral-d);transform:translateY(-2px);box-shadow:0 8px 18px rgba(24,52,71,.08);}.nav .contact{background:var(--navy);color:#fff;margin-left:.4rem;}
+.wrap{max-width:1220px;margin:0 auto;padding:4.4rem clamp(1rem,4vw,3rem) 6rem;}
+.hero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:2rem;align-items:center;margin-bottom:2.4rem;}
+.eyebrow{font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--coral-d);display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;}.eyebrow::before{content:'';width:42px;height:2px;background:var(--coral);}
+h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.15rem,5vw,4rem);font-weight:800;line-height:1.16;margin-bottom:1.1rem;}h1 em{font-style:italic;color:var(--blue);}
+.lead{color:var(--ink2);font-size:1rem;line-height:2.05;max-width:43rem;}
+.hero-card{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;box-shadow:var(--shadow);padding:1rem;position:relative;overflow:hidden;}
+.hero-card img{width:100%;height:350px;object-fit:cover;object-position:center;border-radius:8px;display:block;}
+.memo{position:absolute;left:1.8rem;right:1.8rem;bottom:1.8rem;background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.7);border-radius:8px;padding:1rem;box-shadow:var(--soft);}.memo b{font-family:'Shippori Mincho',serif;font-size:1rem;display:block;margin-bottom:.2rem;}.memo p{font-size:.78rem;color:var(--ink2);}
+.quick-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 0;}.chip{border:1px solid rgba(24,36,43,.12);border-radius:999px;background:#fff;color:var(--navy);font-size:.74rem;font-weight:900;padding:.46rem .74rem;cursor:pointer;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s;}.chip:hover{transform:translateY(-2px);box-shadow:var(--soft);border-color:rgba(239,125,103,.34);}.chip.is-active{background:#fff1e9;border-color:rgba(239,125,103,.44);color:var(--coral-d);}
+.app-shell{display:grid;grid-template-columns:minmax(0,.96fr) minmax(380px,1.04fr);gap:1.3rem;align-items:start;}
+.panel,.result-panel,.tips{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,253,247,.98));border:1px solid rgba(24,36,43,.08);border-radius:8px;box-shadow:0 22px 60px rgba(24,52,71,.12);padding:1.45rem;position:relative;overflow:hidden;}
+.panel::before,.result-panel::before,.tips::before{content:'';position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--coral),var(--sun),var(--aqua));}
+.panel h2,.result-panel h2,.tips h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,3vw,2.25rem);line-height:1.3;margin-bottom:.55rem;}
+.panel p,.result-panel p{color:var(--ink2);font-size:.86rem;line-height:1.85;margin-bottom:1rem;}
+.setting-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem;}.field{background:rgba(255,255,255,.72);border:1px solid rgba(24,36,43,.06);border-radius:8px;padding:.82rem;box-shadow:0 8px 22px rgba(24,52,71,.045);}.field.wide{grid-column:1/-1;}.label{display:block;font-weight:900;font-size:.78rem;color:var(--navy);margin-bottom:.38rem;}
+select,input[type="number"],input[type="text"]{width:100%;border:1px solid rgba(24,36,43,.14);border-radius:8px;background:#fff;padding:.78rem .86rem;color:var(--ink);transition:border-color .2s,box-shadow .2s;}select:hover,input:hover{border-color:rgba(31,95,122,.34);}select:focus,input:focus{border-color:var(--aqua);box-shadow:0 0 0 4px rgba(96,197,213,.16);outline:0;}
+.preset-row,.action-row,.tools{display:flex;flex-wrap:wrap;gap:.55rem;margin:.9rem 0;}.btn{border:0;border-radius:999px;background:var(--navy);color:#fff;font-weight:900;padding:.76rem 1rem;cursor:pointer;box-shadow:0 12px 24px rgba(24,52,71,.18);transition:transform .2s,background .2s,box-shadow .2s;}.btn:hover{transform:translateY(-2px);background:var(--coral-d);box-shadow:0 16px 30px rgba(198,83,66,.24);}.btn.secondary{background:#fff;color:var(--navy);border:1px solid rgba(24,36,43,.12);box-shadow:var(--soft);}.btn.secondary:hover{background:#fff7ef;color:var(--coral-d);}
+.stock-list{display:grid;gap:.85rem;margin-top:1rem;}.stock-item{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:1rem;box-shadow:var(--soft);display:grid;gap:.8rem;}.stock-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;}.stock-head input{font-weight:900;color:var(--navy);}.stock-fields{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr auto;gap:.65rem;align-items:end;}.remove-btn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(24,36,43,.12);background:#fff;color:var(--coral-d);font-weight:900;cursor:pointer;transition:transform .2s,background .2s;}.remove-btn:hover{transform:translateY(-2px);background:#fff1e9;}
+.status-pill{display:inline-flex;align-items:center;border-radius:999px;padding:.35rem .65rem;font-size:.68rem;font-weight:900;background:#eefbfb;color:var(--blue);white-space:nowrap;}.status-pill.urgent{background:#fff0ec;color:#b94835;}.status-pill.soon{background:#fff8dc;color:#8b6f19;}.status-pill.over{background:#eff8ef;color:#4f8755;}
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1rem 0;}.summary-card{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:1rem;box-shadow:var(--soft);}.summary-card small{display:block;font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.14em;color:var(--coral);text-transform:uppercase;margin-bottom:.35rem;}.summary-card strong{font-family:'Shippori Mincho',serif;font-size:1.38rem;line-height:1.25;}.summary-card p{font-size:.76rem;line-height:1.65;margin:.35rem 0 0;}
+.section-label{font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--coral-d);margin:1.2rem 0 .65rem;}.buy-list{display:grid;gap:.65rem;}.buy-card{display:grid;grid-template-columns:1fr auto;gap:.8rem;align-items:center;background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:.9rem;box-shadow:var(--soft);}.buy-card h3{font-size:.95rem;color:var(--navy);}.buy-card p{margin:.15rem 0 0;font-size:.78rem;color:var(--ink2);}.buy-amount{font-weight:900;color:var(--coral-d);white-space:nowrap;}
+.output{width:100%;min-height:170px;border:1px solid rgba(24,36,43,.12);border-radius:8px;background:#fff;padding:1rem;color:var(--ink2);line-height:1.8;resize:vertical;}.notice{font-size:.72rem;color:var(--ink3);line-height:1.7;margin-top:.65rem;}
+.tips{margin-top:1.3rem;}.tip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem;}.tip{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:1rem;box-shadow:var(--soft);}.tip small{display:block;font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.16em;color:var(--coral);text-transform:uppercase;margin-bottom:.35rem;}.tip h3{font-family:'Shippori Mincho',serif;font-size:1rem;margin-bottom:.4rem;}.tip p{color:var(--ink2);font-size:.8rem;line-height:1.75;}.tip a{display:inline-flex;margin-top:.7rem;color:var(--coral-d);font-weight:900;font-size:.82rem;border-bottom:1px solid rgba(239,125,103,.45);}
+.ft{background:var(--navy);color:rgba(255,255,255,.62);padding:3rem clamp(1rem,4vw,3rem) 2rem;}.ft-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:1.6rem;margin-bottom:1.4rem;}.ft .brand-ja{color:#fff;}.ft-nav{display:flex;gap:1.4rem;flex-wrap:wrap;}.ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68);transition:color .2s,transform .2s;}.ft-nav a:hover{color:#fff;transform:translateY(-2px);}.ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38);}
+@media(max-width:1040px){.hero,.app-shell{grid-template-columns:1fr;}.tip-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:760px){.setting-grid,.stock-fields,.summary-grid{grid-template-columns:1fr;}.stock-head{align-items:flex-start;flex-direction:column;}.hero-card img{height:290px;}.memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.panel,.result-panel,.tips{padding:1rem;}.wrap{padding:2.6rem 1rem 4rem;}.lead,.panel p,.result-panel p,.tip p{overflow-wrap:anywhere;}.tip-grid{grid-template-columns:1fr;}.buy-card{grid-template-columns:1fr;}.tools .btn,.action-row .btn{width:100%;}}
+@media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}h1{font-size:2.18rem;}.ft-inner{align-items:flex-start;flex-direction:column;}}
+</style>
+</head>
+<body>
+<header class="hd">
+  <a href="index.html" class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html#reviews">レビュー</a>
+    <a href="baby_stock_manager.html" class="active">ストック</a>
+    <a href="diaper_size_check.html">おむつ</a>
+    <a href="outing_checklist.html">持ち物</a>
+    <a href="contact.html" class="contact">お問い合わせ</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Baby Stock Manager</div>
+      <h1>買い忘れも、<br><em>買いすぎ</em>も<br>ほどよく防ぐ。</h1>
+      <p class="lead">おむつ、おしりふき、ミルク、ペットシーツ、離乳食、保湿剤など、毎日じわじわ減る育児消耗品をまとめて管理できます。手元の数と1日の使用量から「あと何日もつか」と「今週買うもの」を自動で整理します。</p>
+      <div class="quick-row" aria-label="主な機能">
+        <span class="chip is-active">在庫日数</span>
+        <span class="chip is-active">買い足し目安</span>
+        <span class="chip is-active">コピー保存</span>
+        <span class="chip is-active">家・園・外出</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="assets/kaz-mio-adventure-hero.png" alt="KAZ & MIOの家族向け便利ツールイメージ">
+      <div class="memo"><b>今日見るだけで、買い物メモになる。</b><p>価格ではなく、使い切れる量と不足しにくさを見ます。</p></div>
+    </div>
+  </section>
+
+  <section class="app-shell" aria-label="育児消耗品ストック管理ツール">
+    <div class="panel">
+      <h2>条件を入れる</h2>
+      <p>よく使うものは最初から入れています。家庭に合わせて数や使用量を変えてください。内容はこのブラウザに保存できます。</p>
+      <div class="setting-grid">
+        <div class="field">
+          <label class="label" for="targetDays">最低残したい日数</label>
+          <input id="targetDays" type="number" min="1" max="60" step="1" value="10">
+        </div>
+        <div class="field">
+          <label class="label" for="bufferDays">買い物の余裕日数</label>
+          <input id="bufferDays" type="number" min="0" max="30" step="1" value="5">
+        </div>
+        <div class="field">
+          <label class="label" for="familyMode">使い方</label>
+          <select id="familyMode">
+            <option value="home" selected>家中心</option>
+            <option value="nursery">保育園あり</option>
+            <option value="outing">外出多め</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="label" for="memoInput">メモ名</label>
+          <input id="memoInput" type="text" value="今週の育児ストック">
+        </div>
+      </div>
+      <div class="preset-row" aria-label="プリセット">
+        <button class="btn secondary" type="button" data-preset="baby">乳児期</button>
+        <button class="btn secondary" type="button" data-preset="food">離乳食期</button>
+        <button class="btn secondary" type="button" data-preset="nursery">保育園あり</button>
+        <button class="btn secondary" type="button" data-preset="light">少なめ管理</button>
+      </div>
+      <div class="stock-list" id="stockList"></div>
+      <div class="action-row">
+        <button class="btn" id="addItemBtn" type="button">項目を追加</button>
+        <button class="btn secondary" id="saveBtn" type="button">このブラウザに保存</button>
+        <button class="btn secondary" id="resetBtn" type="button">初期状態に戻す</button>
+      </div>
+    </div>
+
+    <div class="result-panel">
+      <h2>今週の買い物メモ</h2>
+      <p>不足しそうなものから順に表示します。買い足し量は、最低残したい日数と余裕日数を足した目安です。</p>
+      <div class="summary-grid">
+        <div class="summary-card"><small>Urgent</small><strong id="urgentCount">-</strong><p>早めに見たいもの</p></div>
+        <div class="summary-card"><small>Soon</small><strong id="soonCount">-</strong><p>次の買い物候補</p></div>
+        <div class="summary-card"><small>Enough</small><strong id="enoughCount">-</strong><p>まだ余裕あり</p></div>
+      </div>
+      <div class="section-label">Buy List</div>
+      <div class="buy-list" id="buyList"></div>
+      <div class="tools">
+        <button class="btn" id="copyBtn" type="button">テキストをコピー</button>
+        <button class="btn" id="saveImageBtn" type="button">画像で保存</button>
+        <button class="btn secondary" id="sortBtn" type="button">不足順に並べる</button>
+      </div>
+      <textarea class="output" id="textOutput" readonly aria-label="コピー用の育児消耗品ストック管理結果"></textarea>
+      <p class="notice" id="statusText">条件を変えると自動で更新されます。</p>
+    </div>
+  </section>
+
+  <section class="tips">
+    <h2>使い方のコツ</h2>
+    <div class="tip-grid">
+      <div class="tip"><small>TIP 01</small><h3>園用と家用は分ける</h3><p>同じおむつでも、園に置く分と家で使う分は減り方が違います。別項目にすると不足が見えやすいです。</p></div>
+      <div class="tip"><small>TIP 02</small><h3>サイズアウト品は買いすぎない</h3><p>おむつや服まわりは成長で使えなくなることがあります。余裕日数を小さめにしておくと余りにくいです。</p></div>
+      <div class="tip"><small>TIP 03</small><h3>消耗品は写真よりメモ</h3><p>残り枚数を正確に数えなくても大丈夫。ざっくり入力して、買い物前に見直せる状態が大事です。</p></div>
+    </div>
+  </section>
+
+  <section class="tips">
+    <h2>一緒に使いやすいページ</h2>
+    <div class="tip-grid">
+      <div class="tip"><small>Diaper</small><h3>おむつサイズ＆買い置きチェック</h3><p>サイズアップ前に、おむつ本体をどこまで買ってよいか確認できます。</p><a href="diaper_size_check.html">おむつチェックへ</a></div>
+      <div class="tip"><small>Item</small><h3>おむつ替え用ペットシーツ</h3><p>おむつ替えの下敷きとして使いやすかった消耗品レビューです。</p><a href="pet_sheet_diaper_article.html">レビューを見る</a></div>
+      <div class="tip"><small>Outing</small><h3>子連れおでかけ持ち物チェック</h3><p>外出バッグ用の在庫と一緒に、持ち物も整えられます。</p><a href="outing_checklist.html">持ち物チェックへ</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="ft-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
+    </a>
+    <nav class="ft-nav"><a href="index.html">トップ</a><a href="baby_stock_manager.html">ストック管理</a><a href="diaper_size_check.html">おむつチェック</a><a href="outing_checklist.html">持ち物チェック</a><a href="school_prep_checklist.html">入園準備</a><a href="family_stay_search.html">宿・食事さがし</a><a href="contact.html">お問い合わせ</a></nav>
+  </div>
+  <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
+</footer>
+
+<script>
+const storageKey = 'kazMioBabyStockManagerV1';
+const defaultItems = [
+  { name:'おむつ 家用', unit:'枚', category:'家', stock:72, daily:6 },
+  { name:'おむつ 園用', unit:'枚', category:'園', stock:28, daily:4 },
+  { name:'おしりふき', unit:'パック', category:'家', stock:5, daily:.35 },
+  { name:'ペットシーツ', unit:'枚', category:'家', stock:80, daily:2 },
+  { name:'ミルク', unit:'回分', category:'食事', stock:24, daily:4 },
+  { name:'離乳食パウチ', unit:'個', category:'食事', stock:8, daily:1 },
+  { name:'手口ふき', unit:'パック', category:'外出', stock:3, daily:.2 },
+  { name:'ビニール袋', unit:'枚', category:'外出', stock:25, daily:2 },
+  { name:'保湿剤', unit:'本', category:'ケア', stock:1, daily:.04 },
+  { name:'洗剤・ベビー用', unit:'本', category:'家事', stock:1, daily:.05 }
+];
+const presets = {
+  baby: {'おむつ 家用':7,'おむつ 園用':0,'おしりふき':.45,'ペットシーツ':2,'ミルク':5,'離乳食パウチ':0,'手口ふき':.18,'ビニール袋':2,'保湿剤':.04,'洗剤・ベビー用':.05},
+  food: {'おむつ 家用':5,'おむつ 園用':0,'おしりふき':.35,'ペットシーツ':1.5,'ミルク':2,'離乳食パウチ':2,'手口ふき':.25,'ビニール袋':2,'保湿剤':.04,'洗剤・ベビー用':.05},
+  nursery: {'おむつ 家用':4,'おむつ 園用':5,'おしりふき':.45,'ペットシーツ':1,'ミルク':1,'離乳食パウチ':1,'手口ふき':.3,'ビニール袋':3,'保湿剤':.04,'洗剤・ベビー用':.06},
+  light: {'おむつ 家用':4,'おむつ 園用':0,'おしりふき':.25,'ペットシーツ':1,'ミルク':2,'離乳食パウチ':.5,'手口ふき':.12,'ビニール袋':1,'保湿剤':.03,'洗剤・ベビー用':.04}
+};
+function cloneItems(source) {
+  return JSON.parse(JSON.stringify(source));
+}
+let items = cloneItems(defaultItems);
+const stockList = document.getElementById('stockList');
+const targetDays = document.getElementById('targetDays');
+const bufferDays = document.getElementById('bufferDays');
+const familyMode = document.getElementById('familyMode');
+const memoInput = document.getElementById('memoInput');
+const buyList = document.getElementById('buyList');
+const textOutput = document.getElementById('textOutput');
+const statusText = document.getElementById('statusText');
+const urgentCount = document.getElementById('urgentCount');
+const soonCount = document.getElementById('soonCount');
+const enoughCount = document.getElementById('enoughCount');
+
+function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));
+}
+function setStatus(text) {
+  statusText.textContent = text;
+  window.clearTimeout(setStatus.timer);
+  setStatus.timer = window.setTimeout(() => statusText.textContent = '条件を変えると自動で更新されます。', 2600);
+}
+function settings() {
+  return {
+    target: clamp(Number(targetDays.value) || 10, 1, 60),
+    buffer: clamp(Number(bufferDays.value) || 0, 0, 30),
+    mode: familyMode.value,
+    memo: memoInput.value.trim() || '育児消耗品ストック'
+  };
+}
+function itemModel(item, config = settings()) {
+  const stock = Math.max(0, Number(item.stock) || 0);
+  const daily = Math.max(0, Number(item.daily) || 0);
+  const days = daily > 0 ? stock / daily : Infinity;
+  const modeExtra = config.mode === 'nursery' && item.category === '園' ? 3 : config.mode === 'outing' && item.category === '外出' ? 2 : 0;
+  const targetDaysForItem = config.target + modeExtra;
+  const goalDays = targetDaysForItem + config.buffer;
+  const shortage = daily > 0 ? Math.max(0, Math.ceil(goalDays * daily - stock)) : 0;
+  let status = 'enough';
+  if (daily <= 0) status = 'unused';
+  else if (days <= 3) status = 'urgent';
+  else if (days < targetDaysForItem) status = 'soon';
+  else if (days > goalDays * 2.5 && stock > daily * 20) status = 'over';
+  return { ...item, stock, daily, days, goalDays, shortage, status };
+}
+function statusTextFor(model) {
+  if (model.status === 'urgent') return '早めに確認';
+  if (model.status === 'soon') return '次の買い物候補';
+  if (model.status === 'over') return '買いすぎ注意';
+  if (model.status === 'unused') return '使用量なし';
+  return 'まだ余裕あり';
+}
+function daysText(model) {
+  if (model.daily <= 0) return '使用量なし';
+  return `${Math.floor(model.days)}日分`;
+}
+function renderItems() {
+  stockList.innerHTML = '';
+  items.forEach((item, index) => {
+    const model = itemModel(item);
+    const row = document.createElement('article');
+    row.className = 'stock-item';
+    row.innerHTML = `
+      <div class="stock-head">
+        <input type="text" value="${escapeHtml(item.name)}" aria-label="消耗品名" data-index="${index}" data-field="name">
+        <span class="status-pill ${model.status}">${statusTextFor(model)} / ${daysText(model)}</span>
+      </div>
+      <div class="stock-fields">
+        <div><label class="label">場所・用途</label><select data-index="${index}" data-field="category">
+          ${['家','園','外出','食事','ケア','家事','その他'].map(cat => `<option value="${cat}" ${cat === item.category ? 'selected' : ''}>${cat}</option>`).join('')}
+        </select></div>
+        <div><label class="label">手元の数</label><input type="number" min="0" step="0.1" value="${escapeHtml(item.stock)}" data-index="${index}" data-field="stock"></div>
+        <div><label class="label">1日の使用量</label><input type="number" min="0" step="0.01" value="${escapeHtml(item.daily)}" data-index="${index}" data-field="daily"></div>
+        <div><label class="label">単位</label><input type="text" value="${escapeHtml(item.unit)}" data-index="${index}" data-field="unit"></div>
+        <button class="remove-btn" type="button" aria-label="${escapeHtml(item.name)}を削除" data-remove="${index}">×</button>
+      </div>
+    `;
+    stockList.appendChild(row);
+  });
+}
+function buildModels() {
+  const config = settings();
+  return items.map(item => itemModel(item, config));
+}
+function sortedModels() {
+  const order = { urgent:0, soon:1, enough:2, unused:3, over:4 };
+  return buildModels().sort((a,b) => order[a.status] - order[b.status] || a.days - b.days);
+}
+function buildText(models = sortedModels()) {
+  const config = settings();
+  const lines = [
+    config.memo,
+    `最低${config.target}日分 + 余裕${config.buffer}日分で確認`,
+    '',
+    '【今週見たいもの】'
+  ];
+  const needs = models.filter(item => item.status === 'urgent' || item.status === 'soon');
+  if (!needs.length) lines.push('・今すぐ急ぐものは少なめです。');
+  needs.forEach(item => lines.push(`・${item.name}: 残り約${daysText(item)} / 目安 ${item.shortage}${item.unit} 追加`));
+  lines.push('', '【在庫一覧】');
+  models.forEach(item => {
+    const add = item.shortage > 0 ? ` / 買い足し目安 ${item.shortage}${item.unit}` : '';
+    lines.push(`・${item.name}（${item.category}）: ${item.stock}${item.unit} / 1日${item.daily}${item.unit} / ${daysText(item)} / ${statusTextFor(item)}${add}`);
+  });
+  lines.push('', 'KAZ & MIO | LIFE, LIGHTLY');
+  return lines.join('\n');
+}
+function renderResults() {
+  const models = sortedModels();
+  urgentCount.textContent = models.filter(item => item.status === 'urgent').length;
+  soonCount.textContent = models.filter(item => item.status === 'soon').length;
+  enoughCount.textContent = models.filter(item => item.status === 'enough').length;
+  buyList.innerHTML = '';
+  const display = models.filter(item => item.status !== 'unused').slice(0, 8);
+  if (!display.length) {
+    buyList.innerHTML = '<div class="buy-card"><div><h3>項目を追加してください</h3><p>在庫数と1日の使用量を入れると、買い足し目安が出ます。</p></div></div>';
+  } else {
+    display.forEach(item => {
+      const card = document.createElement('article');
+      card.className = 'buy-card';
+      const amount = item.shortage > 0 ? `${item.shortage}${item.unit}` : item.status === 'over' ? 'しばらく不要' : '買い足しなし';
+      card.innerHTML = `<div><h3>${escapeHtml(item.name)} <span class="status-pill ${item.status}">${statusTextFor(item)}</span></h3><p>${escapeHtml(item.category)} / 手元 ${escapeHtml(item.stock)}${escapeHtml(item.unit)} / ${daysText(item)}</p></div><div class="buy-amount">${escapeHtml(amount)}</div>`;
+      buyList.appendChild(card);
+    });
+  }
+  textOutput.value = buildText(models);
+}
+function render() { renderItems(); renderResults(); }
+function saveState() {
+  localStorage.setItem(storageKey, JSON.stringify({items, targetDays:targetDays.value, bufferDays:bufferDays.value, familyMode:familyMode.value, memo:memoInput.value}));
+  setStatus('このブラウザに保存しました。');
+}
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    if (!saved) return;
+    items = Array.isArray(saved.items) ? saved.items : cloneItems(defaultItems);
+    targetDays.value = saved.targetDays || 10;
+    bufferDays.value = saved.bufferDays || 5;
+    familyMode.value = saved.familyMode || 'home';
+    memoInput.value = saved.memo || '今週の育児ストック';
+  } catch {}
+}
+function applyPreset(name) {
+  const map = presets[name];
+  if (!map) return;
+  items = items.map(item => ({ ...item, daily: map[item.name] ?? item.daily }));
+  if (name === 'nursery') familyMode.value = 'nursery';
+  render();
+  setStatus('プリセットを反映しました。');
+}
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  let line = '';
+  [...String(text)].forEach(char => {
+    const test = line + char;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      ctx.fillText(line, x, y);
+      line = char;
+      y += lineHeight;
+    } else {
+      line = test;
+    }
+  });
+  if (line) { ctx.fillText(line, x, y); y += lineHeight; }
+  return y;
+}
+function saveImage() {
+  const text = textOutput.value.split('\n').filter(Boolean);
+  const width = 1080;
+  const height = Math.max(1180, 220 + text.length * 34);
+  const canvas = document.createElement('canvas');
+  canvas.width = width; canvas.height = height;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#fff8ea'; ctx.fillRect(0,0,width,height);
+  ctx.fillStyle = '#183447'; ctx.fillRect(0,0,width,18);
+  ctx.fillStyle = '#ef7d67'; ctx.fillRect(0,18,width,10);
+  ctx.fillStyle = '#18242b'; ctx.font = '700 44px sans-serif';
+  ctx.fillText(settings().memo, 70, 92);
+  ctx.font = '26px sans-serif'; ctx.fillStyle = '#52616a';
+  let y = 145;
+  text.slice(1, 42).forEach(line => { y = wrapText(ctx, line, 70, y, width - 140, 34); y += 5; });
+  ctx.fillStyle = '#52616a'; ctx.font = '22px sans-serif';
+  ctx.fillText('KAZ & MIO | LIFE, LIGHTLY', 70, height - 55);
+  const link = document.createElement('a');
+  link.download = 'kaz-mio-baby-stock-manager.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+  setStatus('画像を保存しました。');
+}
+stockList.addEventListener('input', event => {
+  const target = event.target;
+  const index = Number(target.dataset.index);
+  const field = target.dataset.field;
+  if (!Number.isInteger(index) || !field) return;
+  items[index][field] = field === 'stock' || field === 'daily' ? Number(target.value) : target.value;
+  renderResults();
+});
+stockList.addEventListener('change', event => {
+  const target = event.target;
+  const index = Number(target.dataset.index);
+  const field = target.dataset.field;
+  if (!Number.isInteger(index) || !field) return;
+  items[index][field] = field === 'stock' || field === 'daily' ? Number(target.value) : target.value;
+  render();
+});
+stockList.addEventListener('click', event => {
+  const button = event.target.closest('[data-remove]');
+  if (!button) return;
+  items.splice(Number(button.dataset.remove), 1);
+  render();
+  setStatus('項目を削除しました。');
+});
+[targetDays, bufferDays, familyMode].forEach(input => input.addEventListener('input', render));
+memoInput.addEventListener('input', renderResults);
+document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => applyPreset(button.dataset.preset)));
+document.getElementById('addItemBtn').addEventListener('click', () => {
+  items.push({ name:'追加したいもの', unit:'個', category:'その他', stock:0, daily:1 });
+  render();
+  setStatus('項目を追加しました。');
+});
+document.getElementById('saveBtn').addEventListener('click', saveState);
+document.getElementById('resetBtn').addEventListener('click', () => {
+  items = cloneItems(defaultItems);
+  targetDays.value = 10;
+  bufferDays.value = 5;
+  familyMode.value = 'home';
+  memoInput.value = '今週の育児ストック';
+  localStorage.removeItem(storageKey);
+  render();
+  setStatus('初期状態に戻しました。');
+});
+document.getElementById('sortBtn').addEventListener('click', () => {
+  items = sortedModels().map(({days, goalDays, shortage, status, ...item}) => item);
+  render();
+  setStatus('不足順に並べました。');
+});
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(textOutput.value);
+  } catch {
+    textOutput.select();
+    document.execCommand('copy');
+  }
+  setStatus('テキストをコピーしました。');
+});
+document.getElementById('saveImageBtn').addEventListener('click', saveImage);
+loadState();
+render();
+</script>
+</body>
+</html>
