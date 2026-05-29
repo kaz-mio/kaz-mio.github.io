@@ -132,6 +132,7 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
 .tip small{display:block;font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.16em;color:var(--coral);text-transform:uppercase;margin-bottom:.35rem;}
 .tip h3{font-family:'Shippori Mincho',serif;font-size:1rem;margin-bottom:.4rem;}
 .tip p{color:var(--ink2);font-size:.8rem;line-height:1.75;}
+.tip a{display:inline-flex;margin-top:.7rem;color:var(--coral-d);font-weight:900;font-size:.82rem;border-bottom:1px solid rgba(239,125,103,.45);}
 .ft{background:var(--navy);color:rgba(255,255,255,.62);padding:3rem clamp(1rem,4vw,3rem) 2rem;}
 .ft-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:1.6rem;margin-bottom:1.4rem;}
 .ft .brand-ja{color:#fff;}
@@ -156,6 +157,7 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
     <a href="kids_size_check.html">サイズ確認</a>
     <a href="diaper_size_check.html">おむつ</a>
     <a href="outing_checklist.html" class="active">持ち物リスト</a>
+    <a href="stroller_fit_check.html">ベビーカー診断</a>
     <a href="school_prep_checklist.html">入園準備</a>
     <a href="contact.html" class="contact">お問い合わせ</a>
   </nav>
@@ -273,6 +275,15 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
       <div class="tip"><small>POINT 03</small><h3>帰宅後に減らす</h3><p>使わなかったものを毎回見直すと、次のおでかけが軽くなります。持ちすぎ防止にもつながります。</p></div>
     </div>
   </section>
+
+  <section class="tips">
+    <h2>おでかけ前に一緒に見たいページ</h2>
+    <div class="tip-grid">
+      <div class="tip"><small>Stroller</small><h3>ベビーカー収納・持ち運び診断</h3><p>玄関、車トランク、階段、重さから、買う前に暮らしに合うか確認できます。</p><a href="stroller_fit_check.html">ベビーカー診断へ</a></div>
+      <div class="tip"><small>Drive</small><h3>チャイルドシート乗せ降ろし診断</h3><p>車移動が多い日は、駐車場やドア開口まで先に見ておくとラクです。</p><a href="car_seat_fit_check.html">乗せ降ろし診断へ</a></div>
+      <div class="tip"><small>Family Navi</small><h3>子連れ宿・食事さがし</h3><p>外食や旅行前に、座敷・個室・お風呂などの子連れ条件を整理できます。</p><a href="family_stay_search.html">宿・食事さがしへ</a></div>
+    </div>
+  </section>
 </main>
 
 <footer class="ft">
@@ -281,7 +292,7 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
     </a>
-    <nav class="ft-nav"><a href="index.html">トップ</a><a href="kids_size_check.html">サイズチェック</a><a href="diaper_size_check.html">おむつチェック</a><a href="school_prep_checklist.html">入園準備チェック</a><a href="family_stay_search.html">宿・食事さがし</a><a href="editorial_policy.html">運営方針</a><a href="contact.html">お問い合わせ</a></nav>
+    <nav class="ft-nav"><a href="index.html">トップ</a><a href="stroller_fit_check.html">ベビーカー診断</a><a href="car_seat_fit_check.html">乗せ降ろし診断</a><a href="kids_size_check.html">サイズチェック</a><a href="diaper_size_check.html">おむつチェック</a><a href="school_prep_checklist.html">入園準備チェック</a><a href="family_stay_search.html">宿・食事さがし</a><a href="editorial_policy.html">運営方針</a><a href="contact.html">お問い合わせ</a></nav>
   </div>
   <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
 </footer>
