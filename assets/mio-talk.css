@@ -1,0 +1,136 @@
+.mio-talk{
+  display:grid;
+  grid-template-columns:92px minmax(0,1fr);
+  gap:1rem;
+  align-items:start;
+  margin:2rem 0 2.4rem;
+}
+.mio-talk-face{
+  position:relative;
+  width:92px;
+  height:92px;
+  border-radius:50%;
+  padding:4px;
+  background:linear-gradient(135deg,#fff,#f2dfcf 48%,#b9d8d1);
+  box-shadow:0 16px 34px rgba(24,36,43,.14);
+}
+.mio-talk-face::after{
+  content:'MIO';
+  position:absolute;
+  right:-.2rem;
+  bottom:-.25rem;
+  padding:.18rem .45rem;
+  border-radius:999px;
+  background:#20201e;
+  color:#fff;
+  font-family:'Nunito','Noto Sans JP',sans-serif;
+  font-size:.56rem;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+.mio-talk-face img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+  display:block;
+}
+.mio-talk-bubble{
+  position:relative;
+  min-width:0;
+  padding:1.15rem 1.25rem;
+  border-radius:18px 18px 18px 8px;
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(24,36,43,.1);
+  box-shadow:0 18px 44px rgba(24,36,43,.11);
+}
+.mio-talk-bubble::before{
+  content:'';
+  position:absolute;
+  left:-10px;
+  top:28px;
+  width:18px;
+  height:18px;
+  background:rgba(255,255,255,.94);
+  border-left:1px solid rgba(24,36,43,.1);
+  border-bottom:1px solid rgba(24,36,43,.1);
+  transform:rotate(45deg);
+}
+.mio-talk-label{
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  margin-bottom:.45rem;
+  font-family:'Nunito','Noto Sans JP',sans-serif;
+  color:#c96a3a;
+  font-size:.62rem;
+  font-weight:900;
+  letter-spacing:.18em;
+}
+.mio-talk-label::before{
+  content:'';
+  width:.45rem;
+  height:.45rem;
+  border-radius:50%;
+  background:#60c5d5;
+  box-shadow:.62rem 0 0 #dfcf98;
+}
+.mio-talk-bubble p{
+  margin:0;
+  color:#3f3d39;
+  font-size:.96rem;
+  line-height:2;
+  font-weight:500;
+}
+.mio-talk-stamps{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.45rem;
+  margin-top:.85rem;
+}
+.mio-talk-stamps span{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:.18rem .58rem;
+  border-radius:999px;
+  border:1px solid rgba(201,106,58,.26);
+  background:#fff8ee;
+  color:#a9502b;
+  font-size:.68rem;
+  font-weight:800;
+  line-height:1.4;
+  transform:rotate(-1.5deg);
+}
+.mio-talk-stamps span:nth-child(even){
+  background:#eef8f8;
+  color:#276775;
+  border-color:rgba(96,197,213,.28);
+  transform:rotate(1.5deg);
+}
+@media(max-width:640px){
+  .mio-talk{
+    grid-template-columns:64px minmax(0,1fr);
+    gap:.75rem;
+    margin:1.6rem 0 2rem;
+  }
+  .mio-talk-face{
+    width:64px;
+    height:64px;
+  }
+  .mio-talk-face::after{
+    font-size:.48rem;
+    right:-.35rem;
+  }
+  .mio-talk-bubble{
+    padding:1rem;
+    border-radius:16px 16px 16px 8px;
+  }
+  .mio-talk-bubble::before{
+    top:22px;
+  }
+  .mio-talk-bubble p{
+    font-size:.9rem;
+    line-height:1.85;
+  }
+}
