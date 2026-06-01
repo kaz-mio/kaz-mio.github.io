@@ -67,6 +67,7 @@
 .mini-type strong{display:block;font-size:.86rem;line-height:1.45;margin-top:.3rem}
 @media(max-width:900px){.check-hero,.quiz-shell{grid-template-columns:1fr}.score-card{margin-top:0}.choice-grid,.mini-types{grid-template-columns:1fr}.result-panel{position:static}}
 </style>
+<script src="assets/analytics.js"></script>
 </head>
 <body>
 <header class="guide-header"><a href="index.html" class="guide-logo">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a><nav class="guide-nav"><a href="buy_before_timemachine.html">タイムマシン</a><a href="stroller_fit_check.html">収納診断</a><a href="car_seat_fit_check.html">乗せ降ろし</a><a href="baby_stock_manager.html">ストック</a></nav></header>
@@ -122,7 +123,8 @@ function recordDiagnosis(type){
     counts[type]=(counts[type]||0)+1;
     localStorage.setItem('kazMioDiagnosisCounts',JSON.stringify(counts));
     window.dispatchEvent(new CustomEvent('kazmio:diagnosis',{detail:{type}}));
-    if(window.gtag){gtag('event','buy_before_diagnosis',{result_type:type});}
+    if(window.kazMioTrack){kazMioTrack('buy_before_diagnosis',{result_type:type});}
+    else if(window.gtag){gtag('event','buy_before_diagnosis',{result_type:type});}
   }catch(error){}
 }
 function renderResult(type,record=false){
@@ -154,7 +156,9 @@ document.getElementById('resultLinks').addEventListener('click',event=>{
   const link=event.target.closest('a[data-result-type]');
   if(!link){return;}
   try{
-    if(window.gtag){gtag('event','buy_before_result_click',{result_type:link.dataset.resultType,link_url:link.getAttribute('href')});}
+    const params={result_type:link.dataset.resultType,link_url:link.getAttribute('href'),link_text:link.textContent.trim()};
+    if(window.kazMioTrack){kazMioTrack('buy_before_result_click',params);}
+    else if(window.gtag){gtag('event','buy_before_result_click',params);}
   }catch(error){}
 });
 const params=new URLSearchParams(window.location.search);
@@ -162,6 +166,7 @@ const requestedType=params.get('type')||params.get('result');
 if(requestedType&&typePresets[requestedType]){
   applyValues(typePresets[requestedType]);
   renderResult(requestedType);
+  if(window.kazMioTrack){kazMioTrack('buy_before_type_prefill',{result_type:requestedType});}
 }else{
   renderResult(selectedType());
 }
