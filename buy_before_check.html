@@ -97,10 +97,23 @@ stock:{kicker:'Stock Forecast',title:'在庫の雪崩タイプ',text:'切らし�
 season:{kicker:'Season Forecast',title:'季節ずれタイプ',text:'来季用や少し先のサイズを見ているうちに、着る時期とサイズがずれやすいタイプです。服と靴は、使う季節と今の成長ペースをセットで見ます。',meter:'74%',links:[['季節ずれタイプのページへ','kids_clothes_season_mismatch.html'],['子ども服と靴の入口へ','kids_clothes_size_guide.html'],['サイズチェックへ','kids_size_check.html']]}
 };
 const defaultValues={q1:'entrance',q2:'car',q3:'room',q4:'stock',q5:'season'};
+const typePresets={
+  entrance:{q1:'entrance',q2:'entrance',q3:'entrance',q4:'room',q5:'stock'},
+  car:{q1:'room',q2:'car',q3:'car',q4:'stock',q5:'car'},
+  room:{q1:'room',q2:'entrance',q3:'room',q4:'room',q5:'stock'},
+  stock:{q1:'stock',q2:'season',q3:'room',q4:'stock',q5:'stock'},
+  season:{q1:'stock',q2:'season',q3:'car',q4:'season',q5:'season'}
+};
 function selectedType(){
   const scores={entrance:0,car:0,room:0,stock:0,season:0};
   document.querySelectorAll('.quiz-panel input:checked').forEach(input=>{scores[input.value]+=1});
   return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+}
+function applyValues(values){
+  Object.entries(values).forEach(([name,value])=>{
+    const input=document.querySelector(`input[name="${name}"][value="${value}"]`);
+    if(input){input.checked=true;}
+  });
 }
 function recordDiagnosis(type){
   try{
@@ -121,9 +134,19 @@ function renderResult(type,record=false){
   document.getElementById('resultMeter').style.width=data.meter;
   document.getElementById('resultLinks').innerHTML=data.links.map(([label,href])=>`<a href="${href}" data-result-type="${type}">${label}</a>`).join('');
 }
-document.getElementById('runDiagnosis').addEventListener('click',()=>renderResult(selectedType(),true));
+function updateTypeUrl(type){
+  const url=new URL(window.location.href);
+  url.searchParams.set('type',type);
+  window.history.replaceState(null,'',url);
+}
+document.getElementById('runDiagnosis').addEventListener('click',()=>{
+  const type=selectedType();
+  renderResult(type,true);
+  updateTypeUrl(type);
+});
 document.getElementById('resetDiagnosis').addEventListener('click',()=>{
-  Object.entries(defaultValues).forEach(([name,value])=>{document.querySelector(`input[name="${name}"][value="${value}"]`).checked=true});
+  applyValues(defaultValues);
+  window.history.replaceState(null,'',window.location.pathname);
   renderResult(selectedType());
 });
 document.querySelectorAll('.quiz-panel input').forEach(input=>input.addEventListener('change',()=>renderResult(selectedType())));
@@ -134,7 +157,14 @@ document.getElementById('resultLinks').addEventListener('click',event=>{
     if(window.gtag){gtag('event','buy_before_result_click',{result_type:link.dataset.resultType,link_url:link.getAttribute('href')});}
   }catch(error){}
 });
-renderResult(selectedType());
+const params=new URLSearchParams(window.location.search);
+const requestedType=params.get('type')||params.get('result');
+if(requestedType&&typePresets[requestedType]){
+  applyValues(typePresets[requestedType]);
+  renderResult(requestedType);
+}else{
+  renderResult(selectedType());
+}
 </script>
 </body>
 </html>
