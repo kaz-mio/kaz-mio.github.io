@@ -90,11 +90,11 @@
 <footer class="guide-footer">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</footer>
 <script>
 const resultData={
-entrance:{kicker:'Entrance Forecast',title:'玄関渋滞タイプ',text:'ベビーカー、靴、傘、買い物袋が玄関で重なりやすいタイプです。買う前に、畳んだサイズと置く向き、通れる幅を一回だけ測ると安心です。',meter:'88%',links:[['ベビーカー収納診断へ','stroller_fit_check.html'],['おでかけ持ち物を確認','outing_checklist.html'],['買う前タイムマシンへ','buy_before_timemachine.html']]},
-car:{kicker:'Morning Forecast',title:'乗せ降ろし迷子タイプ',text:'車移動そのものより、ドアの開き方、駐車場の狭さ、ベルトの留めやすさで毎日つまずきやすいタイプです。使う車と駐車環境を先に見ておきたいところ。',meter:'82%',links:[['チャイルドシート乗せ降ろし診断へ','car_seat_fit_check.html'],['車とベビーカーの入口へ','family_car_stroller_guide.html'],['ベビーカー収納診断へ','stroller_fit_check.html']]},
-room:{kicker:'Living Forecast',title:'リビング圧迫タイプ',text:'安全対策で置いたものが、大人の通路や家事動線を細くしやすいタイプです。置けるかだけでなく、置いたあとに通れるかを先に見ます。',meter:'76%',links:[['ベビーサークル置ける診断へ','baby_circle_fit_check.html'],['部屋の安全入口へ','baby_room_safety_guide.html'],['ストック管理へ','baby_stock_manager.html']]},
-stock:{kicker:'Stock Forecast',title:'在庫の雪崩タイプ',text:'切らしたくなくて多めに買い、収納やサイズ替えで悩みやすいタイプです。何日分あるか、サイズ替えが近いかを先に見ると買い物が落ち着きます。',meter:'80%',links:[['育児消耗品ストック管理へ','baby_stock_manager.html'],['おむつサイズチェックへ','diaper_size_check.html'],['おむつ買い置き入口へ','diaper_size_stock_guide.html']]},
-season:{kicker:'Season Forecast',title:'季節ずれタイプ',text:'来季用や少し先のサイズを見ているうちに、着る時期とサイズがずれやすいタイプです。服と靴は、使う季節と今の成長ペースをセットで見ます。',meter:'74%',links:[['子ども服と靴の入口へ','kids_clothes_size_guide.html'],['サイズチェックへ','kids_size_check.html'],['入園準備チェックへ','school_prep_checklist.html']]}
+entrance:{kicker:'Entrance Forecast',title:'玄関渋滞タイプ',text:'ベビーカー、靴、傘、買い物袋が玄関で重なりやすいタイプです。買う前に、畳んだサイズと置く向き、通れる幅を一回だけ測ると安心です。',meter:'88%',links:[['玄関渋滞タイプのページへ','stroller_entrance_jam.html'],['ベビーカー収納診断へ','stroller_fit_check.html'],['おでかけ持ち物を確認','outing_checklist.html']]},
+car:{kicker:'Morning Forecast',title:'乗せ降ろし迷子タイプ',text:'車移動そのものより、ドアの開き方、駐車場の狭さ、ベルトの留めやすさで毎日つまずきやすいタイプです。使う車と駐車環境を先に見ておきたいところ。',meter:'82%',links:[['乗せ降ろし迷子タイプのページへ','carseat_daily_stress.html'],['チャイルドシート乗せ降ろし診断へ','car_seat_fit_check.html'],['車とベビーカーの入口へ','family_car_stroller_guide.html']]},
+room:{kicker:'Living Forecast',title:'リビング圧迫タイプ',text:'安全対策で置いたものが、大人の通路や家事動線を細くしやすいタイプです。置けるかだけでなく、置いたあとに通れるかを先に見ます。',meter:'76%',links:[['リビング圧迫タイプのページへ','baby_circle_living_pressure.html'],['ベビーサークル置ける診断へ','baby_circle_fit_check.html'],['部屋の安全入口へ','baby_room_safety_guide.html']]},
+stock:{kicker:'Stock Forecast',title:'在庫の雪崩タイプ',text:'切らしたくなくて多めに買い、収納やサイズ替えで悩みやすいタイプです。何日分あるか、サイズ替えが近いかを先に見ると買い物が落ち着きます。',meter:'80%',links:[['在庫の雪崩タイプのページへ','diaper_stock_sizeout.html'],['育児消耗品ストック管理へ','baby_stock_manager.html'],['おむつサイズチェックへ','diaper_size_check.html']]},
+season:{kicker:'Season Forecast',title:'季節ずれタイプ',text:'来季用や少し先のサイズを見ているうちに、着る時期とサイズがずれやすいタイプです。服と靴は、使う季節と今の成長ペースをセットで見ます。',meter:'74%',links:[['季節ずれタイプのページへ','kids_clothes_season_mismatch.html'],['子ども服と靴の入口へ','kids_clothes_size_guide.html'],['サイズチェックへ','kids_size_check.html']]}
 };
 const defaultValues={q1:'entrance',q2:'car',q3:'room',q4:'stock',q5:'season'};
 function selectedType(){
@@ -102,20 +102,38 @@ function selectedType(){
   document.querySelectorAll('.quiz-panel input:checked').forEach(input=>{scores[input.value]+=1});
   return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
 }
-function renderResult(type){
+function recordDiagnosis(type){
+  try{
+    localStorage.setItem('kazMioLastDiagnosisType',type);
+    const counts=JSON.parse(localStorage.getItem('kazMioDiagnosisCounts')||'{}');
+    counts[type]=(counts[type]||0)+1;
+    localStorage.setItem('kazMioDiagnosisCounts',JSON.stringify(counts));
+    window.dispatchEvent(new CustomEvent('kazmio:diagnosis',{detail:{type}}));
+    if(window.gtag){gtag('event','buy_before_diagnosis',{result_type:type});}
+  }catch(error){}
+}
+function renderResult(type,record=false){
   const data=resultData[type];
+  if(record){recordDiagnosis(type);}
   document.getElementById('resultKicker').textContent=data.kicker;
   document.getElementById('resultTitle').textContent=data.title;
   document.getElementById('resultText').textContent=data.text;
   document.getElementById('resultMeter').style.width=data.meter;
-  document.getElementById('resultLinks').innerHTML=data.links.map(([label,href])=>`<a href="${href}">${label}</a>`).join('');
+  document.getElementById('resultLinks').innerHTML=data.links.map(([label,href])=>`<a href="${href}" data-result-type="${type}">${label}</a>`).join('');
 }
-document.getElementById('runDiagnosis').addEventListener('click',()=>renderResult(selectedType()));
+document.getElementById('runDiagnosis').addEventListener('click',()=>renderResult(selectedType(),true));
 document.getElementById('resetDiagnosis').addEventListener('click',()=>{
   Object.entries(defaultValues).forEach(([name,value])=>{document.querySelector(`input[name="${name}"][value="${value}"]`).checked=true});
   renderResult(selectedType());
 });
 document.querySelectorAll('.quiz-panel input').forEach(input=>input.addEventListener('change',()=>renderResult(selectedType())));
+document.getElementById('resultLinks').addEventListener('click',event=>{
+  const link=event.target.closest('a[data-result-type]');
+  if(!link){return;}
+  try{
+    if(window.gtag){gtag('event','buy_before_result_click',{result_type:link.dataset.resultType,link_url:link.getAttribute('href')});}
+  }catch(error){}
+});
 renderResult(selectedType());
 </script>
 </body>
