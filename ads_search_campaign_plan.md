@@ -17,7 +17,8 @@
 
 - 配信面: Google 検索広告のみ
 - 地域: 日本
-- 最終URL: `buy_before_check.html?type=...`
+- 最終URL: `buy_before_diagnosis_lp.html`
+- 診断ページへはLP内CTAからUTMを引き継いで送る
 - 商品名の強い訴求、価格訴求、割引訴求は避ける
 - アフィリエイトリンク直行ではなく、診断・確認ページを受け皿にする
 
@@ -27,7 +28,7 @@
 
 最終URL:
 
-`https://kaz-mio.github.io/buy_before_check.html?type=entrance`
+`https://kaz-mio.github.io/buy_before_diagnosis_lp.html?utm_source=google&utm_medium=cpc&utm_campaign=buy_before_diagnosis&utm_content=stroller_entrance&utm_term={keyword}`
 
 検索語句の狙い:
 
@@ -52,7 +53,7 @@
 
 最終URL:
 
-`https://kaz-mio.github.io/buy_before_check.html?type=car`
+`https://kaz-mio.github.io/buy_before_diagnosis_lp.html?utm_source=google&utm_medium=cpc&utm_campaign=buy_before_diagnosis&utm_content=carseat_stress&utm_term={keyword}`
 
 検索語句の狙い:
 
@@ -77,7 +78,7 @@
 
 最終URL:
 
-`https://kaz-mio.github.io/buy_before_check.html?type=room`
+`https://kaz-mio.github.io/buy_before_diagnosis_lp.html?utm_source=google&utm_medium=cpc&utm_campaign=buy_before_diagnosis&utm_content=baby_circle_room&utm_term={keyword}`
 
 検索語句の狙い:
 
@@ -102,7 +103,7 @@
 
 最終URL:
 
-`https://kaz-mio.github.io/buy_before_check.html?type=stock`
+`https://kaz-mio.github.io/buy_before_diagnosis_lp.html?utm_source=google&utm_medium=cpc&utm_campaign=buy_before_diagnosis&utm_content=diaper_stock&utm_term={keyword}`
 
 検索語句の狙い:
 
@@ -127,7 +128,7 @@
 
 最終URL:
 
-`https://kaz-mio.github.io/buy_before_check.html?type=season`
+`https://kaz-mio.github.io/buy_before_diagnosis_lp.html?utm_source=google&utm_medium=cpc&utm_campaign=buy_before_diagnosis&utm_content=kids_size_season&utm_term={keyword}`
 
 検索語句の狙い:
 
@@ -165,6 +166,8 @@
 ## まず見る指標
 
 - 広告グループ別クリック率
+- LP表示イベント `ad_lp_view`
+- LP内CTAクリックイベント `ad_lp_cta_click`
 - 診断ボタン押下イベント `buy_before_diagnosis`
 - 結果リンククリックイベント `buy_before_result_click`
 - 結果タイプ別ページの閲覧数
