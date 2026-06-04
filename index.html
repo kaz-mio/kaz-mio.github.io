@@ -227,8 +227,13 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .shopping-strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr minmax(300px,340px);gap:2rem;align-items:center;}
 .shopping-strip h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,2.7vw,2.6rem);line-height:1.45;font-weight:500;color:#858585;margin-bottom:.75rem;}
 .shopping-strip p{color:#777;font-size:.9rem;max-width:42rem;}
+.shopping-ad-column{display:grid;gap:.75rem;justify-items:center;}
 .rakuten-widget-box{background:#f7f5ef;border:1px solid var(--line);padding:1rem;min-height:282px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .rakuten-widget-box script{display:none;}
+.moshimo-banner-box{width:100%;background:#f7f5ef;border:1px solid var(--line);padding:.8rem;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.moshimo-banner-box a{display:block;line-height:0;transition:opacity .22s,transform .22s;}
+.moshimo-banner-box a:hover{opacity:.84;transform:translateY(-2px);}
+.moshimo-banner-box img{max-width:100%;height:auto;}
 .articles{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);}
 .article{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:1.35rem 0;border-bottom:1px solid var(--line);transition:transform .22s,color .22s,background .22s;}
 .article:nth-child(odd){padding-right:1.4rem;border-right:1px solid var(--line);}
@@ -654,11 +659,17 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <h2>日用品や子育て用品を、必要な時に探しやすく。</h2>
         <p>おむつ、洗剤、食品、季節用品など、家で使うものを比べたい時のための小さな入口です。価格や送料、発送予定はリンク先で確認してください。</p>
       </div>
-      <div class="rakuten-widget-box" aria-label="楽天市場のおすすめ商品">
-        <!-- MAF Rakuten Widget FROM HERE -->
-        <script type="text/javascript">MafRakutenWidgetParam=function(){return{size:'300x250',design:'slide',recommend:'on',auto_mode:'on',a_id:'5582658',border:'off'};};</script>
-        <script type="text/javascript" src="https://dn.msmstatic.com/site/rakuten/widget.js"></script>
-        <!-- MAF Rakuten Widget TO HERE -->
+      <div class="shopping-ad-column">
+        <div class="rakuten-widget-box" aria-label="楽天市場のおすすめ商品">
+          <!-- MAF Rakuten Widget FROM HERE -->
+          <script type="text/javascript">MafRakutenWidgetParam=function(){return{size:'300x250',design:'slide',recommend:'on',auto_mode:'on',a_id:'5582658',border:'off'};};</script>
+          <script type="text/javascript" src="https://dn.msmstatic.com/site/rakuten/widget.js"></script>
+          <!-- MAF Rakuten Widget TO HERE -->
+        </div>
+        <div class="moshimo-banner-box" aria-label="暮らしの買い物広告">
+          <a href="https://af.moshimo.com/af/c/click?a_id=5582710&amp;p_id=170&amp;pc_id=185&amp;pl_id=4159" rel="nofollow sponsored noopener" referrerpolicy="no-referrer-when-downgrade" attributionsrc target="_blank"><img src="https://image.moshimo.com/af-img/0068/000000004159.gif" width="468" height="60" alt="暮らしの買い物広告" loading="lazy" style="border:none;"></a>
+          <img src="https://i.moshimo.com/af/i/impression?a_id=5582710&amp;p_id=170&amp;pc_id=185&amp;pl_id=4159" width="1" height="1" alt="" loading="lazy" style="border:none;">
+        </div>
       </div>
     </div>
   </section>
