@@ -75,6 +75,36 @@
     return params;
   }
 
+  function affiliateNetwork(url){
+    if(/af\.moshimo\.com/.test(url)){ return 'moshimo'; }
+    if(/px\.a8\.net/.test(url)){ return 'a8'; }
+    if(/amazon\./.test(url)){ return 'amazon'; }
+    if(/rakuten\./.test(url)){ return 'rakuten'; }
+    return 'other';
+  }
+
+  function setupAffiliateTracking(){
+    document.addEventListener('click', function(event){
+      var link = event.target.closest('a[href]');
+      if(!link){ return; }
+      var href = link.getAttribute('href') || '';
+      var isAffiliate = /af\.moshimo\.com|px\.a8\.net|amazon\.|rakuten\./.test(href);
+      if(!isAffiliate && !link.dataset.affiliateOffer){ return; }
+
+      var params = {
+        page_slug: currentSlug(),
+        link_url: href,
+        link_text: cleanText(link.textContent || link.getAttribute('aria-label') || link.querySelector('img')?.alt),
+        affiliate_network: link.dataset.affiliateNetwork || affiliateNetwork(href),
+        affiliate_offer: link.dataset.affiliateOffer,
+        affiliate_placement: link.dataset.affiliatePlacement || link.dataset.placement,
+        campaign: link.dataset.campaign
+      };
+
+      window.kazMioTrack(link.dataset.gaEvent || 'kazmio_affiliate_click', params);
+    }, true);
+  }
+
   function setupToolTracking(){
     var shell = document.querySelector('.app-shell,.quiz-shell');
     if(!shell){ return; }
@@ -110,9 +140,13 @@
   }
 
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', setupToolTracking);
+    document.addEventListener('DOMContentLoaded', function(){
+      setupToolTracking();
+      setupAffiliateTracking();
+    });
   }else{
     setupToolTracking();
+    setupAffiliateTracking();
   }
 
   if(!hasTagId){
