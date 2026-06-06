@@ -10,18 +10,18 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>入園・入学準備チェックリスト｜名前つけ・買うもの管理 | KAZ &amp; MIO | LIFE, LIGHTLY</title>
-<meta name="description" content="保育園・幼稚園・小学校の入園入学準備に。必要な持ち物、名前つけ、コップ袋・給食袋などの買い忘れをまとめてチェックできる準備リストです。テキストコピーとPNG画像保存に対応しています。">
+<meta name="description" content="保育園・幼稚園・小学校の入園入学準備に。必要な持ち物、名前つけ、コップ袋・給食袋・ループ付きタオルなどの買い忘れをまとめてチェックできる準備リストです。">
 <link rel="canonical" href="https://kaz-mio.github.io/school_prep_checklist.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="入園・入学準備チェックリスト｜名前つけ・買うもの管理">
-<meta property="og:description" content="園や学校の種類を選ぶだけで、準備するものと名前つけ対象、コップ袋などの買い忘れを整理。コピー・PNG保存できます。">
+<meta property="og:description" content="園や学校の種類を選ぶだけで、準備するものと名前つけ対象、コップ袋やループ付きタオルなどの買い忘れを整理。コピー・PNG保存できます。">
 <meta property="og:url" content="https://kaz-mio.github.io/school_prep_checklist.html">
 <meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="入園・入学準備チェックリスト">
-<meta name="twitter:description" content="準備するものと名前つけ対象、コップ袋などの買い忘れを自動整理。コピー・PNG画像保存できます。">
+<meta name="twitter:description" content="準備するものと名前つけ対象、コップ袋やループ付きタオルなどの買い忘れを自動整理。">
 <meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <script type="application/ld+json">
 {
@@ -37,7 +37,7 @@
       "inLanguage": "ja",
       "datePublished": "2026-05-27",
       "dateModified": "2026-06-07",
-      "description": "保育園・幼稚園・小学校の準備物と名前つけ対象を整理できるチェックリスト"
+      "description": "保育園・幼稚園・小学校の準備物、名前つけ対象、コップ袋やループ付きタオルなどの買い忘れを整理できるチェックリスト"
     },
     {
       "@type": "BreadcrumbList",
@@ -139,13 +139,14 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
 .tip p{color:var(--ink2);font-size:.8rem;line-height:1.75;}
 .prep-pick{margin:1.3rem 0;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,253,247,.98));border:1px solid rgba(24,36,43,.08);border-radius:8px;box-shadow:0 22px 60px rgba(24,52,71,.12);padding:1.2rem;position:relative;overflow:hidden;}
 .prep-pick::before{content:'';position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--aqua),var(--sun),var(--coral));}
-.prep-pick-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(300px,1.1fr);gap:1rem;align-items:center;}
+.prep-pick-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(300px,1.1fr);gap:1rem;align-items:start;}
 .prep-pick small{display:block;font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:900;letter-spacing:.16em;color:var(--blue);text-transform:uppercase;margin-bottom:.45rem;}
 .prep-pick h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.36;margin-bottom:.55rem;}
 .prep-pick p{color:var(--ink2);font-size:.86rem;line-height:1.85;}
 .prep-pick ul{display:grid;gap:.35rem;list-style:none;margin-top:.8rem;}
 .prep-pick li{position:relative;padding-left:1.05rem;color:var(--ink2);font-size:.82rem;line-height:1.65;}
 .prep-pick li::before{content:'';position:absolute;left:0;top:.72em;width:.42rem;height:.42rem;border-radius:50%;background:var(--coral);}
+.prep-product-list{display:grid;gap:.85rem;}
 .moshimo-easylink-box{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:.8rem;box-shadow:var(--soft);min-width:0;}
 .moshimo-easylink-box [id^="msmaflink-"]{min-height:132px;}
 .ft{background:var(--navy);color:rgba(255,255,255,.62);padding:3rem clamp(1rem,4vw,3rem) 2rem;}
@@ -282,27 +283,43 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
     <div class="prep-pick-grid">
       <div>
         <small>Small Goods</small>
-        <h2>コップ袋って、最後にあわてがち。</h2>
-        <p>園の持ち物リストを見ていると、服やバッグは目立つのに、コップ袋や給食袋みたいな小物がぽろっと残るんですよね。洗い替えまで考えるなら、2枚セットの袋ものは先に候補へ入れておくとラクです。</p>
+        <h2>袋ものとループタオル、最後にあわてがち。</h2>
+        <p>園の持ち物リストを見ていると、服やバッグは目立つのに、コップ袋やループ付きタオルみたいな小物がぽろっと残るんですよね。洗い替えまで考えるなら、セットものは先に候補へ入れておくとラクです。</p>
         <ul>
-          <li>コップ、歯ブラシ、給食まわりの小物をまとめたい時に。</li>
+          <li>コップ、歯ブラシ、手洗い、給食まわりの小物をまとめたい時に。</li>
           <li>園や学校のサイズ指定、キャラクター可否は先に確認してから。</li>
           <li>名前つけする場所も、届いたらすぐ見ておくと夜が荒れません。</li>
         </ul>
       </div>
-      <div class="moshimo-easylink-box" data-affiliate-network="moshimo" data-affiliate-offer="skater-cup-bag" data-affiliate-placement="school_prep_checklist_small_goods" data-campaign="school_prep">
-        <!-- START MoshimoAffiliateEasyLink -->
-        <script type="text/javascript">
-        (function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
-        b[a]=b[a]||function(){arguments.currentScript=c.currentScript
-        ||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
-        c.getElementById(a)||(d=c.createElement(f),d.src=g,
-        d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
-        (window,document,"script","https://dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
-        msmaflink({"n":"スケーター(Skater) 子供用 お弁当 コップ 袋 2枚 セット 15×20cm 巾着 給食袋 日本製 プラレール 男の子 KB63W-A","b":"スケーター(Skater)","t":"KB63W-70236","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/51bJAJErl5L._SL500_.jpg","\/51482P5kFAL._SL500_.jpg","\/416WjiPIVDL._SL500_.jpg","\/41WiOG+xiFL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B0DWM6J4YJ","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":1,"u_tx":"楽天市場で見る","u_bc":"#f76956","u_url":"https:\/\/search.rakuten.co.jp\/search\/mall\/%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%BF%E3%83%BC(Skater)%20%E5%AD%90%E4%BE%9B%E7%94%A8%20%E3%81%8A%E5%BC%81%E5%BD%93%20%E3%82%B3%E3%83%83%E3%83%97%20%E8%A2%8B%202%E6%9E%9A%20%E3%82%BB%E3%83%83%E3%83%88%2015%C3%9720cm%20%E5%B7%BE%E7%9D%80%20%E7%B5%A6%E9%A3%9F%E8%A2%8B%20%E6%97%A5%E6%9C%AC%E8%A3%BD%20%E3%83%97%E3%83%A9%E3%83%AC%E3%83%BC%E3%83%AB%20%E7%94%B7%E3%81%AE%E5%AD%90%20KB63W-A\/","a_id":5582658,"p_id":54,"pl_id":27059,"pc_id":54,"s_n":"rakuten","u_so":1},{"id":2,"u_tx":"商品ページで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B0DWM6J4YJ","a_id":5582710,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":2}],"eid":"qDGGZ","s":"s"});
-        </script>
-        <div id="msmaflink-qDGGZ">商品リンクを読み込み中です</div>
-        <!-- MoshimoAffiliateEasyLink END -->
+      <div class="prep-product-list">
+        <div class="moshimo-easylink-box" data-affiliate-network="moshimo" data-affiliate-offer="skater-cup-bag" data-affiliate-placement="school_prep_checklist_small_goods" data-campaign="school_prep">
+          <!-- START MoshimoAffiliateEasyLink -->
+          <script type="text/javascript">
+          (function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+          b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+          ||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+          c.getElementById(a)||(d=c.createElement(f),d.src=g,
+          d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+          (window,document,"script","https://dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+          msmaflink({"n":"スケーター(Skater) 子供用 お弁当 コップ 袋 2枚 セット 15×20cm 巾着 給食袋 日本製 プラレール 男の子 KB63W-A","b":"スケーター(Skater)","t":"KB63W-70236","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/51bJAJErl5L._SL500_.jpg","\/51482P5kFAL._SL500_.jpg","\/416WjiPIVDL._SL500_.jpg","\/41WiOG+xiFL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B0DWM6J4YJ","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":1,"u_tx":"楽天市場で見る","u_bc":"#f76956","u_url":"https:\/\/search.rakuten.co.jp\/search\/mall\/%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%BF%E3%83%BC(Skater)%20%E5%AD%90%E4%BE%9B%E7%94%A8%20%E3%81%8A%E5%BC%81%E5%BD%93%20%E3%82%B3%E3%83%83%E3%83%97%20%E8%A2%8B%202%E6%9E%9A%20%E3%82%BB%E3%83%83%E3%83%88%2015%C3%9720cm%20%E5%B7%BE%E7%9D%80%20%E7%B5%A6%E9%A3%9F%E8%A2%8B%20%E6%97%A5%E6%9C%AC%E8%A3%BD%20%E3%83%97%E3%83%A9%E3%83%AC%E3%83%BC%E3%83%AB%20%E7%94%B7%E3%81%AE%E5%AD%90%20KB63W-A\/","a_id":5582658,"p_id":54,"pl_id":27059,"pc_id":54,"s_n":"rakuten","u_so":1},{"id":2,"u_tx":"商品ページで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B0DWM6J4YJ","a_id":5582710,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":2}],"eid":"qDGGZ","s":"s"});
+          </script>
+          <div id="msmaflink-qDGGZ">商品リンクを読み込み中です</div>
+          <!-- MoshimoAffiliateEasyLink END -->
+        </div>
+        <div class="moshimo-easylink-box" data-affiliate-network="moshimo" data-affiliate-offer="sanrio-loop-towel" data-affiliate-placement="school_prep_checklist_small_goods" data-campaign="school_prep">
+          <!-- START MoshimoAffiliateEasyLink -->
+          <script type="text/javascript">
+          (function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+          b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+          ||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+          c.getElementById(a)||(d=c.createElement(f),d.src=g,
+          d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+          (window,document,"script","https://dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+          msmaflink({"n":"サンリオ(SANRIO) ループ付きタオル3枚セット マイメロディ 子供用 抗菌加工 名前スペース付き 保育園 幼稚園 249564","b":"サンリオ(SANRIO)","t":"249564","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/31gY6rbiQfL._SL500_.jpg","\/31Vib5zk07L._SL500_.jpg","\/31r8YwwWxCL._SL500_.jpg","\/31iTSe45EZL._SL500_.jpg","\/41UZMUSdh7L._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B0DKB9ZF55","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":1,"u_tx":"楽天市場で見る","u_bc":"#f76956","u_url":"https:\/\/search.rakuten.co.jp\/search\/mall\/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA(SANRIO)%20%E3%83%AB%E3%83%BC%E3%83%97%E4%BB%98%E3%81%8D%E3%82%BF%E3%82%AA%E3%83%AB3%E6%9E%9A%E3%82%BB%E3%83%83%E3%83%88%20%E3%83%9E%E3%82%A4%E3%83%A1%E3%83%AD%E3%83%87%E3%82%A3%20%E5%AD%90%E4%BE%9B%E7%94%A8%20%E6%8A%97%E8%8F%8C%E5%8A%A0%E5%B7%A5%20%E5%90%8D%E5%89%8D%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E4%BB%98%E3%81%8D%20%E4%BF%9D%E8%82%B2%E5%9C%92%20%E5%B9%BC%E7%A8%9A%E5%9C%92%20249564\/","a_id":5582658,"p_id":54,"pl_id":27059,"pc_id":54,"s_n":"rakuten","u_so":1},{"id":2,"u_tx":"商品ページで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B0DKB9ZF55","a_id":5582710,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":2}],"eid":"s4QCo","s":"s"});
+          </script>
+          <div id="msmaflink-s4QCo">商品リンクを読み込み中です</div>
+          <!-- MoshimoAffiliateEasyLink END -->
+        </div>
       </div>
     </div>
     <p class="notice">広告リンクを含みます。色柄、在庫、対応ショップなどの最新情報はリンク先で確認してください。</p>

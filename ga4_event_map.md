@@ -53,7 +53,7 @@ Create these as event-scoped custom dimensions after the GA4 tag is active and e
 | Affiliate placement | `affiliate_placement` | Compare banner, bottom CTA, diagnosis result |
 | Campaign | `campaign` | Group related pages and X creatives |
 
-Moshimo EasyLink cards can inherit affiliate metadata from a parent wrapper. For example, the school prep cup-bag card uses `affiliate_offer=skater-cup-bag`, `affiliate_placement=school_prep_checklist_small_goods`, and `campaign=school_prep`.
+Moshimo EasyLink cards can inherit affiliate metadata from a parent wrapper. For example, the school prep cards use `affiliate_offer=skater-cup-bag` and `affiliate_offer=sanrio-loop-towel`, with `affiliate_placement=school_prep_checklist_small_goods` and `campaign=school_prep`.
 
 ## Key event candidates
 
