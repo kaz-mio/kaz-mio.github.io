@@ -1,6 +1,6 @@
 (function(){
   // Replace this with the GA4 measurement ID, e.g. G-XXXXXXXXXX.
-  var GOOGLE_TAG_ID = 'G-XXXXXXXXXX';
+  var GOOGLE_TAG_ID = 'G-ZKQ4EDMKBW';
   var hasTagId = /^(G|GT|AW|DC)-[A-Z0-9]+$/.test(GOOGLE_TAG_ID) && GOOGLE_TAG_ID !== 'G-XXXXXXXXXX';
 
   window.dataLayer = window.dataLayer || [];
