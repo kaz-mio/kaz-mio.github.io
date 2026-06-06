@@ -25,6 +25,9 @@ Main flow:
 | `buy_before_result_click` | A user clicks a result link after diagnosis | `result_type`, `link_url`, `link_text` | Result-to-tool movement |
 | `kazmio_tool_start` | Any tool/check page receives first input/click | `tool_slug`, `tool_label` | Tool engagement |
 | `kazmio_tool_action` | Any tool/check page button or link is clicked | `tool_slug`, `tool_label`, `action_type`, `action_label`, `action_id`, `link_url` | Tool action detail |
+| `kazmio_route_click` | A homepage route or commerce shortcut is clicked | `page_slug`, `route_intent`, `link_url`, `link_text`, `placement`, `campaign` | Which homepage route pushes users into buying guides |
+| `kazmio_route_select` | A user selects a concern in `mio_route_finder.html` | `route_key`, `route_title` | Which concern users bring to the route finder |
+| `kazmio_route_result_click` | A user clicks a result link from the route finder | `route_key`, `route_rank`, `link_url`, `link_text` | Route finder to guide/tool/review movement |
 | `kazmio_affiliate_click` | Any affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | Sitewide affiliate click tracking |
 | `leany_affiliate_click` | A LEANY affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | LEANY article/guide/diagnosis click tracking |
 | `fitness_wear_diagnosis` | The fitness wear diagnosis is run | `result_type` | Which self-care/wear concern is strongest |
@@ -42,6 +45,9 @@ Create these as event-scoped custom dimensions after the GA4 tag is active and e
 | Tool slug | `tool_slug` | See which tools get real engagement |
 | Action label | `action_label` | Check which tool buttons are used |
 | Link URL | `link_url` | See which next page users choose |
+| Route intent | `route_intent` | Compare homepage route shortcuts |
+| Route key | `route_key` | Compare morning, outing, room, car, size, selfcare needs |
+| Route rank | `route_rank` | Check whether users choose the first, second, or third suggested page |
 | Affiliate network | `affiliate_network` | Separate Moshimo, A8, Amazon, Rakuten |
 | Affiliate offer | `affiliate_offer` | Compare LEANY and other offers |
 | Affiliate placement | `affiliate_placement` | Compare banner, bottom CTA, diagnosis result |
@@ -56,8 +62,9 @@ Start with these as key events in GA4:
 | 1 | `buy_before_diagnosis` | This is the main meaningful action before product navigation |
 | 2 | `buy_before_result_click` | Shows the user moved from diagnosis to deeper checking |
 | 3 | `ad_lp_cta_click` | Useful for landing-page A/B decisions |
-| 4 | `leany_affiliate_click` | Shows LEANY offer intent from article, guide, and diagnosis |
-| 5 | `fitness_wear_diagnosis` | Shows engagement with the new self-care funnel |
+| 4 | `kazmio_route_result_click` | Shows users moved from broad homepage intent to a deeper guide/tool/review |
+| 5 | `leany_affiliate_click` | Shows LEANY offer intent from article, guide, and diagnosis |
+| 6 | `fitness_wear_diagnosis` | Shows engagement with the new self-care funnel |
 
 ## Google Ads UTM template
 

@@ -139,14 +139,32 @@
     }, {once:true});
   }
 
+  function setupRouteTracking(){
+    document.addEventListener('click', function(event){
+      var link = event.target.closest('a[data-route-intent],a[data-commerce-intent],a[data-ad-cta]');
+      if(!link){ return; }
+
+      window.kazMioTrack('kazmio_route_click', {
+        page_slug: currentSlug(),
+        route_intent: link.dataset.routeIntent || link.dataset.commerceIntent || link.dataset.adCta,
+        link_url: link.getAttribute('href'),
+        link_text: cleanText(link.textContent),
+        placement: link.dataset.placement,
+        campaign: link.dataset.campaign
+      });
+    }, true);
+  }
+
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', function(){
       setupToolTracking();
       setupAffiliateTracking();
+      setupRouteTracking();
     });
   }else{
     setupToolTracking();
     setupAffiliateTracking();
+    setupRouteTracking();
   }
 
   if(!hasTagId){
