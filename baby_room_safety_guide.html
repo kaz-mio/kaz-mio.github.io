@@ -24,14 +24,15 @@
 <link rel="stylesheet" href="assets/search-intent.css">
 <script src="assets/analytics.js"></script>
 <style>
-.safety-offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,360px);gap:1rem;align-items:center;margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,#fff,#faf8f3)}
+.safety-offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(390px,430px);gap:1rem;align-items:center;margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,#fff,#faf8f3)}
 .safety-offer h3{font-size:1.08rem;line-height:1.55;margin-bottom:.45rem}
 .safety-offer p,.safety-offer li{color:var(--muted);font-size:.88rem;line-height:1.75}
 .safety-offer ul{display:grid;gap:.35rem;margin:.7rem 0 0;padding-left:1.1rem}
 .safety-note{margin-top:.8rem;padding:.75rem .85rem;border-radius:8px;background:#fff8ee;color:#7a5a42;font-size:.8rem;line-height:1.75}
-.moshimo-card{display:grid;justify-items:center}
-.moshimo-card [id^="msmaflink-"]{width:100%;max-width:360px}
-@media(max-width:760px){.safety-offer{grid-template-columns:1fr}}
+.moshimo-card{display:grid;justify-items:center;min-width:0}
+.moshimo-card [id^="msmaflink-"]{width:100%;max-width:430px;min-width:0}
+.moshimo-card [id^="msmaflink-"] *{max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
+@media(max-width:880px){.safety-offer{grid-template-columns:1fr}.moshimo-card [id^="msmaflink-"]{max-width:430px}}
 </style>
 </head>
 <body>
