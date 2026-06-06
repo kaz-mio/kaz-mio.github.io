@@ -57,6 +57,8 @@ Moshimo EasyLink cards can inherit affiliate metadata from a parent wrapper. For
 
 The outing checklist stroller hook card uses `affiliate_offer=litta-glitta-stroller-hook`, `affiliate_placement=outing_checklist_stroller_goods`, and `campaign=outing_checklist`.
 
+The car seat diagnosis protection mat card uses `affiliate_offer=rozally-car-seat-mat`, `affiliate_placement=car_seat_fit_check_protection_mat`, and `campaign=car_seat_fit_check`.
+
 ## Key event candidates
 
 Start with these as key events in GA4:
