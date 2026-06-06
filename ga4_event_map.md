@@ -63,6 +63,8 @@ The Digista WebAR event guide banner uses `affiliate_offer=digista-card`, `affil
 
 The baby room safety guide gate card uses `affiliate_offer=nihonikuji-okudake-tosenbo-smart-wide`, `affiliate_placement=baby_room_safety_gate_section`, and `campaign=baby_room_safety`.
 
+The toy storage guide rack card uses `affiliate_offer=iris-toy-house-rack-tkthr-39r`, `affiliate_placement=toy_storage_guide_main_card`, and `campaign=toy_storage`.
+
 ## Key event candidates
 
 Start with these as key events in GA4:
