@@ -1,6 +1,6 @@
 # GA4 event map for ad landing page
 
-Updated: 2026-06-06
+Updated: 2026-06-07
 
 ## Purpose
 
@@ -52,6 +52,8 @@ Create these as event-scoped custom dimensions after the GA4 tag is active and e
 | Affiliate offer | `affiliate_offer` | Compare LEANY and other offers |
 | Affiliate placement | `affiliate_placement` | Compare banner, bottom CTA, diagnosis result |
 | Campaign | `campaign` | Group related pages and X creatives |
+
+Moshimo EasyLink cards can inherit affiliate metadata from a parent wrapper. For example, the school prep cup-bag card uses `affiliate_offer=skater-cup-bag`, `affiliate_placement=school_prep_checklist_small_goods`, and `campaign=school_prep`.
 
 ## Key event candidates
 

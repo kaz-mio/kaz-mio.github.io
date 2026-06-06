@@ -90,18 +90,21 @@
       var href = link.getAttribute('href') || '';
       var isAffiliate = /af\.moshimo\.com|px\.a8\.net|amazon\.|rakuten\./.test(href);
       if(!isAffiliate && !link.dataset.affiliateOffer){ return; }
+      var metadataCarrier = link.closest('[data-affiliate-network],[data-affiliate-offer],[data-affiliate-placement],[data-campaign],[data-ga-event]');
+      var inherited = metadataCarrier && metadataCarrier !== link ? metadataCarrier.dataset : {};
+      var linkData = link.dataset || {};
 
       var params = {
         page_slug: currentSlug(),
         link_url: href,
-        link_text: cleanText(link.textContent || link.getAttribute('aria-label') || link.querySelector('img')?.alt),
-        affiliate_network: link.dataset.affiliateNetwork || affiliateNetwork(href),
-        affiliate_offer: link.dataset.affiliateOffer,
-        affiliate_placement: link.dataset.affiliatePlacement || link.dataset.placement,
-        campaign: link.dataset.campaign
+        link_text: linkData.affiliateLabel || inherited.affiliateLabel || cleanText(link.textContent || link.getAttribute('aria-label') || link.querySelector('img')?.alt),
+        affiliate_network: linkData.affiliateNetwork || inherited.affiliateNetwork || affiliateNetwork(href),
+        affiliate_offer: linkData.affiliateOffer || inherited.affiliateOffer,
+        affiliate_placement: linkData.affiliatePlacement || linkData.placement || inherited.affiliatePlacement || inherited.placement,
+        campaign: linkData.campaign || inherited.campaign
       };
 
-      window.kazMioTrack(link.dataset.gaEvent || 'kazmio_affiliate_click', params);
+      window.kazMioTrack(linkData.gaEvent || inherited.gaEvent || 'kazmio_affiliate_click', params);
     }, true);
   }
 
