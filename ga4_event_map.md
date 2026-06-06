@@ -61,6 +61,8 @@ The car seat diagnosis protection mat card uses `affiliate_offer=rozally-car-sea
 
 The Digista WebAR event guide banner uses `affiliate_offer=digista-card`, `affiliate_placement=digista_event_guide_banner`, and `campaign=digista_event_card`.
 
+The baby room safety guide gate card uses `affiliate_offer=nihonikuji-okudake-tosenbo-smart-wide`, `affiliate_placement=baby_room_safety_gate_section`, and `campaign=baby_room_safety`.
+
 ## Key event candidates
 
 Start with these as key events in GA4:
