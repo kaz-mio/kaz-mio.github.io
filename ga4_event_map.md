@@ -59,6 +59,8 @@ The outing checklist stroller hook card uses `affiliate_offer=litta-glitta-strol
 
 The car seat diagnosis protection mat card uses `affiliate_offer=rozally-car-seat-mat`, `affiliate_placement=car_seat_fit_check_protection_mat`, and `campaign=car_seat_fit_check`.
 
+The Digista WebAR event guide banner uses `affiliate_offer=digista-card`, `affiliate_placement=digista_event_guide_banner`, and `campaign=digista_event_card`.
+
 ## Key event candidates
 
 Start with these as key events in GA4:

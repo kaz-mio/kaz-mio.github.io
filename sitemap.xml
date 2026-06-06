@@ -330,4 +330,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
+  <url>
+    <loc>https://kaz-mio.github.io/digista_card_event_guide.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
 </urlset>
