@@ -24,15 +24,21 @@
 <link rel="stylesheet" href="assets/search-intent.css">
 <script src="assets/analytics.js"></script>
 <style>
-.safety-offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(390px,430px);gap:1rem;align-items:center;margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,#fff,#faf8f3)}
+.safety-offer{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,320px);gap:1rem;align-items:center;margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,#fff,#faf8f3)}
 .safety-offer h3{font-size:1.08rem;line-height:1.55;margin-bottom:.45rem}
 .safety-offer p,.safety-offer li{color:var(--muted);font-size:.88rem;line-height:1.75}
 .safety-offer ul{display:grid;gap:.35rem;margin:.7rem 0 0;padding-left:1.1rem}
 .safety-note{margin-top:.8rem;padding:.75rem .85rem;border-radius:8px;background:#fff8ee;color:#7a5a42;font-size:.8rem;line-height:1.75}
-.moshimo-card{display:grid;justify-items:center;min-width:0}
-.moshimo-card [id^="msmaflink-"]{width:100%;max-width:430px;min-width:0}
-.moshimo-card [id^="msmaflink-"] *{max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
-@media(max-width:880px){.safety-offer{grid-template-columns:1fr}.moshimo-card [id^="msmaflink-"]{max-width:430px}}
+.product-card{display:grid;gap:.85rem;min-width:0;padding:1rem;border:1px solid var(--line);border-radius:8px;background:#fff}
+.product-card img{width:100%;max-width:240px;margin:auto;aspect-ratio:4/3;object-fit:contain}
+.product-card small{font-family:'Nunito',sans-serif;color:var(--key);font-size:.6rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.product-card strong{font-size:.95rem;line-height:1.55;overflow-wrap:anywhere}
+.product-actions{display:grid;gap:.55rem}
+.product-actions a{display:block;width:100%;border-radius:8px;padding:.72rem .8rem;text-align:center;color:#fff;font-size:.82rem;font-weight:900;line-height:1.25;transition:transform .2s,box-shadow .2s}
+.product-actions a:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(24,36,43,.12)}
+.product-actions a:first-child{background:#f76956}
+.product-actions a:last-child{background:#f79256}
+@media(max-width:840px){.safety-offer{grid-template-columns:1fr}.product-card{max-width:360px;margin:auto}}
 </style>
 </head>
 <body>
@@ -42,20 +48,7 @@
 <section class="intro"><h2>まず結論。サークルの外側も見る</h2><p>商品サイズだけ見ると置けそうでも、実際には通路、家具、掃除、出入りで困ることがあります。赤ちゃんの中の広さと、大人が動ける外側の余白をセットで考えます。</p></section>
 <section class="guide-section"><h2>置く前に見る3つの場所</h2><div class="guide-grid"><div class="guide-card"><small>01 INSIDE</small><h3>サークル内の余白</h3><p>赤ちゃんが動けるスペース、おもちゃを置く余白、親が一緒に入れるかを見ます。</p></div><div class="guide-card"><small>02 OUTSIDE</small><h3>家族の通路</h3><p>置いたあとにキッチン、洗面所、ドアへ行きにくくならないかが大事です。</p></div><div class="guide-card"><small>03 FURNITURE</small><h3>家具との距離</h3><p>テレビ台、棚、コード、観葉植物など、手が届くものも一緒に見直します。</p></div></div></section>
 <section class="guide-section"><h2>安全対策で確認したいこと</h2><ul class="check-list"><li>サークルの高さ・対象年齢・使用条件</li><li>床材との相性と滑りにくさ</li><li>扉付きか、またいで出入りするタイプか</li><li>近くにコードや倒れやすい家具がないか</li><li>掃除や片付けが続けやすいか</li></ul></section>
-<section class="guide-section"><h2>サークルで囲いきれない場所は、置くだけゲートも見る</h2><p>リビング全体をサークルで囲うと狭くなる時は、「近づいてほしくない場所だけ分ける」ほうが暮らしやすいことがあります。キッチン前、テレビ台前、ベランダ側など、毎日ヒヤッとする場所から考えると選びやすいです。</p><div class="safety-offer" data-affiliate-network="moshimo" data-affiliate-offer="nihonikuji-okudake-tosenbo-smart-wide" data-affiliate-placement="baby_room_safety_gate_section" data-campaign="baby_room_safety"><div><h3>日本育児 おくだけとおせんぼ スマートワイド</h3><p>工具で固定しにくい場所や、模様替えのたびに位置を変えたい家庭に向いた「置くだけ」タイプの候補です。ベビーサークルと違って、場所をまるごと囲うというより、危ない場所への近づきすぎを減らしたい時に見やすいです。</p><ul><li>キッチン前やテレビ台前の境目を作りたい</li><li>壁に穴を開けずに使える候補を探している</li><li>大きなサークルで部屋を圧迫したくない</li></ul><div class="safety-note">安全用品は、置き場所・対象年齢・設置条件で合う合わないが出ます。階段上や段差まわりなど危険度が高い場所では、商品の使用条件を必ず確認してください。</div></div><div class="moshimo-card">
-<!-- START MoshimoAffiliateEasyLink -->
-<script type="text/javascript">
-(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
-b[a]=b[a]||function(){arguments.currentScript=c.currentScript
-||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
-c.getElementById(a)||(d=c.createElement(f),d.src=g,
-d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
-(window,document,"script","https://dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
-msmaflink({"n":"日本育児 ベビーゲート ベビーフェンス おくだけとおせんぼ スマートワイド (リーフ) またげる 高さ60cm 工具不要簡単設置のベビーゲート","b":"日本育児","t":"","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/21gP3u6gAYL._SL500_.jpg","\/41D5IqO5ZKL._SL500_.jpg","\/41aXUd1nV-L._SL500_.jpg","\/518Z+RhO18L._SL500_.jpg","\/41jC52W3wPL._SL500_.jpg","\/51mG-4JjqGL._SL500_.jpg","\/41pOUQfqBcL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B095C2L9SY","t":"amazon","r_v":""},"v":"2.1","b_l":[{"id":1,"u_tx":"楽天市場で見る","u_bc":"#f76956","u_url":"https:\/\/search.rakuten.co.jp\/search\/mall\/%E6%97%A5%E6%9C%AC%E8%82%B2%E5%85%90%20%E3%83%99%E3%83%93%E3%83%BC%E3%82%B2%E3%83%BC%E3%83%88%20%E3%83%99%E3%83%93%E3%83%BC%E3%83%95%E3%82%A7%E3%83%B3%E3%82%B9%20%E3%81%8A%E3%81%8F%E3%81%A0%E3%81%91%E3%81%A8%E3%81%8A%E3%81%9B%E3%82%93%E3%81%BC%20%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E3%83%AF%E3%82%A4%E3%83%89%20(%E3%83%AA%E3%83%BC%E3%83%95)%20%E3%81%BE%E3%81%9F%E3%81%92%E3%82%8B%20%E9%AB%98%E3%81%9560cm%20%E5%B7%A5%E5%85%B7%E4%B8%8D%E8%A6%81%E7%B0%A1%E5%8D%98%E8%A8%AD%E7%BD%AE%E3%81%AE%E3%83%99%E3%83%93%E3%83%BC%E3%82%B2%E3%83%BC%E3%83%88\/","a_id":5582658,"p_id":54,"pl_id":27059,"pc_id":54,"s_n":"rakuten","u_so":1},{"id":2,"u_tx":"商品ページで見る","u_bc":"#f79256","u_url":"https:\/\/www.amazon.co.jp\/dp\/B095C2L9SY","a_id":5582710,"p_id":170,"pl_id":27060,"pc_id":185,"s_n":"amazon","u_so":2}],"eid":"qUk3f","s":"s"});
-</script>
-<div id="msmaflink-qUk3f">リンク</div>
-<!-- MoshimoAffiliateEasyLink END -->
-</div></div></section>
+<section class="guide-section"><h2>サークルで囲いきれない場所は、置くだけゲートも見る</h2><p>リビング全体をサークルで囲うと狭くなる時は、「近づいてほしくない場所だけ分ける」ほうが暮らしやすいことがあります。キッチン前、テレビ台前、ベランダ側など、毎日ヒヤッとする場所から考えると選びやすいです。</p><div class="safety-offer" data-affiliate-network="moshimo" data-affiliate-offer="nihonikuji-okudake-tosenbo-smart-wide" data-affiliate-placement="baby_room_safety_gate_section" data-campaign="baby_room_safety"><div><h3>日本育児 おくだけとおせんぼ スマートワイド</h3><p>工具で固定しにくい場所や、模様替えのたびに位置を変えたい家庭に向いた「置くだけ」タイプの候補です。ベビーサークルと違って、場所をまるごと囲うというより、危ない場所への近づきすぎを減らしたい時に見やすいです。</p><ul><li>キッチン前やテレビ台前の境目を作りたい</li><li>壁に穴を開けずに使える候補を探している</li><li>大きなサークルで部屋を圧迫したくない</li></ul><div class="safety-note">安全用品は、置き場所・対象年齢・設置条件で合う合わないが出ます。階段上や段差まわりなど危険度が高い場所では、商品の使用条件を必ず確認してください。</div></div><div class="product-card"><small>Baby Gate</small><img src="https://m.media-amazon.com/images/I/21gP3u6gAYL._SL500_.jpg" alt="日本育児 おくだけとおせんぼ スマートワイド" loading="lazy"><strong>日本育児 おくだけとおせんぼ スマートワイド</strong><div class="product-actions"><a href="https://af.moshimo.com/af/c/click?a_id=5582658&amp;p_id=54&amp;pc_id=54&amp;pl_id=27059&amp;url=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E6%2597%25A5%25E6%259C%25AC%25E8%2582%25B2%25E5%2585%2590%2520%25E3%2581%258A%25E3%2581%258F%25E3%2581%25A0%25E3%2581%2591%25E3%2581%25A8%25E3%2581%258A%25E3%2581%259B%25E3%2582%2593%25E3%2581%25BC%2520%25E3%2582%25B9%25E3%2583%259E%25E3%2583%25BC%25E3%2583%2588%25E3%2583%25AF%25E3%2582%25A4%25E3%2583%2589%2F" rel="nofollow sponsored noopener" referrerpolicy="no-referrer-when-downgrade" target="_blank">楽天市場で見る</a><a href="https://af.moshimo.com/af/c/click?a_id=5582710&amp;p_id=170&amp;pc_id=185&amp;pl_id=27060&amp;url=https%3A%2F%2Fwww.amazon.co.jp%2Fdp%2FB095C2L9SY" rel="nofollow sponsored noopener" referrerpolicy="no-referrer-when-downgrade" target="_blank">商品ページで見る</a></div><img src="https://i.moshimo.com/af/i/impression?a_id=5582710&amp;p_id=170&amp;pc_id=185&amp;pl_id=27060" width="1" height="1" alt="" loading="lazy" style="border:none;"></div></div></section>
 <section class="related-box"><h2>このページから使いたいツール</h2><div class="related-grid"><a href="baby_circle_fit_check.html"><small>Fit Tool</small><strong>ベビーサークル置ける？部屋サイズ診断</strong><span>部屋の広さと家具配置から、置きやすさを確認できます。</span></a><a href="doridori_article.html"><small>Safety</small><strong>DoriDori安全グッズレビュー</strong><span>見た目も含めて安全対策を整えたい家庭へ。</span></a><a href="popomi_baby_circle_article.html"><small>Baby Circle</small><strong>popomi TREEベビーサークル</strong><span>広めの遊び場を作りたい時の候補です。</span></a></div></section>
 <section class="guide-hub"><h2>悩み別入口</h2><div class="guide-hub-links"><a href="baby_outing_items_guide.html">おでかけ持ち物</a><a href="diaper_size_stock_guide.html">おむつサイズ</a><a href="school_prep_name_guide.html">入園準備</a><a href="family_car_stroller_guide.html">車・ベビーカー</a><a href="baby_skincare_guide.html">赤ちゃん保湿</a></div></section>
 <section class="faq-box"><h2>よくある疑問</h2><div class="faq-item"><h3>狭い部屋でもベビーサークルは使える？</h3><p>使える場合もありますが、通路がなくなると結局ストレスになります。折りたたみや小さめタイプも含めて、生活動線から考えるのが大切です。</p></div><div class="faq-item"><h3>安全対策はベビーサークルだけで足りる？</h3><p>足りないこともあります。棚、コード、扉、段差など、サークル外の危ない場所も同時に見直すと安心です。</p></div><div class="faq-item"><h3>サークルと置くだけゲートはどう使い分ける？</h3><p>赤ちゃんの遊ぶ場所を作りたい時はサークル、キッチン前やテレビ台前など近づいてほしくない場所をゆるく分けたい時はゲートが候補になります。設置場所、対象年齢、使用条件は商品ごとに確認してください。</p></div></section>
