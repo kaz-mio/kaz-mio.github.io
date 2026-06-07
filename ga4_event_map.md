@@ -68,6 +68,8 @@ The baby room safety guide gate card uses `affiliate_offer=nihonikuji-okudake-to
 
 The baby room safety guide child lock card uses `affiliate_offer=joy-space-child-lock-2803-6`, `affiliate_placement=baby_room_safety_drawer_lock_section`, and `campaign=baby_room_safety`.
 
+The baby room safety guide outlet cover card uses `affiliate_offer=richell-outlet-full-cover-r`, `affiliate_placement=baby_room_safety_outlet_cover_section`, and `campaign=baby_room_safety`.
+
 The toy storage guide rack card uses `affiliate_offer=iris-toy-house-rack-tkthr-39r`, `affiliate_placement=toy_storage_guide_main_card`, and `campaign=toy_storage`.
 
 ## Key event candidates
