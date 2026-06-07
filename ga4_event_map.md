@@ -32,6 +32,9 @@ Main flow:
 | `leany_affiliate_click` | A LEANY affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | LEANY article/guide/diagnosis click tracking |
 | `fitness_wear_diagnosis` | The fitness wear diagnosis is run | `result_type` | Which self-care/wear concern is strongest |
 | `fitness_wear_result_click` | A user clicks a result link from the fitness wear diagnosis | `result_type`, `link_url`, `link_text` | Diagnosis-to-article/offer movement |
+| `toy_storage_type_prefill` | Toy storage diagnosis opens with `?type=...` | `result_type` | Which toy storage concern was prefilled |
+| `toy_storage_diagnosis` | A user runs the toy storage type diagnosis | `result_type` | Which toy storage/cleanup concern is strongest |
+| `toy_storage_result_click` | A user clicks a result link from the toy storage diagnosis | `result_type`, `link_url`, `link_text` | Diagnosis-to-guide/tool movement |
 
 ## Recommended GA4 custom dimensions
 
@@ -77,6 +80,7 @@ Start with these as key events in GA4:
 | 4 | `kazmio_route_result_click` | Shows users moved from broad homepage intent to a deeper guide/tool/review |
 | 5 | `leany_affiliate_click` | Shows LEANY offer intent from article, guide, and diagnosis |
 | 6 | `fitness_wear_diagnosis` | Shows engagement with the new self-care funnel |
+| 7 | `toy_storage_diagnosis` | Shows engagement with the new toy storage funnel |
 
 ## Google Ads UTM template
 
