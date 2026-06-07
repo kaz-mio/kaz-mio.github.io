@@ -80,6 +80,8 @@ The toy storage guide rack card uses `affiliate_offer=iris-toy-house-rack-tkthr-
 
 The toy storage guide drawer chest card uses `affiliate_offer=iris-wide-chest-w-543`, `affiliate_placement=toy_storage_guide_drawer_chest_section`, and `campaign=toy_storage`.
 
+The toy storage guide flap box card uses `affiliate_offer=tenma-kabaco-l-flap-storage-box`, `affiliate_placement=toy_storage_guide_flap_box_section`, and `campaign=toy_storage`.
+
 The toy storage guide under-box rack card uses `affiliate_offer=yamazaki-tower-storage-box-under-rack-5567`, `affiliate_placement=toy_storage_guide_under_box_rack_section`, and `campaign=toy_storage`.
 
 The toy storage guide label writer card uses `affiliate_offer=kingjim-tepra-lite-lr30-label-writer`, `affiliate_placement=toy_storage_guide_label_section`, and `campaign=toy_storage`.
