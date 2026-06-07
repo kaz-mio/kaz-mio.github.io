@@ -58,6 +58,8 @@ Create these as event-scoped custom dimensions after the GA4 tag is active and e
 
 Moshimo EasyLink cards can inherit affiliate metadata from a parent wrapper. For example, the school prep cards use `affiliate_offer=skater-cup-bag` and `affiliate_offer=sanrio-loop-towel`, with `affiliate_placement=school_prep_checklist_small_goods` and `campaign=school_prep`.
 
+The school prep name guide stamp card uses `affiliate_offer=shachihata-onamae-stamp-ga-ca`, `affiliate_placement=school_prep_name_stamp_section`, and `campaign=school_prep_name`.
+
 The outing checklist stroller hook card uses `affiliate_offer=litta-glitta-stroller-hook`, `affiliate_placement=outing_checklist_stroller_goods`, and `campaign=outing_checklist`.
 
 The car seat diagnosis protection mat card uses `affiliate_offer=rozally-car-seat-mat`, `affiliate_placement=car_seat_fit_check_protection_mat`, and `campaign=car_seat_fit_check`.
