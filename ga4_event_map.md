@@ -64,6 +64,8 @@ The outing checklist stroller hook card uses `affiliate_offer=litta-glitta-strol
 
 The outing checklist food cutter card uses `affiliate_offer=green-bell-baby-food-cutter-ba-003`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
 
+The outing checklist feeding spoon card uses `affiliate_offer=pigeon-feeding-spoon-capacity-up-r`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
+
 The car seat diagnosis protection mat card uses `affiliate_offer=rozally-car-seat-mat`, `affiliate_placement=car_seat_fit_check_protection_mat`, and `campaign=car_seat_fit_check`.
 
 The Digista WebAR event guide banner uses `affiliate_offer=digista-card`, `affiliate_placement=digista_event_guide_banner`, and `campaign=digista_event_card`.
