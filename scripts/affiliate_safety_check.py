@@ -46,6 +46,32 @@ RULES = [
     ),
 ]
 
+PUBLIC_COPY_TONE_RULES = [
+    ("sales_route_copy", "売れる導線"),
+    ("ad_visitor_copy", "広告から来た"),
+    ("ad_landing_copy", "広告向け"),
+    ("ad_landing_copy", "AD LP"),
+    ("ad_landing_copy", "広告LP"),
+    ("product_link_meta_copy", "商品リンクへ"),
+    ("product_link_meta_copy", "商品リンクを読み込み中"),
+    ("rushed_product_copy", "商品へ急がず"),
+    ("ad_review_route_copy", "レビューや広告"),
+    ("ad_review_route_copy", "納得してから"),
+    ("mechanical_popular_articles_copy", "人気の記事を並べる"),
+    ("mechanical_needed_page_copy", "今の自分に必要"),
+    ("mechanical_route_copy", "診断・チェックリスト・レビュー"),
+    ("mechanical_route_copy", "一気に進め"),
+    ("three_second_route_copy", "3秒ルート"),
+    ("three_second_route_copy", "MIOの3秒"),
+    ("three_second_route_copy", "3 Seconds Route"),
+    ("failure_visible_copy", "失敗が見える"),
+    ("failure_future_copy", "失敗した未来"),
+    ("failure_forecast_copy", "失敗予告"),
+    ("failure_preview_copy", "後悔の予告編"),
+    ("entry_page_copy", "入口ページ"),
+    ("salesy_feel_copy", "売り込み感"),
+]
+
 AFFILIATE_HREF_RE = re.compile(
     r"<a\b(?=[^>]*\bhref=[\"'][^\"']*(?:px\.a8\.net|af\.moshimo\.com)[^\"']*[\"'])[^>]*>",
     re.IGNORECASE,
@@ -105,6 +131,23 @@ def check_text_rules(path: Path, content: str) -> list[str]:
     return findings
 
 
+def check_public_copy_tone(path: Path, content: str) -> list[str]:
+    findings: list[str] = []
+    if path.suffix.lower() != ".html":
+        return findings
+
+    rel = path.relative_to(ROOT).as_posix()
+    for rule_id, phrase in PUBLIC_COPY_TONE_RULES:
+        start = content.find(phrase)
+        while start != -1:
+            line = line_number(content, start)
+            findings.append(
+                f"{rel}:{line}: [{rule_id}] {phrase} - public copy should stay reader-facing, not operator-facing or sales-route-like."
+            )
+            start = content.find(phrase, start + len(phrase))
+    return findings
+
+
 def check_affiliate_links(path: Path, content: str) -> list[str]:
     findings: list[str] = []
     for match in AFFILIATE_HREF_RE.finditer(content):
@@ -159,6 +202,7 @@ def main() -> int:
     for path in iter_target_files():
         content = path.read_text(encoding="utf-8", errors="ignore")
         findings.extend(check_text_rules(path, content))
+        findings.extend(check_public_copy_tone(path, content))
         if path.suffix.lower() == ".html":
             findings.extend(check_affiliate_links(path, content))
     findings.extend(check_sitemap())
