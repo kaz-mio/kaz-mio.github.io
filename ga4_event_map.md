@@ -75,6 +75,8 @@ The outing checklist straw mug card uses `affiliate_offer=richell-aqulea-outing-
 
 The outing checklist training cup card uses `affiliate_offer=munchkin-miracle-cup-fdmu10801l`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
 
+The outing checklist tooth wipe card uses `affiliate_offer=pigeon-nyushi-care-tooth-wipes-42`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
+
 The outing checklist chair belt card uses `affiliate_offer=eightex-carryfree-chair-belt-01-069`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
 
 The car seat diagnosis protection mat card uses `affiliate_offer=rozally-car-seat-mat`, `affiliate_placement=car_seat_fit_check_protection_mat`, and `campaign=car_seat_fit_check`.
