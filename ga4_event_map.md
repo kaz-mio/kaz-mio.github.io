@@ -80,6 +80,8 @@ The baby room safety guide outlet cover card uses `affiliate_offer=richell-outle
 
 The baby room safety guide corner guard card uses `affiliate_offer=plaisiureux-corner-guard-6m-pl01`, `affiliate_placement=baby_room_safety_corner_guard_section`, and `campaign=baby_room_safety`.
 
+The baby room safety guide TV belt card uses `affiliate_offer=sanwa-direct-tv-tip-belt-100-pl023`, `affiliate_placement=baby_room_safety_tv_belt_section`, and `campaign=baby_room_safety`.
+
 The toy storage guide rack card uses `affiliate_offer=iris-toy-house-rack-tkthr-39r`, `affiliate_placement=toy_storage_guide_main_card`, and `campaign=toy_storage`.
 
 The toy storage guide drawer chest card uses `affiliate_offer=iris-wide-chest-w-543`, `affiliate_placement=toy_storage_guide_drawer_chest_section`, and `campaign=toy_storage`.
