@@ -88,6 +88,8 @@ The baby room safety guide TV belt card uses `affiliate_offer=sanwa-direct-tv-ti
 
 The toy storage guide rack card uses `affiliate_offer=iris-toy-house-rack-tkthr-39r`, `affiliate_placement=toy_storage_guide_main_card`, and `campaign=toy_storage`.
 
+The toy storage guide book rack card uses `affiliate_offer=smart-i-suucu-picture-book-rack`, `affiliate_placement=toy_storage_guide_book_rack_section`, and `campaign=toy_storage`.
+
 The toy storage guide drawer chest card uses `affiliate_offer=iris-wide-chest-w-543`, `affiliate_placement=toy_storage_guide_drawer_chest_section`, and `campaign=toy_storage`.
 
 The toy storage guide flap box card uses `affiliate_offer=tenma-kabaco-l-flap-storage-box`, `affiliate_placement=toy_storage_guide_flap_box_section`, and `campaign=toy_storage`.
