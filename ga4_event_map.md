@@ -66,6 +66,8 @@ The outing checklist food cutter card uses `affiliate_offer=green-bell-baby-food
 
 The outing checklist feeding spoon card uses `affiliate_offer=pigeon-feeding-spoon-capacity-up-r`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
 
+The outing checklist baby bib card uses `affiliate_offer=babybjorn-baby-bib-powder-pink`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
+
 The outing checklist chair belt card uses `affiliate_offer=eightex-carryfree-chair-belt-01-069`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
 
 The car seat diagnosis protection mat card uses `affiliate_offer=rozally-car-seat-mat`, `affiliate_placement=car_seat_fit_check_protection_mat`, and `campaign=car_seat_fit_check`.
