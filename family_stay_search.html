@@ -21,7 +21,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
-<meta name="twitter:description" content="小さい子連れに便利な宿泊・食事条件や開業・リニューアル年数で、複数サイトを探せる入口です。">
+<meta name="twitter:description" content="小さい子連れに便利な宿泊・食事条件や開業・リニューアル年数で、複数サイトを探せるページです。">
 <meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <script type="application/ld+json">
 {
@@ -112,6 +112,18 @@ select{appearance:auto;cursor:pointer;}
 .panel-tabs{display:flex;flex-wrap:wrap;gap:.55rem;margin:1.2rem 0 0;}
 .panel-tabs a{display:inline-flex;text-decoration:none;border-radius:999px;background:#fff;border:1px solid var(--line);padding:.48rem .85rem;font-size:.76rem;font-weight:900;color:var(--navy);transition:transform .2s,box-shadow .2s,border-color .2s;}
 .panel-tabs a:hover{transform:translateY(-2px);box-shadow:var(--soft);border-color:rgba(239,125,103,.38);}
+.focus-strip{background:rgba(255,255,255,.86);border:1px solid rgba(24,36,43,.08);border-radius:8px;box-shadow:var(--soft);padding:1.5rem;margin:0 0 2rem;display:grid;grid-template-columns:.8fr 1.2fr;gap:1.4rem;align-items:center;}
+.focus-strip h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,3vw,2.35rem);line-height:1.28;margin-bottom:.55rem;}
+.focus-strip p{font-size:.86rem;color:var(--ink2);line-height:1.9;}
+.focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;}
+.focus-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1rem;min-height:148px;display:flex;flex-direction:column;gap:.45rem;}
+.focus-card small,.preset-label{font-family:'Nunito',sans-serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);font-weight:900;}
+.focus-card strong{font-family:'Shippori Mincho',serif;font-size:1rem;line-height:1.45;color:var(--navy);}
+.focus-card span{font-size:.76rem;color:var(--ink2);line-height:1.7;margin-top:auto;}
+.preset-block{background:rgba(255,255,255,.62);border:1px dashed rgba(24,36,43,.16);border-radius:8px;padding:.8rem;margin:.2rem 0 1rem;display:flex;align-items:center;flex-wrap:wrap;gap:.55rem;}
+.preset-btn{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--navy);font:inherit;font-size:.76rem;font-weight:900;line-height:1.2;padding:.58rem .82rem;cursor:pointer;box-shadow:0 6px 16px rgba(24,52,71,.06);transition:transform .2s,box-shadow .2s,border-color .2s,background .2s,color .2s;}
+.preset-btn:hover{transform:translateY(-2px);border-color:rgba(239,125,103,.42);box-shadow:var(--soft);color:var(--coral-d);}
+.preset-btn:active{transform:translateY(0);box-shadow:0 4px 10px rgba(24,52,71,.08);}
 .copy-btn{border:none;border-radius:999px;background:var(--navy);color:#fff;font-weight:900;padding:.72rem 1.05rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 12px 24px rgba(24,52,71,.18);transition:transform .2s,background .2s,box-shadow .2s;}
 .copy-btn:hover{transform:translateY(-2px);background:var(--coral-d);box-shadow:0 16px 30px rgba(198,83,66,.24);}
 .providers{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.75rem;}
@@ -136,6 +148,9 @@ select{appearance:auto;cursor:pointer;}
 .template{margin-top:2.2rem;background:var(--navy);color:#fff;border-radius:8px;padding:1.4rem;box-shadow:var(--shadow);}
 .template h2{font-family:'Shippori Mincho',serif;font-size:1.45rem;margin-bottom:.6rem;}
 .template p{color:rgba(255,255,255,.72);font-size:.88rem;margin-bottom:1rem;}
+.template-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.template-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:1rem;}
+.template-card h3{font-family:'Shippori Mincho',serif;font-size:1.12rem;line-height:1.45;margin-bottom:.45rem;}
 .template-actions{margin-top:1rem;display:flex;gap:.7rem;flex-wrap:wrap;}
 textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;padding:1rem;font:inherit;line-height:1.8;resize:vertical;}
 .ft{background:var(--navy);color:rgba(255,255,255,.62);padding:3rem clamp(1rem,4vw,3rem) 2rem;}
@@ -145,9 +160,9 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 .ft-nav a{font-size:.74rem;font-weight:800;text-decoration:none;color:rgba(255,255,255,.68);transition:color .2s,transform .2s;}
 .ft-nav a:hover{color:#fff;transform:translateY(-2px);}
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38);}
-@media(max-width:980px){.hero,.form-row{grid-template-columns:1fr;}.providers{grid-template-columns:repeat(2,1fr);}.checks{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}}
+@media(max-width:980px){.hero,.form-row,.focus-strip,.template-grid{grid-template-columns:1fr;}.providers{grid-template-columns:repeat(2,1fr);}.checks{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}.focus-grid{grid-template-columns:1fr;}}
 @media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}.wrap{padding:2.6rem 1rem 4rem;}h1{font-size:2.45rem;}.lead,.panel-head p,.note,.tip p,.memo p{overflow-wrap:anywhere;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.search-panel{padding:1rem;}.panel-head{display:block;}.panel-head p{margin-top:.6rem;}.checks,.providers{grid-template-columns:1fr;}.query-box{grid-template-columns:1fr;}.copy-btn{width:100%;}.ft-inner{align-items:flex-start;flex-direction:column;}}
-@media(max-width:520px){.hd,.wrap,.ft{width:100vw;max-width:390px;margin-left:0;margin-right:0;overflow:hidden;}.hero,.hero-card,.search-panel,.grid,.template,.ft-inner{max-width:358px;}.provider,.check,input[type="text"],input[type="date"],input[type="number"],select,textarea{max-width:100%;}}
+@media(max-width:520px){.hd,.wrap,.ft{width:100vw;max-width:390px;margin-left:0;margin-right:0;overflow:hidden;}.hero,.hero-card,.search-panel,.grid,.template,.focus-strip,.ft-inner{max-width:358px;}.provider,.check,input[type="text"],input[type="date"],input[type="number"],select,textarea{max-width:100%;}}
 </style>
 <script src="assets/analytics.js"></script>
 </head>
@@ -171,7 +186,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
     <div>
       <div class="eyebrow">Family Stay & Meal Finder</div>
       <h1>小さい子連れで<br><em>困らない場所</em>を探す。</h1>
-      <p class="lead">「ベッドガードある？」「畳で寝られる？」「お風呂は洗い場付き？」「座敷や個室で食事できる？」。予約前に見たい条件を選んで、宿と食事場所を複数サイトから探せる入口です。</p>
+      <p class="lead">「ベッドガードある？」「畳で寝られる？」「お風呂は洗い場付き？」「座敷や個室で食事できる？」。予約前に見たい条件を選んで、宿と食事場所を複数サイトから探せます。</p>
       <div class="panel-tabs" aria-label="ページ内メニュー">
         <a href="#stay-search">宿を探す</a>
         <a href="#food-search">食事場所を探す</a>
@@ -182,6 +197,19 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
     <div class="hero-card">
       <img src="assets/kaz-mio-adventure-hero.png" alt="家族で楽しく旅先を探すイメージイラスト">
       <div class="memo"><b>検索後は、最終確認。</b><p>設備はプラン・部屋タイプ・店舗で変わることがあります。気になる条件は予約前に確認すると安心です。</p></div>
+    </div>
+  </section>
+
+  <section class="focus-strip" aria-labelledby="focus-title">
+    <div>
+      <div class="eyebrow">Before Search</div>
+      <h2 id="focus-title">先に決めると、探しやすいこと</h2>
+      <p>宿は寝る場所とお風呂、食事場所は座り方と待ち時間。譲れない条件を少しだけ決めてから探すと、候補を見比べやすくなります。</p>
+    </div>
+    <div class="focus-grid">
+      <article class="focus-card"><small>Stay</small><strong>夜の過ごし方</strong><span>ベッド、畳、敷布団、子ども用備品。眠る前後の不安を先に減らします。</span></article>
+      <article class="focus-card"><small>Bath</small><strong>お風呂まわり</strong><span>洗い場付き、バストイレ別、貸切風呂。子どもを洗いやすい形を見ます。</span></article>
+      <article class="focus-card"><small>Food</small><strong>座る・待つ・食べる</strong><span>座敷、個室、キッズチェア、予約可。外食中に困りやすい場面から探します。</span></article>
     </div>
   </section>
 
@@ -315,6 +343,13 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <label class="check"><input type="checkbox" value="部屋食 個室食"><span>部屋食・個室食</span></label>
       <label class="check"><input type="checkbox" value="子連れ歓迎 赤ちゃん歓迎"><span>子連れ歓迎</span></label>
     </div>
+    <div class="preset-block" aria-label="宿の場面別プリセット">
+      <span class="preset-label">Scene</span>
+      <button class="preset-btn" type="button" data-stay-preset="baby">赤ちゃんと初めての宿</button>
+      <button class="preset-btn" type="button" data-stay-preset="sleep">添い寝・寝具が心配</button>
+      <button class="preset-btn" type="button" data-stay-preset="bath">お風呂をラクにしたい</button>
+      <button class="preset-btn" type="button" data-stay-preset="meal">食事も落ち着いて済ませたい</button>
+    </div>
     <div class="query-box">
       <div class="query-text" id="queryText">子連れ 宿 ファミリー ベッドガード 畳 洗い場付き風呂</div>
       <button class="copy-btn" type="button" id="copyQuery">検索語をコピー</button>
@@ -436,6 +471,13 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <label class="check"><input type="checkbox" value="フードコート"><span>フードコート</span></label>
       <label class="check"><input type="checkbox" value="予約可"><span>予約可</span></label>
     </div>
+    <div class="preset-block" aria-label="食事場所の場面別プリセット">
+      <span class="preset-label">Scene</span>
+      <button class="preset-btn" type="button" data-food-preset="stroller">ベビーカーのまま入りたい</button>
+      <button class="preset-btn" type="button" data-food-preset="quiet">座敷・個室で落ち着きたい</button>
+      <button class="preset-btn" type="button" data-food-preset="babyfood">離乳食・取り分けを確認したい</button>
+      <button class="preset-btn" type="button" data-food-preset="shortwait">待ち時間を減らしたい</button>
+    </div>
     <div class="query-box">
       <div class="query-text" id="foodQueryText">子連れ 食事 レストラン 座敷 個室 キッズチェア</div>
       <button class="copy-btn" type="button" id="copyFoodQuery">検索語をコピー</button>
@@ -464,16 +506,33 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
   </section>
 
   <section class="template">
-    <h2>宿に確認するときの文例</h2>
-    <p>予約前にそのまま送れるように、確認したい条件を短くまとめています。</p>
-    <textarea id="messageTemplate">小さい子ども連れで宿泊予定です。以下について教えてください。
+    <h2>確認するときの文例</h2>
+    <p>気になる条件を短く聞けるように、宿と食事場所で分けています。</p>
+    <div class="template-grid">
+      <div class="template-card">
+        <h3>宿に確認する</h3>
+        <textarea id="messageTemplate">小さい子ども連れで宿泊予定です。以下について教えてください。
 
 ・ベッドガード、ベビーベッド、または敷布団の利用は可能ですか？
 ・お部屋のお風呂は洗い場付き、またはバストイレ別ですか？
 ・おむつ用ゴミ箱、子ども用イス、ベビーソープ等の貸出はありますか？
 ・畳スペースや低いベッドの部屋はありますか？
 ・子ども連れにおすすめの部屋タイプがあれば教えてください。</textarea>
-    <div class="template-actions"><button class="copy-btn" type="button" id="copyTemplate">文例をコピー</button><a class="copy-btn" href="outing_checklist.html">持ち物チェックリストを開く</a></div>
+        <div class="template-actions"><button class="copy-btn" type="button" id="copyTemplate">宿の文例をコピー</button></div>
+      </div>
+      <div class="template-card">
+        <h3>食事場所に確認する</h3>
+        <textarea id="foodMessageTemplate">小さい子ども連れで利用予定です。以下について教えてください。
+
+・ベビーカーで入店できますか？
+・座敷、個室、またはキッズチェアはありますか？
+・離乳食の持ち込みや取り分けは可能ですか？
+・おむつ替えできる場所はありますか？
+・混みやすい時間帯や予約の可否を教えてください。</textarea>
+        <div class="template-actions"><button class="copy-btn" type="button" id="copyFoodTemplate">食事場所の文例をコピー</button></div>
+      </div>
+    </div>
+    <div class="template-actions"><a class="copy-btn" href="outing_checklist.html">持ち物チェックリストを開く</a></div>
   </section>
 
   <section style="margin-top:2.2rem;">
@@ -509,6 +568,7 @@ const childrenInput = document.getElementById('children');
 const stayAge = document.getElementById('stayAge');
 const stayQueryText = document.getElementById('queryText');
 const stayChecks = [...document.querySelectorAll('#stayChecks input')];
+const stayPresetButtons = [...document.querySelectorAll('[data-stay-preset]')];
 const stayDefaults = ['子連れ', '宿', 'ファミリー'];
 const stayLinks = {
   rakuten: document.getElementById('rakutenLink'),
@@ -526,6 +586,7 @@ const foodExtra = document.getElementById('foodExtra');
 const foodAge = document.getElementById('foodAge');
 const foodQueryText = document.getElementById('foodQueryText');
 const foodChecks = [...document.querySelectorAll('#foodChecks input')];
+const foodPresetButtons = [...document.querySelectorAll('[data-food-preset]')];
 const foodDefaults = ['子連れ', '食事', 'レストラン'];
 const foodLinks = {
   maps: document.getElementById('googleMapsLink'),
@@ -533,6 +594,50 @@ const foodLinks = {
   hotpepper: document.getElementById('hotpepperLink'),
   gnavi: document.getElementById('gnaviLink'),
   google: document.getElementById('foodGoogleLink')
+};
+const stayPresets = {
+  baby: {
+    label: '赤ちゃんと初めての宿',
+    checks: ['ベビーベッド', 'おむつ用ゴミ箱 おむつBOX', '洗い場付き風呂', 'バストイレ別', '子連れ歓迎 赤ちゃん歓迎'],
+    extra: '電子レンジ ベビーソープ'
+  },
+  sleep: {
+    label: '添い寝・寝具が心配',
+    checks: ['ベッドガード', '広いベッド', '畳 和室', '敷布団 低いベッド'],
+    extra: '添い寝'
+  },
+  bath: {
+    label: 'お風呂をラクにしたい',
+    checks: ['洗い場付き風呂', 'バストイレ別', '貸切風呂 家族風呂'],
+    extra: '部屋風呂'
+  },
+  meal: {
+    label: '食事も落ち着いて済ませたい',
+    checks: ['部屋食 個室食', '子連れ歓迎 赤ちゃん歓迎'],
+    extra: '朝食 子どもイス'
+  }
+};
+const foodPresets = {
+  stroller: {
+    label: 'ベビーカーのまま入りたい',
+    checks: ['ベビーカー入店', 'おむつ替え', '禁煙', '予約可'],
+    extra: '入口 広い ランチ'
+  },
+  quiet: {
+    label: '座敷・個室で落ち着きたい',
+    checks: ['座敷', '個室', 'キッズチェア', '予約可', '禁煙'],
+    extra: '昼 個室'
+  },
+  babyfood: {
+    label: '離乳食・取り分けを確認したい',
+    checks: ['離乳食持ち込み', 'キッズチェア', 'おむつ替え', '授乳室'],
+    extra: '取り分け'
+  },
+  shortwait: {
+    label: '待ち時間を減らしたい',
+    checks: ['予約可', '駐車場', 'フードコート', 'キッズメニュー'],
+    extra: '待ち時間 少ない'
+  }
 };
 const destinationOptions = [
   ['北海道', '北海道'],
@@ -695,6 +800,26 @@ const copyText = async (text, button) => {
     button.textContent = 'コピーできませんでした';
   }
 };
+const trackSearchPreset = (group, preset) => {
+  if (!window.kazMioTrack || !preset) return;
+  window.kazMioTrack('kazmio_search_preset', {
+    search_group: group,
+    preset_label: preset.label,
+    preset_extra: preset.extra
+  });
+};
+const applyPreset = (inputs, preset, extraInput, updateFn, group) => {
+  if (!preset) return;
+  const selected = new Set(preset.checks);
+  inputs.forEach(input => {
+    input.checked = selected.has(input.value);
+  });
+  if (extraInput) {
+    extraInput.value = preset.extra || '';
+  }
+  updateFn();
+  trackSearchPreset(group, preset);
+};
 [stayDestination, stayArea, stayExtra, stayAge, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
   el.addEventListener('input', updateStayLinks);
   el.addEventListener('change', updateStayLinks);
@@ -714,6 +839,13 @@ foodDestination.addEventListener('change', () => {
 document.getElementById('copyQuery').addEventListener('click', () => copyText(stayQueryText.textContent, document.getElementById('copyQuery')));
 document.getElementById('copyFoodQuery').addEventListener('click', () => copyText(foodQueryText.textContent, document.getElementById('copyFoodQuery')));
 document.getElementById('copyTemplate').addEventListener('click', () => copyText(document.getElementById('messageTemplate').value, document.getElementById('copyTemplate')));
+document.getElementById('copyFoodTemplate').addEventListener('click', () => copyText(document.getElementById('foodMessageTemplate').value, document.getElementById('copyFoodTemplate')));
+stayPresetButtons.forEach(button => {
+  button.addEventListener('click', () => applyPreset(stayChecks, stayPresets[button.dataset.stayPreset], stayExtra, updateStayLinks, 'stay'));
+});
+foodPresetButtons.forEach(button => {
+  button.addEventListener('click', () => applyPreset(foodChecks, foodPresets[button.dataset.foodPreset], foodExtra, updateFoodLinks, 'food'));
+});
 stayChecks.slice(0, 8).forEach(input => { input.checked = true; });
 foodChecks.slice(0, 7).forEach(input => { input.checked = true; });
 const today = new Date();

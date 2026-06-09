@@ -1,6 +1,6 @@
 # GA4 event map for ad landing page
 
-Updated: 2026-06-07
+Updated: 2026-06-09
 
 ## Purpose
 
@@ -29,6 +29,7 @@ Main flow:
 | `kazmio_route_select` | A user selects a concern in `mio_route_finder.html` | `route_key`, `route_title` | Which concern users bring to the route finder |
 | `kazmio_route_result_click` | A user clicks a result link from the route finder | `route_key`, `route_rank`, `link_url`, `link_text` | Route finder to guide/tool/review movement |
 | `kazmio_affiliate_click` | Any affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | Sitewide affiliate click tracking |
+| `kazmio_search_preset` | A preset is selected in `family_stay_search.html` | `search_group`, `preset_label`, `preset_extra` | See whether lodging or meal-condition presets are used |
 | `leany_affiliate_click` | A LEANY affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | LEANY article/guide/diagnosis click tracking |
 | `fitness_wear_diagnosis` | The fitness wear diagnosis is run | `result_type` | Which self-care/wear concern is strongest |
 | `fitness_wear_result_click` | A user clicks a result link from the fitness wear diagnosis | `result_type`, `link_url`, `link_text` | Diagnosis-to-article/offer movement |
@@ -55,6 +56,8 @@ Create these as event-scoped custom dimensions after the GA4 tag is active and e
 | Affiliate offer | `affiliate_offer` | Compare LEANY and other offers |
 | Affiliate placement | `affiliate_placement` | Compare banner, bottom CTA, diagnosis result |
 | Campaign | `campaign` | Group related pages and X creatives |
+| Search group | `search_group` | Separate lodging and meal-condition preset use |
+| Preset label | `preset_label` | Compare which lodging or meal scenario is selected |
 
 Moshimo EasyLink cards can inherit affiliate metadata from a parent wrapper. For example, the school prep cards use `affiliate_offer=skater-cup-bag` and `affiliate_offer=sanrio-loop-towel`, with `affiliate_placement=school_prep_checklist_small_goods` and `campaign=school_prep`.
 
