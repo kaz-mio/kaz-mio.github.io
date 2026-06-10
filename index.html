@@ -104,7 +104,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f4f2;--paper:#fff;--ink:#222;--muted:#8c8c8c;--line:#dedbd3;--gold:#dfcf98;--gold2:#c9b675;--dark:#171717;--soft:#efede7;}
+:root{--bg:#f4f4f2;--paper:#fff;--ink:#222;--muted:#8c8c8c;--line:#dedbd3;--gold:#dfcf98;--gold2:#c9b675;--dark:#171717;--soft:#efede7;--sage:#6f7c70;--sky:#637f8d;--clay:#a67861;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;overflow-x:hidden;}
@@ -112,6 +112,8 @@ a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
 a[href],button{cursor:pointer;}
 a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);outline-offset:4px;}
+.scroll-progress{position:fixed;top:0;left:220px;right:0;height:3px;z-index:120;pointer-events:none;background:rgba(34,34,34,.045);}
+.scroll-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--sage),var(--gold),var(--clay));transform-origin:left center;transition:width .08s linear;}
 .mobile-head{display:none;}
 .side{position:fixed;inset:0 auto 0 0;width:220px;background:#f1f1ef;border-right:1px solid var(--line);z-index:50;padding:2.4rem 2rem;display:flex;flex-direction:column;align-items:flex-start;}
 .side-logo{display:flex;flex-direction:column;align-items:center;gap:.85rem;margin:0 auto 3rem;color:#b8b8b8;text-align:center;}
@@ -136,9 +138,13 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .brand-marquee-track span{padding-right:4rem;}
 .brand-marquee.is-secondary{bottom:13.8rem;}
 .brand-marquee.is-secondary .brand-marquee-track{font-size:clamp(3.2rem,6.6vw,7.2rem);color:rgba(201,182,117,.13);animation-duration:36s;animation-direction:reverse;}
-.hero-visual{height:760px;align-self:start;overflow:hidden;background:#ddd;position:relative;z-index:1;}
-.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transform:scale(1.035);filter:saturate(.94) contrast(.98);transition:opacity .72s ease,transform 1.2s ease,filter .72s ease;}
-.hero-slide.is-active{opacity:1;transform:scale(1);filter:saturate(1) contrast(1);}
+.hero-visual{height:760px;align-self:start;overflow:hidden;background:#ddd;position:relative;z-index:1;isolation:isolate;box-shadow:0 28px 70px rgba(35,31,22,.12);}
+.hero-visual::before{content:'';position:absolute;inset:-20%;z-index:3;pointer-events:none;background:linear-gradient(105deg,transparent 8%,rgba(255,255,255,.2) 42%,transparent 62%);mix-blend-mode:screen;animation:heroSweep 9s ease-in-out infinite;}
+.hero-visual::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,0) 34%,rgba(244,244,242,.08)),linear-gradient(180deg,rgba(0,0,0,.1),transparent 28%,rgba(0,0,0,.16));mix-blend-mode:multiply;}
+.hero-cue{display:inline-flex;align-items:center;gap:.72rem;margin-bottom:1rem;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.62rem;font-weight:900;color:var(--gold2);}
+.hero-cue::before{content:'';width:42px;height:1px;background:var(--gold);}
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transform:scale(1.035);filter:saturate(.94) contrast(.98);transition:opacity .72s ease,transform 1.2s ease,filter .72s ease;will-change:opacity,transform;}
+.hero-slide.is-active{opacity:1;transform:scale(1);filter:saturate(1) contrast(1);animation:heroDrift 8.8s ease-out both;}
 .hero-copy{padding:7.2rem 0 0 3.4rem;position:relative;z-index:2;}
 .site-search{width:min(420px,100%);height:54px;margin:1.15rem 0 0;border:1px solid var(--line);background:#fff;color:#777;font-size:.86rem;display:flex;align-items:center;box-shadow:0 14px 34px rgba(34,34,34,.07);transition:border-color .2s,box-shadow .2s,transform .2s;}
 .site-search:hover,.site-search:focus-within{border-color:rgba(201,182,117,.7);box-shadow:0 20px 42px rgba(34,34,34,.1);transform:translateY(-2px);}
@@ -162,6 +168,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .slide-dot.is-active{background:#777;transform:scale(1.18);}
 .slide-number{min-width:2.4ch;color:#777;letter-spacing:.08em;}
 @keyframes brandMarquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes heroDrift{from{transform:scale(1.015) translate3d(0,0,0);}to{transform:scale(1.065) translate3d(-1.2%,-.8%,0);}}
+@keyframes heroSweep{0%,42%{transform:translateX(-58%) skewX(-8deg);}62%,100%{transform:translateX(58%) skewX(-8deg);}}
 .lead-photo{position:relative;min-height:780px;padding:1.8rem 0 8rem;}
 .lead-photo::before{content:'';position:absolute;right:0;top:0;width:68%;height:520px;background:url('assets/kaz-mio-encyclopedia-hero-04.jpg') center/cover no-repeat;}
 .lead-photo::after{content:'';position:absolute;left:0;bottom:0;width:54%;height:360px;background:url('assets/kaz-mio-adventure-hero.png') center/cover no-repeat;}
@@ -169,6 +177,97 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .kicker{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--gold2);font-weight:700;margin-bottom:1.1rem;}
 .lead-text h2,.section h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.8vw,4.2rem);line-height:1.35;font-weight:500;color:#858585;margin-bottom:1.2rem;}
 .lead-text p{color:#777;font-size:.94rem;}
+.scene-scroll{position:relative;min-height:420vh;background:#121212;color:#fff;overflow:clip;}
+.scene-scroll::before{content:'SCENE';position:absolute;left:2.5rem;top:8rem;z-index:2;font-family:Arial,sans-serif;font-size:clamp(5rem,13vw,12rem);line-height:1;font-weight:900;letter-spacing:.12em;color:rgba(255,255,255,.045);pointer-events:none;}
+.scene-sticky{position:sticky;top:0;min-height:100vh;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr);gap:4rem;align-items:center;padding:5.4rem 5.8rem;isolation:isolate;}
+.scene-media{position:relative;min-height:72vh;border:1px solid rgba(255,255,255,.16);overflow:hidden;background:#222;box-shadow:0 36px 80px rgba(0,0,0,.34);}
+.scene-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);filter:saturate(.9) contrast(.98);transition:opacity .6s ease,transform 1.3s ease,filter .6s ease;}
+.scene-image.is-active{opacity:1;transform:scale(1.01);filter:saturate(1.04) contrast(1.03);}
+.scene-media::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.32),transparent 48%),linear-gradient(180deg,transparent 45%,rgba(0,0,0,.45));pointer-events:none;}
+.scene-copy{position:relative;min-height:450px;display:flex;align-items:center;}
+.scene-step{position:absolute;inset:auto 0;opacity:0;transform:translateY(28px);transition:opacity .46s ease,transform .46s ease;}
+.scene-step.is-active{opacity:1;transform:translateY(0);}
+.scene-step small{display:block;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.66rem;font-weight:900;color:var(--gold);margin-bottom:1rem;}
+.scene-step h2{font-family:'Shippori Mincho',serif;font-size:clamp(2.4rem,4.8vw,5.4rem);line-height:1.18;font-weight:500;color:#f2f2f2;margin-bottom:1.1rem;}
+.scene-step p{color:#cfcfcf;font-size:.95rem;max-width:36rem;}
+.scene-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem;}
+.scene-actions a{border:1px solid rgba(223,207,152,.72);color:#fff;min-height:46px;padding:.75rem 1rem;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;transition:background .2s,color .2s,transform .2s,border-color .2s;}
+.scene-actions a:hover{background:var(--gold);border-color:var(--gold);color:#141414;transform:translateY(-3px);}
+.scene-rail{position:absolute;right:2rem;top:50%;z-index:3;display:grid;gap:.7rem;transform:translateY(-50%);}
+.scene-dot{width:9px;height:9px;border:1px solid rgba(255,255,255,.45);border-radius:50%;background:transparent;transition:background .24s,transform .24s,border-color .24s;}
+.scene-dot.is-active{background:var(--gold);border-color:var(--gold);transform:scale(1.4);}
+.visual-paths{padding:5.6rem 5.8rem;background:#ebe9e2;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.visual-paths::before{content:'LIFE ROUTES';position:absolute;left:-.5rem;top:.5rem;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,8.4rem);font-weight:800;line-height:1;color:rgba(34,34,34,.045);letter-spacing:.1em;white-space:nowrap;pointer-events:none;}
+.visual-paths-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;}
+.visual-paths-head{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:end;margin-bottom:2.2rem;}
+.visual-paths-head h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.4vw,3.5rem);line-height:1.34;font-weight:500;color:#747474;}
+.visual-paths-head h2 span{white-space:nowrap;}
+.visual-paths-head p{color:#777;font-size:.92rem;max-width:43rem;}
+.visual-paths-grid{display:grid;grid-template-columns:1.08fr .92fr .92fr;gap:1px;background:rgba(34,34,34,.16);border:1px solid rgba(34,34,34,.12);}
+.visual-path-card{position:relative;min-height:430px;overflow:hidden;color:#fff;display:flex;align-items:flex-end;padding:1.5rem;background:#151515;isolation:isolate;transition:transform .26s ease,box-shadow .26s ease,filter .26s ease;}
+.visual-path-card::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.72));}
+.visual-path-card::after{content:'';position:absolute;left:1.5rem;right:1.5rem;bottom:1.15rem;height:1px;background:rgba(255,255,255,.28);transform:scaleX(.32);transform-origin:left center;transition:transform .28s ease,background .28s ease;}
+.visual-path-card:nth-child(1){min-height:486px;}
+.visual-path-card:nth-child(1)::after{background:rgba(223,207,152,.65);}
+.visual-path-card:nth-child(2)::after{background:rgba(99,127,141,.65);}
+.visual-path-card:nth-child(3)::after{background:rgba(166,120,97,.72);}
+.visual-path-card:hover{transform:translateY(-7px);box-shadow:0 24px 52px rgba(35,31,22,.18);filter:contrast(1.02);}
+.visual-path-card:hover::after{transform:scaleX(1);background:rgba(255,255,255,.64);}
+.visual-path-media{position:absolute;inset:0;z-index:-2;overflow:hidden;}
+.visual-path-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.06) translate3d(0,var(--parallax-y,0),0);transition:transform .5s ease,filter .5s ease;filter:saturate(.96) contrast(.98);}
+.visual-path-card:hover .visual-path-media img{transform:scale(1.095) translate3d(0,var(--parallax-y,0),0);filter:saturate(1.04) contrast(1.02);}
+.visual-path-copy{position:relative;z-index:1;max-width:22rem;padding-bottom:.7rem;}
+.visual-path-copy small{display:block;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.62rem;font-weight:900;color:rgba(255,255,255,.76);margin-bottom:.55rem;}
+.visual-path-copy h3{font-family:'Shippori Mincho',serif;font-size:clamp(1.35rem,2.2vw,2rem);line-height:1.42;font-weight:600;margin-bottom:.65rem;}
+.visual-path-copy p{font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:.95rem;}
+.visual-path-copy span{font-size:.78rem;font-weight:800;color:#fff;}
+.memo-wall{position:relative;padding:6.2rem 5.8rem;background:#151515;color:#fff;overflow:hidden;}
+.memo-wall::before{content:'MEMO WALL';position:absolute;right:-1rem;top:.4rem;font-family:Arial,sans-serif;font-size:clamp(4rem,10vw,9rem);font-weight:900;line-height:1;letter-spacing:.1em;color:rgba(255,255,255,.045);white-space:nowrap;}
+.memo-wall-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;}
+.memo-wall-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:2.6rem;align-items:end;margin-bottom:2.8rem;}
+.memo-wall-head h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.8vw,4rem);line-height:1.34;font-weight:500;color:#eee;}
+.memo-wall-head p{color:#aaa;font-size:.92rem;max-width:42rem;}
+.memo-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.2rem 1rem;align-items:start;}
+.memo-card{min-height:230px;padding:1.25rem;background:#f8f7f2;color:#222;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 50px rgba(0,0,0,.28);display:flex;flex-direction:column;gap:.65rem;transform:translateY(var(--float-y,0)) rotate(var(--float-r,0deg));transition:transform .28s ease,box-shadow .28s ease,background .28s ease;}
+.memo-card:nth-child(1){--float-y:18px;--float-r:-1.2deg;}
+.memo-card:nth-child(2){--float-y:-18px;--float-r:.8deg;background:#e9f0ed;}
+.memo-card:nth-child(3){--float-y:34px;--float-r:1.2deg;background:#f5efe8;}
+.memo-card:nth-child(4){--float-y:-8px;--float-r:-.8deg;background:#eef3f6;}
+.memo-card:nth-child(5){--float-y:0;--float-r:.5deg;background:#f7f2db;}
+.memo-card:nth-child(6){--float-y:26px;--float-r:-.6deg;background:#f5f4ef;}
+.memo-card:hover{transform:translateY(calc(var(--float-y,0) - 10px)) rotate(0deg);box-shadow:0 34px 70px rgba(0,0,0,.38);background:#fff;}
+.memo-card small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.6rem;font-weight:900;color:var(--gold2);}
+.memo-card strong{font-family:'Shippori Mincho',serif;font-size:1.22rem;line-height:1.45;font-weight:600;}
+.memo-card span{margin-top:auto;color:#777;font-size:.78rem;line-height:1.65;}
+.mini-flow{padding:6.2rem 5.8rem;background:#f3f2ed;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;}
+.mini-flow-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:.82fr 1.18fr;gap:3.4rem;align-items:center;}
+.mini-flow h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.8vw,4rem);line-height:1.34;font-weight:500;color:#747474;margin-bottom:1.05rem;}
+.mini-flow p{color:#777;font-size:.92rem;max-width:36rem;}
+.mini-stage{position:relative;min-height:520px;display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.mini-panel{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 24px 60px rgba(35,31,22,.1);}
+.mini-panel strong{position:absolute;left:1rem;top:1rem;z-index:2;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.62rem;font-weight:900;color:#999;}
+.mini-panel.bag{grid-row:span 2;min-height:520px;background:linear-gradient(180deg,#fbfaf6,#e8edea);}
+.mini-panel.room{min-height:250px;background:#f9f8f4;}
+.mini-panel.car{min-height:250px;background:#eef4f6;}
+.mini-bag{position:absolute;left:50%;bottom:3.4rem;width:62%;height:58%;transform:translateX(-50%);border:8px solid #333;border-radius:22px 22px 34px 34px;background:linear-gradient(180deg,#d8c783,#f5efe2);}
+.mini-bag::before{content:'';position:absolute;left:50%;top:-4.5rem;width:42%;height:5rem;transform:translateX(-50%);border:8px solid #333;border-bottom:0;border-radius:999px 999px 0 0;}
+.mini-item{position:absolute;z-index:4;min-width:68px;text-align:center;padding:.42rem .55rem;border:1px solid rgba(34,34,34,.15);background:#fff;color:#555;font-size:.7rem;font-weight:800;box-shadow:0 12px 22px rgba(35,31,22,.12);animation:packFloat 5.8s ease-in-out infinite;}
+.mini-item:nth-of-type(1){left:10%;top:18%;animation-delay:.2s;}
+.mini-item:nth-of-type(2){right:10%;top:28%;animation-delay:.8s;}
+.mini-item:nth-of-type(3){left:23%;bottom:24%;animation-delay:1.4s;}
+.mini-item:nth-of-type(4){right:16%;bottom:18%;animation-delay:2s;}
+.room-map{position:absolute;inset:3.4rem 1.2rem 1.2rem;display:grid;grid-template-columns:1.2fr .9fr;grid-template-rows:1fr .8fr;gap:.55rem;}
+.room-block{border:1px solid #d7d0c3;background:#fff;position:relative;overflow:hidden;}
+.room-block::after{content:'';position:absolute;inset:auto 14% 16% 14%;height:10px;background:var(--sage);opacity:.55;animation:roomPath 4.8s ease-in-out infinite;}
+.room-dot{position:absolute;right:16%;top:22%;width:18px;height:18px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(223,207,152,.35);animation:roomPulse 2.6s ease-out infinite;}
+.mini-car{position:absolute;left:50%;bottom:3rem;width:68%;height:36%;transform:translateX(-50%);border-radius:42px 52px 18px 18px;background:#2d2d2d;box-shadow:0 18px 0 #d9e1e4;}
+.mini-car::before{content:'';position:absolute;left:18%;right:18%;top:-38%;height:58%;border-radius:36px 36px 0 0;background:#4d6870;}
+.mini-car::after{content:'';position:absolute;left:13%;right:13%;bottom:-18px;height:36px;background:radial-gradient(circle at 18px 18px,#222 0 17px,transparent 18px),radial-gradient(circle at calc(100% - 18px) 18px,#222 0 17px,transparent 18px);}
+.mini-road{position:absolute;left:0;right:0;bottom:2.1rem;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:roadMove 2.6s linear infinite;}
+@keyframes packFloat{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-16px) rotate(1deg);}}
+@keyframes roomPath{0%,100%{transform:translateX(-22%);opacity:.28;}50%{transform:translateX(22%);opacity:.72;}}
+@keyframes roomPulse{0%{box-shadow:0 0 0 0 rgba(223,207,152,.42);}70%,100%{box-shadow:0 0 0 26px rgba(223,207,152,0);}}
+@keyframes roadMove{from{transform:translateX(-18%);}to{transform:translateX(18%);}}
 .route-teaser{padding:5.4rem 5.8rem;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
 .route-teaser::before{content:'ROUTE FINDER';position:absolute;right:-.8rem;top:.5rem;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,8.8rem);font-weight:800;line-height:1;color:rgba(34,34,34,.04);letter-spacing:.08em;white-space:nowrap;}
 .route-teaser-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:2.4rem;align-items:center;}
@@ -288,7 +387,15 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .to-top{position:fixed;right:1rem;bottom:1rem;z-index:90;width:58px;height:58px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;}
 .to-top.is-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
 .to-top:hover{background:#222;}
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .68s ease,transform .68s ease,box-shadow .24s ease,filter .24s ease,background .24s ease,border-color .24s ease,color .24s ease;transition-delay:var(--reveal-delay,0ms);}
+.js .reveal.is-visible{opacity:1;transform:translateY(0);}
+.js .visual-path-card.reveal.is-visible:hover,.js .band-card.reveal.is-visible:hover,.js .review-card.reveal.is-visible:hover{transform:translateY(-7px);}
+.js .route-board a.reveal.is-visible:hover,.js .family-navi-panel.reveal.is-visible:hover{transform:translateY(-5px);}
+.js .intent-card.reveal.is-visible:hover{transform:translateY(-6px);}
+.js .article.reveal.is-visible:hover{transform:translateX(8px);}
+.js .memo-card.reveal.is-visible:hover{transform:translateY(calc(var(--float-y,0) - 10px)) rotate(0deg);}
 @media(max-width:1100px){
+  .scroll-progress{left:0;}
   .side{display:none;}
   .mobile-head{display:flex;position:sticky;top:0;z-index:60;height:64px;background:rgba(244,244,242,.92);backdrop-filter:blur(12px);align-items:center;justify-content:space-between;padding:0 1rem;border-bottom:1px solid var(--line);}
   .mobile-brand{display:flex;align-items:center;gap:.65rem;font-family:Arial,sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
@@ -315,6 +422,29 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .lead-photo{min-height:auto;padding:2rem 1rem 5rem;}
   .lead-photo::before,.lead-photo::after{position:relative;display:block;width:100%;height:300px;margin-bottom:1rem;}
   .lead-text{width:auto;margin:1rem 0 0;padding:1rem 0;background:transparent;}
+  .scene-scroll{min-height:0;overflow:hidden;}
+  .scene-scroll::before{top:2rem;left:-.4rem;font-size:5.4rem;}
+  .scene-sticky{position:relative;top:auto;display:grid;grid-template-columns:1fr;gap:1.4rem;min-height:0;padding:4rem 1rem;}
+  .scene-media{min-height:360px;}
+  .scene-copy{display:grid;gap:1px;min-height:0;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16);}
+  .scene-step{position:relative;opacity:1;transform:none;background:#181818;padding:1.2rem;}
+  .scene-step h2{font-size:2.15rem;}
+  .scene-step p{font-size:.88rem;}
+  .scene-rail{display:none;}
+  .visual-paths{padding:4rem 1rem;}
+  .visual-paths-head{grid-template-columns:1fr;gap:1rem;}
+  .visual-paths-grid{grid-template-columns:1fr;}
+  .visual-path-card,.visual-path-card:nth-child(1){min-height:340px;}
+  .memo-wall{padding:4rem 1rem;}
+  .memo-wall-head{grid-template-columns:1fr;gap:1rem;}
+  .memo-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .memo-card{transform:none;min-height:205px;}
+  .memo-card:hover{transform:translateY(-6px);}
+  .mini-flow{padding:4rem 1rem;}
+  .mini-flow-inner{grid-template-columns:1fr;gap:2rem;}
+  .mini-stage{min-height:0;grid-template-columns:1fr;}
+  .mini-panel.bag{grid-row:auto;min-height:420px;}
+  .mini-panel.room,.mini-panel.car{min-height:250px;}
   .dark-band,.family-navi,.section,.about,.ft{padding:4rem 1rem;}
   .route-teaser{padding:4rem 1rem;}
   .route-teaser-inner{grid-template-columns:1fr;gap:2rem;}
@@ -354,12 +484,33 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .hero-links a{width:100%;}
   .round-contact{display:none;}
   .hero-visual{height:330px;}
+  .scene-media{min-height:300px;}
+  .scene-step h2{font-size:1.8rem;}
+  .scene-actions a{width:100%;}
+  .visual-path-card,.visual-path-card:nth-child(1){min-height:300px;padding:1.1rem;}
+  .visual-path-card::after{left:1.1rem;right:1.1rem;}
+  .visual-path-copy h3{font-size:1.38rem;}
+  .memo-grid{grid-template-columns:1fr;}
+  .memo-card{min-height:180px;}
+  .mini-panel.bag{min-height:360px;}
+  .mini-bag{width:70%;}
+  .mini-item{min-width:58px;font-size:.66rem;}
   .review-photo{height:210px;}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .brand-marquee-track,.hero-slide.is-active,.hero-visual::before,.mini-item,.room-block::after,.room-dot,.mini-road{animation:none;}
+  .hero-slide,.scene-image,.scene-step,.visual-path-card,.visual-path-media img,.memo-card,.js .reveal{transition:none;}
+  .hero-slide.is-active{transform:scale(1);}
+  .scene-image.is-active{transform:scale(1);}
+  .js .reveal{opacity:1;transform:none;}
+  .visual-path-media img,.visual-path-card:hover .visual-path-media img{transform:scale(1.03);}
 }
 </style>
 <script src="assets/analytics.js"></script>
 </head>
 <body id="top">
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
 <header class="mobile-head">
   <a href="index.html" class="mobile-brand"><img src="assets/favicon-192.png" alt=""><span>KAZ &amp; MIO<small>LIFE, LIGHTLY</small></span></a>
   <a href="contact.html" class="mobile-contact" aria-label="お問い合わせ">✉</a>
@@ -442,6 +593,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       </div>
       <div class="hero-copy">
         <a class="round-contact" href="contact.html">お問い合わせは<br>こちらから</a>
+        <div class="hero-cue">Everyday Scene</div>
         <h1><span>これ、うちでも</span><br><em>使いやすい？</em></h1>
         <p>育児グッズも、家事ラク用品も、届いたあとに置く場所や毎日の手間で印象が変わります。</p>
         <p>KAZ &amp; MIOでは、良かったところだけでなく、わが家なら先に見たいところも暮らしの言葉で残しています。</p>
@@ -486,6 +638,152 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <div class="kicker">Concept</div>
       <h2 id="concept-title">きれいに並べるより、<br>使う日を想像する。</h2>
       <p>写真で良さそうに見えても、置き場所、手入れ、子どもの動きで合う・合わないは変わります。買う前に少しだけ生活の中へ置いて考えます。</p>
+    </div>
+  </section>
+
+  <section class="scene-scroll" id="life-scenes" aria-labelledby="life-scenes-title">
+    <div class="scene-sticky">
+      <div class="scene-media" aria-hidden="true">
+        <img class="scene-image is-active" src="assets/kaz-mio-encyclopedia-hero-03.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-02.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-04.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-08.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-05.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
+      </div>
+      <div class="scene-copy">
+        <div class="scene-step is-active">
+          <small>Scene 01 / Morning</small>
+          <h2 id="life-scenes-title">朝の詰まりを、出発前にほどく。</h2>
+          <p>鼻水、水筒、靴下、バッグ。小さな抜けが重なる朝は、見る場所を先に決めておくと少しラクになります。</p>
+          <div class="scene-actions">
+            <a href="morning_outing_guide.html">朝の支度を見る</a>
+            <a href="outing_checklist.html">持ち物を確認する</a>
+          </div>
+        </div>
+        <div class="scene-step">
+          <small>Scene 02 / Outing</small>
+          <h2>外へ出る前の荷物を、軽くする。</h2>
+          <p>行き先、季節、移動手段で必要なものは変わります。バッグの中身を、今の予定に合わせて整えます。</p>
+          <div class="scene-actions">
+            <a href="outing_checklist.html">持ち物チェックへ</a>
+            <a href="baby_outing_items_guide.html">おでかけメモへ</a>
+          </div>
+        </div>
+        <div class="scene-step">
+          <small>Scene 03 / Stay</small>
+          <h2>泊まる場所は、寝る前後まで見る。</h2>
+          <p>畳、ベッド、洗い場付き風呂、貸出備品。宿の写真だけでは見えにくい条件を先に並べます。</p>
+          <div class="scene-actions">
+            <a href="family_stay_search.html#stay-search">宿の条件を選ぶ</a>
+            <a href="family_trip_meal_guide.html">確認メモを見る</a>
+          </div>
+        </div>
+        <div class="scene-step">
+          <small>Scene 04 / Meal</small>
+          <h2>食べる場所は、席まわりから決める。</h2>
+          <p>座敷、個室、子どもイス、ベビーカー。食事そのものより先に、落ち着きやすい席を探します。</p>
+          <div class="scene-actions">
+            <a href="family_stay_search.html#food-search">食事場所を探す</a>
+            <a href="family_trip_meal_guide.html">探し方を見る</a>
+          </div>
+        </div>
+        <div class="scene-step">
+          <small>Scene 05 / Room</small>
+          <h2>帰ってからの置き場所まで、少し先に。</h2>
+          <p>ベビーサークル、ベビーカー、消耗品の在庫。家に戻ったあとの動線まで見ると、あとで困りにくくなります。</p>
+          <div class="scene-actions">
+            <a href="baby_circle_fit_check.html">置ける診断へ</a>
+            <a href="baby_stock_manager.html">ストック管理へ</a>
+          </div>
+        </div>
+      </div>
+      <div class="scene-rail" aria-hidden="true">
+        <span class="scene-dot is-active"></span>
+        <span class="scene-dot"></span>
+        <span class="scene-dot"></span>
+        <span class="scene-dot"></span>
+        <span class="scene-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="visual-paths" aria-labelledby="visual-paths-title">
+    <div class="visual-paths-inner">
+      <div class="visual-paths-head">
+        <div>
+          <div class="kicker">Life Routes</div>
+          <h2 id="visual-paths-title"><span>次に見る場所を、</span><br><span>写真の温度で選ぶ。</span></h2>
+        </div>
+        <p>朝の支度、宿と食事、部屋や車まわり。いまの生活に近い場面から、必要なメモへ進めるようにしました。</p>
+      </div>
+      <div class="visual-paths-grid">
+        <a class="visual-path-card" href="outing_checklist.html">
+          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-02.jpg" alt="海辺の街を歩く生きものたちのイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
+          <span class="visual-path-copy"><small>Outing</small><h3>出かける前の荷物を、少し軽くする。</h3><p>月齢、季節、行き先ごとに、バッグへ入れるものを見直せます。</p><span>持ち物チェックへ</span></span>
+        </a>
+        <a class="visual-path-card" href="family_stay_search.html#stay-search">
+          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-04.jpg" alt="夕方の街に生きものたちが浮かぶイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
+          <span class="visual-path-copy"><small>Stay</small><h3>泊まる場所は、寝る前後まで見る。</h3><p>畳、寝具、お風呂、貸出備品。予約前に見たい条件を整理します。</p><span>宿の条件を見る</span></span>
+        </a>
+        <a class="visual-path-card" href="family_stay_search.html#food-search">
+          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-08.jpg" alt="水族館のような街に生きものたちがいるイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
+          <span class="visual-path-copy"><small>Meal</small><h3>食べる場所は、席まわりから考える。</h3><p>座敷、個室、子どもイス、ベビーカー。落ち着きやすい条件を探せます。</p><span>食事場所を探す</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="memo-wall" aria-labelledby="memo-wall-title">
+    <div class="memo-wall-inner">
+      <div class="memo-wall-head">
+        <div>
+          <div class="kicker">Memo Wall</div>
+          <h2 id="memo-wall-title">その日の引っかかりを、メモから拾う。</h2>
+        </div>
+        <p>同じ子育てでも、朝、部屋、車、在庫、サイズで見たいことは変わります。近いメモを短く並べました。</p>
+      </div>
+      <div class="memo-grid">
+        <a class="memo-card" href="buy_before_check.html"><small>5 Questions</small><strong>玄関・車・部屋・在庫・季節</strong><span>買う前に見落としやすい場所を短く確認。</span></a>
+        <a class="memo-card" href="stroller_fit_check.html"><small>Stroller</small><strong>玄関と車に入るかを見る</strong><span>畳む場所、重さ、トランクの余白まで。</span></a>
+        <a class="memo-card" href="car_seat_fit_check.html"><small>Car Seat</small><strong>乗せ降ろしのしんどさを見る</strong><span>駐車場やドアの開き方も含めて確認。</span></a>
+        <a class="memo-card" href="diaper_size_check.html"><small>Diaper</small><strong>おむつを買いすぎない</strong><span>体重、在庫、交換枚数から次の量を見る。</span></a>
+        <a class="memo-card" href="kids_size_check.html"><small>Kids Size</small><strong>服と靴の今を測る</strong><span>身長と足長から買い替え前の目安へ。</span></a>
+        <a class="memo-card" href="family_stay_search.html"><small>Trip</small><strong>泊まる・食べる条件を整える</strong><span>畳、個室、子どもイス、洗い場付き風呂。</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mini-flow" aria-labelledby="mini-flow-title">
+    <div class="mini-flow-inner">
+      <div>
+        <div class="kicker">Tiny Flow</div>
+        <h2 id="mini-flow-title">バッグ、部屋、車。<br>小さな順番で見る。</h2>
+        <p>買う前や出かける前に、ものだけでなく動きも一緒に思い出せるように。毎日の場面を小さく分けます。</p>
+      </div>
+      <div class="mini-stage" aria-hidden="true">
+        <div class="mini-panel bag">
+          <strong>Bag</strong>
+          <div class="mini-bag"></div>
+          <span class="mini-item">おむつ</span>
+          <span class="mini-item">水筒</span>
+          <span class="mini-item">着替え</span>
+          <span class="mini-item">保湿</span>
+        </div>
+        <div class="mini-panel room">
+          <strong>Room</strong>
+          <div class="room-map">
+            <span class="room-block"></span>
+            <span class="room-block"></span>
+            <span class="room-block"></span>
+            <span class="room-block"><i class="room-dot"></i></span>
+          </div>
+        </div>
+        <div class="mini-panel car">
+          <strong>Car</strong>
+          <div class="mini-road"></div>
+          <div class="mini-car"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -841,7 +1139,9 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   </div>
 </footer>
 <script>
+document.documentElement.classList.add('js');
 const toTopButton = document.querySelector('.to-top');
+const scrollProgressBar = document.querySelector('.scroll-progress span');
 const siteSearch = document.getElementById('siteSearch');
 const siteSearchInput = document.getElementById('siteSearchInput');
 const hero = document.getElementById('hero-slideshow');
@@ -849,10 +1149,19 @@ const heroVisual = document.querySelector('.hero-visual');
 const heroSlides = [...document.querySelectorAll('.hero-slide')];
 const heroDots = [...document.querySelectorAll('.slide-dot')];
 const heroNumber = document.querySelector('.slide-number');
+const parallaxMedia = [...document.querySelectorAll('[data-parallax]')];
+const sceneScroll = document.querySelector('.scene-scroll');
+const sceneImages = [...document.querySelectorAll('.scene-image')];
+const sceneSteps = [...document.querySelectorAll('.scene-step')];
+const sceneDots = [...document.querySelectorAll('.scene-dot')];
 let activeHeroSlide = 0;
+let activeSceneIndex = 0;
 let heroAutoTimer = null;
 let heroAutoRestartTimer = null;
 let lastHeroWheelAt = 0;
+let parallaxTicking = false;
+let sceneTicking = false;
+let revealVisibleTargets = () => {};
 const heroAutoDelay = 5200;
 const heroMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -884,8 +1193,98 @@ const scheduleHeroAutoRestart = () => {
 };
 
 const updateToTopButton = () => {
-  toTopButton.classList.toggle('is-visible', window.scrollY > 640);
+  toTopButton?.classList.toggle('is-visible', window.scrollY > 640);
 };
+
+const updateScrollProgress = () => {
+  if (!scrollProgressBar) return;
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+  scrollProgressBar.style.width = `${progress * 100}%`;
+};
+
+const updateParallaxMedia = () => {
+  parallaxTicking = false;
+  if (heroMotionReduced || window.innerWidth < 900 || !parallaxMedia.length) {
+    parallaxMedia.forEach(media => media.style.removeProperty('--parallax-y'));
+    return;
+  }
+  const viewportHeight = window.innerHeight || 1;
+  parallaxMedia.forEach(media => {
+    const rect = media.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > viewportHeight) return;
+    const mediaCenter = rect.top + rect.height / 2;
+    const offset = ((mediaCenter - viewportHeight / 2) / viewportHeight) * -28;
+    media.style.setProperty('--parallax-y', `${offset.toFixed(1)}px`);
+  });
+};
+
+const requestParallaxUpdate = () => {
+  if (parallaxTicking) return;
+  parallaxTicking = true;
+  window.requestAnimationFrame(updateParallaxMedia);
+};
+
+const setSceneIndex = index => {
+  if (!sceneSteps.length || index === activeSceneIndex) return;
+  activeSceneIndex = index;
+  sceneImages.forEach((image, i) => image.classList.toggle('is-active', i === index));
+  sceneSteps.forEach((step, i) => step.classList.toggle('is-active', i === index));
+  sceneDots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+};
+
+const updateSceneScroll = () => {
+  sceneTicking = false;
+  if (!sceneScroll || !sceneSteps.length || heroMotionReduced || window.innerWidth < 900) {
+    setSceneIndex(0);
+    return;
+  }
+  const rect = sceneScroll.getBoundingClientRect();
+  const travel = Math.max(1, sceneScroll.offsetHeight - window.innerHeight);
+  const progress = Math.min(1, Math.max(0, -rect.top / travel));
+  const index = Math.min(sceneSteps.length - 1, Math.floor(progress * sceneSteps.length));
+  setSceneIndex(index);
+};
+
+const requestSceneUpdate = () => {
+  if (sceneTicking) return;
+  sceneTicking = true;
+  window.requestAnimationFrame(updateSceneScroll);
+};
+
+const setupScrollReveals = () => {
+  const revealTargets = [...document.querySelectorAll('.lead-photo,.scene-media,.visual-paths,.visual-path-card,.memo-wall,.mini-flow,.route-teaser,.route-board a,.dark-band,.band-card,.family-navi,.family-navi-panel,.intent-card,.review-card,.shopping-strip,.article,.about')];
+  if (!revealTargets.length) return;
+  const hashTarget = window.location.hash ? document.querySelector(window.location.hash) : null;
+  revealVisibleTargets = () => {
+    revealTargets.forEach(target => {
+      const rect = target.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight * 0.92) {
+        target.classList.add('is-visible');
+      }
+    });
+  };
+  revealTargets.forEach((target, index) => {
+    target.classList.add('reveal');
+    target.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 55}ms`);
+    if (hashTarget && target.contains(hashTarget)) target.classList.add('is-visible');
+  });
+  if (heroMotionReduced || !('IntersectionObserver' in window)) {
+    revealTargets.forEach(target => target.classList.add('is-visible'));
+    return;
+  }
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+  revealTargets.forEach(target => revealObserver.observe(target));
+  revealVisibleTargets();
+  window.setTimeout(revealVisibleTargets, 120);
+};
+
 heroDots.forEach((dot, index) => {
   dot.addEventListener('click', () => {
     setHeroSlide(index);
@@ -909,12 +1308,26 @@ siteSearch?.addEventListener('submit', event => {
   const query = keyword ? `site:kaz-mio.github.io ${keyword}` : 'site:kaz-mio.github.io';
   window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 });
+setupScrollReveals();
 updateToTopButton();
+updateScrollProgress();
+requestParallaxUpdate();
+requestSceneUpdate();
 startHeroAuto();
 window.addEventListener('scroll', () => {
   updateToTopButton();
+  updateScrollProgress();
+  revealVisibleTargets();
+  requestParallaxUpdate();
+  requestSceneUpdate();
 }, { passive: true });
-window.addEventListener('resize', scheduleHeroAutoRestart);
+window.addEventListener('resize', () => {
+  scheduleHeroAutoRestart();
+  updateScrollProgress();
+  revealVisibleTargets();
+  requestParallaxUpdate();
+  requestSceneUpdate();
+});
 </script>
 </body>
 </html>
