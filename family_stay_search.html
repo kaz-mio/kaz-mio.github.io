@@ -126,6 +126,12 @@ select{appearance:auto;cursor:pointer;}
 .preset-btn:active{transform:translateY(0);box-shadow:0 4px 10px rgba(24,52,71,.08);}
 .copy-btn{border:none;border-radius:999px;background:var(--navy);color:#fff;font-weight:900;padding:.72rem 1.05rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 12px 24px rgba(24,52,71,.18);transition:transform .2s,background .2s,box-shadow .2s;}
 .copy-btn:hover{transform:translateY(-2px);background:var(--coral-d);box-shadow:0 16px 30px rgba(198,83,66,.24);}
+.copy-btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:0 6px 16px rgba(24,52,71,.08);}
+.copy-btn.ghost:hover{background:#fff;color:var(--coral-d);border-color:rgba(239,125,103,.42);box-shadow:var(--soft);}
+.query-actions{display:flex;flex-direction:column;gap:.55rem;}
+.query-count{font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);margin-bottom:.3rem;}
+.preset-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
+.preset-btn.clear{margin-left:auto;border-style:dashed;color:var(--ink3);}
 .providers{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.75rem;}
 .provider{border:1px solid rgba(255,255,255,.3);border-radius:8px;text-decoration:none;background:linear-gradient(135deg,var(--coral),var(--coral-d));color:#fff;padding:1rem .82rem;text-align:center;font-weight:900;font-size:.82rem;box-shadow:0 12px 28px rgba(239,125,103,.23);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,filter .2s;}
 .provider::before{content:'SEARCH';display:block;font-family:'Nunito',sans-serif;font-size:.56rem;letter-spacing:.18em;line-height:1;color:rgba(255,255,255,.72);margin-bottom:.38rem;}
@@ -161,10 +167,10 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 .ft-nav a:hover{color:#fff;transform:translateY(-2px);}
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38);}
 @media(max-width:980px){.hero,.form-row,.focus-strip,.template-grid{grid-template-columns:1fr;}.providers{grid-template-columns:repeat(2,1fr);}.checks{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}.focus-grid{grid-template-columns:1fr;}}
-@media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}.wrap{padding:2.6rem 1rem 4rem;}h1{font-size:2.45rem;}.lead,.panel-head p,.note,.tip p,.memo p{overflow-wrap:anywhere;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.search-panel{padding:1rem;}.panel-head{display:block;}.panel-head p{margin-top:.6rem;}.checks,.providers{grid-template-columns:1fr;}.query-box{grid-template-columns:1fr;}.copy-btn{width:100%;}.ft-inner{align-items:flex-start;flex-direction:column;}}
+@media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}.wrap{padding:2.6rem 1rem 4rem;}h1{font-size:2.45rem;}.lead,.panel-head p,.note,.tip p,.memo p{overflow-wrap:anywhere;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.search-panel{padding:1rem;}.panel-head{display:block;}.panel-head p{margin-top:.6rem;}.checks,.providers{grid-template-columns:1fr;}.query-box{grid-template-columns:1fr;}.copy-btn{width:100%;}.query-actions{width:100%;}.preset-btn.clear{margin-left:0;}.ft-inner{align-items:flex-start;flex-direction:column;}}
 @media(max-width:520px){.hd,.wrap,.ft{width:100vw;max-width:390px;margin-left:0;margin-right:0;overflow:hidden;}.hero,.hero-card,.search-panel,.grid,.template,.focus-strip,.ft-inner{max-width:358px;}.provider,.check,input[type="text"],input[type="date"],input[type="number"],select,textarea{max-width:100%;}}
 </style>
-<script src="assets/analytics.js"></script>
+<script src="assets/analytics.js" defer></script>
 </head>
 <body>
 <header class="hd">
@@ -314,6 +320,16 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         <input id="children" type="number" min="0" max="6" value="1">
       </div>
       <div>
+        <label class="label" for="stayChildAge">子どもの年齢</label>
+        <select id="stayChildAge">
+          <option value="">指定しない</option>
+          <option value="0歳 赤ちゃん">0歳</option>
+          <option value="1歳 2歳">1〜2歳</option>
+          <option value="3歳 4歳 5歳">3〜5歳</option>
+          <option value="小学生">小学生</option>
+        </select>
+      </div>
+      <div>
         <label class="label" for="stayAge">施設の新しさ</label>
         <select id="stayAge">
           <option value="">指定しない</option>
@@ -349,10 +365,18 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <button class="preset-btn" type="button" data-stay-preset="sleep">添い寝・寝具が心配</button>
       <button class="preset-btn" type="button" data-stay-preset="bath">お風呂をラクにしたい</button>
       <button class="preset-btn" type="button" data-stay-preset="meal">食事も落ち着いて済ませたい</button>
+      <button class="preset-btn" type="button" id="stayAgeSuggest" disabled>年齢に合う条件を足す</button>
+      <button class="preset-btn clear" type="button" id="stayClear">条件をクリア</button>
     </div>
     <div class="query-box">
-      <div class="query-text" id="queryText">子連れ 宿 ファミリー ベッドガード 畳 洗い場付き風呂</div>
-      <button class="copy-btn" type="button" id="copyQuery">検索語をコピー</button>
+      <div>
+        <div class="query-count" id="stayCount">選択中の条件 0件</div>
+        <div class="query-text" id="queryText">子連れ 宿 ファミリー ベッドガード 畳 洗い場付き風呂</div>
+      </div>
+      <div class="query-actions">
+        <button class="copy-btn" type="button" id="copyQuery">検索語をコピー</button>
+        <button class="copy-btn ghost" type="button" id="shareStay">条件リンクをコピー</button>
+      </div>
     </div>
     <div class="providers">
       <a class="provider" id="rakutenLink" target="_blank" rel="noopener">楽天トラベル</a>
@@ -364,7 +388,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <a class="provider alt" id="trivagoLink" target="_blank" rel="noopener">トリバゴ検索</a>
       <a class="provider alt" id="googleLink" target="_blank" rel="noopener">Google横断</a>
     </div>
-    <p class="note">※楽天トラベルとじゃらんは日本語の文字化けを避けるため、各サイト内をGoogle経由で探す形にしています。日付・人数はサイトによって反映範囲が異なるため、移動後の画面でも確認してください。</p>
+    <p class="note">※楽天トラベルとじゃらんは日本語の文字化けを避けるため、各サイト内をGoogle経由で探す形にしています。日付・人数はサイトによって反映範囲が異なるため、移動後の画面でも確認してください。<br>※選んだ条件はこのブラウザに自動で保存され、次に開いたときも残ります。「条件リンクをコピー」を使うと、同じ条件のままこのページを家族と共有できます。</p>
   </section>
 
   <section class="search-panel" id="food-search" aria-labelledby="food-title">
@@ -440,7 +464,27 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         </select>
       </div>
     </div>
-    <div class="form-row">
+    <div class="form-row booking-row">
+      <div>
+        <label class="label" for="foodChildAge">子どもの年齢</label>
+        <select id="foodChildAge">
+          <option value="">指定しない</option>
+          <option value="0歳 赤ちゃん">0歳</option>
+          <option value="1歳 2歳">1〜2歳</option>
+          <option value="3歳 4歳 5歳">3〜5歳</option>
+          <option value="小学生">小学生</option>
+        </select>
+      </div>
+      <div>
+        <label class="label" for="foodTime">時間帯</label>
+        <select id="foodTime">
+          <option value="">指定しない</option>
+          <option value="モーニング 朝食">朝</option>
+          <option value="ランチ">ランチ</option>
+          <option value="カフェ おやつ">カフェ・おやつ</option>
+          <option value="夕食 早めの時間">早めの夕食</option>
+        </select>
+      </div>
       <div>
         <label class="label" for="foodAge">施設の新しさ</label>
         <select id="foodAge">
@@ -477,10 +521,18 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <button class="preset-btn" type="button" data-food-preset="quiet">座敷・個室で落ち着きたい</button>
       <button class="preset-btn" type="button" data-food-preset="babyfood">離乳食・取り分けを確認したい</button>
       <button class="preset-btn" type="button" data-food-preset="shortwait">待ち時間を減らしたい</button>
+      <button class="preset-btn" type="button" id="foodAgeSuggest" disabled>年齢に合う条件を足す</button>
+      <button class="preset-btn clear" type="button" id="foodClear">条件をクリア</button>
     </div>
     <div class="query-box">
-      <div class="query-text" id="foodQueryText">子連れ 食事 レストラン 座敷 個室 キッズチェア</div>
-      <button class="copy-btn" type="button" id="copyFoodQuery">検索語をコピー</button>
+      <div>
+        <div class="query-count" id="foodCount">選択中の条件 0件</div>
+        <div class="query-text" id="foodQueryText">子連れ 食事 レストラン 座敷 個室 キッズチェア</div>
+      </div>
+      <div class="query-actions">
+        <button class="copy-btn" type="button" id="copyFoodQuery">検索語をコピー</button>
+        <button class="copy-btn ghost" type="button" id="shareFood">条件リンクをコピー</button>
+      </div>
     </div>
     <div class="providers">
       <a class="provider" id="googleMapsLink" target="_blank" rel="noopener">Googleマップ</a>
@@ -489,7 +541,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <a class="provider" id="gnaviLink" target="_blank" rel="noopener">ぐるなび検索</a>
       <a class="provider alt" id="foodGoogleLink" target="_blank" rel="noopener">Google横断</a>
     </div>
-    <p class="note">※飲食店の設備は店舗や時間帯で変わることがあります。座敷・個室・ベビーカー可否・離乳食持ち込みは、予約前に店舗へ確認すると安心です。</p>
+    <p class="note">※飲食店の設備は店舗や時間帯で変わることがあります。座敷・個室・ベビーカー可否・離乳食持ち込みは、予約前に店舗へ確認すると安心です。<br>※こちらの条件もブラウザに自動保存されます。条件リンクのコピーで共有もできます。</p>
   </section>
 
   <section id="checklist">
@@ -566,7 +618,11 @@ const nightsInput = document.getElementById('nights');
 const adultsInput = document.getElementById('adults');
 const childrenInput = document.getElementById('children');
 const stayAge = document.getElementById('stayAge');
+const stayChildAge = document.getElementById('stayChildAge');
 const stayQueryText = document.getElementById('queryText');
+const stayCount = document.getElementById('stayCount');
+const stayAgeSuggest = document.getElementById('stayAgeSuggest');
+const stayClear = document.getElementById('stayClear');
 const stayChecks = [...document.querySelectorAll('#stayChecks input')];
 const stayPresetButtons = [...document.querySelectorAll('[data-stay-preset]')];
 const stayDefaults = ['子連れ', '宿', 'ファミリー'];
@@ -584,7 +640,13 @@ const foodDestination = document.getElementById('foodDestination');
 const foodArea = document.getElementById('foodArea');
 const foodExtra = document.getElementById('foodExtra');
 const foodAge = document.getElementById('foodAge');
+const foodChildAge = document.getElementById('foodChildAge');
+const foodTime = document.getElementById('foodTime');
 const foodQueryText = document.getElementById('foodQueryText');
+const foodCount = document.getElementById('foodCount');
+const foodAgeSuggest = document.getElementById('foodAgeSuggest');
+const foodClear = document.getElementById('foodClear');
+const STORAGE_KEY = 'kazmio_family_search_v1';
 const foodChecks = [...document.querySelectorAll('#foodChecks input')];
 const foodPresetButtons = [...document.querySelectorAll('[data-food-preset]')];
 const foodDefaults = ['子連れ', '食事', 'レストラン'];
@@ -638,6 +700,18 @@ const foodPresets = {
     checks: ['予約可', '駐車場', 'フードコート', 'キッズメニュー'],
     extra: '待ち時間 少ない'
   }
+};
+const stayAgeSuggestions = {
+  '0歳 赤ちゃん': ['ベビーベッド', 'おむつ用ゴミ箱 おむつBOX', '洗い場付き風呂', '子連れ歓迎 赤ちゃん歓迎'],
+  '1歳 2歳': ['ベッドガード', '畳 和室', '敷布団 低いベッド', '洗い場付き風呂'],
+  '3歳 4歳 5歳': ['広いベッド', 'キッズスペース', '部屋食 個室食'],
+  '小学生': ['広いベッド', '貸切風呂 家族風呂', 'キッズスペース']
+};
+const foodAgeSuggestions = {
+  '0歳 赤ちゃん': ['ベビーカー入店', 'おむつ替え', '授乳室', '離乳食持ち込み'],
+  '1歳 2歳': ['座敷', 'キッズチェア', 'おむつ替え', 'キッズメニュー'],
+  '3歳 4歳 5歳': ['キッズチェア', 'キッズメニュー', '個室', '予約可'],
+  '小学生': ['個室', '予約可', 'キッズメニュー']
 };
 const destinationOptions = [
   ['北海道', '北海道'],
@@ -707,6 +781,7 @@ const buildStayQuery = () => {
     destinationWords(stayDestination, stayArea),
     ...stayDefaults,
     ...buildStayMeta(),
+    stayChildAge.value,
     stayAge.value,
     ...stayChecks.filter(input => input.checked).map(input => input.value),
     stayExtra.value.trim()
@@ -717,6 +792,8 @@ const buildFoodQuery = () => {
   const words = [
     destinationWords(foodDestination, foodArea),
     ...foodDefaults,
+    foodChildAge.value,
+    foodTime.value,
     foodAge.value,
     ...foodChecks.filter(input => input.checked).map(input => input.value),
     foodExtra.value.trim()
@@ -769,6 +846,8 @@ const buildBookingUrl = () => {
 const updateStayLinks = () => {
   const query = buildStayQuery() || '子連れ 宿 ファミリー ベッドガード 畳 洗い場付き風呂';
   stayQueryText.textContent = query;
+  stayCount.textContent = `選択中の条件 ${stayChecks.filter(input => input.checked).length}件`;
+  stayAgeSuggest.disabled = !stayChildAge.value;
   const q = encodeURIComponent(query);
   const siteSearch = site => `https://www.google.com/search?q=${encodeURIComponent(query + ' site:' + site)}`;
   stayLinks.rakuten.href = siteSearch('travel.rakuten.co.jp');
@@ -779,16 +858,20 @@ const updateStayLinks = () => {
   stayLinks.googleHotels.href = `https://www.google.com/travel/hotels?q=${q}`;
   stayLinks.trivago.href = siteSearch('trivago.jp');
   stayLinks.google.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:travel.rakuten.co.jp OR site:jalan.net OR site:travel.yahoo.co.jp OR site:ikyu.com')}`;
+  saveState();
 };
 const updateFoodLinks = () => {
   const query = buildFoodQuery() || '子連れ 食事 レストラン 座敷 個室 キッズチェア';
   foodQueryText.textContent = query;
+  foodCount.textContent = `選択中の条件 ${foodChecks.filter(input => input.checked).length}件`;
+  foodAgeSuggest.disabled = !foodChildAge.value;
   const q = encodeURIComponent(query);
   foodLinks.maps.href = `https://www.google.com/maps/search/?api=1&query=${q}`;
   foodLinks.tabelog.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:tabelog.com')}`;
   foodLinks.hotpepper.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:hotpepper.jp')}`;
   foodLinks.gnavi.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:gnavi.co.jp')}`;
   foodLinks.google.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:tabelog.com OR site:hotpepper.jp OR site:gnavi.co.jp OR site:retty.me')}`;
+  saveState();
 };
 const copyText = async (text, button) => {
   try {
@@ -820,11 +903,64 @@ const applyPreset = (inputs, preset, extraInput, updateFn, group) => {
   updateFn();
   trackSearchPreset(group, preset);
 };
-[stayDestination, stayArea, stayExtra, stayAge, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
+const collectState = () => ({
+  d: stayDestination.value, a: stayArea.value, ci: checkinDate.value,
+  n: nightsInput.value, ad: adultsInput.value, ch: childrenInput.value,
+  ca: stayChildAge.value, sn: stayAge.value, ex: stayExtra.value,
+  sc: stayChecks.map(input => input.checked ? 1 : 0).join(''),
+  fd: foodDestination.value, fa: foodArea.value,
+  fca: foodChildAge.value, ft: foodTime.value, fn: foodAge.value, fex: foodExtra.value,
+  fc: foodChecks.map(input => input.checked ? 1 : 0).join('')
+});
+let stateReady = false;
+const saveState = () => {
+  if (!stateReady) return;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState())); } catch {}
+};
+const setSelectValue = (select, value) => {
+  if ([...select.options].some(option => option.value === value)) select.value = value;
+};
+const applyCheckBits = (inputs, bits) => {
+  if (typeof bits !== 'string' || bits.length !== inputs.length) return;
+  inputs.forEach((input, i) => { input.checked = bits[i] === '1'; });
+};
+const applyState = state => {
+  if (!state || typeof state !== 'object') return false;
+  setSelectValue(stayDestination, state.d || '');
+  updateAreaSelect(stayDestination, stayArea);
+  setSelectValue(stayArea, state.a || '');
+  if (state.ci) checkinDate.value = state.ci;
+  if (state.n) nightsInput.value = state.n;
+  if (state.ad) adultsInput.value = state.ad;
+  if (state.ch !== undefined && state.ch !== '') childrenInput.value = state.ch;
+  setSelectValue(stayChildAge, state.ca || '');
+  setSelectValue(stayAge, state.sn || '');
+  stayExtra.value = state.ex || '';
+  applyCheckBits(stayChecks, state.sc);
+  setSelectValue(foodDestination, state.fd || '');
+  updateAreaSelect(foodDestination, foodArea);
+  setSelectValue(foodArea, state.fa || '');
+  setSelectValue(foodChildAge, state.fca || '');
+  setSelectValue(foodTime, state.ft || '');
+  setSelectValue(foodAge, state.fn || '');
+  foodExtra.value = state.fex || '';
+  applyCheckBits(foodChecks, state.fc);
+  return true;
+};
+const buildShareUrl = () => {
+  const state = collectState();
+  Object.keys(state).forEach(key => { if (state[key] === '') delete state[key]; });
+  return `${location.origin}${location.pathname}?s=${encodeURIComponent(JSON.stringify(state))}`;
+};
+const addSuggestedChecks = (inputs, values) => {
+  const wanted = new Set(values || []);
+  inputs.forEach(input => { if (wanted.has(input.value)) input.checked = true; });
+};
+[stayDestination, stayArea, stayExtra, stayAge, stayChildAge, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
   el.addEventListener('input', updateStayLinks);
   el.addEventListener('change', updateStayLinks);
 });
-[foodDestination, foodArea, foodExtra, foodAge, ...foodChecks].forEach(el => {
+[foodDestination, foodArea, foodExtra, foodAge, foodChildAge, foodTime, ...foodChecks].forEach(el => {
   el.addEventListener('input', updateFoodLinks);
   el.addEventListener('change', updateFoodLinks);
 });
@@ -840,6 +976,31 @@ document.getElementById('copyQuery').addEventListener('click', () => copyText(st
 document.getElementById('copyFoodQuery').addEventListener('click', () => copyText(foodQueryText.textContent, document.getElementById('copyFoodQuery')));
 document.getElementById('copyTemplate').addEventListener('click', () => copyText(document.getElementById('messageTemplate').value, document.getElementById('copyTemplate')));
 document.getElementById('copyFoodTemplate').addEventListener('click', () => copyText(document.getElementById('foodMessageTemplate').value, document.getElementById('copyFoodTemplate')));
+document.getElementById('shareStay').addEventListener('click', () => copyText(buildShareUrl(), document.getElementById('shareStay')));
+document.getElementById('shareFood').addEventListener('click', () => copyText(buildShareUrl(), document.getElementById('shareFood')));
+stayAgeSuggest.addEventListener('click', () => {
+  addSuggestedChecks(stayChecks, stayAgeSuggestions[stayChildAge.value]);
+  updateStayLinks();
+});
+foodAgeSuggest.addEventListener('click', () => {
+  addSuggestedChecks(foodChecks, foodAgeSuggestions[foodChildAge.value]);
+  updateFoodLinks();
+});
+stayClear.addEventListener('click', () => {
+  stayChecks.forEach(input => { input.checked = false; });
+  stayExtra.value = '';
+  stayAge.value = '';
+  stayChildAge.value = '';
+  updateStayLinks();
+});
+foodClear.addEventListener('click', () => {
+  foodChecks.forEach(input => { input.checked = false; });
+  foodExtra.value = '';
+  foodAge.value = '';
+  foodChildAge.value = '';
+  foodTime.value = '';
+  updateFoodLinks();
+});
 stayPresetButtons.forEach(button => {
   button.addEventListener('click', () => applyPreset(stayChecks, stayPresets[button.dataset.stayPreset], stayExtra, updateStayLinks, 'stay'));
 });
@@ -854,6 +1015,22 @@ hydrateDestinationSelect(stayDestination);
 hydrateDestinationSelect(foodDestination);
 updateAreaSelect(stayDestination, stayArea);
 updateAreaSelect(foodDestination, foodArea);
+const initParams = new URLSearchParams(location.search);
+let restored = false;
+if (initParams.get('s')) {
+  try { restored = applyState(JSON.parse(initParams.get('s'))); } catch {}
+}
+if (!restored) {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) restored = applyState(JSON.parse(saved));
+  } catch {}
+}
+const stayParam = initParams.get('stay');
+if (stayParam && stayPresets[stayParam]) applyPreset(stayChecks, stayPresets[stayParam], stayExtra, updateStayLinks, 'stay_link');
+const foodParam = initParams.get('food');
+if (foodParam && foodPresets[foodParam]) applyPreset(foodChecks, foodPresets[foodParam], foodExtra, updateFoodLinks, 'food_link');
+stateReady = true;
 updateStayLinks();
 updateFoodLinks();
 </script>
