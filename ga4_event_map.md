@@ -105,6 +105,8 @@ The toy storage guide under-box rack card uses `affiliate_offer=yamazaki-tower-s
 
 The toy storage guide label writer card uses `affiliate_offer=kingjim-tepra-lite-lr30-label-writer`, `affiliate_placement=toy_storage_guide_label_section`, and `campaign=toy_storage`.
 
+The outing checklist Meiji Hohoemi Raku Raku Milk attachment card uses `affiliate_offer=meiji-hohoemi-rakuraku-milk-attachment-240`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
+
 ## Key event candidates
 
 Start with these as key events in GA4:
