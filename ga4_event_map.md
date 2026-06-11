@@ -111,6 +111,8 @@ The outing checklist ChuChu paper pack nipple card uses `affiliate_offer=chuchu-
 
 The outing checklist ChuChu outing sterilization case card uses `affiliate_offer=chuchu-outing-sterilization-case`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
 
+The self care fitness guide Xebio sports goods card uses `affiliate_offer=xebio-official-store`, `affiliate_placement=self_care_guide_sports_goods`, and `campaign=self_care_fitness`.
+
 ## Key event candidates
 
 Start with these as key events in GA4:
