@@ -109,6 +109,8 @@ The outing checklist Meiji Hohoemi Raku Raku Milk attachment card uses `affiliat
 
 The outing checklist ChuChu paper pack nipple card uses `affiliate_offer=chuchu-paper-pack-nipple-3set`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
 
+The outing checklist ChuChu outing sterilization case card uses `affiliate_offer=chuchu-outing-sterilization-case`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
+
 ## Key event candidates
 
 Start with these as key events in GA4:
