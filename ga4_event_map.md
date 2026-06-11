@@ -107,6 +107,8 @@ The toy storage guide label writer card uses `affiliate_offer=kingjim-tepra-lite
 
 The outing checklist Meiji Hohoemi Raku Raku Milk attachment card uses `affiliate_offer=meiji-hohoemi-rakuraku-milk-attachment-240`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
 
+The outing checklist ChuChu paper pack nipple card uses `affiliate_offer=chuchu-paper-pack-nipple-3set`, `affiliate_placement=outing_checklist_meal_goods`, and `campaign=outing_checklist`.
+
 ## Key event candidates
 
 Start with these as key events in GA4:
