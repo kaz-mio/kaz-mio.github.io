@@ -238,6 +238,8 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
             <option value="affiliate">ブログ・SNS・紹介料</option>
             <option value="investmentListed">投資（上場株式・投資信託）</option>
             <option value="dividendListed">配当・分配金</option>
+            <option value="fx">FX（外国為替証拠金取引）</option>
+            <option value="futures">先物・オプション取引</option>
             <option value="crypto">暗号資産</option>
             <option value="fleaMarket">フリマ・ネット販売</option>
             <option value="rental">民泊・貸付・不動産まわり</option>
@@ -258,6 +260,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
           <select id="taxMethodInput">
             <option value="comprehensive">総合課税に入れて試算</option>
             <option value="separateStock">株式等の申告分離で試算</option>
+            <option value="separateDerivative">FX・先物取引等の申告分離で試算</option>
             <option value="noFileInvestment">申告しない選択・非課税扱いで除外</option>
           </select>
         </div>
@@ -298,7 +301,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
       <div class="insight" id="insightBox">金額や書類チェックを入れると、ここに準備状況が出ます。</div>
       <div class="section-label">Tax Estimate</div>
       <div class="tax-breakdown" id="taxBreakdown"></div>
-      <p class="source-note" id="sourceNote">国税庁ページ確認日: 2026-06-14。所得税の速算表、基礎控除、給与所得控除、雑所得、株式等の申告分離課税などを参照した参考試算です。最終的な申告は国税庁の確定申告書等作成コーナーで確認してください。</p>
+      <p class="source-note" id="sourceNote">国税庁ページ確認日: 2026-06-14。所得税の速算表、基礎控除、給与所得控除、雑所得、株式等・FX・先物取引等の申告分離課税などを参照した参考試算です。最終的な申告は国税庁の確定申告書等作成コーナーで確認してください。</p>
       <div class="section-label">Documents</div>
       <div class="doc-list" id="docList"></div>
       <div class="section-label">Next Check</div>
@@ -319,6 +322,8 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
         <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1500.htm" target="_blank" rel="noopener">国税庁: 雑所得</a>
         <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm" target="_blank" rel="noopener">国税庁: 株式等を譲渡したときの課税</a>
         <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm" target="_blank" rel="noopener">国税庁: 配当所得</a>
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1521.htm" target="_blank" rel="noopener">国税庁: FXの課税関係</a>
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm" target="_blank" rel="noopener">国税庁: 先物取引に係る雑所得等</a>
         <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1524.htm" target="_blank" rel="noopener">国税庁: 暗号資産の課税関係</a>
         <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" target="_blank" rel="noopener">国税庁: 給与所得者で確定申告が必要な人</a>
         <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1906.htm" target="_blank" rel="noopener">国税庁: 給与所得者が副収入を得た場合</a>
@@ -360,6 +365,8 @@ const activityMeta = {
   affiliate: { label:'ブログ・SNS・紹介料', hint:'広告収入、紹介料、振込手数料などを月ごとに分けます。', defaultMethod:'comprehensive' },
   investmentListed: { label:'投資（上場株式・投資信託）', hint:'上場株式等の譲渡益は申告分離課税の対象になることがあります。特定口座やNISAの扱いを確認してください。', defaultMethod:'separateStock' },
   dividendListed: { label:'配当・分配金', hint:'上場株式等の配当は申告不要、総合課税、申告分離課税を選べる場合があります。', defaultMethod:'noFileInvestment' },
+  fx: { label:'FX（外国為替証拠金取引）', hint:'FXの差金決済による所得は、先物取引に係る雑所得等として申告分離課税の対象になることがあります。', defaultMethod:'separateDerivative' },
+  futures: { label:'先物・オプション取引', hint:'一定の先物取引等は、他の所得と区分して先物取引に係る雑所得等として整理します。', defaultMethod:'separateDerivative' },
   crypto: { label:'暗号資産', hint:'暗号資産による利益は雑所得として整理するケースがあります。計算書や取引履歴を残します。', defaultMethod:'comprehensive' },
   fleaMarket: { label:'フリマ・ネット販売', hint:'生活用動産の売却は非課税となる場合があります。継続販売や仕入販売は別に整理します。', defaultMethod:'comprehensive' },
   rental: { label:'民泊・貸付・不動産まわり', hint:'民泊や貸付は内容により雑所得、不動産所得など扱いが変わります。', defaultMethod:'comprehensive' },
@@ -389,6 +396,8 @@ const docs = {
 const activityDocs = {
   investmentListed: ['特定口座年間取引報告書', '一般口座の売買明細', 'NISA口座の取引区分メモ'],
   dividendListed: ['配当金計算書・支払通知書', '特定口座年間取引報告書', '配当の申告方法メモ'],
+  fx: ['FXの年間損益報告書', '取引明細・入出金履歴', '先物取引に係る雑所得等の金額の計算明細書'],
+  futures: ['先物・オプションの年間損益報告書', '取引明細・手数料明細', '先物取引に係る雑所得等の金額の計算明細書'],
   crypto: ['暗号資産の年間取引報告書', '暗号資産の計算書', '取引所ごとの入出金履歴'],
   fleaMarket: ['販売履歴', '仕入れや送料の明細', '生活用動産か販売用かのメモ'],
   rental: ['貸付・民泊の入金履歴', '管理費・修繕費・手数料の明細', '契約書や利用明細'],
@@ -584,7 +593,7 @@ function taxEstimate(data){
   const baseIncomeTax = incomeTaxAmount(taxable);
   const reconstruction = Math.floor(baseIncomeTax * 0.021);
   const comprehensiveNational = baseIncomeTax + reconstruction;
-  const separatedIncome = method === 'separateStock' ? sideIncome : 0;
+  const separatedIncome = method === 'separateStock' || method === 'separateDerivative' ? sideIncome : 0;
   const separatedIncomeTax = Math.floor(separatedIncome * 0.15315);
   const separatedLocalTax = Math.floor(separatedIncome * 0.05);
   const excludedIncome = method === 'noFileInvestment' ? sideIncome : 0;
@@ -615,6 +624,11 @@ function taxEstimate(data){
   };
 }
 
+function separateTaxLabel(method){
+  if(method === 'separateDerivative') return 'FX・先物取引等';
+  return '株式等';
+}
+
 function totals(){
   const revenue = months.reduce((sum, row) => sum + number(row.revenue), 0);
   const expense = months.reduce((sum, row) => sum + number(row.expense), 0);
@@ -635,8 +649,9 @@ function buildInsight(data){
   const activity = currentActivity();
   if(data.revenue === 0 && data.expense === 0) return 'まずは覚えている月だけで大丈夫です。入金と経費の合計が見えるだけでも、あとから探す手間が減ります。';
   const base = `売上メモは${formatYen(data.revenue)}、経費メモは${formatYen(data.expense)}です。`;
-  if(estimate.method === 'separateStock'){
-    return `${base} ${activity.label}は株式等の申告分離課税として、所得税・復興特別所得税15.315%と住民税5%を分けて目安表示しています。特定口座やNISAの扱いは証券会社の年間取引報告書で確認してください。`;
+  if(estimate.method === 'separateStock' || estimate.method === 'separateDerivative'){
+    const label = separateTaxLabel(estimate.method);
+    return `${base} ${activity.label}は${label}の申告分離課税として、所得税・復興特別所得税15.315%と住民税5%を分けて目安表示しています。取引会社の年間損益報告書や明細を確認してください。`;
   }
   if(estimate.method === 'noFileInvestment'){
     return `${base} ${activity.label}は申告しない選択・非課税扱いとして試算から外しています。特定口座源泉徴収あり、NISA、配当の申告不要制度など、選択できる条件を公式情報で確認してください。`;
@@ -661,6 +676,7 @@ function buildTasks(data){
   if(missingDocs.length) tasks.push(['書類を集める', `次に探すもの: ${missingDocs.slice(0, 2).join('、')}`, `${missingDocs.length}件`]);
   if(estimate.method === 'comprehensive' && modeInput.value === 'company' && data.income > 200000) tasks.push(['20万円基準を確認', '給与所得者で給与以外の所得が20万円を超える場合などは、確定申告が必要になることがあります。', '公式確認']);
   if(estimate.method === 'separateStock') tasks.push(['年間取引報告書を確認', '特定口座、一般口座、NISA、損益通算の有無で申告の扱いが変わります。', '投資']);
+  if(estimate.method === 'separateDerivative') tasks.push(['年間損益報告書を確認', 'FXや先物取引等は、先物取引に係る雑所得等の計算明細書が必要になることがあります。', 'FX/先物']);
   if(activityInput.value === 'crypto') tasks.push(['取引履歴を保存', '暗号資産は取引ごとの取得価額、売却額、手数料の計算資料を残します。', '暗号資産']);
   if(modeInput.value === 'company') tasks.push(['勤務先の書類と分ける', '会社の年末調整で出すものと、副業の記録を混ぜずに置く。', '整理']);
   if(!tasks.length) tasks.push(['かなり整っています', 'コピー用メモやCSVを保存して、公式の作成コーナーで確認すると進めやすいです。', 'OK']);
@@ -685,7 +701,7 @@ function buildText(data){
     `基礎控除以外の所得控除: ${formatYen(estimate.otherDeductions)}`,
     `課税所得目安: ${formatYen(estimate.taxable)}`,
     `所得税・復興特別所得税の目安: ${formatYen(estimate.nationalTax)}`,
-    estimate.separatedIncome ? `株式等の住民税目安: ${formatYen(estimate.separatedLocalTax)}` : '株式等の住民税目安: なし',
+    estimate.separatedIncome ? `${separateTaxLabel(estimate.method)}の住民税目安: ${formatYen(estimate.separatedLocalTax)}` : '申告分離の住民税目安: なし',
     `源泉徴収済み税額メモ: ${formatYen(estimate.withheld)}`,
     `源泉徴収後の差額目安: ${estimate.difference >= 0 ? formatYen(estimate.difference) + ' 納付側' : formatYen(Math.abs(estimate.difference)) + ' 還付側'}`,
     '',
@@ -755,8 +771,9 @@ function renderTaxBreakdown(estimate){
     ['復興特別所得税', formatYen(estimate.reconstruction)]
   ];
   if(estimate.separatedIncome){
-    lines.push(['株式等の所得税・復興特別所得税', formatYen(estimate.separatedIncomeTax)]);
-    lines.push(['株式等の住民税目安', formatYen(estimate.separatedLocalTax)]);
+    const label = separateTaxLabel(estimate.method);
+    lines.push([`${label}の所得税・復興特別所得税`, formatYen(estimate.separatedIncomeTax)]);
+    lines.push([`${label}の住民税目安`, formatYen(estimate.separatedLocalTax)]);
   }
   if(estimate.excludedIncome){
     lines.push(['試算から外した所得', formatYen(estimate.excludedIncome)]);
@@ -894,6 +911,7 @@ docList.addEventListener('change', event => {
 [yearInput, salaryRevenueInput, salaryWithheldInput, deductionInput, memoInput].forEach(input => input.addEventListener('input', updateResults));
 activityInput.addEventListener('change', () => {
   syncTaxMethodToActivity();
+  renderDocs();
   updateResults();
 });
 taxMethodInput.addEventListener('change', updateResults);
