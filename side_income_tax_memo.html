@@ -124,7 +124,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
 .month-item{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:1rem;box-shadow:var(--soft);display:grid;gap:.8rem}
 .month-head{display:grid;grid-template-columns:4.2rem 1fr;gap:.7rem;align-items:center}
 .month-label{font-family:'Nunito',sans-serif;font-weight:900;color:var(--coral-d);letter-spacing:.06em}
-.month-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.65rem;align-items:end}
+.month-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.65rem;align-items:end}
 .check-line{display:flex;gap:.55rem;align-items:flex-start;color:var(--ink2);font-size:.8rem;line-height:1.65}
 .check-line input{margin-top:.34rem;accent-color:var(--coral)}
 .doc-list{display:grid;gap:.55rem;margin-top:.75rem}
@@ -208,7 +208,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
       <p>売上と経費の合計、未整理月、集める書類をひとつのメモにします。会社勤めあり・なしで見たい書類が変わるため、最初に近い形を選べます。</p>
     </div>
     <div class="tool-brief-grid">
-      <article class="tool-brief-card"><small>01 / Monthly</small><strong>月ごとに残す</strong><span>入金、経費、源泉徴収された金額があれば、月別にメモできます。</span></article>
+      <article class="tool-brief-card"><small>01 / Monthly</small><strong>月ごとに残す</strong><span>給与明細、副業の入金、経費、源泉徴収された金額を月別にメモできます。</span></article>
       <article class="tool-brief-card"><small>02 / Documents</small><strong>書類の抜けを減らす</strong><span>源泉徴収票、控除証明書、領収書など、集めるものを確認できます。</span></article>
       <article class="tool-brief-card"><small>03 / Keep</small><strong>あとで見返す</strong><span>テキストコピー、CSV、条件リンク、ブラウザ保存で残せます。</span></article>
     </div>
@@ -266,14 +266,14 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
           </select>
         </div>
         <div class="field">
-          <label class="label" for="salaryRevenueInput">給与収入</label>
+          <label class="label" for="salaryRevenueInput">給与収入（年額）</label>
           <input id="salaryRevenueInput" type="number" min="0" step="1000" inputmode="numeric" value="0">
-          <span class="field-help">会社の源泉徴収票にある「支払金額」を入れます。副業だけ見る場合は未入力のままで大丈夫です。</span>
+          <span class="field-help">年末に源泉徴収票だけで入れる場合は「支払金額」を入れます。正確な年額は源泉徴収票で確認します。月別欄に給与を入れた場合は、試算では月別合計を優先します。</span>
         </div>
         <div class="field">
-          <label class="label" for="salaryWithheldInput">給与の源泉徴収税額</label>
+          <label class="label" for="salaryWithheldInput">給与の源泉徴収税額（年額）</label>
           <input id="salaryWithheldInput" type="number" min="0" step="1000" inputmode="numeric" value="0">
-          <span class="field-help">会社が給与から差し引いて納めた所得税などです。源泉徴収票の「源泉徴収税額」を入れます。</span>
+          <span class="field-help">年末に源泉徴収票だけで入れる場合は「源泉徴収税額」を入れます。住民税や社会保険料ではなく、所得税側の金額です。月別欄に給与の源泉徴収税額を入れた場合は、試算では月別合計を優先します。</span>
         </div>
         <div class="field">
           <label class="label" for="deductionInput">基礎控除以外の所得控除</label>
@@ -287,7 +287,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
         <button class="btn secondary" type="button" data-fill="clear">金額を空にする</button>
       </div>
       <div class="section-label">Monthly Memo</div>
-      <p class="notice">月別の「源泉徴収された金額」は、副業の報酬や講師料などから取引先が差し引いた税額です。差し引かれていない入金やFX・株式の損益だけなら未入力のままで大丈夫です。</p>
+      <p class="notice">給与明細を毎月見ている場合は、給与収入と給与の源泉徴収税額も月別に残せます。年末に源泉徴収票だけでまとめたい場合は、月別の給与欄は未入力のままで大丈夫です。副業報酬から源泉徴収された金額は、取引先が報酬から差し引いた税額だけを入れます。</p>
       <div class="month-list" id="monthList"></div>
     </div>
 
@@ -295,9 +295,10 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
       <h2>今年の見え方</h2>
       <p>入力した内容から、合計と準備の残りをまとめます。</p>
       <div class="summary-grid">
-        <div class="summary-card"><small>Revenue</small><strong id="revenueTotal">-</strong><p>入力した売上・入金</p></div>
+        <div class="summary-card"><small>Revenue</small><strong id="revenueTotal">-</strong><p>副業の売上・入金</p></div>
         <div class="summary-card"><small>Expense</small><strong id="expenseTotal">-</strong><p>入力した経費</p></div>
-        <div class="summary-card"><small>Income Memo</small><strong id="incomeTotal">-</strong><p>売上から経費を引いたメモ</p></div>
+        <div class="summary-card"><small>Income Memo</small><strong id="incomeTotal">-</strong><p>副業売上から経費を引いたメモ</p></div>
+        <div class="summary-card"><small>Salary</small><strong id="salaryRevenueTotal">-</strong><p>給与収入の年額メモ</p></div>
         <div class="summary-card"><small>Taxable</small><strong id="taxableTotal">-</strong><p>所得税の課税所得目安</p></div>
         <div class="summary-card"><small>Income Tax</small><strong id="taxEstimateTotal">-</strong><p>所得税・復興特別所得税の目安</p></div>
         <div class="summary-card"><small>Difference</small><strong id="taxDiffTotal">-</strong><p>源泉徴収後の差額目安</p></div>
@@ -427,6 +428,7 @@ const docList = document.getElementById('docList');
 const revenueTotal = document.getElementById('revenueTotal');
 const expenseTotal = document.getElementById('expenseTotal');
 const incomeTotal = document.getElementById('incomeTotal');
+const salaryRevenueTotal = document.getElementById('salaryRevenueTotal');
 const taxableTotal = document.getElementById('taxableTotal');
 const taxEstimateTotal = document.getElementById('taxEstimateTotal');
 const taxDiffTotal = document.getElementById('taxDiffTotal');
@@ -460,16 +462,21 @@ function currentYear(){
 
 function makeMonths(list){
   if(Array.isArray(list) && list.length === 12){
-    return list.map((item, index) => ({
-      month: index + 1,
-      revenue: number(item[0]),
-      expense: number(item[1]),
-      withheld: number(item[2]),
-      note: item[3] || '',
-      done: !!item[4]
-    }));
+    return list.map((item, index) => {
+      const newer = Array.isArray(item) && item.length >= 7;
+      return {
+        month: index + 1,
+        revenue: number(item[0]),
+        expense: number(item[1]),
+        withheld: number(item[2]),
+        salaryRevenue: newer ? number(item[3]) : 0,
+        salaryWithheld: newer ? number(item[4]) : 0,
+        note: newer ? item[5] || '' : item[3] || '',
+        done: newer ? !!item[6] : !!item[4]
+      };
+    });
   }
-  return monthNames.map((_, index) => ({month:index + 1,revenue:0,expense:0,withheld:0,note:'',done:false}));
+  return monthNames.map((_, index) => ({month:index + 1,revenue:0,expense:0,withheld:0,salaryRevenue:0,salaryWithheld:0,note:'',done:false}));
 }
 
 function setStatus(text){
@@ -489,7 +496,7 @@ function collectState(){
     od: number(deductionInput.value),
     n: memoInput.value,
     d: checkedDocs,
-    r: months.map(row => [number(row.revenue), number(row.expense), number(row.withheld), row.note, !!row.done])
+    r: months.map(row => [number(row.revenue), number(row.expense), number(row.withheld), number(row.salaryRevenue), number(row.salaryWithheld), row.note, !!row.done])
   };
 }
 
@@ -586,7 +593,8 @@ function incomeTaxAmount(taxableIncome){
 
 function taxEstimate(data){
   const year = number(yearInput.value) || currentYear();
-  const salaryRevenue = number(salaryRevenueInput.value);
+  const salaryRevenue = number(data.salaryRevenue);
+  const salaryWithheld = number(data.salaryWithheld);
   const salaryIncome = Math.max(0, salaryRevenue - salaryDeduction(year, salaryRevenue));
   const sideIncome = data.income;
   const method = taxMethodInput.value;
@@ -602,13 +610,16 @@ function taxEstimate(data){
   const separatedIncomeTax = Math.floor(separatedIncome * 0.15315);
   const separatedLocalTax = Math.floor(separatedIncome * 0.05);
   const excludedIncome = method === 'noFileInvestment' ? sideIncome : 0;
-  const withheld = number(salaryWithheldInput.value) + data.withheld;
+  const withheld = salaryWithheld + data.withheld;
   const nationalTax = comprehensiveNational + separatedIncomeTax;
   const difference = nationalTax - withheld;
   return {
     year,
     method,
     salaryRevenue,
+    salaryWithheld,
+    salaryRevenueSource: data.salaryRevenueSource || 'annual',
+    salaryWithheldSource: data.salaryWithheldSource || 'annual',
     salaryIncome,
     sideIncome,
     comprehensiveSide,
@@ -638,21 +649,39 @@ function totals(){
   const revenue = months.reduce((sum, row) => sum + number(row.revenue), 0);
   const expense = months.reduce((sum, row) => sum + number(row.expense), 0);
   const withheld = months.reduce((sum, row) => sum + number(row.withheld), 0);
+  const monthlySalaryRevenue = months.reduce((sum, row) => sum + number(row.salaryRevenue), 0);
+  const monthlySalaryWithheld = months.reduce((sum, row) => sum + number(row.salaryWithheld), 0);
+  const annualSalaryRevenue = number(salaryRevenueInput.value);
+  const annualSalaryWithheld = number(salaryWithheldInput.value);
+  const salaryRevenue = monthlySalaryRevenue > 0 ? monthlySalaryRevenue : annualSalaryRevenue;
+  const salaryWithheld = monthlySalaryWithheld > 0 ? monthlySalaryWithheld : annualSalaryWithheld;
   const income = Math.max(0, revenue - expense);
-  const activeMonths = months.filter(row => number(row.revenue) || number(row.expense) || number(row.withheld) || row.note.trim());
+  const activeMonths = months.filter(row => number(row.revenue) || number(row.expense) || number(row.withheld) || number(row.salaryRevenue) || number(row.salaryWithheld) || row.note.trim());
   const undoneMonths = activeMonths.filter(row => !row.done);
   const docOptions = [...(docs[modeInput.value] || docs.company), ...(activityDocs[activityInput.value] || [])];
   const checkedCount = docOptions.filter(name => checkedDocs.includes(name)).length;
   const prepTotal = 12 + docOptions.length;
   const prepDone = months.filter(row => row.done).length + checkedCount;
-  const estimate = taxEstimate({ revenue, expense, withheld, income });
-  return { revenue, expense, withheld, income, activeMonths, undoneMonths, docOptions, checkedCount, prepTotal, prepDone, estimate };
+  const estimate = taxEstimate({
+    revenue,
+    expense,
+    withheld,
+    income,
+    salaryRevenue,
+    salaryWithheld,
+    salaryRevenueSource: monthlySalaryRevenue > 0 ? 'monthly' : 'annual',
+    salaryWithheldSource: monthlySalaryWithheld > 0 ? 'monthly' : 'annual'
+  });
+  return { revenue, expense, withheld, income, monthlySalaryRevenue, monthlySalaryWithheld, annualSalaryRevenue, annualSalaryWithheld, salaryRevenue, salaryWithheld, activeMonths, undoneMonths, docOptions, checkedCount, prepTotal, prepDone, estimate };
 }
 
 function buildInsight(data){
   const estimate = data.estimate;
   const activity = currentActivity();
-  if(data.revenue === 0 && data.expense === 0) return 'まずは覚えている月だけで大丈夫です。入金と経費の合計が見えるだけでも、あとから探す手間が減ります。';
+  if(data.revenue === 0 && data.expense === 0){
+    if(estimate.salaryRevenue) return `給与収入は${formatYen(estimate.salaryRevenue)}で見ています。副業の入金や経費がある月だけ、あとから足していけば大丈夫です。`;
+    return 'まずは覚えている月だけで大丈夫です。入金と経費の合計が見えるだけでも、あとから探す手間が減ります。';
+  }
   const base = `売上メモは${formatYen(data.revenue)}、経費メモは${formatYen(data.expense)}です。`;
   if(estimate.method === 'separateStock' || estimate.method === 'separateDerivative'){
     const label = separateTaxLabel(estimate.method);
@@ -700,9 +729,9 @@ function buildText(data){
     `経費メモ: ${formatYen(data.expense)}`,
     `売上-経費のメモ: ${formatYen(data.income)}`,
     data.withheld ? `副業報酬から源泉徴収された金額: ${formatYen(data.withheld)}` : '副業報酬から源泉徴収された金額: なし',
-    `給与収入: ${formatYen(estimate.salaryRevenue)}`,
+    `給与収入: ${formatYen(estimate.salaryRevenue)}（${estimate.salaryRevenueSource === 'monthly' ? '月別合計' : '年額欄'}）`,
     `給与所得目安: ${formatYen(estimate.salaryIncome)}`,
-    `給与の源泉徴収税額: ${formatYen(number(salaryWithheldInput.value))}`,
+    `給与の源泉徴収税額: ${formatYen(estimate.salaryWithheld)}（${estimate.salaryWithheldSource === 'monthly' ? '月別合計' : '年額欄'}）`,
     `基礎控除: ${formatYen(estimate.basic)}`,
     `基礎控除以外の所得控除: ${formatYen(estimate.otherDeductions)}`,
     `課税所得目安: ${formatYen(estimate.taxable)}`,
@@ -712,7 +741,7 @@ function buildText(data){
     `源泉徴収後の差額目安: ${estimate.difference >= 0 ? formatYen(estimate.difference) + ' 納付側' : formatYen(Math.abs(estimate.difference)) + ' 還付側'}`,
     '',
     '月別:',
-    ...months.map(row => `${row.month}月: 売上 ${formatYen(number(row.revenue))} / 経費 ${formatYen(number(row.expense))} / 副業源泉 ${formatYen(number(row.withheld))} / ${row.done ? '整理済み' : '未整理'}${row.note ? `（${row.note}）` : ''}`),
+    ...months.map(row => `${row.month}月: 給与 ${formatYen(number(row.salaryRevenue))} / 給与源泉 ${formatYen(number(row.salaryWithheld))} / 副業売上 ${formatYen(number(row.revenue))} / 経費 ${formatYen(number(row.expense))} / 副業源泉 ${formatYen(number(row.withheld))} / ${row.done ? '整理済み' : '未整理'}${row.note ? `（${row.note}）` : ''}`),
     '',
     '書類:',
     ...data.docOptions.map(name => `${checkedDocs.includes(name) ? '済' : '未'} ${name}`),
@@ -729,11 +758,21 @@ function monthTemplate(row){
     <article class="month-item" data-month="${row.month}">
       <div class="month-head">
         <strong class="month-label">${row.month}月</strong>
-        <label class="check-line"><input type="checkbox" data-field="done"${row.done ? ' checked' : ''}>この月の入金・経費メモは整理済み</label>
+        <label class="check-line"><input type="checkbox" data-field="done"${row.done ? ' checked' : ''}>この月の給与・入金・経費メモは整理済み</label>
       </div>
       <div class="month-fields">
         <div>
-          <label class="label">売上・入金</label>
+          <label class="label">給与収入</label>
+          <input type="number" min="0" step="100" inputmode="numeric" data-field="salaryRevenue" value="${escapeHtml(row.salaryRevenue)}">
+          <span class="field-help">給与明細の総支給額などを、あとで源泉徴収票と照合するために残します。</span>
+        </div>
+        <div>
+          <label class="label">給与の源泉徴収税額</label>
+          <input type="number" min="0" step="100" inputmode="numeric" data-field="salaryWithheld" value="${escapeHtml(row.salaryWithheld)}">
+          <span class="field-help">給与明細の所得税欄を見ます。住民税や社会保険料とは分けて考えます。</span>
+        </div>
+        <div>
+          <label class="label">副業の売上・入金</label>
           <input type="number" min="0" step="100" inputmode="numeric" data-field="revenue" value="${escapeHtml(row.revenue)}">
         </div>
         <div>
@@ -767,9 +806,12 @@ function renderDocs(){
 }
 
 function renderTaxBreakdown(estimate){
+  const salaryRevenueLabel = estimate.salaryRevenueSource === 'monthly' ? '月別合計' : '年額欄';
+  const salaryWithheldLabel = estimate.salaryWithheldSource === 'monthly' ? '月別合計' : '年額欄';
   const lines = [
     ['仕事の種類', currentActivity().label],
     ['扱いのメモ', currentActivity().hint],
+    [`給与収入（${salaryRevenueLabel}）`, formatYen(estimate.salaryRevenue)],
     ['給与所得控除後の給与所得', formatYen(estimate.salaryIncome)],
     ['総合課税に入れた副業所得', formatYen(estimate.comprehensiveSide)],
     ['基礎控除', formatYen(estimate.basic)],
@@ -785,7 +827,7 @@ function renderTaxBreakdown(estimate){
   if(estimate.excludedIncome){
     lines.push(['試算から外した所得', formatYen(estimate.excludedIncome)]);
   }
-  lines.push(['給与の源泉徴収税額', formatYen(number(salaryWithheldInput.value))]);
+  lines.push([`給与の源泉徴収税額（${salaryWithheldLabel}）`, formatYen(estimate.salaryWithheld)]);
   lines.push(['副業報酬から源泉徴収された金額', formatYen(months.reduce((sum, row) => sum + number(row.withheld), 0))]);
   lines.push(['源泉徴収済み税額メモ合計', formatYen(estimate.withheld)]);
   taxBreakdown.innerHTML = lines.map(([label, value]) => `
@@ -799,6 +841,7 @@ function updateResults(){
   revenueTotal.textContent = formatYen(data.revenue);
   expenseTotal.textContent = formatYen(data.expense);
   incomeTotal.textContent = formatYen(data.income);
+  salaryRevenueTotal.textContent = formatYen(estimate.salaryRevenue);
   taxableTotal.textContent = formatYen(estimate.taxable);
   taxEstimateTotal.textContent = formatYen(estimate.nationalTax);
   taxDiffTotal.textContent = estimate.difference >= 0 ? `${formatYen(estimate.difference)}納付側` : `${formatYen(Math.abs(estimate.difference))}還付側`;
@@ -843,12 +886,14 @@ function shareUrl(){
 function downloadCsv(){
   const data = totals();
   const estimate = data.estimate;
-  const header = ['year','activity','tax_method','month','revenue','expense','income','side_income_withheld','organized','note','salary_revenue','salary_withheld','salary_income','other_deductions','taxable_income','estimated_income_tax_reconstruction','estimated_difference'];
+  const header = ['year','activity','tax_method','month','salary_revenue_month','salary_withheld_month','side_revenue','expense','side_income','side_income_withheld','organized','note','salary_revenue_used','salary_withheld_used','salary_income','other_deductions','taxable_income','estimated_income_tax_reconstruction','estimated_difference'];
   const body = months.map(row => [
     yearInput.value || currentYear(),
     selectedText(activityInput),
     selectedText(taxMethodInput),
     row.month,
+    number(row.salaryRevenue),
+    number(row.salaryWithheld),
     number(row.revenue),
     number(row.expense),
     Math.max(0, number(row.revenue) - number(row.expense)),
@@ -856,7 +901,7 @@ function downloadCsv(){
     row.done ? 'yes' : 'no',
     row.note,
     estimate.salaryRevenue,
-    number(salaryWithheldInput.value),
+    estimate.salaryWithheld,
     estimate.salaryIncome,
     estimate.otherDeductions,
     estimate.taxable,
@@ -886,6 +931,9 @@ document.querySelectorAll('[data-mode]').forEach(button => {
 
 document.querySelector('[data-fill="clear"]').addEventListener('click', () => {
   months = makeMonths();
+  salaryRevenueInput.value = 0;
+  salaryWithheldInput.value = 0;
+  deductionInput.value = 0;
   checkedDocs = [];
   render();
   setStatus('金額とチェックを空にしました。');
