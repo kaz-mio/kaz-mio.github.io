@@ -115,6 +115,7 @@ h1 em{font-style:italic;color:var(--blue)}
 .field{background:rgba(255,255,255,.72);border:1px solid rgba(24,36,43,.06);border-radius:8px;padding:.82rem;box-shadow:0 8px 22px rgba(24,52,71,.045)}
 .field.wide{grid-column:1/-1}
 .label{display:block;font-weight:900;font-size:.78rem;color:var(--navy);margin-bottom:.38rem}
+.field-help{display:block;color:var(--ink3);font-size:.7rem;line-height:1.55;margin-top:.38rem}
 select,input[type="number"],input[type="text"]{width:100%;border:1px solid rgba(24,36,43,.14);border-radius:8px;background:#fff;padding:.78rem .86rem;color:var(--ink);transition:border-color .2s,box-shadow .2s}
 select:hover,input:hover{border-color:rgba(31,95,122,.34)}
 select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,200,162,.18);outline:0}
@@ -267,14 +268,17 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
         <div class="field">
           <label class="label" for="salaryRevenueInput">給与収入</label>
           <input id="salaryRevenueInput" type="number" min="0" step="1000" inputmode="numeric" value="0">
+          <span class="field-help">会社の源泉徴収票にある「支払金額」を入れます。副業だけ見る場合は未入力のままで大丈夫です。</span>
         </div>
         <div class="field">
           <label class="label" for="salaryWithheldInput">給与の源泉徴収税額</label>
           <input id="salaryWithheldInput" type="number" min="0" step="1000" inputmode="numeric" value="0">
+          <span class="field-help">会社が給与から差し引いて納めた所得税などです。源泉徴収票の「源泉徴収税額」を入れます。</span>
         </div>
         <div class="field">
           <label class="label" for="deductionInput">基礎控除以外の所得控除</label>
           <input id="deductionInput" type="number" min="0" step="1000" inputmode="numeric" value="0">
+          <span class="field-help">社会保険料、生命保険料、医療費控除など、基礎控除以外の控除をまとめて入れます。</span>
         </div>
       </div>
       <div class="preset-row" aria-label="入力の切り替え">
@@ -283,6 +287,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
         <button class="btn secondary" type="button" data-fill="clear">金額を空にする</button>
       </div>
       <div class="section-label">Monthly Memo</div>
+      <p class="notice">月別の「源泉徴収された金額」は、副業の報酬や講師料などから取引先が差し引いた税額です。差し引かれていない入金やFX・株式の損益だけなら未入力のままで大丈夫です。</p>
       <div class="month-list" id="monthList"></div>
     </div>
 
@@ -694,19 +699,20 @@ function buildText(data){
     `売上メモ: ${formatYen(data.revenue)}`,
     `経費メモ: ${formatYen(data.expense)}`,
     `売上-経費のメモ: ${formatYen(data.income)}`,
-    data.withheld ? `源泉徴収された金額のメモ: ${formatYen(data.withheld)}` : '源泉徴収された金額のメモ: なし',
+    data.withheld ? `副業報酬から源泉徴収された金額: ${formatYen(data.withheld)}` : '副業報酬から源泉徴収された金額: なし',
     `給与収入: ${formatYen(estimate.salaryRevenue)}`,
     `給与所得目安: ${formatYen(estimate.salaryIncome)}`,
+    `給与の源泉徴収税額: ${formatYen(number(salaryWithheldInput.value))}`,
     `基礎控除: ${formatYen(estimate.basic)}`,
     `基礎控除以外の所得控除: ${formatYen(estimate.otherDeductions)}`,
     `課税所得目安: ${formatYen(estimate.taxable)}`,
     `所得税・復興特別所得税の目安: ${formatYen(estimate.nationalTax)}`,
     estimate.separatedIncome ? `${separateTaxLabel(estimate.method)}の住民税目安: ${formatYen(estimate.separatedLocalTax)}` : '申告分離の住民税目安: なし',
-    `源泉徴収済み税額メモ: ${formatYen(estimate.withheld)}`,
+    `源泉徴収済み税額メモ（給与+副業報酬）: ${formatYen(estimate.withheld)}`,
     `源泉徴収後の差額目安: ${estimate.difference >= 0 ? formatYen(estimate.difference) + ' 納付側' : formatYen(Math.abs(estimate.difference)) + ' 還付側'}`,
     '',
     '月別:',
-    ...months.map(row => `${row.month}月: 売上 ${formatYen(number(row.revenue))} / 経費 ${formatYen(number(row.expense))} / 源泉 ${formatYen(number(row.withheld))} / ${row.done ? '整理済み' : '未整理'}${row.note ? `（${row.note}）` : ''}`),
+    ...months.map(row => `${row.month}月: 売上 ${formatYen(number(row.revenue))} / 経費 ${formatYen(number(row.expense))} / 副業源泉 ${formatYen(number(row.withheld))} / ${row.done ? '整理済み' : '未整理'}${row.note ? `（${row.note}）` : ''}`),
     '',
     '書類:',
     ...data.docOptions.map(name => `${checkedDocs.includes(name) ? '済' : '未'} ${name}`),
@@ -735,8 +741,9 @@ function monthTemplate(row){
           <input type="number" min="0" step="100" inputmode="numeric" data-field="expense" value="${escapeHtml(row.expense)}">
         </div>
         <div>
-          <label class="label">源泉徴収された金額</label>
+          <label class="label">副業報酬から源泉徴収された金額</label>
           <input type="number" min="0" step="100" inputmode="numeric" data-field="withheld" value="${escapeHtml(row.withheld)}">
+          <span class="field-help">報酬明細や支払調書に「源泉徴収税額」「源泉所得税」とあれば入れます。</span>
         </div>
       </div>
       <div>
@@ -778,7 +785,9 @@ function renderTaxBreakdown(estimate){
   if(estimate.excludedIncome){
     lines.push(['試算から外した所得', formatYen(estimate.excludedIncome)]);
   }
-  lines.push(['源泉徴収済み税額メモ', formatYen(estimate.withheld)]);
+  lines.push(['給与の源泉徴収税額', formatYen(number(salaryWithheldInput.value))]);
+  lines.push(['副業報酬から源泉徴収された金額', formatYen(months.reduce((sum, row) => sum + number(row.withheld), 0))]);
+  lines.push(['源泉徴収済み税額メモ合計', formatYen(estimate.withheld)]);
   taxBreakdown.innerHTML = lines.map(([label, value]) => `
     <div class="tax-line"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>
   `).join('');
@@ -834,7 +843,7 @@ function shareUrl(){
 function downloadCsv(){
   const data = totals();
   const estimate = data.estimate;
-  const header = ['year','activity','tax_method','month','revenue','expense','income','withheld','organized','note','salary_revenue','salary_income','other_deductions','taxable_income','estimated_income_tax_reconstruction','estimated_difference'];
+  const header = ['year','activity','tax_method','month','revenue','expense','income','side_income_withheld','organized','note','salary_revenue','salary_withheld','salary_income','other_deductions','taxable_income','estimated_income_tax_reconstruction','estimated_difference'];
   const body = months.map(row => [
     yearInput.value || currentYear(),
     selectedText(activityInput),
@@ -847,6 +856,7 @@ function downloadCsv(){
     row.done ? 'yes' : 'no',
     row.note,
     estimate.salaryRevenue,
+    number(salaryWithheldInput.value),
     estimate.salaryIncome,
     estimate.otherDeductions,
     estimate.taxable,
