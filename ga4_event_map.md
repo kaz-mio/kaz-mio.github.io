@@ -52,7 +52,7 @@ Create these as event-scoped custom dimensions after the GA4 tag is active and e
 | Action label | `action_label` | Check which tool buttons are used |
 | Link URL | `link_url` | See which next page users choose |
 | Route intent | `route_intent` | Compare homepage route shortcuts |
-| Route key | `route_key` | Compare morning, outing, room, car, size, selfcare needs |
+| Route key | `route_key` | Compare morning, outing, room, car, size, budget, selfcare needs |
 | Route rank | `route_rank` | Check whether users choose the first, second, or third suggested page |
 | Affiliate network | `affiliate_network` | Separate Moshimo, A8, Amazon, Rakuten |
 | Affiliate offer | `affiliate_offer` | Compare LEANY and other offers |

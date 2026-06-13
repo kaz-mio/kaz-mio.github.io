@@ -151,6 +151,7 @@
       <button class="route-choice" type="button" data-route="room"><small>Room</small><strong>部屋に置けるか心配</strong><span>ベビーサークル、家具、通路幅、リビング圧迫。</span></button>
       <button class="route-choice" type="button" data-route="car"><small>Car</small><strong>車・玄関で詰まる</strong><span>チャイルドシート、ベビーカー、乗せ降ろし。</span></button>
       <button class="route-choice" type="button" data-route="size"><small>Size</small><strong>サイズや在庫で迷う</strong><span>服、靴、おむつ、消耗品の買いすぎ防止。</span></button>
+      <button class="route-choice" type="button" data-route="budget"><small>Budget</small><strong>育児まわりの出費を見たい</strong><span>おむつ、食事、外出、服。今月増えたところを整理。</span></button>
       <button class="route-choice" type="button" data-route="selfcare"><small>Self Care</small><strong>ママの自分ケアを戻したい</strong><span>運動再開、ウェア、続ける気持ちの作り方。</span></button>
     </div>
     <div class="route-results" id="routeResults" aria-live="polite"></div>
@@ -221,6 +222,15 @@
         ['まず読む', 'おむつサイズと買い置き', 'サイズアップのサインと買い置きしすぎない考え方です。', 'diaper_size_stock_guide.html'],
         ['診断', 'おむつサイズ＆買い置きチェック', '体重、在庫、交換枚数から買いすぎない量を見ます。', 'diaper_size_check.html'],
         ['診断', '子ども服・靴サイズチェック', '身長と足長から、サイズ選びの目安を確認できます。', 'kids_size_check.html']
+      ]
+    },
+    budget: {
+      title: '子育て家計メモルート',
+      note: '細かく家計簿をつける前に、育児まわりの支出だけを今月分として軽く見ます。',
+      cards: [
+        ['まず使う', '子育て家計メモ', 'おむつ、食事、服、おでかけなど、今月増えたところを整理できます。', 'childcare_budget_memo.html'],
+        ['一緒に見る', '育児消耗品ストック管理ツール', '残り日数と買い時を見て、買いすぎや買い忘れを減らします。', 'baby_stock_manager.html'],
+        ['出発前に見る', '子連れおでかけ持ち物チェック', '外食やおでかけで増えやすい持ち物を、行き先ごとに確認できます。', 'outing_checklist.html']
       ]
     },
     selfcare: {
