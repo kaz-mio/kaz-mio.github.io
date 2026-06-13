@@ -27,7 +27,9 @@ Main flow:
 | `kazmio_tool_action` | Any tool/check page button or link is clicked | `tool_slug`, `tool_label`, `action_type`, `action_label`, `action_id`, `link_url` | Tool action detail |
 | `kazmio_route_click` | A homepage route or commerce shortcut is clicked | `page_slug`, `route_intent`, `link_url`, `link_text`, `placement`, `campaign` | Which homepage route pushes users into buying guides |
 | `kazmio_route_select` | A user selects a concern in `mio_route_finder.html` | `route_key`, `route_title` | Which concern users bring to the route finder |
-| `kazmio_route_result_click` | A user clicks a result link from the route finder | `route_key`, `route_rank`, `link_url`, `link_text` | Route finder to guide/tool/review movement |
+| `kazmio_route_result_click` | A user clicks a result link from the route finder | `route_key`, `route_rank`, `route_stage`, `link_url`, `link_text` | Route finder to guide/tool/review movement |
+| `kazmio_route_copy` | A user copies the recommended route order from `mio_route_finder.html` | `route_key`, `route_title` | Which route plans are worth saving |
+| `kazmio_route_share` | A user copies a route-specific link from `mio_route_finder.html` | `route_key`, `route_title` | Which route plans users may reopen or share |
 | `kazmio_affiliate_click` | Any affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | Sitewide affiliate click tracking |
 | `kazmio_search_preset` | A preset is selected in `family_stay_search.html` | `search_group`, `preset_label`, `preset_extra` | See whether lodging or meal-condition presets are used |
 | `leany_affiliate_click` | A LEANY affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | LEANY article/guide/diagnosis click tracking |

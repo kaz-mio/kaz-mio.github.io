@@ -91,6 +91,15 @@ h1 em{font-style:italic;color:var(--blue);}
 .hero-card .memo{position:absolute;left:1.8rem;right:1.8rem;bottom:1.8rem;background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.7);border-radius:8px;padding:1rem;box-shadow:var(--soft);}
 .memo b{font-family:'Shippori Mincho',serif;font-size:1rem;display:block;margin-bottom:.2rem;}
 .memo p{font-size:.78rem;color:var(--ink2);}
+.tool-brief{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;box-shadow:var(--soft);padding:1.25rem;margin:0 0 1.3rem;}
+.tool-brief-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1rem;}
+.tool-brief-head h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.35;}
+.tool-brief-head p{max-width:34rem;color:var(--ink2);font-size:.84rem;line-height:1.8;}
+.tool-brief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
+.tool-brief-card{background:#fffdf8;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:1rem;display:flex;flex-direction:column;gap:.45rem;min-height:148px;}
+.tool-brief-card small{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.16em;color:var(--coral);text-transform:uppercase;}
+.tool-brief-card strong{font-family:'Shippori Mincho',serif;font-size:1.03rem;line-height:1.45;color:var(--navy);}
+.tool-brief-card span{font-size:.76rem;color:var(--ink2);line-height:1.7;margin-top:auto;}
 .app-shell{display:grid;grid-template-columns:minmax(0,.88fr) minmax(360px,1.12fr);gap:1.3rem;align-items:start;}
 .panel,.result-panel,.tips{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,253,247,.98));border:1px solid rgba(24,36,43,.08);border-radius:8px;box-shadow:0 22px 60px rgba(24,52,71,.12);padding:1.45rem;position:relative;overflow:hidden;}
 .panel::before,.result-panel::before,.tips::before{content:'';position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--coral),var(--sun),var(--aqua));}
@@ -127,7 +136,7 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
 .item:hover{background:#fffdf7;}
 .item input{margin-top:.25rem;accent-color:var(--coral);flex-shrink:0;}
 .item span{font-size:.82rem;color:var(--ink2);line-height:1.6;}
-.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin:1rem 0;}
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin:1rem 0;}
 .output{width:100%;min-height:150px;border:1px solid rgba(24,36,43,.12);border-radius:8px;background:#fff;padding:1rem;color:var(--ink2);line-height:1.8;resize:vertical;}
 .notice{font-size:.72rem;color:var(--ink3);line-height:1.7;margin-top:.65rem;}
 .tips{margin-top:1.3rem;}
@@ -164,7 +173,7 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
 .ft-nav a:hover{color:#fff;transform:translateY(-2px);}
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38);}
 @media(max-width:980px){.hero,.app-shell,.outing-pick-grid{grid-template-columns:1fr;}.tip-grid{grid-template-columns:1fr;}}
-@media(max-width:720px){.field-grid,.items,.tools,.action-row,.outing-product-actions{grid-template-columns:1fr;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.panel,.result-panel,.tips{padding:1rem;}.wrap{padding:2.6rem 1rem 4rem;}.lead,.panel p,.result-panel p,.tip p{overflow-wrap:anywhere;}}
+@media(max-width:720px){.field-grid,.items,.tools,.action-row,.outing-product-actions,.tool-brief-grid{grid-template-columns:1fr;}.tool-brief-head{display:block;}.tool-brief-head p{margin-top:.55rem;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.panel,.result-panel,.tips{padding:1rem;}.wrap{padding:2.6rem 1rem 4rem;}.lead,.panel p,.result-panel p,.tip p{overflow-wrap:anywhere;}}
 @media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}h1{font-size:2.35rem;}.ft-inner{align-items:flex-start;flex-direction:column;}}
 </style>
 <script src="assets/analytics.js"></script>
@@ -202,6 +211,18 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
     <div class="hero-card">
       <img src="assets/kaz-mio-adventure-hero.png" alt="家族でおでかけ準備をするイメージイラスト">
       <div class="memo"><b>出発前に、1分だけ確認。</b><p>全部を完璧に持つより、「今日の行き先で困りやすいもの」を先に見るためのチェックリストです。</p></div>
+    </div>
+  </section>
+
+  <section class="tool-brief" aria-label="このツールでできること">
+    <div class="tool-brief-head">
+      <h2>作ったリストを、そのまま出発前メモに。</h2>
+      <p>条件を選ぶと自動でリストが変わります。テキスト、画像、条件リンクとして残せるので、あとから同じ状態で開けます。</p>
+    </div>
+    <div class="tool-brief-grid">
+      <article class="tool-brief-card"><small>01 / Build</small><strong>条件でリストを作る</strong><span>年齢、行き先、季節、移動手段、外出時間から持ち物を整理します。</span></article>
+      <article class="tool-brief-card"><small>02 / Keep</small><strong>コピー・画像保存</strong><span>スマホのメモや写真フォルダに入れて、出発前に見返せます。</span></article>
+      <article class="tool-brief-card"><small>03 / Share</small><strong>条件リンクをコピー</strong><span>同じ条件のリストを、別の端末でも開けるようにできます。</span></article>
     </div>
   </section>
 
@@ -284,6 +305,7 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
       <div class="tools">
         <button class="btn" id="copyBtn" type="button">テキストをコピー</button>
         <button class="btn" id="saveImageBtn" type="button">画像で保存</button>
+        <button class="btn" id="shareBtn" type="button">条件リンクをコピー</button>
         <button class="btn secondary" id="selectAllBtn" type="button">すべてチェック</button>
       </div>
       <textarea class="output" id="textOutput" readonly aria-label="コピー用の持ち物リスト"></textarea>
@@ -494,6 +516,8 @@ const statusText = document.getElementById('statusText');
 const extraButtons = [...document.querySelectorAll('[data-extra]')];
 const checkedState = new Set();
 const activeExtras = new Set(['meal']);
+const STORAGE_KEY = 'kazmio_outing_checklist_v1';
+let stateReady = false;
 
 const labels = {
   age: { baby:'0歳・ねんね/抱っこ期', one:'1歳前後・よちよち期', two:'2歳前後・自分で歩く期', preschool:'3歳以上・未就学' },
@@ -572,6 +596,53 @@ function getSettings() {
   };
 }
 
+function collectState() {
+  const settings = getSettings();
+  return {
+    a: settings.age,
+    o: settings.outing,
+    s: settings.season,
+    t: settings.transport,
+    d: settings.duration,
+    m: settings.memo,
+    e: settings.extras
+  };
+}
+
+function setSelectValue(select, value) {
+  if ([...select.options].some(option => option.value === value)) select.value = value;
+}
+
+function applyState(state) {
+  if (!state || typeof state !== 'object') return false;
+  setSelectValue(selects.age, state.a || selects.age.value);
+  setSelectValue(selects.outing, state.o || selects.outing.value);
+  setSelectValue(selects.season, state.s || selects.season.value);
+  setSelectValue(selects.transport, state.t || selects.transport.value);
+  setSelectValue(selects.duration, state.d || selects.duration.value);
+  memoInput.value = state.m || '';
+  activeExtras.clear();
+  if (Array.isArray(state.e)) {
+    state.e.forEach(value => {
+      if (labels.extra[value]) activeExtras.add(value);
+    });
+  }
+  return true;
+}
+
+function saveState() {
+  if (!stateReady) return;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState())); } catch {}
+}
+
+function buildShareUrl() {
+  const state = collectState();
+  Object.keys(state).forEach(key => {
+    if (state[key] === '' || (Array.isArray(state[key]) && state[key].length === 0)) delete state[key];
+  });
+  return `${location.origin}${location.pathname}?s=${encodeURIComponent(JSON.stringify(state))}`;
+}
+
 function buildList() {
   const settings = getSettings();
   const result = {};
@@ -643,12 +714,31 @@ function renderList() {
   });
   itemCount.textContent = `${total} items`;
   textOutput.value = buildText(settings, result);
+  saveState();
 }
 
 function setStatus(text) {
   statusText.textContent = text;
   window.clearTimeout(setStatus.timer);
   setStatus.timer = window.setTimeout(() => statusText.textContent = '条件を変えると自動で更新されます。', 2600);
+}
+
+async function copyText(text, successText) {
+  try {
+    await navigator.clipboard.writeText(text);
+    setStatus(successText);
+  } catch {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    area.remove();
+    setStatus(successText);
+  }
 }
 
 function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
@@ -733,6 +823,19 @@ function saveImage() {
   setStatus('画像を保存しました。');
 }
 
+const initParams = new URLSearchParams(location.search);
+let restored = false;
+if (initParams.get('s')) {
+  try { restored = applyState(JSON.parse(initParams.get('s'))); } catch {}
+}
+if (!restored) {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) restored = applyState(JSON.parse(saved));
+  } catch {}
+}
+stateReady = true;
+
 Object.values(selects).forEach(select => select.addEventListener('change', renderList));
 memoInput.addEventListener('input', renderList);
 document.getElementById('generateBtn').addEventListener('click', renderList);
@@ -748,16 +851,12 @@ document.getElementById('selectAllBtn').addEventListener('click', () => {
   setStatus('すべてチェックしました。');
 });
 document.getElementById('copyBtn').addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(textOutput.value);
-    setStatus('テキストをコピーしました。');
-  } catch {
-    textOutput.select();
-    document.execCommand('copy');
-    setStatus('テキストをコピーしました。');
-  }
+  await copyText(textOutput.value, 'テキストをコピーしました。');
 });
 document.getElementById('saveImageBtn').addEventListener('click', saveImage);
+document.getElementById('shareBtn').addEventListener('click', async () => {
+  await copyText(buildShareUrl(), '条件リンクをコピーしました。');
+});
 extraButtons.forEach(button => {
   button.classList.toggle('is-active', activeExtras.has(button.dataset.extra));
   button.addEventListener('click', () => {

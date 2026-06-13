@@ -107,6 +107,11 @@
 .result-card span{color:var(--muted);font-size:.8rem;line-height:1.7}
 .result-card a{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:999px;background:#222;color:#fff;font-size:.8rem;font-weight:900;padding:.55rem .85rem;transition:transform .2s,background .2s}
 .result-card a:hover{transform:translateY(-2px);background:#dfcf98}
+.route-result-actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1rem}
+.route-copy-btn{border:0;border-radius:999px;background:#222;color:#fff;min-height:42px;padding:.55rem .95rem;font-weight:900;cursor:pointer;box-shadow:0 12px 24px rgba(24,36,43,.14);transition:transform .2s,background .2s,box-shadow .2s}
+.route-copy-btn:hover{transform:translateY(-2px);background:#dfcf98;box-shadow:0 16px 32px rgba(201,182,117,.24)}
+.route-copy-btn.ghost{background:#fff;color:#514c43;border:1px solid var(--line);box-shadow:0 8px 20px rgba(24,36,43,.08)}
+.route-copy-btn.ghost:hover{background:#fffaf0;border-color:#dfcf98;color:#9b8645}
 .route-note{margin-top:1rem;padding:1rem;border-radius:8px;background:#f7f4ed;color:#6f685b;font-size:.86rem;line-height:1.8}
 .route-section{margin:1.2rem 0;padding:1.35rem;background:#fff;border:1px solid var(--line);border-radius:8px}
 .route-section h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,3vw,2.15rem);line-height:1.35;margin-bottom:.7rem}
@@ -116,7 +121,7 @@
 .flow-card small{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;color:#c9b675;letter-spacing:.14em}
 .flow-card strong{display:block;font-family:'Shippori Mincho',serif;margin:.3rem 0;line-height:1.45}
 .flow-card span{display:block;color:var(--muted);font-size:.78rem;line-height:1.65}
-@media(max-width:900px){.route-hero{min-height:560px;margin-top:-2.2rem}.route-app-head,.route-result-head{grid-template-columns:1fr}.route-choices,.route-result-grid,.route-flow{grid-template-columns:1fr}.route-reset,.route-pill{justify-self:start}}
+@media(max-width:900px){.route-hero{min-height:560px;margin-top:-2.2rem}.route-app-head,.route-result-head{grid-template-columns:1fr}.route-choices,.route-result-grid,.route-flow{grid-template-columns:1fr}.route-reset,.route-pill{justify-self:start}.route-result-actions{display:grid}.route-copy-btn{width:100%}}
 </style>
 <script src="assets/analytics.js"></script>
 </head>
@@ -232,23 +237,82 @@
   var results = document.getElementById('routeResults');
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.route-choice'));
   var reset = document.getElementById('routeReset');
+  var storageKey = 'kazmio_route_finder_v1';
+  var activeRouteKey = 'morning';
+  var stageLabels = ['まず見る', '次に確認', '余裕があれば'];
 
   function track(eventName, params){
     if(window.kazMioTrack){ window.kazMioTrack(eventName, params); }
   }
 
+  function escapeHtml(value){
+    return String(value).replace(/[&<>"']/g, function(char){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[char];
+    });
+  }
+
+  function saveRoute(key){
+    try { localStorage.setItem(storageKey, key); } catch {}
+  }
+
+  function routeUrl(key){
+    var url = new URL(location.href);
+    url.searchParams.set('route', key);
+    return url.toString();
+  }
+
+  function routeText(key){
+    var route = routes[key] || routes.morning;
+    var lines = ['KAZ & MIO 迷ったらここから', route.title, route.note, ''];
+    route.cards.forEach(function(card, index){
+      lines.push((index + 1) + '. ' + stageLabels[index] + ' - ' + card[1]);
+      lines.push('   ' + card[2]);
+      lines.push('   https://kaz-mio.github.io/' + card[3]);
+    });
+    return lines.join('\n');
+  }
+
+  function copyText(text, button, doneText){
+    var original = button.textContent;
+    var finish = function(label){
+      button.textContent = label;
+      window.setTimeout(function(){ button.textContent = original; }, 1500);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ finish(doneText); }).catch(function(){ finish('コピーできませんでした'); });
+      return;
+    }
+    var area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    try {
+      document.execCommand('copy');
+      finish(doneText);
+    } catch {
+      finish('コピーできませんでした');
+    }
+    area.remove();
+  }
+
   function render(key, shouldTrack){
     var route = routes[key] || routes.morning;
+    activeRouteKey = routes[key] ? key : 'morning';
     buttons.forEach(function(button){
-      button.classList.toggle('is-active', button.dataset.route === key);
+      button.classList.toggle('is-active', button.dataset.route === activeRouteKey);
     });
-    results.innerHTML = '<div class="route-result-head"><div><h2>' + route.title + '</h2><p>' + route.note + '</p></div><span class="route-pill">選んだ悩み: ' + key + '</span></div>' +
+    results.innerHTML = '<div class="route-result-head"><div><h2>' + escapeHtml(route.title) + '</h2><p>' + escapeHtml(route.note) + '</p></div><span class="route-pill">選んだ悩み: ' + escapeHtml(activeRouteKey) + '</span></div>' +
       '<div class="route-result-grid">' + route.cards.map(function(card, index){
-        return '<article class="result-card"><small>' + card[0] + '</small><strong>' + card[1] + '</strong><span>' + card[2] + '</span><a href="' + card[3] + '" data-route-result="' + key + '" data-route-rank="' + (index + 1) + '">このページを見る</a></article>';
+        return '<article class="result-card"><small>STEP ' + String(index + 1).padStart(2, '0') + ' / ' + escapeHtml(stageLabels[index]) + '</small><strong>' + escapeHtml(card[1]) + '</strong><span>' + escapeHtml(card[2]) + '</span><a href="' + escapeHtml(card[3]) + '" data-route-result="' + escapeHtml(activeRouteKey) + '" data-route-rank="' + (index + 1) + '" data-route-stage="' + escapeHtml(stageLabels[index]) + '">このページを見る</a></article>';
       }).join('') + '</div>' +
+      '<div class="route-result-actions"><button class="route-copy-btn" type="button" data-route-copy>この順番をコピー</button><button class="route-copy-btn ghost" type="button" data-route-share>このルートのリンクをコピー</button></div>' +
       '<div class="route-note">迷ったら、まず1枚目のページからで大丈夫です。そこから必要なページだけ足していくと、買う前の確認漏れが減ります。</div>';
+    saveRoute(activeRouteKey);
     if(shouldTrack){
-      track('kazmio_route_select', { route_key: key, route_title: route.title });
+      track('kazmio_route_select', { route_key: activeRouteKey, route_title: route.title });
     }
   }
 
@@ -259,18 +323,39 @@
   });
 
   results.addEventListener('click', function(event){
+    var copyButton = event.target.closest('[data-route-copy]');
+    if(copyButton){
+      copyText(routeText(activeRouteKey), copyButton, 'コピーしました');
+      track('kazmio_route_copy', { route_key: activeRouteKey, route_title: routes[activeRouteKey].title });
+      return;
+    }
+    var shareButton = event.target.closest('[data-route-share]');
+    if(shareButton){
+      copyText(routeUrl(activeRouteKey), shareButton, 'リンクをコピーしました');
+      track('kazmio_route_share', { route_key: activeRouteKey, route_title: routes[activeRouteKey].title });
+      return;
+    }
     var link = event.target.closest('a[data-route-result]');
     if(!link){ return; }
     track('kazmio_route_result_click', {
       route_key: link.dataset.routeResult,
       route_rank: link.dataset.routeRank,
+      route_stage: link.dataset.routeStage,
       link_url: link.getAttribute('href'),
       link_text: link.textContent
     });
   });
 
-  reset.addEventListener('click', function(){ render('morning', true); });
-  render('morning', false);
+  reset.addEventListener('click', function(){
+    try { localStorage.removeItem(storageKey); } catch {}
+    render('morning', true);
+  });
+  var params = new URLSearchParams(location.search);
+  var initialRoute = params.get('route');
+  if(!routes[initialRoute]){
+    try { initialRoute = localStorage.getItem(storageKey); } catch {}
+  }
+  render(routes[initialRoute] ? initialRoute : 'morning', false);
 })();
 </script>
 </body>

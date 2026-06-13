@@ -120,6 +120,15 @@ select{appearance:auto;cursor:pointer;}
 .focus-card small,.preset-label{font-family:'Nunito',sans-serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);font-weight:900;}
 .focus-card strong{font-family:'Shippori Mincho',serif;font-size:1rem;line-height:1.45;color:var(--navy);}
 .focus-card span{font-size:.76rem;color:var(--ink2);line-height:1.7;margin-top:auto;}
+.tool-brief{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;box-shadow:var(--soft);padding:1.3rem;margin:0 0 2rem;}
+.tool-brief-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1rem;}
+.tool-brief-head h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.35;}
+.tool-brief-head p{max-width:34rem;color:var(--ink2);font-size:.84rem;line-height:1.8;}
+.tool-brief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
+.tool-brief-card{background:#fffdf8;border:1px solid var(--line);border-radius:8px;padding:1rem;display:flex;flex-direction:column;gap:.45rem;min-height:150px;}
+.tool-brief-card small{font-family:'Nunito',sans-serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);font-weight:900;}
+.tool-brief-card strong{font-family:'Shippori Mincho',serif;font-size:1.03rem;line-height:1.45;color:var(--navy);}
+.tool-brief-card span{font-size:.76rem;color:var(--ink2);line-height:1.7;margin-top:auto;}
 .preset-block{background:rgba(255,255,255,.62);border:1px dashed rgba(24,36,43,.16);border-radius:8px;padding:.8rem;margin:.2rem 0 1rem;display:flex;align-items:center;flex-wrap:wrap;gap:.55rem;}
 .preset-btn{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--navy);font:inherit;font-size:.76rem;font-weight:900;line-height:1.2;padding:.58rem .82rem;cursor:pointer;box-shadow:0 6px 16px rgba(24,52,71,.06);transition:transform .2s,box-shadow .2s,border-color .2s,background .2s,color .2s;}
 .preset-btn:hover{transform:translateY(-2px);border-color:rgba(239,125,103,.42);box-shadow:var(--soft);color:var(--coral-d);}
@@ -166,7 +175,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 .ft-nav a{font-size:.74rem;font-weight:800;text-decoration:none;color:rgba(255,255,255,.68);transition:color .2s,transform .2s;}
 .ft-nav a:hover{color:#fff;transform:translateY(-2px);}
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38);}
-@media(max-width:980px){.hero,.form-row,.focus-strip,.template-grid{grid-template-columns:1fr;}.providers{grid-template-columns:repeat(2,1fr);}.checks{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}.focus-grid{grid-template-columns:1fr;}}
+@media(max-width:980px){.hero,.form-row,.focus-strip,.template-grid{grid-template-columns:1fr;}.providers{grid-template-columns:repeat(2,1fr);}.checks{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}.focus-grid,.tool-brief-grid{grid-template-columns:1fr;}.tool-brief-head{display:block;}.tool-brief-head p{margin-top:.55rem;}}
 @media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}.wrap{padding:2.6rem 1rem 4rem;}h1{font-size:2.45rem;}.lead,.panel-head p,.note,.tip p,.memo p{overflow-wrap:anywhere;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.search-panel{padding:1rem;}.panel-head{display:block;}.panel-head p{margin-top:.6rem;}.checks,.providers{grid-template-columns:1fr;}.query-box{grid-template-columns:1fr;}.copy-btn{width:100%;}.query-actions{width:100%;}.preset-btn.clear{margin-left:0;}.ft-inner{align-items:flex-start;flex-direction:column;}}
 @media(max-width:520px){.hd,.wrap,.ft{width:100vw;max-width:390px;margin-left:0;margin-right:0;overflow:hidden;}.hero,.hero-card,.search-panel,.grid,.template,.focus-strip,.ft-inner{max-width:358px;}.provider,.check,input[type="text"],input[type="date"],input[type="number"],select,textarea{max-width:100%;}}
 </style>
@@ -216,6 +225,18 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <article class="focus-card"><small>Stay</small><strong>夜の過ごし方</strong><span>ベッド、畳、敷布団、子ども用備品。眠る前後の不安を先に減らします。</span></article>
       <article class="focus-card"><small>Bath</small><strong>お風呂まわり</strong><span>洗い場付き、バストイレ別、貸切風呂。子どもを洗いやすい形を見ます。</span></article>
       <article class="focus-card"><small>Food</small><strong>座る・待つ・食べる</strong><span>座敷、個室、キッズチェア、予約可。外食中に困りやすい場面から探します。</span></article>
+    </div>
+  </section>
+
+  <section class="tool-brief" aria-label="このツールでできること">
+    <div class="tool-brief-head">
+      <h2>探す前の条件を、持ち歩ける形にする。</h2>
+      <p>宿と食事場所を別々に整えられます。条件は自動保存され、検索語や共有リンク、問い合わせ文例として持ち帰れます。</p>
+    </div>
+    <div class="tool-brief-grid">
+      <article class="tool-brief-card"><small>01 / Search</small><strong>宿と食事を分けて探す</strong><span>寝具・お風呂・座席・待ち時間など、場面ごとに条件を足せます。</span></article>
+      <article class="tool-brief-card"><small>02 / Share</small><strong>条件リンクをコピー</strong><span>選んだ地域、年齢、条件を同じ状態で開けるリンクにできます。</span></article>
+      <article class="tool-brief-card"><small>03 / Message</small><strong>確認文例をコピー</strong><span>予約前に聞きたいことを、宿やお店へ送りやすい文章にできます。</span></article>
     </div>
   </section>
 
