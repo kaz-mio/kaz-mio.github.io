@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>副業・申告準備メモ｜毎月の売上・経費・書類を軽く整理 | KAZ &amp; MIO | LIFE, LIGHTLY</title>
-<meta name="description" content="会社勤めをしながらの副業や、家で仕事をしている人向けに、毎月の売上・経費・書類を軽く残しておける申告準備メモです。税額計算ではなく、年末調整や確定申告前に見返しやすい形で整理します。">
+<meta name="description" content="会社勤めをしながらの副業や、家で仕事をしている人向けに、毎月の売上・経費・書類を軽く残しておける申告準備メモです。一般的な条件での所得税・復興特別所得税の参考試算もできます。">
 <link rel="canonical" href="https://kaz-mio.github.io/side_income_tax_memo.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="副業・申告準備メモ">
@@ -47,7 +47,7 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type":"Question","name":"このページで税額を計算できますか？","acceptedAnswer":{"@type":"Answer","text":"税額計算や申告要否の判定はできません。毎月の売上、経費、書類をあとから見返しやすく残すための準備メモです。"}},
+        {"@type":"Question","name":"このページで税額を計算できますか？","acceptedAnswer":{"@type":"Answer","text":"一般的な条件での所得税・復興特別所得税の参考試算ができます。最終的な申告額や申告要否は、国税庁の確定申告書等作成コーナーや専門家に確認してください。"}},
         {"@type":"Question","name":"入力した内容はどこに保存されますか？","acceptedAnswer":{"@type":"Answer","text":"入力内容は使っているブラウザ内に保存されます。サーバーには送信されません。"}}
       ]
     }
@@ -111,6 +111,7 @@ h1 em{font-style:italic;color:var(--blue)}
 .panel h2,.result-panel h2,.tips h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,3vw,2.25rem);line-height:1.3;margin-bottom:.55rem}
 .panel p,.result-panel p{color:var(--ink2);font-size:.86rem;line-height:1.85;margin-bottom:1rem}
 .setting-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem}
+.tax-setting-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin:0 0 1rem}
 .field{background:rgba(255,255,255,.72);border:1px solid rgba(24,36,43,.06);border-radius:8px;padding:.82rem;box-shadow:0 8px 22px rgba(24,52,71,.045)}
 .field.wide{grid-column:1/-1}
 .label{display:block;font-weight:900;font-size:.78rem;color:var(--navy);margin-bottom:.38rem}
@@ -126,7 +127,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
 .check-line{display:flex;gap:.55rem;align-items:flex-start;color:var(--ink2);font-size:.8rem;line-height:1.65}
 .check-line input{margin-top:.34rem;accent-color:var(--coral)}
 .doc-list{display:grid;gap:.55rem;margin-top:.75rem}
-.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1rem 0}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem;margin:1rem 0}
 .summary-card{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:1rem;box-shadow:var(--soft)}
 .summary-card small{display:block;font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.14em;color:var(--coral);text-transform:uppercase;margin-bottom:.35rem}
 .summary-card strong{font-family:'Shippori Mincho',serif;font-size:1.34rem;line-height:1.25}
@@ -140,6 +141,10 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
 .task-card h3{font-size:.95rem;color:var(--navy)}
 .task-card p{margin:.15rem 0 0;font-size:.78rem;color:var(--ink2)}
 .task-chip{font-weight:900;color:var(--coral-d);white-space:nowrap}
+.tax-breakdown{display:grid;gap:.55rem;margin-top:.75rem}
+.tax-line{display:grid;grid-template-columns:1fr auto;gap:.7rem;background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:.78rem .9rem;font-size:.8rem;color:var(--ink2);box-shadow:var(--soft)}
+.tax-line strong{color:var(--navy)}
+.source-note{background:#f5fbf6;border:1px solid rgba(31,95,122,.12);border-radius:8px;padding:.85rem .95rem;color:var(--ink2);font-size:.76rem;line-height:1.75;margin-top:.75rem}
 .output{width:100%;min-height:178px;border:1px solid rgba(24,36,43,.12);border-radius:8px;background:#fff;padding:1rem;color:var(--ink2);line-height:1.8;resize:vertical}
 .notice{font-size:.72rem;color:var(--ink3);line-height:1.7;margin-top:.65rem}
 .official-links{display:grid;gap:.55rem;margin-top:.75rem}
@@ -159,7 +164,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
 .ft-nav a:hover{color:#fff;transform:translateY(-2px)}
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38)}
 @media(max-width:1040px){.hero,.app-shell{grid-template-columns:1fr}.tip-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:760px){html,body{width:100%;max-width:100%;overflow-x:hidden}.setting-grid,.month-fields,.summary-grid,.tool-brief-grid{grid-template-columns:1fr}.tool-brief-head{display:block}.tool-brief-head p{margin-top:.55rem}.wrap{width:100%;max-width:100vw;padding:2.6rem .9rem 4rem;overflow:hidden}.hero,.hero>*,.hero-card,.tool-brief,.tool-brief-head,.tool-brief-grid,.app-shell,.app-shell>*,.panel,.result-panel,.tips{width:100%;max-width:100%;min-width:0}.hero-actions{display:grid}.hero-card img{height:290px}.memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem}.panel,.result-panel,.tips{padding:1rem}h1,.lead,.panel h2,.panel p,.result-panel h2,.result-panel p,.tip p,.tool-brief-head h2,.tool-brief-head p,.tool-brief-card span{overflow-wrap:anywhere;line-break:strict}.lead{font-size:.95rem;line-height:1.95}.tip-grid{grid-template-columns:1fr}.task-card{grid-template-columns:1fr}.tools .btn,.action-row .btn,.hero-actions a,.preset-row .btn{width:100%}}
+@media(max-width:760px){html,body{width:100%;max-width:100%;overflow-x:hidden}.setting-grid,.tax-setting-grid,.month-fields,.summary-grid,.tool-brief-grid{grid-template-columns:1fr}.tool-brief-head{display:block}.tool-brief-head p{margin-top:.55rem}.wrap{width:100%;max-width:100vw;padding:2.6rem .9rem 4rem;overflow:hidden}.hero,.hero>*,.hero-card,.tool-brief,.tool-brief-head,.tool-brief-grid,.app-shell,.app-shell>*,.panel,.result-panel,.tips{width:100%;max-width:100%;min-width:0}.hero-actions{display:grid}.hero-card img{height:290px}.memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem}.panel,.result-panel,.tips{padding:1rem}h1,.lead,.panel h2,.panel p,.result-panel h2,.result-panel p,.tip p,.tool-brief-head h2,.tool-brief-head p,.tool-brief-card span{overflow-wrap:anywhere;line-break:strict}.lead{font-size:.95rem;line-height:1.95}.tip-grid{grid-template-columns:1fr}.task-card,.tax-line{grid-template-columns:1fr}.tools .btn,.action-row .btn,.hero-actions a,.preset-row .btn{width:100%}}
 @media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1}h1{font-size:2rem}.tool-brief-head h2,.panel h2,.result-panel h2{font-size:1.45rem}.ft-inner{align-items:flex-start;flex-direction:column}}
 </style>
 <script src="assets/analytics.js"></script>
@@ -192,7 +197,7 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
     </div>
     <div class="hero-card">
       <img src="assets/kaz-mio-adventure-hero.webp" alt="KAZ & MIOの暮らしメモのイメージ" width="1536" height="864">
-      <div class="memo"><b>税額計算ではなく、準備のメモ。</b><p>入力内容はブラウザ内に保存されます。申告要否や税額は、公式情報や専門家に確認してください。</p></div>
+      <div class="memo"><b>毎月の記録と、税額の参考試算。</b><p>入力内容はブラウザ内に保存されます。最終的な申告額や申告要否は、公式情報や専門家に確認してください。</p></div>
     </div>
   </section>
 
@@ -231,12 +236,42 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
             <option value="shop">ハンドメイド・販売</option>
             <option value="lesson">講師・サポート</option>
             <option value="affiliate">ブログ・SNS・紹介料</option>
+            <option value="investmentListed">投資（上場株式・投資信託）</option>
+            <option value="dividendListed">配当・分配金</option>
+            <option value="crypto">暗号資産</option>
+            <option value="fleaMarket">フリマ・ネット販売</option>
+            <option value="rental">民泊・貸付・不動産まわり</option>
+            <option value="gig">配達・単発業務</option>
+            <option value="secondSalary">別の勤務先の給与</option>
+            <option value="nft">NFT・デジタル販売</option>
             <option value="other">その他</option>
           </select>
         </div>
         <div class="field">
           <label class="label" for="memoInput">メモ名</label>
           <input id="memoInput" type="text" value="副業・申告準備メモ">
+        </div>
+      </div>
+      <div class="tax-setting-grid" aria-label="参考税額試算の入力">
+        <div class="field">
+          <label class="label" for="taxMethodInput">試算の扱い</label>
+          <select id="taxMethodInput">
+            <option value="comprehensive">総合課税に入れて試算</option>
+            <option value="separateStock">株式等の申告分離で試算</option>
+            <option value="noFileInvestment">申告しない選択・非課税扱いで除外</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="label" for="salaryRevenueInput">給与収入</label>
+          <input id="salaryRevenueInput" type="number" min="0" step="1000" inputmode="numeric" value="0">
+        </div>
+        <div class="field">
+          <label class="label" for="salaryWithheldInput">給与の源泉徴収税額</label>
+          <input id="salaryWithheldInput" type="number" min="0" step="1000" inputmode="numeric" value="0">
+        </div>
+        <div class="field">
+          <label class="label" for="deductionInput">基礎控除以外の所得控除</label>
+          <input id="deductionInput" type="number" min="0" step="1000" inputmode="numeric" value="0">
         </div>
       </div>
       <div class="preset-row" aria-label="入力の切り替え">
@@ -255,9 +290,15 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
         <div class="summary-card"><small>Revenue</small><strong id="revenueTotal">-</strong><p>入力した売上・入金</p></div>
         <div class="summary-card"><small>Expense</small><strong id="expenseTotal">-</strong><p>入力した経費</p></div>
         <div class="summary-card"><small>Income Memo</small><strong id="incomeTotal">-</strong><p>売上から経費を引いたメモ</p></div>
+        <div class="summary-card"><small>Taxable</small><strong id="taxableTotal">-</strong><p>所得税の課税所得目安</p></div>
+        <div class="summary-card"><small>Income Tax</small><strong id="taxEstimateTotal">-</strong><p>所得税・復興特別所得税の目安</p></div>
+        <div class="summary-card"><small>Difference</small><strong id="taxDiffTotal">-</strong><p>源泉徴収後の差額目安</p></div>
       </div>
       <div class="meter" aria-label="準備の進み具合"><span id="prepMeter"></span></div>
       <div class="insight" id="insightBox">金額や書類チェックを入れると、ここに準備状況が出ます。</div>
+      <div class="section-label">Tax Estimate</div>
+      <div class="tax-breakdown" id="taxBreakdown"></div>
+      <p class="source-note" id="sourceNote">国税庁ページ確認日: 2026-06-14。所得税の速算表、基礎控除、給与所得控除、雑所得、株式等の申告分離課税などを参照した参考試算です。最終的な申告は国税庁の確定申告書等作成コーナーで確認してください。</p>
       <div class="section-label">Documents</div>
       <div class="doc-list" id="docList"></div>
       <div class="section-label">Next Check</div>
@@ -269,9 +310,16 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
         <button class="btn secondary" id="saveBtn" type="button">このブラウザに保存</button>
       </div>
       <textarea class="output" id="textOutput" readonly aria-label="コピー用の副業・申告準備メモ"></textarea>
-      <p class="notice" id="statusText">入力内容はこのブラウザ内に自動保存されます。税額計算や申告要否の判定は行いません。</p>
+      <p class="notice" id="statusText">入力内容はこのブラウザ内に自動保存されます。税額は一般的な条件での参考試算です。</p>
       <div class="section-label">Official Info</div>
       <div class="official-links">
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" target="_blank" rel="noopener">国税庁: 所得税の税率</a>
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" target="_blank" rel="noopener">国税庁: 基礎控除</a>
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" target="_blank" rel="noopener">国税庁: 給与所得控除</a>
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1500.htm" target="_blank" rel="noopener">国税庁: 雑所得</a>
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm" target="_blank" rel="noopener">国税庁: 株式等を譲渡したときの課税</a>
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm" target="_blank" rel="noopener">国税庁: 配当所得</a>
+        <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1524.htm" target="_blank" rel="noopener">国税庁: 暗号資産の課税関係</a>
         <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" target="_blank" rel="noopener">国税庁: 給与所得者で確定申告が必要な人</a>
         <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1906.htm" target="_blank" rel="noopener">国税庁: 給与所得者が副収入を得た場合</a>
         <a href="https://www.nta.go.jp/taxes/shiraberu/shinkoku/tokushu/index.htm" target="_blank" rel="noopener">国税庁: 確定申告特集</a>
@@ -303,7 +351,23 @@ select:focus,input:focus{border-color:var(--mint);box-shadow:0 0 0 4px rgba(131,
 <script>
 const STORAGE_KEY = 'kazmio_side_income_tax_memo_v1';
 const yen = new Intl.NumberFormat('ja-JP');
+const OFFICIAL_CHECK_DATE = '2026-06-14';
 const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+const activityMeta = {
+  writing: { label:'原稿・制作・在宅ワーク', hint:'雑所得または事業所得として整理することが多い収入です。', defaultMethod:'comprehensive' },
+  shop: { label:'ハンドメイド・販売', hint:'販売収入から仕入れや送料などの必要経費を差し引いて整理します。', defaultMethod:'comprehensive' },
+  lesson: { label:'講師・サポート', hint:'講演料や指導料は源泉徴収されることがあります。支払調書や入金履歴も残します。', defaultMethod:'comprehensive' },
+  affiliate: { label:'ブログ・SNS・紹介料', hint:'広告収入、紹介料、振込手数料などを月ごとに分けます。', defaultMethod:'comprehensive' },
+  investmentListed: { label:'投資（上場株式・投資信託）', hint:'上場株式等の譲渡益は申告分離課税の対象になることがあります。特定口座やNISAの扱いを確認してください。', defaultMethod:'separateStock' },
+  dividendListed: { label:'配当・分配金', hint:'上場株式等の配当は申告不要、総合課税、申告分離課税を選べる場合があります。', defaultMethod:'noFileInvestment' },
+  crypto: { label:'暗号資産', hint:'暗号資産による利益は雑所得として整理するケースがあります。計算書や取引履歴を残します。', defaultMethod:'comprehensive' },
+  fleaMarket: { label:'フリマ・ネット販売', hint:'生活用動産の売却は非課税となる場合があります。継続販売や仕入販売は別に整理します。', defaultMethod:'comprehensive' },
+  rental: { label:'民泊・貸付・不動産まわり', hint:'民泊や貸付は内容により雑所得、不動産所得など扱いが変わります。', defaultMethod:'comprehensive' },
+  gig: { label:'配達・単発業務', hint:'報酬、手数料、交通費、道具代などを分けて残します。', defaultMethod:'comprehensive' },
+  secondSalary: { label:'別の勤務先の給与', hint:'年末調整されなかった給与がある場合は、源泉徴収票を分けて保管します。', defaultMethod:'comprehensive' },
+  nft: { label:'NFT・デジタル販売', hint:'NFTやデジタル作品の販売は取引履歴と必要経費を残します。', defaultMethod:'comprehensive' },
+  other: { label:'その他', hint:'所得区分が迷う場合は、公式情報や税務相談で確認してください。', defaultMethod:'comprehensive' }
+};
 const docs = {
   company: [
     '勤務先の源泉徴収票',
@@ -322,6 +386,15 @@ const docs = {
     'マイナンバーカードやe-Tax準備'
   ]
 };
+const activityDocs = {
+  investmentListed: ['特定口座年間取引報告書', '一般口座の売買明細', 'NISA口座の取引区分メモ'],
+  dividendListed: ['配当金計算書・支払通知書', '特定口座年間取引報告書', '配当の申告方法メモ'],
+  crypto: ['暗号資産の年間取引報告書', '暗号資産の計算書', '取引所ごとの入出金履歴'],
+  fleaMarket: ['販売履歴', '仕入れや送料の明細', '生活用動産か販売用かのメモ'],
+  rental: ['貸付・民泊の入金履歴', '管理費・修繕費・手数料の明細', '契約書や利用明細'],
+  secondSalary: ['年末調整されていない給与の源泉徴収票'],
+  nft: ['NFT・デジタル販売の取引履歴', '手数料や制作費の明細']
+};
 
 let stateReady = false;
 let months = [];
@@ -330,14 +403,22 @@ let checkedDocs = [];
 const yearInput = document.getElementById('yearInput');
 const modeInput = document.getElementById('modeInput');
 const activityInput = document.getElementById('activityInput');
+const taxMethodInput = document.getElementById('taxMethodInput');
+const salaryRevenueInput = document.getElementById('salaryRevenueInput');
+const salaryWithheldInput = document.getElementById('salaryWithheldInput');
+const deductionInput = document.getElementById('deductionInput');
 const memoInput = document.getElementById('memoInput');
 const monthList = document.getElementById('monthList');
 const docList = document.getElementById('docList');
 const revenueTotal = document.getElementById('revenueTotal');
 const expenseTotal = document.getElementById('expenseTotal');
 const incomeTotal = document.getElementById('incomeTotal');
+const taxableTotal = document.getElementById('taxableTotal');
+const taxEstimateTotal = document.getElementById('taxEstimateTotal');
+const taxDiffTotal = document.getElementById('taxDiffTotal');
 const prepMeter = document.getElementById('prepMeter');
 const insightBox = document.getElementById('insightBox');
+const taxBreakdown = document.getElementById('taxBreakdown');
 const taskList = document.getElementById('taskList');
 const textOutput = document.getElementById('textOutput');
 const statusText = document.getElementById('statusText');
@@ -380,7 +461,7 @@ function makeMonths(list){
 function setStatus(text){
   statusText.textContent = text;
   window.clearTimeout(setStatus.timer);
-  setStatus.timer = window.setTimeout(() => statusText.textContent = '入力内容はこのブラウザ内に自動保存されます。税額計算や申告要否の判定は行いません。', 3000);
+  setStatus.timer = window.setTimeout(() => statusText.textContent = '入力内容はこのブラウザ内に自動保存されます。税額は一般的な条件での参考試算です。', 3000);
 }
 
 function collectState(){
@@ -388,6 +469,10 @@ function collectState(){
     y: number(yearInput.value) || currentYear(),
     m: modeInput.value,
     a: activityInput.value,
+    tm: taxMethodInput.value,
+    sr: number(salaryRevenueInput.value),
+    sw: number(salaryWithheldInput.value),
+    od: number(deductionInput.value),
     n: memoInput.value,
     d: checkedDocs,
     r: months.map(row => [number(row.revenue), number(row.expense), number(row.withheld), row.note, !!row.done])
@@ -404,10 +489,130 @@ function applyState(state){
   yearInput.value = number(state.y) || currentYear();
   if([...modeInput.options].some(option => option.value === state.m)) modeInput.value = state.m;
   if([...activityInput.options].some(option => option.value === state.a)) activityInput.value = state.a;
+  if([...taxMethodInput.options].some(option => option.value === state.tm)) taxMethodInput.value = state.tm;
+  salaryRevenueInput.value = number(state.sr || 0);
+  salaryWithheldInput.value = number(state.sw || 0);
+  deductionInput.value = number(state.od || 0);
   memoInput.value = state.n || '副業・申告準備メモ';
   checkedDocs = Array.isArray(state.d) ? state.d.filter(Boolean) : [];
   months = makeMonths(state.r);
   return true;
+}
+
+function currentActivity(){
+  return activityMeta[activityInput.value] || activityMeta.other;
+}
+
+function syncTaxMethodToActivity(){
+  const method = currentActivity().defaultMethod || 'comprehensive';
+  taxMethodInput.value = method;
+}
+
+function salaryDeduction(year, salary){
+  if(salary <= 0) return 0;
+  let deduction;
+  if(year >= 2025){
+    if(salary <= 1900000) deduction = 650000;
+    else if(salary <= 3600000) deduction = salary * 0.3 + 80000;
+    else if(salary <= 6600000) deduction = salary * 0.2 + 440000;
+    else if(salary <= 8500000) deduction = salary * 0.1 + 1100000;
+    else deduction = 1950000;
+  } else {
+    if(salary <= 1625000) deduction = 550000;
+    else if(salary <= 1800000) deduction = salary * 0.4 - 100000;
+    else if(salary <= 3600000) deduction = salary * 0.3 + 80000;
+    else if(salary <= 6600000) deduction = salary * 0.2 + 440000;
+    else if(salary <= 8500000) deduction = salary * 0.1 + 1100000;
+    else deduction = 1950000;
+  }
+  return Math.min(salary, Math.round(deduction));
+}
+
+function basicDeduction(year, totalIncome){
+  if(year <= 2024){
+    if(totalIncome <= 24000000) return 480000;
+    if(totalIncome <= 24500000) return 320000;
+    if(totalIncome <= 25000000) return 160000;
+    return 0;
+  }
+  if(year === 2025){
+    if(totalIncome <= 1320000) return 950000;
+    if(totalIncome <= 3360000) return 880000;
+    if(totalIncome <= 4890000) return 680000;
+    if(totalIncome <= 6550000) return 630000;
+    if(totalIncome <= 23500000) return 580000;
+    if(totalIncome <= 24000000) return 480000;
+    if(totalIncome <= 24500000) return 320000;
+    if(totalIncome <= 25000000) return 160000;
+    return 0;
+  }
+  if(totalIncome <= 1320000) return 950000;
+  if(totalIncome <= 23500000) return 580000;
+  if(totalIncome <= 24000000) return 480000;
+  if(totalIncome <= 24500000) return 320000;
+  if(totalIncome <= 25000000) return 160000;
+  return 0;
+}
+
+function incomeTaxAmount(taxableIncome){
+  const taxable = Math.max(0, Math.floor(number(taxableIncome) / 1000) * 1000);
+  const table = [
+    [40000000, 0.45, 4796000],
+    [18000000, 0.4, 2796000],
+    [9000000, 0.33, 1536000],
+    [6950000, 0.23, 636000],
+    [3300000, 0.2, 427500],
+    [1950000, 0.1, 97500],
+    [1000, 0.05, 0]
+  ];
+  const row = table.find(([min]) => taxable >= min);
+  if(!row) return 0;
+  return Math.max(0, Math.round(taxable * row[1] - row[2]));
+}
+
+function taxEstimate(data){
+  const year = number(yearInput.value) || currentYear();
+  const salaryRevenue = number(salaryRevenueInput.value);
+  const salaryIncome = Math.max(0, salaryRevenue - salaryDeduction(year, salaryRevenue));
+  const sideIncome = data.income;
+  const method = taxMethodInput.value;
+  const comprehensiveSide = method === 'comprehensive' ? sideIncome : 0;
+  const totalIncome = salaryIncome + comprehensiveSide;
+  const basic = basicDeduction(year, totalIncome);
+  const otherDeductions = number(deductionInput.value);
+  const taxable = Math.max(0, Math.floor((totalIncome - basic - otherDeductions) / 1000) * 1000);
+  const baseIncomeTax = incomeTaxAmount(taxable);
+  const reconstruction = Math.floor(baseIncomeTax * 0.021);
+  const comprehensiveNational = baseIncomeTax + reconstruction;
+  const separatedIncome = method === 'separateStock' ? sideIncome : 0;
+  const separatedIncomeTax = Math.floor(separatedIncome * 0.15315);
+  const separatedLocalTax = Math.floor(separatedIncome * 0.05);
+  const excludedIncome = method === 'noFileInvestment' ? sideIncome : 0;
+  const withheld = number(salaryWithheldInput.value) + data.withheld;
+  const nationalTax = comprehensiveNational + separatedIncomeTax;
+  const difference = nationalTax - withheld;
+  return {
+    year,
+    method,
+    salaryRevenue,
+    salaryIncome,
+    sideIncome,
+    comprehensiveSide,
+    separatedIncome,
+    excludedIncome,
+    totalIncome,
+    basic,
+    otherDeductions,
+    taxable,
+    baseIncomeTax,
+    reconstruction,
+    comprehensiveNational,
+    separatedIncomeTax,
+    separatedLocalTax,
+    withheld,
+    nationalTax,
+    difference
+  };
 }
 
 function totals(){
@@ -417,18 +622,27 @@ function totals(){
   const income = Math.max(0, revenue - expense);
   const activeMonths = months.filter(row => number(row.revenue) || number(row.expense) || number(row.withheld) || row.note.trim());
   const undoneMonths = activeMonths.filter(row => !row.done);
-  const docOptions = docs[modeInput.value] || docs.company;
+  const docOptions = [...(docs[modeInput.value] || docs.company), ...(activityDocs[activityInput.value] || [])];
   const checkedCount = docOptions.filter(name => checkedDocs.includes(name)).length;
   const prepTotal = 12 + docOptions.length;
   const prepDone = months.filter(row => row.done).length + checkedCount;
-  return { revenue, expense, withheld, income, activeMonths, undoneMonths, docOptions, checkedCount, prepTotal, prepDone };
+  const estimate = taxEstimate({ revenue, expense, withheld, income });
+  return { revenue, expense, withheld, income, activeMonths, undoneMonths, docOptions, checkedCount, prepTotal, prepDone, estimate };
 }
 
 function buildInsight(data){
+  const estimate = data.estimate;
+  const activity = currentActivity();
   if(data.revenue === 0 && data.expense === 0) return 'まずは覚えている月だけで大丈夫です。入金と経費の合計が見えるだけでも、あとから探す手間が減ります。';
   const base = `売上メモは${formatYen(data.revenue)}、経費メモは${formatYen(data.expense)}です。`;
+  if(estimate.method === 'separateStock'){
+    return `${base} ${activity.label}は株式等の申告分離課税として、所得税・復興特別所得税15.315%と住民税5%を分けて目安表示しています。特定口座やNISAの扱いは証券会社の年間取引報告書で確認してください。`;
+  }
+  if(estimate.method === 'noFileInvestment'){
+    return `${base} ${activity.label}は申告しない選択・非課税扱いとして試算から外しています。特定口座源泉徴収あり、NISA、配当の申告不要制度など、選択できる条件を公式情報で確認してください。`;
+  }
   if(modeInput.value === 'company' && data.income > 200000){
-    return `${base} 給与以外の所得が20万円を超える場合などは、確定申告が必要になることがあります。ここでは判断せず、国税庁の情報や専門家に確認してください。`;
+    return `${base} 給与以外の所得が20万円を超える場合などは、確定申告が必要になることがあります。参考試算では所得税・復興特別所得税の目安を表示しています。`;
   }
   if(data.undoneMonths.length){
     return `${base} 未整理の月が${data.undoneMonths.length}件あります。次は領収書や入金履歴が残っている月から埋めると進めやすいです。`;
@@ -438,27 +652,42 @@ function buildInsight(data){
 
 function buildTasks(data){
   const tasks = [];
+  const estimate = data.estimate;
   if(data.undoneMonths.length){
     const label = data.undoneMonths.slice(0, 3).map(row => `${row.month}月`).join('・');
     tasks.push(['未整理月を確認', `${label}${data.undoneMonths.length > 3 ? ' ほか' : ''}の入金履歴と領収書を見直す。`, `${data.undoneMonths.length}件`]);
   }
   const missingDocs = data.docOptions.filter(name => !checkedDocs.includes(name));
   if(missingDocs.length) tasks.push(['書類を集める', `次に探すもの: ${missingDocs.slice(0, 2).join('、')}`, `${missingDocs.length}件`]);
+  if(estimate.method === 'comprehensive' && modeInput.value === 'company' && data.income > 200000) tasks.push(['20万円基準を確認', '給与所得者で給与以外の所得が20万円を超える場合などは、確定申告が必要になることがあります。', '公式確認']);
+  if(estimate.method === 'separateStock') tasks.push(['年間取引報告書を確認', '特定口座、一般口座、NISA、損益通算の有無で申告の扱いが変わります。', '投資']);
+  if(activityInput.value === 'crypto') tasks.push(['取引履歴を保存', '暗号資産は取引ごとの取得価額、売却額、手数料の計算資料を残します。', '暗号資産']);
   if(modeInput.value === 'company') tasks.push(['勤務先の書類と分ける', '会社の年末調整で出すものと、副業の記録を混ぜずに置く。', '整理']);
   if(!tasks.length) tasks.push(['かなり整っています', 'コピー用メモやCSVを保存して、公式の作成コーナーで確認すると進めやすいです。', 'OK']);
   return tasks;
 }
 
 function buildText(data){
+  const estimate = data.estimate;
   const lines = [
     memoInput.value || '副業・申告準備メモ',
     `対象年: ${yearInput.value || currentYear()}年`,
     `働き方: ${modeInput.value === 'company' ? '会社勤めあり' : '会社勤めなし・在宅中心'}`,
     `仕事の種類: ${selectedText(activityInput)}`,
+    `試算の扱い: ${selectedText(taxMethodInput)}`,
     `売上メモ: ${formatYen(data.revenue)}`,
     `経費メモ: ${formatYen(data.expense)}`,
     `売上-経費のメモ: ${formatYen(data.income)}`,
     data.withheld ? `源泉徴収された金額のメモ: ${formatYen(data.withheld)}` : '源泉徴収された金額のメモ: なし',
+    `給与収入: ${formatYen(estimate.salaryRevenue)}`,
+    `給与所得目安: ${formatYen(estimate.salaryIncome)}`,
+    `基礎控除: ${formatYen(estimate.basic)}`,
+    `基礎控除以外の所得控除: ${formatYen(estimate.otherDeductions)}`,
+    `課税所得目安: ${formatYen(estimate.taxable)}`,
+    `所得税・復興特別所得税の目安: ${formatYen(estimate.nationalTax)}`,
+    estimate.separatedIncome ? `株式等の住民税目安: ${formatYen(estimate.separatedLocalTax)}` : '株式等の住民税目安: なし',
+    `源泉徴収済み税額メモ: ${formatYen(estimate.withheld)}`,
+    `源泉徴収後の差額目安: ${estimate.difference >= 0 ? formatYen(estimate.difference) + ' 納付側' : formatYen(Math.abs(estimate.difference)) + ' 還付側'}`,
     '',
     '月別:',
     ...months.map(row => `${row.month}月: 売上 ${formatYen(number(row.revenue))} / 経費 ${formatYen(number(row.expense))} / 源泉 ${formatYen(number(row.withheld))} / ${row.done ? '整理済み' : '未整理'}${row.note ? `（${row.note}）` : ''}`),
@@ -466,7 +695,8 @@ function buildText(data){
     '書類:',
     ...data.docOptions.map(name => `${checkedDocs.includes(name) ? '済' : '未'} ${name}`),
     '',
-    '税額計算や申告要否の判定ではありません。公式情報や専門家に確認してください。',
+    `公式情報確認日: ${OFFICIAL_CHECK_DATE}`,
+    'この税額は一般的な条件での参考試算です。最終的な申告は国税庁の確定申告書等作成コーナーで確認してください。',
     'KAZ & MIO 副業・申告準備メモ'
   ];
   return lines.join('\n');
@@ -506,21 +736,50 @@ function renderMonths(){
 }
 
 function renderDocs(){
-  const docOptions = docs[modeInput.value] || docs.company;
+  const docOptions = [...(docs[modeInput.value] || docs.company), ...(activityDocs[activityInput.value] || [])];
   checkedDocs = checkedDocs.filter(name => docOptions.includes(name));
   docList.innerHTML = docOptions.map(name => `
     <label class="check-line"><input type="checkbox" data-doc="${escapeHtml(name)}"${checkedDocs.includes(name) ? ' checked' : ''}>${escapeHtml(name)}</label>
   `).join('');
 }
 
+function renderTaxBreakdown(estimate){
+  const lines = [
+    ['仕事の種類', currentActivity().label],
+    ['扱いのメモ', currentActivity().hint],
+    ['給与所得控除後の給与所得', formatYen(estimate.salaryIncome)],
+    ['総合課税に入れた副業所得', formatYen(estimate.comprehensiveSide)],
+    ['基礎控除', formatYen(estimate.basic)],
+    ['基礎控除以外の所得控除', formatYen(estimate.otherDeductions)],
+    ['所得税', formatYen(estimate.baseIncomeTax)],
+    ['復興特別所得税', formatYen(estimate.reconstruction)]
+  ];
+  if(estimate.separatedIncome){
+    lines.push(['株式等の所得税・復興特別所得税', formatYen(estimate.separatedIncomeTax)]);
+    lines.push(['株式等の住民税目安', formatYen(estimate.separatedLocalTax)]);
+  }
+  if(estimate.excludedIncome){
+    lines.push(['試算から外した所得', formatYen(estimate.excludedIncome)]);
+  }
+  lines.push(['源泉徴収済み税額メモ', formatYen(estimate.withheld)]);
+  taxBreakdown.innerHTML = lines.map(([label, value]) => `
+    <div class="tax-line"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>
+  `).join('');
+}
+
 function updateResults(){
   const data = totals();
+  const estimate = data.estimate;
   revenueTotal.textContent = formatYen(data.revenue);
   expenseTotal.textContent = formatYen(data.expense);
   incomeTotal.textContent = formatYen(data.income);
+  taxableTotal.textContent = formatYen(estimate.taxable);
+  taxEstimateTotal.textContent = formatYen(estimate.nationalTax);
+  taxDiffTotal.textContent = estimate.difference >= 0 ? `${formatYen(estimate.difference)}納付側` : `${formatYen(Math.abs(estimate.difference))}還付側`;
   const prepRate = data.prepTotal ? Math.round(data.prepDone / data.prepTotal * 100) : 0;
   prepMeter.style.width = `${Math.min(100, prepRate)}%`;
   insightBox.textContent = buildInsight(data);
+  renderTaxBreakdown(estimate);
   taskList.innerHTML = buildTasks(data).map(task => `
     <article class="task-card"><div><h3>${escapeHtml(task[0])}</h3><p>${escapeHtml(task[1])}</p></div><strong class="task-chip">${escapeHtml(task[2])}</strong></article>
   `).join('');
@@ -556,8 +815,27 @@ function shareUrl(){
 }
 
 function downloadCsv(){
-  const header = ['year','month','revenue','expense','withheld','organized','note'];
-  const body = months.map(row => [yearInput.value || currentYear(), row.month, number(row.revenue), number(row.expense), number(row.withheld), row.done ? 'yes' : 'no', row.note]);
+  const data = totals();
+  const estimate = data.estimate;
+  const header = ['year','activity','tax_method','month','revenue','expense','income','withheld','organized','note','salary_revenue','salary_income','other_deductions','taxable_income','estimated_income_tax_reconstruction','estimated_difference'];
+  const body = months.map(row => [
+    yearInput.value || currentYear(),
+    selectedText(activityInput),
+    selectedText(taxMethodInput),
+    row.month,
+    number(row.revenue),
+    number(row.expense),
+    Math.max(0, number(row.revenue) - number(row.expense)),
+    number(row.withheld),
+    row.done ? 'yes' : 'no',
+    row.note,
+    estimate.salaryRevenue,
+    estimate.salaryIncome,
+    estimate.otherDeductions,
+    estimate.taxable,
+    estimate.nationalTax,
+    estimate.difference
+  ]);
   const csv = [header, ...body].map(cols => cols.map(value => `"${String(value ?? '').replace(/"/g, '""')}"`).join(',')).join('\n');
   const blob = new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8'});
   const url = URL.createObjectURL(blob);
@@ -613,8 +891,12 @@ docList.addEventListener('change', event => {
   updateResults();
 });
 
-[yearInput, memoInput].forEach(input => input.addEventListener('input', updateResults));
-activityInput.addEventListener('change', updateResults);
+[yearInput, salaryRevenueInput, salaryWithheldInput, deductionInput, memoInput].forEach(input => input.addEventListener('input', updateResults));
+activityInput.addEventListener('change', () => {
+  syncTaxMethodToActivity();
+  updateResults();
+});
+taxMethodInput.addEventListener('change', updateResults);
 modeInput.addEventListener('change', render);
 document.getElementById('copyBtn').addEventListener('click', () => copyText(textOutput.value, 'メモをコピーしました。'));
 document.getElementById('shareBtn').addEventListener('click', () => copyText(shareUrl(), '条件リンクをコピーしました。'));
