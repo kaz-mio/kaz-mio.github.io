@@ -158,10 +158,15 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .hero h1 span,.hero h1 em{display:inline-block;white-space:nowrap;}
 .hero h1 em{font-style:normal;color:#9f9f9f;}
 .hero-copy p{color:#9a9a9a;font-size:.96rem;max-width:33rem;margin-bottom:1.15rem;}
-.hero-links{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem;}
-.hero-links a{border:1px solid var(--gold);background:transparent;color:var(--gold2);min-width:150px;text-align:center;padding:.85rem 1rem;font-weight:700;font-size:.82rem;transition:background .2s,color .2s,transform .2s;}
+.hero-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:1rem;width:min(680px,100%);}
+.hero-links a{border:1px solid rgba(201,182,117,.62);background:rgba(255,255,255,.74);color:#777;min-width:0;text-align:left;padding:1rem;font-weight:700;font-size:.82rem;display:flex;flex-direction:column;gap:.36rem;transition:background .2s,color .2s,transform .2s,border-color .2s,box-shadow .2s;}
 .hero-links a.primary{background:var(--ink);border-color:var(--ink);color:#fff;}
-.hero-links a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff;}
+.hero-links a small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.56rem;color:var(--gold2);font-weight:900;}
+.hero-links a.primary small{color:var(--gold);}
+.hero-links a strong{font-family:'Shippori Mincho',serif;font-size:1.04rem;line-height:1.45;font-weight:600;color:inherit;}
+.hero-links a span{font-size:.72rem;line-height:1.55;color:inherit;opacity:.72;font-weight:500;}
+.hero-links a:hover{transform:translateY(-4px);background:#fff;border-color:var(--gold);box-shadow:0 18px 34px rgba(35,31,22,.1);}
+.hero-links a.primary:hover{background:#2c2c2c;color:#fff;}
 .slide-nav{position:relative;color:#777;font-family:Arial,sans-serif;font-size:.8rem;display:flex;align-items:center;gap:.82rem;margin:1.45rem 0 .95rem;z-index:2;}
 .slide-dots{display:flex;gap:.82rem;}
 .slide-dot{width:7px;height:7px;border:0;border-radius:50%;background:#c9c9c9;cursor:pointer;padding:0;transition:background .22s,transform .22s;}
@@ -171,8 +176,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 @keyframes heroDrift{from{transform:scale(1.015) translate3d(0,0,0);}to{transform:scale(1.065) translate3d(-1.2%,-.8%,0);}}
 @keyframes heroSweep{0%,42%{transform:translateX(-58%) skewX(-8deg);}62%,100%{transform:translateX(58%) skewX(-8deg);}}
 .lead-photo{position:relative;min-height:780px;padding:1.8rem 0 8rem;}
-.lead-photo::before{content:'';position:absolute;right:0;top:0;width:68%;height:520px;background:url('assets/kaz-mio-encyclopedia-hero-04.jpg') center/cover no-repeat;}
-.lead-photo::after{content:'';position:absolute;left:0;bottom:0;width:54%;height:360px;background:url('assets/kaz-mio-adventure-hero.png') center/cover no-repeat;}
+.lead-photo::before{content:'';position:absolute;right:0;top:0;width:68%;height:520px;background:url('assets/kaz-mio-encyclopedia-hero-04.jpg') center/cover no-repeat;background:image-set(url('assets/kaz-mio-encyclopedia-hero-04.webp') type('image/webp'),url('assets/kaz-mio-encyclopedia-hero-04.jpg') type('image/jpeg')) center/cover no-repeat;}
+.lead-photo::after{content:'';position:absolute;left:0;bottom:0;width:54%;height:360px;background:url('assets/kaz-mio-adventure-hero.png') center/cover no-repeat;background:image-set(url('assets/kaz-mio-adventure-hero.webp') type('image/webp'),url('assets/kaz-mio-adventure-hero.png') type('image/png')) center/cover no-repeat;}
 .lead-text{position:relative;z-index:2;width:min(470px,45%);margin:9rem 0 0 6.8rem;background:rgba(244,244,242,.86);padding:2.4rem 0;}
 .kicker{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--gold2);font-weight:700;margin-bottom:1.1rem;}
 .lead-text h2,.section h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.8vw,4.2rem);line-height:1.35;font-weight:500;color:#858585;margin-bottom:1.2rem;}
@@ -288,8 +293,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .dark-band h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,4vw,4.4rem);font-weight:500;line-height:1.3;color:#e8e8e8;}
 .dark-band h2 span{color:var(--gold);}
 .dark-band p{color:#aaa;font-size:.92rem;}
-.band-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
-.band-card{border:1px solid rgba(255,255,255,.2);padding:1.6rem;min-height:205px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .24s,border-color .24s,background .24s,box-shadow .24s;}
+.band-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;}
+.band-card{border:1px solid rgba(255,255,255,.2);padding:1.6rem;min-height:245px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .24s,border-color .24s,background .24s,box-shadow .24s;}
 .band-card:hover{transform:translateY(-7px);border-color:var(--gold);background:rgba(255,255,255,.045);box-shadow:0 20px 38px rgba(0,0,0,.24);}
 .band-card small{color:var(--gold);font-weight:800;letter-spacing:.12em;}
 .band-card h3{font-family:'Shippori Mincho',serif;font-size:1.45rem;line-height:1.45;font-weight:600;}
@@ -306,7 +311,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .family-navi-actions a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff;}
 .family-navi-panel{background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;box-shadow:0 22px 60px rgba(40,36,25,.08);transition:transform .24s,box-shadow .24s,border-color .24s;}
 .family-navi-panel:hover{transform:translateY(-5px);border-color:rgba(201,182,117,.7);box-shadow:0 28px 70px rgba(40,36,25,.14);}
-.navi-panel-photo{grid-column:1/-1;min-height:230px;background:url('assets/kaz-mio-encyclopedia-hero-01.jpg') center/cover no-repeat;}
+.navi-panel-photo{grid-column:1/-1;min-height:230px;background:url('assets/kaz-mio-encyclopedia-hero-01.jpg') center/cover no-repeat;background:image-set(url('assets/kaz-mio-encyclopedia-hero-01.webp') type('image/webp'),url('assets/kaz-mio-encyclopedia-hero-01.jpg') type('image/jpeg')) center/cover no-repeat;}
 .navi-panel-item{background:#fff;padding:1.25rem;min-height:128px;}
 .navi-panel-item small{display:block;font-family:Arial,sans-serif;color:var(--gold2);font-size:.64rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.35rem;}
 .navi-panel-item strong{display:block;font-family:'Shippori Mincho',serif;font-size:1.14rem;font-weight:600;line-height:1.5;margin-bottom:.25rem;}
@@ -352,8 +357,15 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .shopping-strip h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,2.7vw,2.6rem);line-height:1.45;font-weight:500;color:#858585;margin-bottom:.75rem;}
 .shopping-strip p{color:#777;font-size:.9rem;max-width:42rem;}
 .shopping-ad-column{display:grid;gap:.75rem;justify-items:center;}
-.rakuten-widget-box{background:#f7f5ef;border:1px solid var(--line);padding:1rem;min-height:282px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.rakuten-widget-box script{display:none;}
+.shopping-lite-card{background:#f7f5ef;border:1px solid var(--line);padding:1.25rem;min-height:282px;display:flex;flex-direction:column;justify-content:space-between;gap:1rem;overflow:hidden;}
+.shopping-lite-label{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;color:var(--gold2);font-weight:900;margin:0;}
+.shopping-lite-card h3{font-family:'Shippori Mincho',serif;font-size:1.28rem;line-height:1.45;font-weight:600;color:#777;margin:0;}
+.shopping-lite-card p{font-size:.78rem;line-height:1.75;margin:0;color:#777;}
+.shopping-mini-links{display:grid;gap:.55rem;}
+.shopping-mini-links a{display:flex;align-items:center;justify-content:space-between;gap:.75rem;border:1px solid rgba(201,182,117,.48);background:#fff;padding:.72rem .82rem;color:#777;transition:transform .2s,border-color .2s,box-shadow .2s;}
+.shopping-mini-links a:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 12px 24px rgba(35,31,22,.08);}
+.shopping-mini-links small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--gold2);font-weight:900;font-size:.55rem;}
+.shopping-mini-links span{font-size:.76rem;font-weight:700;text-align:right;}
 .moshimo-banner-box{width:100%;background:#f7f5ef;border:1px solid var(--line);padding:.8rem;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .moshimo-banner-box a{display:block;line-height:0;transition:opacity .22s,transform .22s;}
 .moshimo-banner-box a:hover{opacity:.84;transform:translateY(-2px);}
@@ -415,6 +427,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .hero-copy{order:1;padding:5rem 0 2rem;min-width:0;width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .hero h1,.hero-copy p{max-width:calc(100vw - 2rem);overflow-wrap:anywhere;}
   .hero-links,.hero-visual{width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
+  .hero-links{grid-template-columns:1fr;}
   .site-search{width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .round-contact{right:1rem;top:1rem;width:112px;height:112px;font-size:.75rem;}
   .slide-nav{margin:1rem 0 0;justify-content:flex-start;}
@@ -580,16 +593,16 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         </div>
       </div>
       <div class="hero-visual" aria-label="サイトイメージのスライド">
-        <img class="hero-slide is-active" src="assets/kaz-mio-encyclopedia-hero-01.jpg" alt="トリケラトプスとマンタが海辺の街に溶け込む図鑑風アニメイラスト" width="1672" height="941" loading="eager" decoding="async" fetchpriority="high">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-02.jpg" alt="サメとティラノサウルスが港町を楽しく歩く図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-03.jpg" alt="ダイオウイカとアルゼンチノサウルスが街の上に広がる図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-04.jpg" alt="メンダコとクラゲとプテラノドンが夕方の街に浮かぶ図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-05.jpg" alt="シャチとアザラシとステゴサウルスが水辺で遊ぶ図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-06.jpg" alt="ライオンとアフリカゾウとキリンが恐竜と街に並ぶ図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-07.jpg" alt="ヘラクレスオオカブトやカマキリたちが街角に集まる図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-08.jpg" alt="メガロドンとナポレオンフィッシュとイセエビが水族館の街にいる図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-09.jpg" alt="プルスサウルスとカバとティタノボアが川沿いの街にいる図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
-        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-10.jpg" alt="タラバガニとチンアナゴとオウギワシが夜の街を彩る図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide is-active" src="assets/kaz-mio-encyclopedia-hero-01.webp" alt="トリケラトプスとマンタが海辺の街に溶け込む図鑑風アニメイラスト" width="1672" height="941" loading="eager" decoding="async" fetchpriority="high">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-02.webp" alt="サメとティラノサウルスが港町を楽しく歩く図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-03.webp" alt="ダイオウイカとアルゼンチノサウルスが街の上に広がる図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-04.webp" alt="メンダコとクラゲとプテラノドンが夕方の街に浮かぶ図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-05.webp" alt="シャチとアザラシとステゴサウルスが水辺で遊ぶ図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-06.webp" alt="ライオンとアフリカゾウとキリンが恐竜と街に並ぶ図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-07.webp" alt="ヘラクレスオオカブトやカマキリたちが街角に集まる図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-08.webp" alt="メガロドンとナポレオンフィッシュとイセエビが水族館の街にいる図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-09.webp" alt="プルスサウルスとカバとティタノボアが川沿いの街にいる図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-10.webp" alt="タラバガニとチンアナゴとオウギワシが夜の街を彩る図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
       </div>
       <div class="hero-copy">
         <a class="round-contact" href="contact.html">お問い合わせは<br>こちらから</a>
@@ -613,17 +626,9 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           <span class="slide-number">01</span>
         </div>
         <div class="hero-links">
-          <a class="primary" href="mio_route_finder.html">迷ったらここから</a>
-          <a class="primary" href="#search-guides">困りごとから探す</a>
-          <a href="family_stay_search.html">子連れ宿・食事を探す</a>
-          <a href="outing_checklist.html">持ち物チェック</a>
-          <a href="school_prep_checklist.html">入園準備チェック</a>
-          <a href="kids_size_check.html">サイズチェック</a>
-          <a href="diaper_size_check.html">おむつチェック</a>
-          <a href="baby_stock_manager.html">ストック管理</a>
-          <a href="baby_circle_fit_check.html">置ける診断</a>
-          <a href="car_seat_fit_check.html">乗せ降ろし診断</a>
-          <a href="stroller_fit_check.html">ベビーカー診断</a>
+          <a class="primary" href="mio_route_finder.html"><small>Start</small><strong>迷ったら<br>ここから</strong><span>今いちばん重い場面から近いメモへ。</span></a>
+          <a href="family_stay_search.html"><small>Trip</small><strong>子連れ宿・<br>食事さがし</strong><span>泊まる場所と食べる場所を予約前に確認。</span></a>
+          <a href="outing_checklist.html"><small>Outing</small><strong>持ち物<br>チェック</strong><span>年齢、季節、行き先に合わせてバッグを整理。</span></a>
         </div>
         <form class="site-search" id="siteSearch" role="search">
           <input id="siteSearchInput" type="search" placeholder="気になる言葉で検索" aria-label="サイト内を検索">
@@ -644,11 +649,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   <section class="scene-scroll" id="life-scenes" aria-labelledby="life-scenes-title">
     <div class="scene-sticky">
       <div class="scene-media" aria-hidden="true">
-        <img class="scene-image is-active" src="assets/kaz-mio-encyclopedia-hero-03.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
-        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-02.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
-        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-04.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
-        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-08.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
-        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-05.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image is-active" src="assets/kaz-mio-encyclopedia-hero-03.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-02.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-04.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-08.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+        <img class="scene-image" src="assets/kaz-mio-encyclopedia-hero-05.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
       </div>
       <div class="scene-copy">
         <div class="scene-step is-active">
@@ -718,15 +723,15 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       </div>
       <div class="visual-paths-grid">
         <a class="visual-path-card" href="outing_checklist.html">
-          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-02.jpg" alt="海辺の街を歩く生きものたちのイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
+          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-02.webp" alt="海辺の街を歩く生きものたちのイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
           <span class="visual-path-copy"><small>Outing</small><h3>出かける前の荷物を、少し軽くする。</h3><p>月齢、季節、行き先ごとに、バッグへ入れるものを見直せます。</p><span>持ち物チェックへ</span></span>
         </a>
         <a class="visual-path-card" href="family_stay_search.html#stay-search">
-          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-04.jpg" alt="夕方の街に生きものたちが浮かぶイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
+          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-04.webp" alt="夕方の街に生きものたちが浮かぶイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
           <span class="visual-path-copy"><small>Stay</small><h3>泊まる場所は、寝る前後まで見る。</h3><p>畳、寝具、お風呂、貸出備品。予約前に見たい条件を整理します。</p><span>宿の条件を見る</span></span>
         </a>
         <a class="visual-path-card" href="family_stay_search.html#food-search">
-          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-08.jpg" alt="水族館のような街に生きものたちがいるイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
+          <span class="visual-path-media"><img src="assets/kaz-mio-encyclopedia-hero-08.webp" alt="水族館のような街に生きものたちがいるイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low" data-parallax></span>
           <span class="visual-path-copy"><small>Meal</small><h3>食べる場所は、席まわりから考える。</h3><p>座敷、個室、子どもイス、ベビーカー。落ち着きやすい条件を探せます。</p><span>食事場所を探す</span></span>
         </a>
       </div>
@@ -811,24 +816,13 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <div class="band-inner">
       <div>
         <div class="kicker">Guide</div>
-        <h2>全部読まなくても、<br><span>今の場所から入れるように。</span></h2>
-        <p>おでかけ前、入園準備、サイズ選び、部屋づくり、車移動。暮らしの中で「あれ、どうしよう」となった場所から見られます。</p>
+        <h2>まずは、<br><span>この3つだけ見ればいい。</span></h2>
+        <p>たくさん並べるより、今日の重さに近い場所をひとつ選ぶ。迷った時、旅行前、おでかけ前の3本に絞りました。</p>
       </div>
       <div class="band-cards">
-        <a class="band-card" href="mio_route_finder.html"><small>00 / START</small><h3>迷ったら<br>ここから</h3><p>朝、部屋、車、おでかけ。今いちばん重いところから探せます。</p></a>
-        <a class="band-card" href="buy_before_diagnosis_lp.html"><small>01 / CHECK</small><h3>買う前に<br>少しだけ確認</h3><p>気になる商品がある時、家で使う場面を先に思い出せます。</p></a>
-        <a class="band-card" href="buy_before_check.html"><small>02 / CHECK</small><h3>どこで困りそうか<br>5問で見る</h3><p>玄関、車、部屋、在庫、季節。見落としやすい場所を拾います。</p></a>
-        <a class="band-card" href="buy_before_timemachine.html"><small>03 / BEFORE</small><h3>届いたあとの<br>暮らしを見る</h3><p>買ったあとに「そこか」となりやすい場面を先に下見します。</p></a>
-        <a class="band-card" href="#search-guides"><small>04 / GUIDE</small><h3>困りごとから<br>探す</h3><p>近い悩みを選んで、必要なページだけ見られます。</p></a>
-        <a class="band-card" href="family_stay_search.html"><small>05 / TRIP</small><h3>小さい子と<br>泊まる・食べる</h3><p>畳、個室、洗い場、子どもイス。予約前に見たい条件をまとめます。</p></a>
-        <a class="band-card" href="outing_checklist.html"><small>06 / OUTING</small><h3>出かける前の<br>忘れものを減らす</h3><p>年齢、季節、行き先に合わせて、バッグの中身を見直せます。</p></a>
-        <a class="band-card" href="kids_size_check.html"><small>07 / SIZE</small><h3>服と靴、<br>今のサイズは？</h3><p>身長と足長から、買い替え前の目安を見られます。</p></a>
-        <a class="band-card" href="diaper_size_check.html"><small>08 / DIAPER</small><h3>おむつ、<br>買いすぎてない？</h3><p>体重、在庫、交換枚数から、次に買う量を考えます。</p></a>
-        <a class="band-card" href="baby_stock_manager.html"><small>09 / STOCK</small><h3>消耗品の残りを<br>メモする</h3><p>おむつ、おしりふき、ミルク。切れる前に気づきやすくします。</p></a>
-        <a class="band-card" href="baby_circle_fit_check.html"><small>10 / ROOM</small><h3>置いたあと、<br>ちゃんと通れる？</h3><p>部屋サイズと通路幅から、ベビーサークルの圧迫感を見ます。</p></a>
-        <a class="band-card" href="car_seat_fit_check.html"><small>11 / CAR</small><h3>車で毎日<br>しんどくない？</h3><p>ドアの開き方や駐車場の狭さも含めて、乗せ降ろしを見ます。</p></a>
-        <a class="band-card" href="stroller_fit_check.html"><small>12 / STROLLER</small><h3>ベビーカー、<br>どこに置く？</h3><p>玄関、車、階段、重さ。外出前後の使いやすさを確認します。</p></a>
-        <a class="band-card" href="school_prep_checklist.html"><small>13 / PREP</small><h3>入園入学前に<br>抜けを減らす</h3><p>持ち物と名前つけを、慌てる前にざっくり見渡せます。</p></a>
+        <a class="band-card" href="mio_route_finder.html"><small>01 / START</small><h3>今の困りごとから<br>近いメモへ</h3><p>朝、部屋、車、おでかけ、自分ケア。今いちばん重いところから探せます。</p></a>
+        <a class="band-card" href="family_stay_search.html"><small>02 / TRIP</small><h3>小さい子と<br>泊まる・食べる</h3><p>畳、個室、洗い場、子どもイス。予約前に見たい条件をまとめます。</p></a>
+        <a class="band-card" href="outing_checklist.html"><small>03 / OUTING</small><h3>出かける前の<br>忘れものを減らす</h3><p>年齢、季節、行き先に合わせて、バッグの中身を見直せます。</p></a>
       </div>
     </div>
   </section>
@@ -1024,7 +1018,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="hyacca_article.html" class="review-card"><div class="review-photo"><img src="https://asset.hyacca.online/wp-content/uploads/2020/05/01234425/95d41490b6e947b91a26d971d3cfdb4a-1.png" alt="HYACCA ギフトボックス"></div><div class="review-body"><div class="review-cat">Gift</div><h3 class="review-title">HYACCA ギフト</h3><p class="review-copy">出産祝い・内祝いを、相手に合わせてきれいに選びたい時に。</p><div class="review-link">レビューを見る</div></div></a>
       <a href="digxipop_pet_figure_article.html" class="review-card"><div class="review-photo contain"><img src="https://www28.a8.net/svt/bgt?aid=260523621716&amp;wid=003&amp;eno=01&amp;mid=s00000027357001007000&amp;mc=1" alt="digxipop ペット3Dフィギュア"></div><div class="review-body"><div class="review-cat">Pet Gift</div><h3 class="review-title">ペット3Dフィギュア</h3><p class="review-copy">写真だけでなく、家族の姿を形として残したい時に。</p><div class="review-link">レビューを見る</div></div></a>
       <a href="berpy_article.html" class="review-card"><div class="review-photo"><img src="https://cdn.shopify.com/s/files/1/0520/4259/6520/files/4_629a9a62-67d3-4990-b9e1-65f6a747cf33.png?v=1778131007" alt="Berpy かみかみチキン"></div><div class="review-body"><div class="review-cat">Baby Gift</div><h3 class="review-title">Berpy かみかみチキン</h3><p class="review-copy">かわいさと実用性のどちらも欲しい出産祝い候補に。</p><div class="review-link">レビューを見る</div></div></a>
-      <a href="digista_card_event_guide.html" class="review-card"><div class="review-photo contain"><img src="assets/kaz-mio-encyclopedia-hero-04.jpg" alt="親子イベント向けWebARカード"></div><div class="review-body"><div class="review-cat">Event Goods</div><h3 class="review-title">WebARカード活用メモ</h3><p class="review-copy">親子イベントや地域企画で、持ち帰れるカード体験を作りたい時に。</p><div class="review-link">活用メモを見る</div></div></a>
+      <a href="digista_card_event_guide.html" class="review-card"><div class="review-photo contain"><img src="assets/kaz-mio-encyclopedia-hero-04.webp" alt="親子イベント向けWebARカード"></div><div class="review-body"><div class="review-cat">Event Goods</div><h3 class="review-title">WebARカード活用メモ</h3><p class="review-copy">親子イベントや地域企画で、持ち帰れるカード体験を作りたい時に。</p><div class="review-link">活用メモを見る</div></div></a>
       </div>
     </div>
   </section>
@@ -1037,11 +1031,15 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <p>おむつ、洗剤、食品、季節用品。家で使うものを見比べたい時のための小さな置き場です。価格や送料、発送予定はリンク先で確認してください。</p>
       </div>
       <div class="shopping-ad-column">
-        <div class="rakuten-widget-box" aria-label="楽天市場のおすすめ商品">
-          <!-- MAF Rakuten Widget FROM HERE -->
-          <script type="text/javascript">MafRakutenWidgetParam=function(){return{size:'300x250',design:'slide',recommend:'on',auto_mode:'on',a_id:'5582658',border:'off'};};</script>
-          <script type="text/javascript" src="https://dn.msmstatic.com/site/rakuten/widget.js"></script>
-          <!-- MAF Rakuten Widget TO HERE -->
+        <div class="shopping-lite-card" aria-label="暮らしの買い物メモ">
+          <p class="shopping-lite-label">Quick Notes</p>
+          <h3>買う前に、家で使う場面だけ先に見る。</h3>
+          <p>日用品や育児小物は、価格だけでなく置き場所、補充頻度、持ち運びまで見ると選びやすくなります。</p>
+          <div class="shopping-mini-links">
+            <a href="outing_checklist.html"><small>Outing</small><span>バッグに入るか見る</span></a>
+            <a href="baby_stock_manager.html"><small>Stock</small><span>残りをメモする</span></a>
+            <a href="buy_before_diagnosis_lp.html"><small>Before</small><span>使う場面を確認</span></a>
+          </div>
         </div>
         <div class="moshimo-banner-box" aria-label="暮らしの買い物広告">
           <a href="https://af.moshimo.com/af/c/click?a_id=5582710&amp;p_id=170&amp;pc_id=185&amp;pl_id=4159" rel="nofollow sponsored noopener" referrerpolicy="no-referrer-when-downgrade" attributionsrc target="_blank"><img src="https://image.moshimo.com/af-img/0068/000000004159.gif" width="468" height="60" alt="暮らしの買い物広告" loading="lazy" style="border:none;"></a>
