@@ -23,6 +23,9 @@ EXPECTED_LINKS = {
     "combined_form_example_pdf": "https://www.nta.go.jp/publication/pamph/gensen/nencho2025/pdf/306.pdf",
     "dependent_form_2025_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_01.pdf",
     "dependent_form_2025_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_01_input.pdf",
+    "insurance_form_2025_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_04.pdf",
+    "insurance_form_2025_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_04_input.pdf",
+    "housing_credit_example_2025_pdf": "https://www.nta.go.jp/publication/pamph/gensen/nencho2025/pdf/308.pdf",
 }
 
 
