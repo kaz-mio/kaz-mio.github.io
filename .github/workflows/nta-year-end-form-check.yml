@@ -1,0 +1,26 @@
+name: NTA Year-End Form Check
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "35 21 * * *"
+
+jobs:
+  nta-year-end-form-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check NTA year-end adjustment form links
+        run: python scripts/check_nta_year_end_forms.py
