@@ -293,10 +293,17 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         <label class="field"><span class="label">フリガナ</span><input id="kana" type="text" placeholder="例: ヤマダ ハナコ"><span class="field-help">カタカナで入力します。</span></label>
         <label class="field"><span class="label">生年月日</span><input id="birth" type="date"><span class="field-help">和暦欄へ自動で分けて転記します。</span></label>
         <label class="field wide"><span class="label">住所</span><input id="address" type="text" autocomplete="street-address" placeholder="住民票や勤務先届出と合わせて確認"><span class="field-help">申告書に記載する住所です。同じ表記でそろえると確認しやすくなります。</span></label>
-        <label class="field"><span class="label">給与収入の見込額</span><input id="salaryRevenue" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">源泉徴収票の「支払金額」に近い欄です。</span></label>
-        <label class="field"><span class="label">給与所得の見込額</span><input id="salaryIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="空欄なら自動計算"><span class="field-help">空欄なら給与収入から概算補助し、様式へ転記します。</span></label>
-        <label class="field"><span class="label">給与以外の所得見込額</span><input id="otherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">副業、雑所得、配当など給与以外の所得見込額です。</span></label>
         <label class="field"><span class="label">提出メモ</span><input id="submitMemo" type="text" placeholder="例: 総務へ12/10まで"></label>
+      </div>
+      </div>
+
+      <div class="form-block" data-form-block="income">
+      <div class="section-label">Income</div>
+      <p>基礎控除申告書や配偶者控除等申告書で使う、本人の所得見込額です。保険料控除申告書や扶養控除等申告書だけを作る場合は入力不要です。</p>
+      <div class="grid">
+        <label class="field"><span class="label">給与収入の見込額</span><input id="salaryRevenue" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">源泉徴収票の「支払金額」に近い欄です。給与所得の計算に使います。</span></label>
+        <label class="field"><span class="label">給与所得の見込額</span><input id="salaryIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="空欄なら自動計算"><span class="field-help">空欄なら給与収入から概算補助し、様式へ転記します。</span></label>
+        <label class="field"><span class="label">給与以外の所得見込額</span><input id="otherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">副業、雑所得、配当など、給与以外の所得見込額です。</span></label>
       </div>
       </div>
 
@@ -334,10 +341,33 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 
       <div class="form-block" data-form-block="insurance">
       <div class="section-label">Insurance</div>
-      <p>保険料控除申告書は、まず共通欄を国税庁様式へ転記します。保険会社の控除証明書ごとの明細は、保存したPDF上で証明書を見ながら確認してください。</p>
+      <p>保険料控除申告書は、保険会社などから届く控除証明書を見て、区分ごとに支払額を入力します。証明書が複数ある場合は、同じ区分ごとに合計して入力すると、控除額を自動計算して様式へ転記します。</p>
+      <div class="subhead">生命保険料控除</div>
       <div class="grid">
-        <label class="field"><span class="label">生命保険料控除証明書</span><input id="insuranceLifeMemo" type="text" placeholder="例: 〇〇生命、一般・介護・個人年金あり"><span class="field-help">証明書の種類と保険会社名を控えます。PDF保存後の入力確認に使います。</span></label>
-        <label class="field"><span class="label">地震保険料控除証明書</span><input id="insuranceEarthquakeMemo" type="text" placeholder="例: 〇〇損保、地震保険あり"><span class="field-help">旧長期損害保険料がある場合も証明書で確認します。</span></label>
+        <label class="field"><span class="label">一般の生命保険料 新制度</span><input id="insuranceGeneralNewAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">控除証明書に「一般」「新制度」などとある金額です。複数あれば合計します。</span></label>
+        <label class="field"><span class="label">一般の生命保険料 旧制度</span><input id="insuranceGeneralOldAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">控除証明書に「一般」「旧制度」などとある金額です。</span></label>
+        <label class="field"><span class="label">介護医療保険料</span><input id="insuranceMedicalAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">医療保険、がん保険、介護保険などで、証明書の区分が「介護医療」の金額です。</span></label>
+        <label class="field"><span class="label">個人年金保険料 新制度</span><input id="insurancePensionNewAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">税制適格特約など、証明書で「個人年金」「新制度」と確認できる金額です。</span></label>
+        <label class="field"><span class="label">個人年金保険料 旧制度</span><input id="insurancePensionOldAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">証明書で「個人年金」「旧制度」と確認できる金額です。</span></label>
+        <label class="field"><span class="label">生命保険料の会社名メモ</span><input id="insuranceLifeMemo" type="text" placeholder="例: 〇〇生命、△△生命"><span class="field-help">証明書確認用のメモです。PDFの明細行には区分別の合計として転記します。</span></label>
+      </div>
+      <div class="subhead">地震保険料控除</div>
+      <div class="grid">
+        <label class="field"><span class="label">地震保険料</span><input id="insuranceEarthquakeAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">控除証明書で「地震保険料」と区分されている金額です。</span></label>
+        <label class="field"><span class="label">旧長期損害保険料</span><input id="insuranceOldLongAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">平成18年12月31日以前に締結した一定の長期損害保険など、証明書で旧長期と分かるものです。</span></label>
+        <label class="field wide"><span class="label">地震保険料の会社名メモ</span><input id="insuranceEarthquakeMemo" type="text" placeholder="例: 〇〇損保"><span class="field-help">証明書確認用のメモです。</span></label>
+      </div>
+      <div class="subhead">社会保険料控除</div>
+      <div class="grid">
+        <label class="field"><span class="label">国民健康保険など</span><input id="insuranceSocialAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">給与から天引きされた社会保険料は通常ここで改めて申告しません。自分で支払ったものを入力します。</span></label>
+        <label class="field"><span class="label">国民年金・国民年金基金</span><input id="insurancePensionSocialAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">国民年金保険料などは証明書類の添付・確認が必要です。</span></label>
+      </div>
+      <div class="subhead">小規模企業共済等掛金控除</div>
+      <div class="grid">
+        <label class="field"><span class="label">小規模企業共済掛金</span><input id="insuranceSmallMutualAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"></label>
+        <label class="field"><span class="label">企業型DC加入者掛金</span><input id="insuranceCorporateDcAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">給与から差し引かれたものは、改めて申告不要な場合があります。</span></label>
+        <label class="field"><span class="label">iDeCoなど個人型年金掛金</span><input id="insuranceIdecoAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"></label>
+        <label class="field"><span class="label">心身障害者扶養共済掛金</span><input id="insuranceDisabilityMutualAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"></label>
       </div>
       </div>
 
@@ -465,8 +495,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     },
     insurance: {
       label: '保険料控除申告書',
-      note: '共通欄を様式へ転記し、控除証明書の確認メモを残します。',
-      preview: '氏名、住所、勤務先などを国税庁様式PDFへ転記します。'
+      note: '生命保険、介護医療、個人年金、地震、社会保険、小規模共済等を区分して入力します。',
+      preview: '証明書の区分別合計と控除額を計算し、国税庁様式PDFへ転記します。'
     },
     housing: {
       label: '住宅借入金等特別控除',
@@ -484,7 +514,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     'spouseAddress','spouseSalaryRevenue','spouseSalaryIncome','spouseOtherIncome','specialSelf','specialSpouse',
     'under23Dependent','housingEnabled','housingFirstYearDone','housingMethod','housingResidenceYear','housingLoanBalance',
     'housingLandBalance','housingResidentialRatio','housingRate','housingCertificateAmount','housingLimitMemo','housingMemo',
-    'insuranceLifeMemo','insuranceEarthquakeMemo'
+    'insuranceGeneralNewAmount','insuranceGeneralOldAmount','insuranceMedicalAmount','insurancePensionNewAmount',
+    'insurancePensionOldAmount','insuranceLifeMemo','insuranceEarthquakeAmount','insuranceOldLongAmount',
+    'insuranceEarthquakeMemo','insuranceSocialAmount','insurancePensionSocialAmount','insuranceSmallMutualAmount',
+    'insuranceCorporateDcAmount','insuranceIdecoAmount','insuranceDisabilityMutualAmount'
   ].forEach(function(id){ form[id] = document.getElementById(id); });
 
   var relatives = [];
@@ -633,6 +666,73 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var compare = certificate ? calculated - certificate : 0;
     return {enabled:enabled, base:base, rate:rate, calculated:calculated, certificate:certificate, compare:compare};
   }
+  function ceilYen(value){
+    var n = Number(value || 0);
+    return n > 0 ? Math.ceil(n) : 0;
+  }
+  function newInsuranceDeduction(amount){
+    amount = Number(amount || 0);
+    if(amount <= 0) return 0;
+    if(amount <= 20000) return ceilYen(amount);
+    if(amount <= 40000) return ceilYen(amount / 2 + 10000);
+    if(amount <= 80000) return ceilYen(amount / 4 + 20000);
+    return 40000;
+  }
+  function oldInsuranceDeduction(amount){
+    amount = Number(amount || 0);
+    if(amount <= 0) return 0;
+    if(amount <= 25000) return ceilYen(amount);
+    if(amount <= 50000) return ceilYen(amount / 2 + 12500);
+    if(amount <= 100000) return ceilYen(amount / 4 + 25000);
+    return 50000;
+  }
+  function mixedLifeDeduction(newAmount, oldAmount){
+    var newDeduction = newInsuranceDeduction(newAmount);
+    var oldDeduction = oldInsuranceDeduction(oldAmount);
+    var combined = Math.min(40000, newDeduction + oldDeduction);
+    return Math.max(oldDeduction, combined);
+  }
+  function oldLongDamageDeduction(amount){
+    amount = Number(amount || 0);
+    if(amount <= 0) return 0;
+    if(amount <= 10000) return ceilYen(amount);
+    return Math.min(15000, ceilYen(amount / 2 + 5000));
+  }
+  function insuranceCalc(data){
+    data = data || collectData();
+    var generalNewDeduction = newInsuranceDeduction(data.insuranceGeneralNewAmount);
+    var generalOldDeduction = oldInsuranceDeduction(data.insuranceGeneralOldAmount);
+    var generalCombined = Math.min(40000, generalNewDeduction + generalOldDeduction);
+    var generalFinal = Math.max(generalOldDeduction, generalCombined);
+    var medicalFinal = newInsuranceDeduction(data.insuranceMedicalAmount);
+    var pensionNewDeduction = newInsuranceDeduction(data.insurancePensionNewAmount);
+    var pensionOldDeduction = oldInsuranceDeduction(data.insurancePensionOldAmount);
+    var pensionCombined = Math.min(40000, pensionNewDeduction + pensionOldDeduction);
+    var pensionFinal = Math.max(pensionOldDeduction, pensionCombined);
+    var lifeTotal = Math.min(120000, generalFinal + medicalFinal + pensionFinal);
+    var earthquakePart = Math.min(50000, data.insuranceEarthquakeAmount || 0);
+    var oldLongPart = oldLongDamageDeduction(data.insuranceOldLongAmount);
+    var earthquakeTotal = Math.min(50000, earthquakePart + oldLongPart);
+    var socialTotal = (data.insuranceSocialAmount || 0) + (data.insurancePensionSocialAmount || 0);
+    var smallTotal = (data.insuranceSmallMutualAmount || 0) + (data.insuranceCorporateDcAmount || 0) + (data.insuranceIdecoAmount || 0) + (data.insuranceDisabilityMutualAmount || 0);
+    return {
+      generalNewDeduction:generalNewDeduction,
+      generalOldDeduction:generalOldDeduction,
+      generalCombined:generalCombined,
+      generalFinal:generalFinal,
+      medicalFinal:medicalFinal,
+      pensionNewDeduction:pensionNewDeduction,
+      pensionOldDeduction:pensionOldDeduction,
+      pensionCombined:pensionCombined,
+      pensionFinal:pensionFinal,
+      lifeTotal:lifeTotal,
+      earthquakePart:earthquakePart,
+      oldLongPart:oldLongPart,
+      earthquakeTotal:earthquakeTotal,
+      socialTotal:socialTotal,
+      smallTotal:smallTotal
+    };
+  }
   function collectData(){
     var salaryIncome = effectiveSalaryIncome();
     var totalIncome = salaryIncome + num('otherIncome');
@@ -665,8 +765,21 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       specialSelf: checked('specialSelf'),
       specialSpouse: checked('specialSpouse'),
       under23Dependent: checked('under23Dependent'),
+      insuranceGeneralNewAmount: num('insuranceGeneralNewAmount'),
+      insuranceGeneralOldAmount: num('insuranceGeneralOldAmount'),
+      insuranceMedicalAmount: num('insuranceMedicalAmount'),
+      insurancePensionNewAmount: num('insurancePensionNewAmount'),
+      insurancePensionOldAmount: num('insurancePensionOldAmount'),
       insuranceLifeMemo: text('insuranceLifeMemo'),
+      insuranceEarthquakeAmount: num('insuranceEarthquakeAmount'),
+      insuranceOldLongAmount: num('insuranceOldLongAmount'),
       insuranceEarthquakeMemo: text('insuranceEarthquakeMemo'),
+      insuranceSocialAmount: num('insuranceSocialAmount'),
+      insurancePensionSocialAmount: num('insurancePensionSocialAmount'),
+      insuranceSmallMutualAmount: num('insuranceSmallMutualAmount'),
+      insuranceCorporateDcAmount: num('insuranceCorporateDcAmount'),
+      insuranceIdecoAmount: num('insuranceIdecoAmount'),
+      insuranceDisabilityMutualAmount: num('insuranceDisabilityMutualAmount'),
       housing: {
         enabled: form.housingEnabled.value,
         firstYearDone: form.housingFirstYearDone.value,
@@ -731,6 +844,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function updateFormBlocks(){
     var visible = {common:true};
     if(selectedForm === 'combined'){
+      visible.income = true;
       visible.spouse = true;
       visible.relatives = true;
       visible['income-adjustment'] = true;
@@ -777,6 +891,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var spouse = spouseStatus(data.totalIncome, data.spouseTotalIncome);
     var incomeAdjustment = incomeAdjustmentStatus(data);
     var housing = housingCalc();
+    var insurance = insuranceCalc(data);
     var relativeResults = data.relatives.map(function(item){
       var income = Number(item.income || 0);
       var age = ageAtEndOfYear(item.birth);
@@ -786,24 +901,57 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var specificTargets = relativeResults.filter(function(row){ return row.isTargetAge && row.result.kind === '特定親族特別控除'; });
     var dependentTargets = relativeResults.filter(function(row){ return row.isTargetAge && row.result.kind === '扶養控除側を確認'; });
 
-    summaryGrid.innerHTML = [
-      card('本人の合計所得見込額', yen(data.totalIncome), '給与所得と給与以外の所得を合計した入力補助です。'),
-      card('基礎控除額の目安', yen(basic), '令和7年分の改正後区分で見た目安です。'),
-      card('配偶者欄', spouse.label, spouse.note),
-      card('住宅控除の試算', housing.enabled ? yen(housing.calculated) : '未使用', housing.enabled ? '証明書や残高証明書と照合します。' : '該当する場合は住宅控除欄を開いて入力します。')
-    ].join('');
-    needGrid.innerHTML = [
-      need('扶養控除等申告書', dependentTargets.length || data.relatives.length ? '確認あり' : '共通欄のみ', dependentTargets.length ? dependentTargets.map(function(row){ return row.item.name || '氏名未入力'; }).join('、') + 'は扶養控除等申告書側を確認します。' : '親族情報があれば扶養控除等申告書側にも反映できます。', data.relatives.length ? 'ok' : 'warn'),
-      need('基礎控除申告書', basic > 0 ? '入力候補' : '控除なし', basic > 0 ? '本人の合計所得見込額と基礎控除額を確認します。' : '合計所得が2,500万円超なら基礎控除の適用はありません。', basic > 0 ? 'ok' : 'warn'),
-      need('配偶者控除等申告書', spouse.label, spouse.note, spouse.className),
-      need('特定親族特別控除申告書', specificTargets.length ? '入力候補' : dependentTargets.length ? '扶養控除側を確認' : '該当なし寄り', specificTargets.length ? specificTargets.map(function(row){ return row.item.name || '氏名未入力'; }).join('、') + 'を確認します。' : dependentTargets.length ? '所得58万円以下の19歳以上23歳未満親族は扶養控除等申告書側を確認します。' : '19歳以上23歳未満で所得58万円超123万円以下の親族がいるか確認します。', specificTargets.length || dependentTargets.length ? 'ok' : 'no'),
-      need('所得金額調整控除申告書', incomeAdjustment.label, incomeAdjustment.note, incomeAdjustment.className),
-      need('住宅借入金等特別控除', housing.enabled ? '計算確認あり' : '必要なら入力', housing.enabled ? '年末残高、居住用割合、控除率、証明書の控除見込額を照合します。' : '2年目以降の年末調整で使う場合は証明書・申告書の数字を入れます。', housing.enabled ? 'ok' : 'warn')
-    ].join('');
+    var insuranceTotal = insurance.lifeTotal + insurance.earthquakeTotal + insurance.socialTotal + insurance.smallTotal;
+    var summaryCards = [];
+    var needCards = [];
+    if(selectedForm === 'combined'){
+      summaryCards = [
+        card('本人の合計所得見込額', yen(data.totalIncome), '給与所得と給与以外の所得を合計した入力補助です。'),
+        card('基礎控除額の目安', yen(basic), '令和7年分の改正後区分で見た目安です。'),
+        card('配偶者欄', spouse.label, spouse.note),
+        card('所得金額調整控除', incomeAdjustment.label, incomeAdjustment.note)
+      ];
+      needCards = [
+        need('基礎控除申告書', basic > 0 ? '入力候補' : '控除なし', basic > 0 ? '本人の合計所得見込額と基礎控除額を確認します。' : '合計所得が2,500万円超なら基礎控除の適用はありません。', basic > 0 ? 'ok' : 'warn'),
+        need('配偶者控除等申告書', spouse.label, spouse.note, spouse.className),
+        need('特定親族特別控除申告書', specificTargets.length ? '入力候補' : dependentTargets.length ? '扶養控除側を確認' : '該当なし寄り', specificTargets.length ? specificTargets.map(function(row){ return row.item.name || '氏名未入力'; }).join('、') + 'を確認します。' : dependentTargets.length ? '所得58万円以下の19歳以上23歳未満親族は扶養控除等申告書側を確認します。' : '19歳以上23歳未満で所得58万円超123万円以下の親族がいるか確認します。', specificTargets.length || dependentTargets.length ? 'ok' : 'no'),
+        need('所得金額調整控除申告書', incomeAdjustment.label, incomeAdjustment.note, incomeAdjustment.className)
+      ];
+    }else if(selectedForm === 'dependent'){
+      summaryCards = [
+        card('扶養親族の入力数', String(data.relatives.length) + '人', '扶養控除等申告書へ最大4人分を転記します。'),
+        card('19歳以上23歳未満', String(relativeResults.filter(function(row){ return row.isTargetAge; }).length) + '人', '特定親族特別控除との関係も確認します。')
+      ];
+      needCards = [
+        need('扶養控除等申告書', dependentTargets.length || data.relatives.length ? '確認あり' : '共通欄のみ', dependentTargets.length ? dependentTargets.map(function(row){ return row.item.name || '氏名未入力'; }).join('、') + 'は扶養控除等申告書側を確認します。' : '扶養親族がいる場合は親族情報を追加します。', data.relatives.length ? 'ok' : 'warn')
+      ];
+    }else if(selectedForm === 'insurance'){
+      summaryCards = [
+        card('生命保険料控除', yen(insurance.lifeTotal), '一般生命、介護医療、個人年金の控除額合計です。'),
+        card('地震保険料控除', yen(insurance.earthquakeTotal), '地震保険料と旧長期損害保険料から計算します。'),
+        card('社会保険料控除', yen(insurance.socialTotal), '自分で支払った国民健康保険や国民年金などです。'),
+        card('小規模企業共済等', yen(insurance.smallTotal), '小規模企業共済、iDeCoなどの掛金です。')
+      ];
+      needCards = [
+        need('保険料控除申告書', insuranceTotal ? '入力あり' : '証明書を確認', insuranceTotal ? '証明書の区分別合計から控除額を計算し、様式へ転記します。' : '一般生命、介護医療、個人年金、地震、社会保険、小規模共済等の証明書を確認します。', insuranceTotal ? 'ok' : 'warn')
+      ];
+    }else{
+      summaryCards = [
+        card('控除対象残高の試算', housing.enabled ? yen(housing.base) : '未使用', '住宅・土地の年末残高に居住用割合を掛けた金額です。'),
+        card('住宅控除の試算', housing.enabled ? yen(housing.calculated) : '未使用', housing.enabled ? '証明書や残高証明書と照合します。' : '該当する場合は住宅控除欄を開いて入力します。'),
+        card('証明書との差額', housing.certificate ? yen(housing.compare) : '未入力', '証明書の控除見込額を入れると差額を確認できます。')
+      ];
+      needCards = [
+        need('住宅借入金等特別控除', housing.enabled ? '計算確認あり' : '必要なら入力', housing.enabled ? '年末残高、居住用割合、控除率、証明書の控除見込額を照合します。' : '2年目以降の年末調整で使う場合は証明書・申告書の数字を入れます。', housing.enabled ? 'ok' : 'warn')
+      ];
+    }
+    summaryGrid.innerHTML = summaryCards.join('');
+    needGrid.innerHTML = needCards.join('');
     copyOutput.value = buildMemo(data, basic, spouse, incomeAdjustment, relativeResults, housing);
-    renderPrint(data, basic, spouse, incomeAdjustment, relativeResults, housing);
+    renderPrint(data, basic, spouse, incomeAdjustment, relativeResults, housing, insurance);
   }
   function buildMemo(data, basic, spouse, incomeAdjustment, relativeResults, housing){
+    var insurance = insuranceCalc(data);
     var lines = [
       '【年末調整申告書 確認メモ】',
       '作成対象: ' + (FORM_META[data.targetForm] ? FORM_META[data.targetForm].label : '未選択'),
@@ -837,8 +985,19 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     }
     lines.push('', '■ 所得金額調整控除', incomeAdjustment.label + ': ' + incomeAdjustment.note);
     lines.push('', '■ 保険料控除');
-    lines.push('生命保険料控除証明書メモ: ' + (data.insuranceLifeMemo || '未入力'));
-    lines.push('地震保険料控除証明書メモ: ' + (data.insuranceEarthquakeMemo || '未入力'));
+    lines.push('一般の生命保険料 新制度: ' + yen(data.insuranceGeneralNewAmount) + ' / 控除額 ' + yen(insurance.generalNewDeduction));
+    lines.push('一般の生命保険料 旧制度: ' + yen(data.insuranceGeneralOldAmount) + ' / 控除額 ' + yen(insurance.generalOldDeduction));
+    lines.push('一般生命保険料控除額: ' + yen(insurance.generalFinal));
+    lines.push('介護医療保険料: ' + yen(data.insuranceMedicalAmount) + ' / 控除額 ' + yen(insurance.medicalFinal));
+    lines.push('個人年金保険料 新制度: ' + yen(data.insurancePensionNewAmount) + ' / 控除額 ' + yen(insurance.pensionNewDeduction));
+    lines.push('個人年金保険料 旧制度: ' + yen(data.insurancePensionOldAmount) + ' / 控除額 ' + yen(insurance.pensionOldDeduction));
+    lines.push('個人年金保険料控除額: ' + yen(insurance.pensionFinal));
+    lines.push('生命保険料控除額合計: ' + yen(insurance.lifeTotal));
+    lines.push('地震保険料: ' + yen(data.insuranceEarthquakeAmount) + ' / 旧長期損害保険料: ' + yen(data.insuranceOldLongAmount) + ' / 控除額 ' + yen(insurance.earthquakeTotal));
+    lines.push('社会保険料控除額: ' + yen(insurance.socialTotal));
+    lines.push('小規模企業共済等掛金控除額: ' + yen(insurance.smallTotal));
+    lines.push('生命保険料メモ: ' + (data.insuranceLifeMemo || '未入力'));
+    lines.push('地震保険料メモ: ' + (data.insuranceEarthquakeMemo || '未入力'));
     lines.push('', '■ 住宅借入金等特別控除');
     if(housing.enabled){
       lines.push('住宅・土地の年末残高（居住用割合後）: ' + yen(housing.base));
@@ -852,7 +1011,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     lines.push('', '※このメモとPDFは提出前の確認用です。勤務先の指定、国税庁の最新様式、証明書の内容で最終確認してください。');
     return lines.join('\n');
   }
-  function renderPrint(data, basic, spouse, incomeAdjustment, relativeResults, housing){
+  function renderPrint(data, basic, spouse, incomeAdjustment, relativeResults, housing, insurance){
     printName.textContent = data.name ? data.name + ' / ' + data.address : '氏名・住所未入力';
     var rows = [
       ['対象年', '令和7年分（2025年）'],
@@ -863,6 +1022,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       ['基礎控除額の目安', yen(basic)],
       ['配偶者欄', spouse.label + ' / ' + (data.spouseName || '') + ' / 所得 ' + yen(data.spouseTotalIncome)],
       ['所得金額調整控除', incomeAdjustment.label],
+      ['保険料控除額', '生命 ' + yen(insurance.lifeTotal) + ' / 地震 ' + yen(insurance.earthquakeTotal) + ' / 社会保険 ' + yen(insurance.socialTotal) + ' / 小規模共済等 ' + yen(insurance.smallTotal)],
       ['保険料控除メモ', (data.insuranceLifeMemo || '生命保険料未入力') + ' / ' + (data.insuranceEarthquakeMemo || '地震保険料未入力')],
       ['住宅控除の試算', housing.enabled ? yen(housing.calculated) : '入力なし']
     ];
@@ -1164,6 +1324,105 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   }
   function fillInsurancePdf(pdfForm, data){
     fillHeader(pdfForm, data, {taxOffice:'fill_1', employerName:'fill_2', employerCorporateNumber:'fill_3', employerAddress:'fill_4', kana:'fill_5', name:'fill_6', address:'fill_7'});
+    var insurance = insuranceCalc(data);
+    var lifeCompany = data.insuranceLifeMemo || '証明書合計';
+    var earthquakeCompany = data.insuranceEarthquakeMemo || '証明書合計';
+    if(data.insuranceGeneralNewAmount){
+      setPdfText(pdfForm, 'fill_8', lifeCompany);
+      setPdfText(pdfForm, 'fill_9', '一般生命');
+      setPdfText(pdfForm, 'fill_11', data.name);
+      setPdfText(pdfForm, 'fill_12', data.name);
+      setPdfDropdown(pdfForm, 'Dropdown1', '新');
+      setPdfText(pdfForm, 'fill_14', plain(data.insuranceGeneralNewAmount));
+    }
+    if(data.insuranceGeneralOldAmount){
+      setPdfText(pdfForm, 'fill_15', lifeCompany);
+      setPdfText(pdfForm, 'fill_16', '一般生命');
+      setPdfText(pdfForm, 'fill_18', data.name);
+      setPdfText(pdfForm, 'fill_19', data.name);
+      setPdfDropdown(pdfForm, 'Dropdown2', '旧');
+      setPdfText(pdfForm, 'fill_21', plain(data.insuranceGeneralOldAmount));
+    }
+    setPdfText(pdfForm, 'fill_36', plain(data.insuranceGeneralNewAmount));
+    setPdfText(pdfForm, 'fill_37', plain(insurance.generalNewDeduction));
+    setPdfText(pdfForm, 'fill_38', plain(insurance.generalCombined));
+    setPdfText(pdfForm, 'fill_39', plain(data.insuranceGeneralOldAmount));
+    setPdfText(pdfForm, 'fill_40', plain(insurance.generalOldDeduction));
+    setPdfText(pdfForm, 'fill_41', plain(insurance.generalFinal));
+
+    if(data.insuranceMedicalAmount){
+      setPdfText(pdfForm, 'fill_42', lifeCompany);
+      setPdfText(pdfForm, 'fill_43', '介護医療');
+      setPdfText(pdfForm, 'fill_45', data.name);
+      setPdfText(pdfForm, 'fill_46', data.name);
+      setPdfText(pdfForm, 'fill_48', plain(data.insuranceMedicalAmount));
+    }
+    setPdfText(pdfForm, 'fill_63', plain(data.insuranceMedicalAmount));
+    setPdfText(pdfForm, 'fill_64', plain(insurance.medicalFinal));
+
+    if(data.insurancePensionNewAmount){
+      setPdfText(pdfForm, 'fill_65', lifeCompany);
+      setPdfText(pdfForm, 'fill_66', '個人年金');
+      setPdfText(pdfForm, 'fill_68', data.name);
+      setPdfDropdown(pdfForm, 'Dropdown5', '新');
+      setPdfText(pdfForm, 'fill_74', plain(data.insurancePensionNewAmount));
+    }
+    if(data.insurancePensionOldAmount){
+      setPdfText(pdfForm, 'fill_75', lifeCompany);
+      setPdfText(pdfForm, 'fill_76', '個人年金');
+      setPdfText(pdfForm, 'fill_78', data.name);
+      setPdfDropdown(pdfForm, 'Dropdown6', '旧');
+      setPdfText(pdfForm, 'fill_84', plain(data.insurancePensionOldAmount));
+    }
+    setPdfText(pdfForm, 'fill_95', plain(data.insurancePensionNewAmount));
+    setPdfText(pdfForm, 'fill_96', plain(data.insurancePensionOldAmount));
+    setPdfText(pdfForm, 'fill_97', plain(insurance.pensionNewDeduction));
+    setPdfText(pdfForm, 'fill_98', plain(insurance.pensionOldDeduction));
+    setPdfText(pdfForm, 'fill_99', plain(insurance.pensionCombined));
+    setPdfText(pdfForm, 'fill_100', plain(insurance.pensionFinal));
+    setPdfText(pdfForm, 'fill_101', plain(insurance.lifeTotal));
+
+    if(data.insuranceEarthquakeAmount){
+      setPdfText(pdfForm, 'fill_102', earthquakeCompany);
+      setPdfText(pdfForm, 'fill_103', '地震');
+      setPdfText(pdfForm, 'fill_105', data.name);
+      setPdfText(pdfForm, 'fill_106', data.name);
+      setPdfDropdown(pdfForm, 'Dropdown8', ' 地震');
+      setPdfText(pdfForm, 'fill_108', plain(data.insuranceEarthquakeAmount));
+    }
+    if(data.insuranceOldLongAmount){
+      setPdfText(pdfForm, 'fill_109', earthquakeCompany);
+      setPdfText(pdfForm, 'fill_110', '旧長期');
+      setPdfText(pdfForm, 'fill_112', data.name);
+      setPdfText(pdfForm, 'fill_113', data.name);
+      setPdfDropdown(pdfForm, 'Dropdown9', '旧長期');
+      setPdfText(pdfForm, 'fill_115', plain(data.insuranceOldLongAmount));
+    }
+    setPdfText(pdfForm, 'fill_116', plain(data.insuranceEarthquakeAmount));
+    setPdfText(pdfForm, 'fill_117', plain(data.insuranceOldLongAmount));
+    setPdfText(pdfForm, 'fill_118', plain(insurance.earthquakePart));
+    setPdfText(pdfForm, 'fill_119', plain(insurance.oldLongPart));
+    setPdfText(pdfForm, 'fill_120', plain(insurance.earthquakeTotal));
+
+    if(data.insuranceSocialAmount){
+      setPdfText(pdfForm, 'fill_121', '国民健康保険等');
+      setPdfText(pdfForm, 'fill_122', '市区町村等');
+      setPdfText(pdfForm, 'fill_123', data.name);
+      setPdfText(pdfForm, 'fill_125', plain(data.insuranceSocialAmount));
+    }
+    if(data.insurancePensionSocialAmount){
+      setPdfText(pdfForm, 'fill_126', '国民年金等');
+      setPdfText(pdfForm, 'fill_127', '日本年金機構等');
+      setPdfText(pdfForm, 'fill_128', data.name);
+      setPdfText(pdfForm, 'fill_130', plain(data.insurancePensionSocialAmount));
+    }
+    setPdfText(pdfForm, 'fill_131', plain(insurance.socialTotal));
+
+    setPdfText(pdfForm, 'fill_132', plain(data.insuranceSmallMutualAmount));
+    setPdfText(pdfForm, 'fill_133', plain(data.insuranceCorporateDcAmount));
+    setPdfText(pdfForm, 'fill_134', plain(data.insuranceIdecoAmount));
+    setPdfText(pdfForm, 'fill_135', plain(data.insuranceDisabilityMutualAmount));
+    setPdfText(pdfForm, 'fill_136', plain(insurance.smallTotal));
   }
   Object.keys(form).forEach(function(key){
     if(!form[key]) return;
