@@ -108,6 +108,23 @@ h1 em{font-style:normal;color:var(--teal)}
 .workflow-step small{display:block;font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.28rem}
 .workflow-step strong{display:block;color:var(--navy);font-size:.9rem;line-height:1.45}
 .workflow-step span{display:block;color:var(--muted);font-size:.72rem;line-height:1.55;margin-top:.22rem}
+.precheck-panel{background:#fff;border:1px solid rgba(41,117,117,.16);border-radius:8px;box-shadow:var(--soft);padding:1rem;margin:1rem 0}
+.precheck-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.9rem;align-items:start;margin-bottom:.85rem}
+.precheck-head small,.precheck-card small{display:block;font-family:'Nunito',sans-serif;font-size:.56rem;font-weight:900;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.24rem}
+.precheck-head strong{display:block;color:var(--navy);font-family:'Shippori Mincho',serif;font-size:1.12rem;line-height:1.45}
+.precheck-head p{color:var(--muted);font-size:.76rem;line-height:1.7;margin-top:.25rem}
+.precheck-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem}
+.precheck-field{display:grid;gap:.38rem;background:#f8fcf9;border:1px solid rgba(27,42,48,.08);border-radius:8px;padding:.76rem}
+.precheck-field span{color:var(--navy);font-size:.78rem;font-weight:900;line-height:1.5}
+.precheck-field em{color:var(--sub);font-size:.68rem;line-height:1.55;font-style:normal}
+.precheck-results{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin-top:.8rem}
+.precheck-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:.82rem;box-shadow:var(--soft);display:grid;gap:.48rem}
+.precheck-card strong{display:block;color:var(--navy);font-size:.9rem;line-height:1.45}
+.precheck-card p{color:var(--muted);font-size:.72rem;line-height:1.65}
+.precheck-status{display:inline-flex;align-items:center;width:max-content;max-width:100%;border-radius:999px;padding:.16rem .55rem;background:#edf7f2;color:var(--teal);font-size:.68rem;font-weight:900}
+.precheck-card.warn .precheck-status{background:#fff4dc;color:#8b6422}
+.precheck-card.no{opacity:.76}
+.precheck-card.no .precheck-status{background:#f2f4f4;color:#647174}
 .form-selector{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.72rem;margin-top:.95rem}
 .choice-card{appearance:none;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.95rem;box-shadow:var(--soft);cursor:pointer;min-height:10.5rem;color:var(--ink);transition:border-color .2s,box-shadow .2s,transform .2s,background .2s}
 .choice-card:hover{border-color:rgba(41,117,117,.34);transform:translateY(-2px)}
@@ -126,6 +143,13 @@ h1 em{font-style:normal;color:var(--teal)}
 .preview-empty[hidden]{display:none}
 .preview-tools{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.85rem}
 .preview-tools .btn:first-child{grid-column:1/-1}
+.preview-modal{position:fixed;inset:0;z-index:1000;background:rgba(13,29,36,.82);display:grid;grid-template-rows:auto minmax(0,1fr);padding:clamp(.6rem,2vw,1.25rem);gap:.7rem}
+.preview-modal[hidden]{display:none}
+.preview-modal-bar{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;background:#fff;border:1px solid rgba(255,255,255,.4);border-radius:8px;padding:.7rem;box-shadow:var(--shadow)}
+.preview-modal-bar strong{color:var(--navy);font-size:.95rem;line-height:1.45;margin-right:auto}
+.preview-modal-actions{display:flex;gap:.45rem;flex-wrap:wrap}
+.preview-modal-frame{width:100%;height:100%;border:0;border-radius:8px;background:#f8f8f8;box-shadow:0 18px 54px rgba(0,0,0,.28)}
+body.preview-locked{overflow:hidden}
 .pdf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem}
 .pdf-card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--soft);padding:.9rem;display:grid;gap:.7rem}
 .pdf-card h3{font-family:'Shippori Mincho',serif;font-size:1.05rem;line-height:1.45;color:var(--navy)}
@@ -191,9 +215,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .ft-nav{display:flex;gap:1rem;flex-wrap:wrap}
 .ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.76)}
 .ft-nav a:hover{color:#fff}
-@media(max-width:980px){.hero,.app-shell,.pdf-grid,.workflow-steps,.form-selector{grid-template-columns:1fr}.source-grid{grid-template-columns:1fr 1fr}.pdf-card iframe{height:520px}.preview-frame{height:560px}}
-@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.official-panel,.direct-panel,.panel,.result-panel,.print-sheet,.source-panel{padding:1rem}.grid,.grid.three,.summary-grid,.need-grid,.source-grid,.preview-tools{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.choice-card{min-height:auto}.preview-shell{min-height:430px}.preview-frame{height:470px}.form-table{grid-template-columns:1fr}.form-table b{border-right:0}.print-head{grid-template-columns:1fr}.print-note{text-align:left;max-width:none}h1,.lead,.panel p,.field-help,.need-card p,.source-card p{overflow-wrap:anywhere;line-break:strict}}
-@media print{body{background:#fff;color:#111}.hd,.hero,.direct-panel,.panel,.result-panel>h2,.result-panel>p,.summary-grid,.need-grid,.output,.action-row,.source-panel,.ft,.notice,.official-panel,.pdf-actions,.pdf-status{display:none!important}.wrap{max-width:none;padding:0}.app-shell{display:block}.result-panel{box-shadow:none;border:0;padding:0}.print-sheet{display:block;box-shadow:none;border:0;padding:0;margin:0 0 12mm}.print-head{break-inside:avoid}.form-table{font-size:10.5pt}.form-table b,.form-table span{min-height:26pt;padding:6pt}.memo-list,.housing-table{font-size:9.5pt}}
+@media(max-width:980px){.hero,.app-shell,.pdf-grid,.workflow-steps,.form-selector,.precheck-grid,.precheck-results{grid-template-columns:1fr}.precheck-head{grid-template-columns:1fr}.source-grid{grid-template-columns:1fr 1fr}.pdf-card iframe{height:520px}.preview-frame{height:560px}}
+@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.official-panel,.direct-panel,.panel,.result-panel,.print-sheet,.source-panel{padding:1rem}.grid,.grid.three,.summary-grid,.need-grid,.source-grid,.preview-tools{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.choice-card{min-height:auto}.preview-shell{min-height:430px}.preview-frame{height:470px}.preview-modal{padding:.5rem}.preview-modal-bar{align-items:stretch}.preview-modal-actions{display:grid;width:100%}.form-table{grid-template-columns:1fr}.form-table b{border-right:0}.print-head{grid-template-columns:1fr}.print-note{text-align:left;max-width:none}h1,.lead,.panel p,.field-help,.need-card p,.source-card p,.precheck-card p{overflow-wrap:anywhere;line-break:strict}}
+@media print{body{background:#fff;color:#111}.hd,.hero,.direct-panel,.panel,.result-panel>h2,.result-panel>p,.summary-grid,.need-grid,.output,.action-row,.source-panel,.ft,.notice,.official-panel,.pdf-actions,.pdf-status,.preview-modal{display:none!important}.wrap{max-width:none;padding:0}.app-shell{display:block}.result-panel{box-shadow:none;border:0;padding:0}.print-sheet{display:block;box-shadow:none;border:0;padding:0;margin:0 0 12mm}.print-head{break-inside:avoid}.form-table{font-size:10.5pt}.form-table b,.form-table span{min-height:26pt;padding:6pt}.memo-list,.housing-table{font-size:9.5pt}}
 </style>
 <script src="assets/analytics.js"></script>
 <script src="assets/vendor/pdf-lib.min.js"></script>
@@ -253,6 +277,27 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <div class="workflow-step"><small>Step 1</small><strong>様式を選ぶ</strong><span>作成したい申告書を1つ選びます。</span></div>
       <div class="workflow-step"><small>Step 2</small><strong>説明を見ながら入力</strong><span>共通欄と、その様式に必要な欄だけ入力します。</span></div>
       <div class="workflow-step"><small>Step 3</small><strong>プレビューして保存</strong><span>国税庁様式に転記されたPDFを確認し、保存・印刷します。</span></div>
+    </div>
+    <div class="precheck-panel" id="precheckPanel">
+      <div class="precheck-head">
+        <div>
+          <small>Quick Check</small>
+          <strong>最初に、入力が必要そうなところだけ確認する</strong>
+          <p>分かる範囲で答えると、どの申告書や欄を開くとよいかを先に絞り込みます。「わからない」は無理に決めず、要確認として残します。</p>
+        </div>
+        <button class="btn secondary" type="button" id="applyPrecheckBtn">チェック結果から様式を開く</button>
+      </div>
+      <div class="precheck-grid" aria-label="年末調整申告書の該当チェック">
+        <label class="precheck-field"><span>配偶者控除等を申告しますか</span><select id="precheckSpouse"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>配偶者の所得見込額を使う欄です。</em></label>
+        <label class="precheck-field"><span>扶養親族を申告しますか</span><select id="precheckRelatives"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>子、親族などを扶養に入れる場合です。</em></label>
+        <label class="precheck-field"><span>19歳以上23歳未満の親族がいますか</span><select id="precheckSpecificRelative"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>扶養控除か特定親族特別控除かを確認します。</em></label>
+        <label class="precheck-field"><span>給与収入見込が850万円を超えますか</span><select id="precheckHighSalary"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>所得金額調整控除の確認に使います。</em></label>
+        <label class="precheck-field"><span>特別障害者や23歳未満扶養親族などがありますか</span><select id="precheckIncomeAdjustment"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>給与収入850万円超の場合に確認します。</em></label>
+        <label class="precheck-field"><span>保険料控除証明書がありますか</span><select id="precheckInsurance"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>生命保険、介護医療、個人年金、地震保険などです。</em></label>
+        <label class="precheck-field"><span>自分で社会保険料やiDeCo等を払いましたか</span><select id="precheckSelfPaidInsurance"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>国民年金、国民健康保険、小規模企業共済等です。</em></label>
+        <label class="precheck-field"><span>住宅ローン控除を年末調整で使いますか</span><select id="precheckHousing"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>初年度の確定申告後、勤務先へ出す場合があります。</em></label>
+      </div>
+      <div class="precheck-results" id="precheckResults" aria-live="polite"></div>
     </div>
     <div class="form-selector" role="radiogroup" aria-label="作成する申告書">
       <button class="choice-card is-active" type="button" data-select-form="combined" aria-pressed="true">
@@ -406,6 +451,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       </div>
       <div class="preview-tools">
         <button class="btn" type="button" id="previewPdfBtn">選んだ様式をプレビュー更新</button>
+        <button class="btn secondary" type="button" id="openPreviewModalBtn">全画面で確認</button>
         <button class="btn secondary" type="button" id="downloadSelectedPdfBtn">プレビューPDFを保存</button>
         <button class="btn secondary" type="button" id="printSelectedPdfBtn">プレビューPDFを印刷</button>
       </div>
@@ -462,6 +508,18 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     </div>
   </section>
 </main>
+
+<div class="preview-modal" id="previewModal" hidden role="dialog" aria-modal="true" aria-label="PDFプレビュー全画面">
+  <div class="preview-modal-bar">
+    <strong id="previewModalTitle">PDFプレビュー</strong>
+    <div class="preview-modal-actions">
+      <button class="btn secondary" type="button" id="downloadModalPdfBtn">PDF保存</button>
+      <button class="btn secondary" type="button" id="printModalPdfBtn">印刷</button>
+      <button class="btn" type="button" id="closePreviewModalBtn">閉じる</button>
+    </div>
+  </div>
+  <iframe class="preview-modal-frame" id="previewModalFrame" title="全画面PDFプレビュー"></iframe>
+</div>
 
 <footer class="ft">
   <div class="ft-inner">
@@ -538,6 +596,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   var housingPrintMemo = document.getElementById('housingPrintMemo');
   var housingPrintName = document.getElementById('housingPrintName');
   var pdfStatus = document.getElementById('pdfStatus');
+  var precheckIds = ['precheckSpouse','precheckRelatives','precheckSpecificRelative','precheckHighSalary','precheckIncomeAdjustment','precheckInsurance','precheckSelfPaidInsurance','precheckHousing'];
+  var precheckFields = {};
+  precheckIds.forEach(function(id){ precheckFields[id] = document.getElementById(id); });
+  var precheckResults = document.getElementById('precheckResults');
+  var previewModal = document.getElementById('previewModal');
+  var previewModalFrame = document.getElementById('previewModalFrame');
+  var previewModalTitle = document.getElementById('previewModalTitle');
 
   function yen(value){
     var n = Number(value || 0);
@@ -557,6 +622,15 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   }
   function checked(id){
     return !!form[id].checked;
+  }
+  function precheckValue(id){
+    return precheckFields[id] ? precheckFields[id].value : '';
+  }
+  function hasPrecheckValue(ids, value){
+    return ids.some(function(id){ return precheckValue(id) === value; });
+  }
+  function allPrecheckNo(ids){
+    return ids.every(function(id){ return precheckValue(id) === 'no'; });
   }
   function escapeHtml(value){
     return String(value).replace(/[&<>"']/g, function(ch){
@@ -793,6 +867,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         limitMemo: text('housingLimitMemo'),
         memo: text('housingMemo')
       },
+      precheck: precheckIds.reduce(function(values, id){
+        values[id] = precheckValue(id);
+        return values;
+      }, {}),
       relatives: relatives.map(function(item){ return Object.assign({}, item); })
     };
   }
@@ -807,6 +885,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       Object.keys(data.housing).forEach(function(key){
         var field = form['housing' + key.charAt(0).toUpperCase() + key.slice(1)];
         if(field) field.value = data.housing[key];
+      });
+    }
+    if(data.precheck){
+      precheckIds.forEach(function(id){
+        if(precheckFields[id] && data.precheck[id] !== undefined) precheckFields[id].value = data.precheck[id];
       });
     }
     relatives = Array.isArray(data.relatives) ? data.relatives : [];
@@ -856,6 +939,63 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       block.hidden = !visible[block.getAttribute('data-form-block')];
     });
   }
+  function precheckStatus(kind, label, statusLabel, note, className, rank){
+    return {kind:kind, label:label, statusLabel:statusLabel, note:note, className:className, rank:rank};
+  }
+  function getPrecheckStatuses(){
+    var combinedIds = ['precheckSpouse','precheckSpecificRelative','precheckHighSalary','precheckIncomeAdjustment'];
+    var combinedYes = precheckValue('precheckSpouse') === 'yes' || precheckValue('precheckSpecificRelative') === 'yes' || (precheckValue('precheckHighSalary') === 'yes' && precheckValue('precheckIncomeAdjustment') === 'yes');
+    var combinedUnknown = hasPrecheckValue(combinedIds, 'unknown') || (precheckValue('precheckHighSalary') === 'yes' && precheckValue('precheckIncomeAdjustment') !== 'yes');
+    var combinedEmpty = combinedIds.some(function(id){ return precheckValue(id) === ''; });
+    var combined = combinedYes
+      ? precheckStatus('combined', '基礎・配偶者等', '入力候補', '配偶者、特定親族、所得金額調整控除のいずれかを確認する流れです。', 'ok', 3)
+      : combinedUnknown || combinedEmpty
+        ? precheckStatus('combined', '基礎・配偶者等', '要確認', '基礎控除申告書は勤務先で求められやすい様式です。分からない項目はここで確認できます。', 'warn', 2)
+        : precheckStatus('combined', '基礎・配偶者等', '勤務先の案内を確認', '配偶者等の追加欄は不要寄りですが、基礎控除申告書として提出を求められる場合があります。', 'warn', 1);
+
+    var dependentIds = ['precheckRelatives','precheckSpecificRelative'];
+    var dependent = precheckValue('precheckRelatives') === 'yes' || precheckValue('precheckSpecificRelative') === 'yes'
+      ? precheckStatus('dependent', '扶養控除等', '入力候補', '扶養親族の氏名、生年月日、所得見込額などを入力します。', 'ok', 3)
+      : hasPrecheckValue(dependentIds, 'unknown') || !allPrecheckNo(dependentIds)
+        ? precheckStatus('dependent', '扶養控除等', '要確認', '扶養に入れる親族がいるか分からない場合は、勤務先や家族状況を確認してから入力します。', 'warn', 2)
+        : precheckStatus('dependent', '扶養控除等', '不要寄り', '扶養親族を申告しない場合は、本人・勤務先などの共通欄だけ確認すれば足りることがあります。', 'no', 0);
+
+    var insuranceIds = ['precheckInsurance','precheckSelfPaidInsurance'];
+    var insurance = hasPrecheckValue(insuranceIds, 'yes')
+      ? precheckStatus('insurance', '保険料控除', '入力候補', '控除証明書や自分で払った社会保険料を区分ごとに入力します。', 'ok', 3)
+      : hasPrecheckValue(insuranceIds, 'unknown') || !allPrecheckNo(insuranceIds)
+        ? precheckStatus('insurance', '保険料控除', '要確認', '証明書が届いているか、自分で支払った国民年金やiDeCo等があるかを確認します。', 'warn', 2)
+        : precheckStatus('insurance', '保険料控除', '不要寄り', '控除証明書や自分で支払った対象保険料がなければ、入力しないで進められます。', 'no', 0);
+
+    var housing = precheckValue('precheckHousing') === 'yes'
+      ? precheckStatus('housing', '住宅借入金等特別控除', '確認候補', '年末調整で使う場合は、交付された申告書・証明書と照合するための計算メモを作れます。', 'ok', 3)
+      : precheckValue('precheckHousing') === 'unknown' || precheckValue('precheckHousing') === ''
+        ? precheckStatus('housing', '住宅借入金等特別控除', '要確認', '初年度の確定申告後か、勤務先へ提出する証明書があるかを確認します。', 'warn', 2)
+        : precheckStatus('housing', '住宅借入金等特別控除', '不要寄り', '住宅ローン控除を年末調整で使わない場合は、この欄は開かなくて大丈夫です。', 'no', 0);
+
+    return [combined, dependent, insurance, housing];
+  }
+  function renderPrecheck(){
+    if(!precheckResults) return;
+    precheckResults.innerHTML = getPrecheckStatuses().map(function(item){
+      return '<div class="precheck-card ' + escapeHtml(item.className) + '">' +
+        '<small>' + escapeHtml(item.label) + '</small>' +
+        '<span class="precheck-status">' + escapeHtml(item.statusLabel) + '</span>' +
+        '<p>' + escapeHtml(item.note) + '</p>' +
+        '<button class="btn secondary" type="button" data-precheck-select-form="' + escapeHtml(item.kind) + '">この様式を開く</button>' +
+      '</div>';
+    }).join('');
+  }
+  function applyPrecheck(){
+    var statuses = getPrecheckStatuses();
+    var target = statuses.filter(function(item){ return item.rank >= 3; })[0] ||
+      statuses.filter(function(item){ return item.rank >= 2 && item.kind !== 'combined'; })[0] ||
+      statuses[0];
+    if(target){
+      setSelectedForm(target.kind);
+      document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
   function resetPreview(message){
     if(previewUrl){
       URL.revokeObjectURL(previewUrl);
@@ -863,6 +1003,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     }
     currentPreview = null;
     previewFrame.removeAttribute('src');
+    if(previewModalFrame) previewModalFrame.removeAttribute('src');
+    if(previewModal && !previewModal.hidden) closePreviewModal();
     previewEmpty.textContent = message || '入力後に「選んだ様式をプレビュー更新」を押すと、国税庁様式へ転記されたPDFをここで確認できます。';
     previewEmpty.hidden = false;
   }
@@ -886,6 +1028,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function render(){
     updateSelectedFormDisplay();
     updateFormBlocks();
+    renderPrecheck();
     var data = collectData();
     var basic = basicDeduction(data.totalIncome);
     var spouse = spouseStatus(data.totalIncome, data.spouseTotalIncome);
@@ -1071,6 +1214,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       if(form[key].type === 'checkbox') form[key].checked = false;
       else form[key].value = '';
     });
+    precheckIds.forEach(function(id){
+      if(precheckFields[id]) precheckFields[id].value = '';
+    });
     form.taxYear.value = '2025';
     form.hasSpouse.value = 'no';
     form.housingEnabled.value = 'no';
@@ -1220,14 +1366,37 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     if(!preview) return;
     setTimeout(function(){
       try{
-        previewFrame.contentWindow.focus();
-        previewFrame.contentWindow.print();
+        var activeFrame = previewModal && !previewModal.hidden && previewModalFrame.getAttribute('src') ? previewModalFrame : previewFrame;
+        activeFrame.contentWindow.focus();
+        activeFrame.contentWindow.print();
         status('プレビューPDFの印刷画面を開きます。保存済みPDFを印刷する場合は、ダウンロードしたPDFからも印刷できます。');
       }catch(error){
         window.open(preview.url, '_blank', 'noopener');
         status('新しいタブでPDFを開きました。PDFビューアから印刷してください。');
       }
     }, 450);
+  }
+  async function openPreviewModal(){
+    if(selectedForm === 'housing'){
+      render();
+      status('住宅控除はPDF様式プレビューではなく、下の計算確認シートを印刷画面からPDF保存してください。');
+      var sheet = document.querySelector('.print-sheet');
+      if(sheet) sheet.scrollIntoView({behavior:'smooth', block:'start'});
+      return;
+    }
+    var preview = currentPreview && currentPreview.kind === selectedForm ? currentPreview : await previewPdf(selectedForm);
+    if(!preview) return;
+    previewModalTitle.textContent = (FORM_META[selectedForm] ? FORM_META[selectedForm].label : 'PDF') + ' プレビュー';
+    previewModalFrame.src = preview.url + '#view=FitH';
+    previewModal.hidden = false;
+    document.body.classList.add('preview-locked');
+    document.getElementById('closePreviewModalBtn').focus();
+  }
+  function closePreviewModal(){
+    if(!previewModal) return;
+    previewModal.hidden = true;
+    document.body.classList.remove('preview-locked');
+    if(previewModalFrame) previewModalFrame.removeAttribute('src');
   }
   function fillHeader(pdfForm, data, map){
     setPdfText(pdfForm, map.taxOffice, data.taxOffice);
@@ -1435,6 +1604,17 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
     });
   });
+  precheckIds.forEach(function(id){
+    if(!precheckFields[id]) return;
+    precheckFields[id].addEventListener('change', renderPrecheck);
+  });
+  document.getElementById('applyPrecheckBtn').addEventListener('click', applyPrecheck);
+  precheckResults.addEventListener('click', function(event){
+    var button = event.target.closest('[data-precheck-select-form]');
+    if(!button) return;
+    setSelectedForm(button.getAttribute('data-precheck-select-form'));
+    document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
+  });
   relativeList.addEventListener('input', function(event){ invalidatePreview(); syncRelativeInput(event.target); });
   relativeList.addEventListener('change', function(event){ invalidatePreview(); syncRelativeInput(event.target); });
   relativeList.addEventListener('click', function(event){
@@ -1468,8 +1648,18 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   document.getElementById('housingPrintBtn').addEventListener('click', function(){ render(); window.print(); });
   document.getElementById('clearBtn').addEventListener('click', clearAll);
   document.getElementById('previewPdfBtn').addEventListener('click', function(){ previewPdf(selectedForm); });
+  document.getElementById('openPreviewModalBtn').addEventListener('click', openPreviewModal);
   document.getElementById('downloadSelectedPdfBtn').addEventListener('click', downloadSelectedPdf);
   document.getElementById('printSelectedPdfBtn').addEventListener('click', printSelectedPdf);
+  document.getElementById('downloadModalPdfBtn').addEventListener('click', downloadSelectedPdf);
+  document.getElementById('printModalPdfBtn').addEventListener('click', printSelectedPdf);
+  document.getElementById('closePreviewModalBtn').addEventListener('click', closePreviewModal);
+  previewModal.addEventListener('click', function(event){
+    if(event.target === previewModal) closePreviewModal();
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key === 'Escape' && previewModal && !previewModal.hidden) closePreviewModal();
+  });
   document.getElementById('combinedPdfBtn').addEventListener('click', function(){ createPdf('combined'); });
   document.getElementById('dependentPdfBtn').addEventListener('click', function(){ createPdf('dependent'); });
   document.getElementById('insurancePdfBtn').addEventListener('click', function(){ createPdf('insurance'); });
