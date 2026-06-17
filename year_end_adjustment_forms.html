@@ -10,18 +10,18 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>会社員の年末調整申告書作成サポート｜公式様式PDF・住宅ローン控除計算 | KAZ &amp; MIO | LIFE, LIGHTLY</title>
-<meta name="description" content="会社員の年末調整で使う扶養控除等申告書、基礎控除・配偶者控除等・特定親族特別控除・所得金額調整控除申告書、保険料控除申告書、住宅借入金等特別控除の確認をまとめ、国税庁様式ベースのPDF保存に対応します。">
+<meta name="description" content="会社員の年末調整で使う申告書を選び、説明付き入力欄から国税庁様式PDFへ自動転記して、プレビュー確認、PDF保存、印刷まで進めるブラウザ内ツールです。">
 <link rel="canonical" href="https://kaz-mio.github.io/year_end_adjustment_forms.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="会社員の年末調整申告書作成サポート">
-<meta property="og:description" content="年末調整の複数の申告書を分けて確認し、公式様式ベースのPDF保存まで進めるためのブラウザ内ツールです。">
+<meta property="og:description" content="作成する申告書を選び、説明付き入力欄から国税庁様式PDFへ転記して、プレビュー確認とPDF保存まで進めます。">
 <meta property="og:url" content="https://kaz-mio.github.io/year_end_adjustment_forms.html">
 <meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
 <meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="会社員の年末調整申告書作成サポート">
-<meta name="twitter:description" content="扶養控除、基礎控除、配偶者控除、特定親族、所得金額調整、住宅ローン控除を提出前に整理できます。">
+<meta name="twitter:description" content="作成する申告書を選び、入力内容を国税庁様式PDFへ転記して、保存・印刷前に確認できます。">
 <meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
 <script type="application/ld+json">
 {
@@ -35,7 +35,7 @@
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "inLanguage": "ja",
-      "description": "会社員の年末調整で使う複数の申告書と住宅借入金等特別控除の入力内容を整理し、公式様式ベースのPDF保存を補助するブラウザ内ツール"
+      "description": "会社員の年末調整で使う申告書を選び、説明付き入力欄から国税庁様式PDFへ自動転記して、プレビュー確認、PDF保存、印刷まで進めるブラウザ内ツール"
     },
     {
       "@type": "BreadcrumbList",
@@ -48,7 +48,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         {"@type":"Question","name":"どの年末調整申告書に対応していますか？","acceptedAnswer":{"@type":"Answer","text":"令和7年分の扶養控除等申告書、基礎控除申告書兼配偶者控除等申告書兼特定親族特別控除申告書兼所得金額調整控除申告書、保険料控除申告書の公式様式PDFへの共通欄反映に対応しています。"}},
-        {"@type":"Question","name":"住宅ローン控除の申告書も作れますか？","acceptedAnswer":{"@type":"Answer","text":"国税庁の令和7年分ページでは住宅借入金等特別控除申告書の記載例が公開されています。このページでは年末残高や控除率を入れて、提出前の計算確認シートをPDF保存できます。税務署や勤務先から交付された申告書・証明書の内容で最終確認してください。"}},
+        {"@type":"Question","name":"住宅ローン控除の申告書も作れますか？","acceptedAnswer":{"@type":"Answer","text":"国税庁の令和7年分ページでは住宅借入金等特別控除申告書の記載例が公開されています。このページでは年末残高や控除率を入れて、提出前の計算確認メモを印刷画面からPDF保存できます。税務署や勤務先から交付された申告書・証明書の内容で最終確認してください。"}},
         {"@type":"Question","name":"入力した内容は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"入力内容はブラウザ内で処理されます。保存ボタンを押した場合も、使っているブラウザのローカル保存領域に残るだけで、サーバーへは送信されません。"}}
       ]
     }
@@ -103,6 +103,29 @@ h1 em{font-style:normal;color:var(--teal)}
 .direct-panel{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:1.25rem;margin:0 0 1.2rem}
 .direct-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.35;margin-bottom:.45rem}
 .direct-panel>p{color:var(--muted);font-size:.86rem;line-height:1.9;margin-bottom:1rem}
+.workflow-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.72rem;margin:1rem 0}
+.workflow-step{background:#f7fcf9;border:1px solid rgba(41,117,117,.14);border-radius:8px;padding:.82rem;box-shadow:var(--soft)}
+.workflow-step small{display:block;font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.28rem}
+.workflow-step strong{display:block;color:var(--navy);font-size:.9rem;line-height:1.45}
+.workflow-step span{display:block;color:var(--muted);font-size:.72rem;line-height:1.55;margin-top:.22rem}
+.form-selector{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.72rem;margin-top:.95rem}
+.choice-card{appearance:none;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.95rem;box-shadow:var(--soft);cursor:pointer;min-height:10.5rem;color:var(--ink);transition:border-color .2s,box-shadow .2s,transform .2s,background .2s}
+.choice-card:hover{border-color:rgba(41,117,117,.34);transform:translateY(-2px)}
+.choice-card.is-active{background:#f4fbf7;border-color:rgba(41,117,117,.62);box-shadow:0 12px 28px rgba(41,117,117,.14)}
+.choice-card small{display:inline-flex;align-items:center;min-height:1.5rem;border-radius:999px;background:#edf7f2;color:var(--teal);font-family:'Nunito',sans-serif;font-size:.56rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;padding:.12rem .48rem;margin-bottom:.48rem}
+.choice-card strong{display:block;font-family:'Shippori Mincho',serif;color:var(--navy);font-size:1.02rem;line-height:1.42}
+.choice-card span{display:block;color:var(--muted);font-size:.73rem;line-height:1.65;margin-top:.34rem}
+.selected-form{display:grid;gap:.42rem;background:#f4fbf7;border:1px solid rgba(41,117,117,.16);border-radius:8px;padding:.86rem;margin:.75rem 0 .95rem}
+.selected-form small{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.14em;color:var(--teal);text-transform:uppercase}
+.selected-form strong{color:var(--navy);font-size:1rem}
+.selected-form span{color:var(--muted);font-size:.76rem;line-height:1.65}
+.form-block[hidden]{display:none!important}
+.preview-shell{position:relative;background:#f8f8f8;border:1px solid rgba(27,42,48,.14);border-radius:8px;min-height:520px;overflow:hidden;margin-top:.85rem}
+.preview-frame{width:100%;height:620px;border:0;background:#f8f8f8;display:block}
+.preview-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.2rem;color:var(--muted);font-weight:800;line-height:1.8;background:linear-gradient(180deg,#fff 0%,#f6fbf8 100%)}
+.preview-empty[hidden]{display:none}
+.preview-tools{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.85rem}
+.preview-tools .btn:first-child{grid-column:1/-1}
 .pdf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem}
 .pdf-card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--soft);padding:.9rem;display:grid;gap:.7rem}
 .pdf-card h3{font-family:'Shippori Mincho',serif;font-size:1.05rem;line-height:1.45;color:var(--navy)}
@@ -168,8 +191,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .ft-nav{display:flex;gap:1rem;flex-wrap:wrap}
 .ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.76)}
 .ft-nav a:hover{color:#fff}
-@media(max-width:980px){.hero,.app-shell,.pdf-grid{grid-template-columns:1fr}.source-grid{grid-template-columns:1fr 1fr}.pdf-card iframe{height:520px}}
-@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.official-panel,.panel,.result-panel,.print-sheet,.source-panel{padding:1rem}.grid,.grid.three,.summary-grid,.need-grid,.source-grid{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.form-table{grid-template-columns:1fr}.form-table b{border-right:0}.print-head{grid-template-columns:1fr}.print-note{text-align:left;max-width:none}h1,.lead,.panel p,.field-help,.need-card p,.source-card p{overflow-wrap:anywhere;line-break:strict}}
+@media(max-width:980px){.hero,.app-shell,.pdf-grid,.workflow-steps,.form-selector{grid-template-columns:1fr}.source-grid{grid-template-columns:1fr 1fr}.pdf-card iframe{height:520px}.preview-frame{height:560px}}
+@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.official-panel,.direct-panel,.panel,.result-panel,.print-sheet,.source-panel{padding:1rem}.grid,.grid.three,.summary-grid,.need-grid,.source-grid,.preview-tools{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.choice-card{min-height:auto}.preview-shell{min-height:430px}.preview-frame{height:470px}.form-table{grid-template-columns:1fr}.form-table b{border-right:0}.print-head{grid-template-columns:1fr}.print-note{text-align:left;max-width:none}h1,.lead,.panel p,.field-help,.need-card p,.source-card p{overflow-wrap:anywhere;line-break:strict}}
 @media print{body{background:#fff;color:#111}.hd,.hero,.direct-panel,.panel,.result-panel>h2,.result-panel>p,.summary-grid,.need-grid,.output,.action-row,.source-panel,.ft,.notice,.official-panel,.pdf-actions,.pdf-status{display:none!important}.wrap{max-width:none;padding:0}.app-shell{display:block}.result-panel{box-shadow:none;border:0;padding:0}.print-sheet{display:block;box-shadow:none;border:0;padding:0;margin:0 0 12mm}.print-head{break-inside:avoid}.form-table{font-size:10.5pt}.form-table b,.form-table span{min-height:26pt;padding:6pt}.memo-list,.housing-table{font-size:9.5pt}}
 </style>
 <script src="assets/analytics.js"></script>
@@ -194,9 +217,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     <div class="hero-copy">
       <div class="eyebrow">Year-End Adjustment</div>
       <h1>国税庁の様式PDFに、<br><em>そのまま入力して保存。</em></h1>
-      <p class="lead">会社員の年末調整で使う複数の申告書を、まず国税庁の入力用PDFと同じ様式で開けるようにしました。PDFビューア内で直接入力して保存し、必要に応じて下の入力補助で共通欄や住宅ローン控除の計算も確認できます。</p>
+      <p class="lead">作成する申告書を選び、説明付きの入力欄へ必要事項を入れると、選んだ国税庁様式PDFに自動転記します。入力後はプレビューで確認し、そのままPDF保存・印刷へ進めます。</p>
       <div class="hero-actions">
-        <a href="#direct-pdf">公式PDFに直接入力</a>
+        <a href="#direct-pdf">作成する様式を選ぶ</a>
         <a href="#form">入力補助を使う</a>
         <a class="secondary" href="#official">公式様式を確認</a>
       </div>
@@ -224,62 +247,60 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   </section>
 
   <section class="direct-panel" id="direct-pdf">
-    <h2>国税庁PDFを開いて、そのまま入力・保存する</h2>
-    <p>ここで開くPDFは、国税庁の入力用PDFと同じレイアウトです。PDFビューア内の欄へ直接入力し、ビューアの保存・ダウンロード操作でPDFデータとして保存できます。Adobe Readerで提出前確認をする場合は、国税庁の公式入力用PDFも併せて開いてください。</p>
-    <div class="pdf-grid">
-      <article class="pdf-card">
-        <h3>扶養控除等（異動）申告書</h3>
-        <p>扶養親族、源泉控除対象配偶者、障害者・寡婦等の確認をする様式です。</p>
-        <iframe src="assets/nta/year-end-2025/2025bun_01_fillable.pdf#view=FitH" title="令和7年分扶養控除等申告書"></iframe>
-        <div class="mini-actions">
-          <a class="btn" href="assets/nta/year-end-2025/2025bun_01_fillable.pdf" target="_blank" rel="noopener">このPDFを開く</a>
-          <a class="btn secondary" href="https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_01_input.pdf" target="_blank" rel="noopener">国税庁PDF</a>
-        </div>
-      </article>
-      <article class="pdf-card">
-        <h3>基礎・配偶者等・特定親族・所得金額調整</h3>
-        <p>本人所得、配偶者、特定親族、所得金額調整控除をまとめて確認する様式です。</p>
-        <iframe src="assets/nta/year-end-2025/2025bun_06_fillable.pdf#view=FitH" title="令和7年分基礎控除申告書兼配偶者控除等申告書"></iframe>
-        <div class="mini-actions">
-          <a class="btn" href="assets/nta/year-end-2025/2025bun_06_fillable.pdf" target="_blank" rel="noopener">このPDFを開く</a>
-          <a class="btn secondary" href="https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_06_input.pdf" target="_blank" rel="noopener">国税庁PDF</a>
-        </div>
-      </article>
-      <article class="pdf-card">
-        <h3>保険料控除申告書</h3>
-        <p>生命保険料、地震保険料、社会保険料、小規模企業共済等掛金を記入する様式です。</p>
-        <iframe src="assets/nta/year-end-2025/2025bun_04_fillable.pdf#view=FitH" title="令和7年分保険料控除申告書"></iframe>
-        <div class="mini-actions">
-          <a class="btn" href="assets/nta/year-end-2025/2025bun_04_fillable.pdf" target="_blank" rel="noopener">このPDFを開く</a>
-          <a class="btn secondary" href="https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_04_input.pdf" target="_blank" rel="noopener">国税庁PDF</a>
-        </div>
-      </article>
+    <h2>1. 作成する申告書を選ぶ</h2>
+    <p>最初に対象様式を選ぶと、その様式で必要になりやすい入力欄だけを表示します。入力した内容は端末内で処理され、選んだ国税庁様式PDFへ自動転記してプレビューできます。</p>
+    <div class="workflow-steps" aria-label="作成の流れ">
+      <div class="workflow-step"><small>Step 1</small><strong>様式を選ぶ</strong><span>作成したい申告書を1つ選びます。</span></div>
+      <div class="workflow-step"><small>Step 2</small><strong>説明を見ながら入力</strong><span>共通欄と、その様式に必要な欄だけ入力します。</span></div>
+      <div class="workflow-step"><small>Step 3</small><strong>プレビューして保存</strong><span>国税庁様式に転記されたPDFを確認し、保存・印刷します。</span></div>
+    </div>
+    <div class="form-selector" role="radiogroup" aria-label="作成する申告書">
+      <button class="choice-card is-active" type="button" data-select-form="combined" aria-pressed="true">
+        <small>Recommended</small><strong>基礎・配偶者等・特定親族・所得金額調整</strong><span>本人所得、配偶者、特定親族、所得金額調整控除を自動計算しながら転記します。</span>
+      </button>
+      <button class="choice-card" type="button" data-select-form="dependent" aria-pressed="false">
+        <small>Dependent</small><strong>扶養控除等（異動）申告書</strong><span>本人情報、勤務先、扶養親族・障害者等の欄を中心に入力します。</span>
+      </button>
+      <button class="choice-card" type="button" data-select-form="insurance" aria-pressed="false">
+        <small>Insurance</small><strong>保険料控除申告書</strong><span>氏名・住所・勤務先などの共通欄を様式へ転記します。保険証明書の明細は保存後に確認します。</span>
+      </button>
+      <button class="choice-card" type="button" data-select-form="housing" aria-pressed="false">
+        <small>Housing</small><strong>住宅借入金等特別控除</strong><span>交付された申告書・証明書へ転記する前に、年末残高と控除見込額を計算します。</span>
+      </button>
     </div>
     <p class="notice">住宅借入金等特別控除申告書は、国税庁の各種申告書ページでは空欄の入力用PDFではなく記載例が公開されており、申告書は税務署から本人へ交付される案内になっています。このページの住宅欄は、交付された申告書・証明書へ転記する前の計算確認用です。</p>
   </section>
 
   <section class="app-shell" id="form">
     <div class="panel">
-      <h2>共通欄から入力</h2>
-      <p>氏名、住所、勤務先、給与見込額を入れると、必要な申告書の候補とPDFに反映する欄が更新されます。入力内容は端末内で処理します。</p>
-
-      <div class="section-label">Common</div>
-      <div class="grid">
-        <label class="field"><span class="label">対象年</span><select id="taxYear"><option value="2025">令和7年分（2025年）</option></select></label>
-        <label class="field"><span class="label">所轄税務署</span><input id="taxOffice" type="text" placeholder="例: 麹町"></label>
-        <label class="field"><span class="label">給与の支払者の名称</span><input id="employerName" type="text" placeholder="勤務先名"></label>
-        <label class="field"><span class="label">給与の支払者の法人番号</span><input id="employerCorporateNumber" type="text" inputmode="numeric" placeholder="13桁"></label>
-        <label class="field wide"><span class="label">給与の支払者の所在地</span><input id="employerAddress" type="text" placeholder="勤務先住所"></label>
-        <label class="field"><span class="label">氏名</span><input id="name" type="text" autocomplete="name" placeholder="例: 山田 花子"></label>
-        <label class="field"><span class="label">フリガナ</span><input id="kana" type="text" placeholder="例: ヤマダ ハナコ"></label>
-        <label class="field"><span class="label">生年月日</span><input id="birth" type="date"></label>
-        <label class="field wide"><span class="label">住所</span><input id="address" type="text" autocomplete="street-address" placeholder="住民票や勤務先届出と合わせて確認"></label>
-        <label class="field"><span class="label">給与収入の見込額</span><input id="salaryRevenue" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">源泉徴収票の「支払金額」に近い欄です。</span></label>
-        <label class="field"><span class="label">給与所得の見込額</span><input id="salaryIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">空欄なら給与収入から概算補助します。勤務先資料で必ず確認してください。</span></label>
-        <label class="field"><span class="label">給与以外の所得見込額</span><input id="otherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"></label>
-        <label class="field"><span class="label">提出メモ</span><input id="submitMemo" type="text" placeholder="例: 総務へ12/10まで"></label>
+      <h2>2. 必要事項を入力</h2>
+      <p>選んだ様式に必要な欄を、説明を見ながら入力します。給与所得、基礎控除、配偶者控除、特定親族特別控除、住宅ローン控除の見込額は、入力値から自動計算して転記します。</p>
+      <div class="selected-form" id="formFocus">
+        <small>Selected Form</small>
+        <strong>基礎・配偶者等・特定親族・所得金額調整</strong>
+        <span>本人所得、配偶者、特定親族、所得金額調整控除を確認します。</span>
       </div>
 
+      <div class="form-block" data-form-block="common">
+      <div class="section-label">Common</div>
+      <div class="grid">
+        <label class="field"><span class="label">対象年</span><select id="taxYear"><option value="2025">令和7年分（2025年）</option></select><span class="field-help">現在は国税庁で確認済みの令和7年分様式を使います。</span></label>
+        <label class="field"><span class="label">所轄税務署</span><input id="taxOffice" type="text" placeholder="例: 麹町"><span class="field-help">分からなければ勤務先の案内や前年分を確認します。</span></label>
+        <label class="field"><span class="label">給与の支払者の名称</span><input id="employerName" type="text" placeholder="勤務先名"><span class="field-help">申告書上部の「給与の支払者」に入る名称です。</span></label>
+        <label class="field"><span class="label">給与の支払者の法人番号</span><input id="employerCorporateNumber" type="text" inputmode="numeric" placeholder="13桁"><span class="field-help">勤務先から案内がある場合だけ入力します。</span></label>
+        <label class="field wide"><span class="label">給与の支払者の所在地</span><input id="employerAddress" type="text" placeholder="勤務先住所"><span class="field-help">本社所在地など、勤務先指定の住所に合わせます。</span></label>
+        <label class="field"><span class="label">氏名</span><input id="name" type="text" autocomplete="name" placeholder="例: 山田 花子"><span class="field-help">申告書にそのまま転記します。</span></label>
+        <label class="field"><span class="label">フリガナ</span><input id="kana" type="text" placeholder="例: ヤマダ ハナコ"><span class="field-help">カタカナで入力します。</span></label>
+        <label class="field"><span class="label">生年月日</span><input id="birth" type="date"><span class="field-help">和暦欄へ自動で分けて転記します。</span></label>
+        <label class="field wide"><span class="label">住所</span><input id="address" type="text" autocomplete="street-address" placeholder="住民票や勤務先届出と合わせて確認"><span class="field-help">申告書に記載する住所です。同じ表記でそろえると確認しやすくなります。</span></label>
+        <label class="field"><span class="label">給与収入の見込額</span><input id="salaryRevenue" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">源泉徴収票の「支払金額」に近い欄です。</span></label>
+        <label class="field"><span class="label">給与所得の見込額</span><input id="salaryIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="空欄なら自動計算"><span class="field-help">空欄なら給与収入から概算補助し、様式へ転記します。</span></label>
+        <label class="field"><span class="label">給与以外の所得見込額</span><input id="otherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">副業、雑所得、配当など給与以外の所得見込額です。</span></label>
+        <label class="field"><span class="label">提出メモ</span><input id="submitMemo" type="text" placeholder="例: 総務へ12/10まで"></label>
+      </div>
+      </div>
+
+      <div class="form-block" data-form-block="spouse">
       <div class="section-label">Spouse</div>
       <div class="grid">
         <label class="field"><span class="label">配偶者控除等の申告</span><select id="hasSpouse"><option value="no">申告しない</option><option value="yes">申告する</option></select></label>
@@ -291,21 +312,36 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         <label class="field"><span class="label">配偶者の給与所得見込額</span><input id="spouseSalaryIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"></label>
         <label class="field"><span class="label">配偶者の給与以外の所得</span><input id="spouseOtherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"></label>
       </div>
+      </div>
 
+      <div class="form-block" data-form-block="relatives">
       <div class="section-label">Relatives</div>
       <p>19歳以上23歳未満の親族は、扶養控除等申告書側か、特定親族特別控除申告書側かを分けて見ます。</p>
       <div class="person-list" id="relativeList"></div>
       <div class="mini-actions">
         <button class="btn secondary" type="button" id="addRelative">親族を追加</button>
       </div>
+      </div>
 
+      <div class="form-block" data-form-block="income-adjustment">
       <div class="section-label">Income Adjustment</div>
       <div class="toggle-grid">
         <label class="check-line"><input id="specialSelf" type="checkbox"><span>本人が特別障害者に該当する</span></label>
         <label class="check-line"><input id="specialSpouse" type="checkbox"><span>同一生計配偶者または扶養親族が特別障害者に該当する</span></label>
         <label class="check-line"><input id="under23Dependent" type="checkbox"><span>23歳未満の扶養親族がいる</span></label>
       </div>
+      </div>
 
+      <div class="form-block" data-form-block="insurance">
+      <div class="section-label">Insurance</div>
+      <p>保険料控除申告書は、まず共通欄を国税庁様式へ転記します。保険会社の控除証明書ごとの明細は、保存したPDF上で証明書を見ながら確認してください。</p>
+      <div class="grid">
+        <label class="field"><span class="label">生命保険料控除証明書</span><input id="insuranceLifeMemo" type="text" placeholder="例: 〇〇生命、一般・介護・個人年金あり"><span class="field-help">証明書の種類と保険会社名を控えます。PDF保存後の入力確認に使います。</span></label>
+        <label class="field"><span class="label">地震保険料控除証明書</span><input id="insuranceEarthquakeMemo" type="text" placeholder="例: 〇〇損保、地震保険あり"><span class="field-help">旧長期損害保険料がある場合も証明書で確認します。</span></label>
+      </div>
+      </div>
+
+      <div class="form-block" data-form-block="housing">
       <div class="section-label" id="housing">Housing Credit</div>
       <div class="grid">
         <label class="field"><span class="label">住宅ローン控除の年末調整</span><select id="housingEnabled"><option value="no">使わない / 該当なし</option><option value="yes">使う</option></select></label>
@@ -320,6 +356,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         <label class="field"><span class="label">控除限度額メモ</span><input id="housingLimitMemo" type="text" placeholder="例: 認定住宅、上限額は証明書で確認"></label>
         <label class="field wide"><span class="label">住宅控除メモ</span><textarea id="housingMemo" placeholder="繰上返済、借換え、連帯債務、共有持分など、勤務先に確認したい点"></textarea></label>
       </div>
+      </div>
 
       <div class="action-row">
         <button class="btn" type="button" id="saveBtn">入力を保存</button>
@@ -330,19 +367,34 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     </div>
 
     <div class="result-panel" aria-live="polite">
-      <h2>作成できる申告書</h2>
-      <p>入力した内容から、申告書ごとの確認ポイントとPDF保存ボタンを表示します。</p>
+      <h2>3. プレビューして保存</h2>
+      <p>選んだ申告書に入力内容を転記したPDFを作成し、ここで確認できます。問題なければPDF保存し、保存したPDFを印刷できます。</p>
+      <div class="selected-form" id="selectedTarget">
+        <small>Preview Target</small>
+        <strong>基礎・配偶者等・特定親族・所得金額調整</strong>
+        <span>入力内容を国税庁様式PDFへ転記してプレビューします。</span>
+      </div>
+      <div class="preview-tools">
+        <button class="btn" type="button" id="previewPdfBtn">選んだ様式をプレビュー更新</button>
+        <button class="btn secondary" type="button" id="downloadSelectedPdfBtn">プレビューPDFを保存</button>
+        <button class="btn secondary" type="button" id="printSelectedPdfBtn">プレビューPDFを印刷</button>
+      </div>
+      <div class="pdf-status" id="pdfStatus"></div>
+      <div class="preview-shell">
+        <iframe class="preview-frame" id="pdfPreviewFrame" title="選択した申告書のPDFプレビュー"></iframe>
+        <div class="preview-empty" id="pdfPreviewEmpty">入力後に「選んだ様式をプレビュー更新」を押すと、国税庁様式へ転記されたPDFをここで確認できます。</div>
+      </div>
+
       <div class="summary-grid" id="summaryGrid"></div>
       <div class="need-grid" id="needGrid"></div>
       <textarea class="output" id="copyOutput" readonly></textarea>
 
       <div class="pdf-actions">
-        <button class="btn" type="button" id="combinedPdfBtn">公式様式PDFを保存（基礎・配偶者等）</button>
-        <button class="btn secondary" type="button" id="dependentPdfBtn">公式様式PDFを保存（扶養控除等・共通欄）</button>
-        <button class="btn secondary" type="button" id="insurancePdfBtn">公式様式PDFを保存（保険料控除・共通欄）</button>
+        <button class="btn secondary" type="button" id="combinedPdfBtn">個別保存: 基礎・配偶者等</button>
+        <button class="btn secondary" type="button" id="dependentPdfBtn">個別保存: 扶養控除等</button>
+        <button class="btn secondary" type="button" id="insurancePdfBtn">個別保存: 保険料控除</button>
         <button class="btn secondary" type="button" id="housingPrintBtn">住宅控除計算メモを印刷</button>
       </div>
-      <div class="pdf-status" id="pdfStatus"></div>
 
       <section class="print-sheet" id="printSheet" aria-label="印刷用確認シート">
         <div class="print-head">
@@ -400,16 +452,48 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     dependent: 'assets/nta/year-end-2025/2025bun_01_fillable.pdf',
     insurance: 'assets/nta/year-end-2025/2025bun_04_fillable.pdf'
   };
+  var FORM_META = {
+    combined: {
+      label: '基礎・配偶者等・特定親族・所得金額調整',
+      note: '本人所得、配偶者、特定親族、所得金額調整控除を確認します。',
+      preview: '本人所得や控除額を自動計算し、国税庁様式PDFへ転記します。'
+    },
+    dependent: {
+      label: '扶養控除等（異動）申告書',
+      note: '本人情報、勤務先、扶養親族などを確認します。',
+      preview: '共通欄と親族情報を国税庁様式PDFへ転記します。'
+    },
+    insurance: {
+      label: '保険料控除申告書',
+      note: '共通欄を様式へ転記し、控除証明書の確認メモを残します。',
+      preview: '氏名、住所、勤務先などを国税庁様式PDFへ転記します。'
+    },
+    housing: {
+      label: '住宅借入金等特別控除',
+      note: '交付された申告書・証明書へ転記する前の計算確認をします。',
+      preview: '国税庁ページでは空欄の入力用PDFが公開されていないため、計算メモを印刷またはPDF保存します。'
+    }
+  };
+  var selectedForm = 'combined';
+  var currentPreview = null;
+  var previewUrl = '';
   var form = {};
   [
     'taxYear','taxOffice','employerName','employerCorporateNumber','employerAddress','name','kana','birth','address',
     'salaryRevenue','salaryIncome','otherIncome','submitMemo','hasSpouse','spouseName','spouseKana','spouseBirth',
     'spouseAddress','spouseSalaryRevenue','spouseSalaryIncome','spouseOtherIncome','specialSelf','specialSpouse',
     'under23Dependent','housingEnabled','housingFirstYearDone','housingMethod','housingResidenceYear','housingLoanBalance',
-    'housingLandBalance','housingResidentialRatio','housingRate','housingCertificateAmount','housingLimitMemo','housingMemo'
+    'housingLandBalance','housingResidentialRatio','housingRate','housingCertificateAmount','housingLimitMemo','housingMemo',
+    'insuranceLifeMemo','insuranceEarthquakeMemo'
   ].forEach(function(id){ form[id] = document.getElementById(id); });
 
   var relatives = [];
+  var formChoices = Array.prototype.slice.call(document.querySelectorAll('[data-select-form]'));
+  var formBlocks = Array.prototype.slice.call(document.querySelectorAll('[data-form-block]'));
+  var formFocus = document.getElementById('formFocus');
+  var selectedTarget = document.getElementById('selectedTarget');
+  var previewFrame = document.getElementById('pdfPreviewFrame');
+  var previewEmpty = document.getElementById('pdfPreviewEmpty');
   var relativeList = document.getElementById('relativeList');
   var summaryGrid = document.getElementById('summaryGrid');
   var needGrid = document.getElementById('needGrid');
@@ -554,6 +638,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var totalIncome = salaryIncome + num('otherIncome');
     var spouseSalaryIncome = effectiveSpouseSalaryIncome();
     return {
+      targetForm: selectedForm,
       taxYear: form.taxYear.value,
       taxOffice: text('taxOffice'),
       employerName: text('employerName'),
@@ -580,6 +665,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       specialSelf: checked('specialSelf'),
       specialSpouse: checked('specialSpouse'),
       under23Dependent: checked('under23Dependent'),
+      insuranceLifeMemo: text('insuranceLifeMemo'),
+      insuranceEarthquakeMemo: text('insuranceEarthquakeMemo'),
       housing: {
         enabled: form.housingEnabled.value,
         firstYearDone: form.housingFirstYearDone.value,
@@ -597,6 +684,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     };
   }
   function setData(data){
+    if(data.targetForm && FORM_META[data.targetForm]) selectedForm = data.targetForm;
     Object.keys(form).forEach(function(key){
       if(data[key] === undefined) return;
       if(form[key].type === 'checkbox') form[key].checked = !!data[key];
@@ -627,6 +715,54 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function renderRelatives(){
     relativeList.innerHTML = relatives.map(relativeTemplate).join('');
   }
+  function updateSelectedFormDisplay(){
+    var meta = FORM_META[selectedForm] || FORM_META.combined;
+    [formFocus, selectedTarget].forEach(function(node){
+      if(!node) return;
+      node.querySelector('strong').textContent = meta.label;
+      node.querySelector('span').textContent = node === selectedTarget ? meta.preview : meta.note;
+    });
+    formChoices.forEach(function(button){
+      var active = button.getAttribute('data-select-form') === selectedForm;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+  function updateFormBlocks(){
+    var visible = {common:true};
+    if(selectedForm === 'combined'){
+      visible.spouse = true;
+      visible.relatives = true;
+      visible['income-adjustment'] = true;
+    }
+    if(selectedForm === 'dependent') visible.relatives = true;
+    if(selectedForm === 'insurance') visible.insurance = true;
+    if(selectedForm === 'housing') visible.housing = true;
+    formBlocks.forEach(function(block){
+      block.hidden = !visible[block.getAttribute('data-form-block')];
+    });
+  }
+  function resetPreview(message){
+    if(previewUrl){
+      URL.revokeObjectURL(previewUrl);
+      previewUrl = '';
+    }
+    currentPreview = null;
+    previewFrame.removeAttribute('src');
+    previewEmpty.textContent = message || '入力後に「選んだ様式をプレビュー更新」を押すと、国税庁様式へ転記されたPDFをここで確認できます。';
+    previewEmpty.hidden = false;
+  }
+  function invalidatePreview(){
+    if(currentPreview) resetPreview('入力内容が変わりました。最新の内容で確認するには、もう一度プレビューを更新してください。');
+  }
+  function setSelectedForm(kind, keepPreview){
+    if(!FORM_META[kind]) return;
+    selectedForm = kind;
+    updateSelectedFormDisplay();
+    updateFormBlocks();
+    if(!keepPreview) resetPreview(FORM_META[kind].preview + ' 入力後にプレビューを更新してください。');
+    render();
+  }
   function card(label, value, note){
     return '<div class="summary-card"><small>' + escapeHtml(label) + '</small><strong>' + escapeHtml(value) + '</strong><p>' + escapeHtml(note) + '</p></div>';
   }
@@ -634,6 +770,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     return '<div class="need-card ' + escapeHtml(className || '') + '"><small>' + escapeHtml(title) + '</small><strong>' + escapeHtml(label) + '</strong><p>' + escapeHtml(note) + '</p></div>';
   }
   function render(){
+    updateSelectedFormDisplay();
+    updateFormBlocks();
     var data = collectData();
     var basic = basicDeduction(data.totalIncome);
     var spouse = spouseStatus(data.totalIncome, data.spouseTotalIncome);
@@ -668,6 +806,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function buildMemo(data, basic, spouse, incomeAdjustment, relativeResults, housing){
     var lines = [
       '【年末調整申告書 確認メモ】',
+      '作成対象: ' + (FORM_META[data.targetForm] ? FORM_META[data.targetForm].label : '未選択'),
       '対象年: 令和7年分（2025年）',
       '氏名: ' + (data.name || '未入力'),
       '住所: ' + (data.address || '未入力'),
@@ -697,6 +836,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       lines.push('親族入力なし');
     }
     lines.push('', '■ 所得金額調整控除', incomeAdjustment.label + ': ' + incomeAdjustment.note);
+    lines.push('', '■ 保険料控除');
+    lines.push('生命保険料控除証明書メモ: ' + (data.insuranceLifeMemo || '未入力'));
+    lines.push('地震保険料控除証明書メモ: ' + (data.insuranceEarthquakeMemo || '未入力'));
     lines.push('', '■ 住宅借入金等特別控除');
     if(housing.enabled){
       lines.push('住宅・土地の年末残高（居住用割合後）: ' + yen(housing.base));
@@ -721,6 +863,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       ['基礎控除額の目安', yen(basic)],
       ['配偶者欄', spouse.label + ' / ' + (data.spouseName || '') + ' / 所得 ' + yen(data.spouseTotalIncome)],
       ['所得金額調整控除', incomeAdjustment.label],
+      ['保険料控除メモ', (data.insuranceLifeMemo || '生命保険料未入力') + ' / ' + (data.insuranceEarthquakeMemo || '地震保険料未入力')],
       ['住宅控除の試算', housing.enabled ? yen(housing.calculated) : '入力なし']
     ];
     printTable.innerHTML = rows.map(function(row){ return '<b>' + escapeHtml(row[0]) + '</b><span>' + escapeHtml(row[1]) + '</span>'; }).join('');
@@ -775,8 +918,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     form.housingMethod.value = 'paper';
     form.housingResidentialRatio.value = '';
     form.housingRate.value = '';
+    selectedForm = 'combined';
     relatives = [];
     renderRelatives();
+    resetPreview();
     render();
   }
   function syncRelativeInput(target){
@@ -837,30 +982,92 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     a.remove();
     setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
   }
-  async function createPdf(kind){
+  function filenameFor(kind, data){
+    var namePart = data.name ? data.name.replace(/[\\/:*?"<>|]/g, '') + '_' : '';
+    if(kind === 'combined') return namePart + 'r7_kiso_haigu_tokutei_shotoku_chosei.pdf';
+    if(kind === 'dependent') return namePart + 'r7_fuyo_kojo.pdf';
+    if(kind === 'insurance') return namePart + 'r7_hokenryo_kojo.pdf';
+    return namePart + 'r7_year_end_adjustment.pdf';
+  }
+  async function buildPdfBytes(kind){
     if(!window.PDFLib){
-      status('PDF生成ライブラリを読み込めませんでした。ページを再読み込みしてください。');
-      return;
+      throw new Error('PDF生成ライブラリを読み込めませんでした。ページを再読み込みしてください。');
     }
+    if(!PDF_PATHS[kind]) throw new Error('この様式は公式の空欄入力用PDFが公開されていないため、計算メモとして印刷します。');
     var data = collectData();
+    var bytes = await fetchPdf(PDF_PATHS[kind]);
+    var pdfDoc = await PDFLib.PDFDocument.load(bytes);
+    var pdfForm = pdfDoc.getForm();
+    pdfForm.acroForm.dict.set(PDFLib.PDFName.of('NeedAppearances'), PDFLib.PDFBool.True);
+    if(kind === 'combined') fillCombinedPdf(pdfForm, data);
+    if(kind === 'dependent') fillDependentPdf(pdfForm, data);
+    if(kind === 'insurance') fillInsurancePdf(pdfForm, data);
+    var out = await pdfDoc.save({updateFieldAppearances:false});
+    return {bytes:out, filename:filenameFor(kind, data)};
+  }
+  async function createPdf(kind){
     status('PDFを作成しています...');
     try{
-      var bytes = await fetchPdf(PDF_PATHS[kind]);
-      var pdfDoc = await PDFLib.PDFDocument.load(bytes);
-      var pdfForm = pdfDoc.getForm();
-      pdfForm.acroForm.dict.set(PDFLib.PDFName.of('NeedAppearances'), PDFLib.PDFBool.True);
-      if(kind === 'combined') fillCombinedPdf(pdfForm, data);
-      if(kind === 'dependent') fillDependentPdf(pdfForm, data);
-      if(kind === 'insurance') fillInsurancePdf(pdfForm, data);
-      var out = await pdfDoc.save({updateFieldAppearances:false});
-      var namePart = data.name ? data.name.replace(/[\\/:*?"<>|]/g, '') + '_' : '';
-      var filename = kind === 'combined' ? namePart + 'r7_kiso_haigu_tokutei_shotoku_chosei.pdf' : kind === 'dependent' ? namePart + 'r7_fuyo_kojo.pdf' : namePart + 'r7_hokenryo_kojo.pdf';
-      downloadBlob(out, filename);
+      var result = await buildPdfBytes(kind);
+      downloadBlob(result.bytes, result.filename);
       status('PDFを保存しました。提出前にAdobe Readerまたは勤務先指定の方法で表示と印字を確認してください。');
     }catch(error){
-      status('PDF作成に失敗しました。ページを再読み込みして、もう一度試してください。');
+      status(error.message || 'PDF作成に失敗しました。ページを再読み込みして、もう一度試してください。');
       console.error(error);
     }
+  }
+  async function previewPdf(kind){
+    if(kind === 'housing'){
+      render();
+      resetPreview('住宅借入金等特別控除は、国税庁ページで空欄の入力用PDFが公開されていないため、下の計算確認シートを印刷画面からPDF保存してください。');
+      status('住宅控除は計算メモを印刷画面からPDF保存できます。');
+      return null;
+    }
+    status('プレビューPDFを作成しています...');
+    try{
+      var result = await buildPdfBytes(kind);
+      if(previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = URL.createObjectURL(new Blob([result.bytes], {type:'application/pdf'}));
+      currentPreview = {kind:kind, bytes:result.bytes, filename:result.filename, url:previewUrl};
+      previewFrame.src = previewUrl + '#view=FitH';
+      previewEmpty.hidden = true;
+      status('プレビューを更新しました。内容を確認して保存または印刷してください。');
+      return currentPreview;
+    }catch(error){
+      resetPreview('PDFプレビューを作成できませんでした。入力内容と通信状態を確認して、もう一度試してください。');
+      status(error.message || 'PDFプレビューを作成できませんでした。');
+      console.error(error);
+      return null;
+    }
+  }
+  async function downloadSelectedPdf(){
+    if(selectedForm === 'housing'){
+      render();
+      status('印刷画面を開きます。送信先で「PDFに保存」を選ぶと、計算メモをPDF保存できます。');
+      window.print();
+      return;
+    }
+    var preview = currentPreview && currentPreview.kind === selectedForm ? currentPreview : await previewPdf(selectedForm);
+    if(preview) downloadBlob(preview.bytes, preview.filename);
+  }
+  async function printSelectedPdf(){
+    if(selectedForm === 'housing'){
+      render();
+      window.print();
+      return;
+    }
+    var preview = currentPreview && currentPreview.kind === selectedForm ? currentPreview : await previewPdf(selectedForm);
+    if(!preview) return;
+    setTimeout(function(){
+      try{
+        previewFrame.contentWindow.focus();
+        previewFrame.contentWindow.print();
+        status('プレビューPDFの印刷画面を開きます。保存済みPDFを印刷する場合は、ダウンロードしたPDFからも印刷できます。');
+      }catch(error){
+        window.open(preview.url, '_blank', 'noopener');
+        status('新しいタブでPDFを開きました。PDFビューアから印刷してください。');
+      }
+    }, 450);
   }
   function fillHeader(pdfForm, data, map){
     setPdfText(pdfForm, map.taxOffice, data.taxOffice);
@@ -959,21 +1166,30 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     fillHeader(pdfForm, data, {taxOffice:'fill_1', employerName:'fill_2', employerCorporateNumber:'fill_3', employerAddress:'fill_4', kana:'fill_5', name:'fill_6', address:'fill_7'});
   }
   Object.keys(form).forEach(function(key){
-    form[key].addEventListener('input', render);
-    form[key].addEventListener('change', render);
+    if(!form[key]) return;
+    form[key].addEventListener('input', function(){ invalidatePreview(); render(); });
+    form[key].addEventListener('change', function(){ invalidatePreview(); render(); });
   });
-  relativeList.addEventListener('input', function(event){ syncRelativeInput(event.target); });
-  relativeList.addEventListener('change', function(event){ syncRelativeInput(event.target); });
+  formChoices.forEach(function(button){
+    button.addEventListener('click', function(){
+      setSelectedForm(button.getAttribute('data-select-form'));
+      document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  relativeList.addEventListener('input', function(event){ invalidatePreview(); syncRelativeInput(event.target); });
+  relativeList.addEventListener('change', function(event){ invalidatePreview(); syncRelativeInput(event.target); });
   relativeList.addEventListener('click', function(event){
     var remove = event.target.getAttribute('data-remove');
     if(remove === null) return;
     relatives.splice(Number(remove), 1);
     renderRelatives();
+    invalidatePreview();
     render();
   });
   document.getElementById('addRelative').addEventListener('click', function(){
     relatives.push({name:'', kana:'', relationship:'', birth:'', address:'', income:'', nonResident:''});
     renderRelatives();
+    invalidatePreview();
     render();
   });
   document.getElementById('saveBtn').addEventListener('click', function(){
@@ -992,10 +1208,14 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   document.getElementById('printBtn').addEventListener('click', function(){ render(); window.print(); });
   document.getElementById('housingPrintBtn').addEventListener('click', function(){ render(); window.print(); });
   document.getElementById('clearBtn').addEventListener('click', clearAll);
+  document.getElementById('previewPdfBtn').addEventListener('click', function(){ previewPdf(selectedForm); });
+  document.getElementById('downloadSelectedPdfBtn').addEventListener('click', downloadSelectedPdf);
+  document.getElementById('printSelectedPdfBtn').addEventListener('click', printSelectedPdf);
   document.getElementById('combinedPdfBtn').addEventListener('click', function(){ createPdf('combined'); });
   document.getElementById('dependentPdfBtn').addEventListener('click', function(){ createPdf('dependent'); });
   document.getElementById('insurancePdfBtn').addEventListener('click', function(){ createPdf('insurance'); });
   load();
+  setSelectedForm(selectedForm, true);
   if(!relatives.length){
     relatives.push({name:'', kana:'', relationship:'', birth:'', address:'', income:'', nonResident:''});
     renderRelatives();
