@@ -100,6 +100,15 @@ h1 em{font-style:normal;color:var(--teal)}
 .form-choice strong{display:block;color:var(--navy);font-size:.9rem;line-height:1.45}
 .form-choice span{display:block;color:var(--muted);font-size:.72rem;line-height:1.55;margin-top:.25rem;font-weight:700}
 .notice{background:#fff8e8;border:1px solid rgba(217,155,65,.2);border-radius:8px;padding:.85rem;color:#6f5830;font-size:.78rem;line-height:1.75}
+.direct-panel{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:1.25rem;margin:0 0 1.2rem}
+.direct-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.35;margin-bottom:.45rem}
+.direct-panel>p{color:var(--muted);font-size:.86rem;line-height:1.9;margin-bottom:1rem}
+.pdf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem}
+.pdf-card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--soft);padding:.9rem;display:grid;gap:.7rem}
+.pdf-card h3{font-family:'Shippori Mincho',serif;font-size:1.05rem;line-height:1.45;color:var(--navy)}
+.pdf-card p{font-size:.76rem;line-height:1.7;color:var(--muted)}
+.pdf-card iframe{width:100%;height:420px;border:1px solid rgba(27,42,48,.18);border-radius:6px;background:#f8f8f8}
+.pdf-card .mini-actions{margin-top:0}
 .app-shell{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(390px,.98fr);gap:1.2rem;align-items:start}
 .panel,.result-panel,.print-sheet,.source-panel{padding:1.25rem}
 .panel h2,.result-panel h2,.print-sheet h2,.source-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,3vw,2.18rem);line-height:1.35;margin-bottom:.45rem}
@@ -159,9 +168,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .ft-nav{display:flex;gap:1rem;flex-wrap:wrap}
 .ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.76)}
 .ft-nav a:hover{color:#fff}
-@media(max-width:980px){.hero,.app-shell{grid-template-columns:1fr}.source-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:980px){.hero,.app-shell,.pdf-grid{grid-template-columns:1fr}.source-grid{grid-template-columns:1fr 1fr}.pdf-card iframe{height:520px}}
 @media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.official-panel,.panel,.result-panel,.print-sheet,.source-panel{padding:1rem}.grid,.grid.three,.summary-grid,.need-grid,.source-grid{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.form-table{grid-template-columns:1fr}.form-table b{border-right:0}.print-head{grid-template-columns:1fr}.print-note{text-align:left;max-width:none}h1,.lead,.panel p,.field-help,.need-card p,.source-card p{overflow-wrap:anywhere;line-break:strict}}
-@media print{body{background:#fff;color:#111}.hd,.hero,.panel,.result-panel>h2,.result-panel>p,.summary-grid,.need-grid,.output,.action-row,.source-panel,.ft,.notice,.official-panel,.pdf-actions,.pdf-status{display:none!important}.wrap{max-width:none;padding:0}.app-shell{display:block}.result-panel{box-shadow:none;border:0;padding:0}.print-sheet{display:block;box-shadow:none;border:0;padding:0;margin:0 0 12mm}.print-head{break-inside:avoid}.form-table{font-size:10.5pt}.form-table b,.form-table span{min-height:26pt;padding:6pt}.memo-list,.housing-table{font-size:9.5pt}}
+@media print{body{background:#fff;color:#111}.hd,.hero,.direct-panel,.panel,.result-panel>h2,.result-panel>p,.summary-grid,.need-grid,.output,.action-row,.source-panel,.ft,.notice,.official-panel,.pdf-actions,.pdf-status{display:none!important}.wrap{max-width:none;padding:0}.app-shell{display:block}.result-panel{box-shadow:none;border:0;padding:0}.print-sheet{display:block;box-shadow:none;border:0;padding:0;margin:0 0 12mm}.print-head{break-inside:avoid}.form-table{font-size:10.5pt}.form-table b,.form-table span{min-height:26pt;padding:6pt}.memo-list,.housing-table{font-size:9.5pt}}
 </style>
 <script src="assets/analytics.js"></script>
 <script src="assets/vendor/pdf-lib.min.js"></script>
@@ -184,10 +193,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   <section class="hero">
     <div class="hero-copy">
       <div class="eyebrow">Year-End Adjustment</div>
-      <h1>年末調整の申告書を、<br><em>様式ごとに作る。</em></h1>
-      <p class="lead">会社員の年末調整で使う複数の申告書を、同じ入力から分けて確認します。扶養控除等、基礎控除・配偶者控除等・特定親族・所得金額調整控除、保険料控除、住宅ローン控除の計算まで、提出前に迷いやすい欄をまとめます。</p>
+      <h1>国税庁の様式PDFに、<br><em>そのまま入力して保存。</em></h1>
+      <p class="lead">会社員の年末調整で使う複数の申告書を、まず国税庁の入力用PDFと同じ様式で開けるようにしました。PDFビューア内で直接入力して保存し、必要に応じて下の入力補助で共通欄や住宅ローン控除の計算も確認できます。</p>
       <div class="hero-actions">
-        <a href="#form">入力を始める</a>
+        <a href="#direct-pdf">公式PDFに直接入力</a>
+        <a href="#form">入力補助を使う</a>
         <a class="secondary" href="#official">公式様式を確認</a>
       </div>
     </div>
@@ -211,6 +221,41 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       </div>
       <p class="notice">このページで作る申告書PDFは、国税庁の入力用PDFをブラウザで扱える形に整えた様式を使います。提出前はAdobe Readerまたは勤務先指定の方法で、表示・印字・添付書類を確認してください。住宅ローン控除は税務署等から交付される申告書や証明書の内容が前提です。</p>
     </aside>
+  </section>
+
+  <section class="direct-panel" id="direct-pdf">
+    <h2>国税庁PDFを開いて、そのまま入力・保存する</h2>
+    <p>ここで開くPDFは、国税庁の入力用PDFと同じレイアウトです。PDFビューア内の欄へ直接入力し、ビューアの保存・ダウンロード操作でPDFデータとして保存できます。Adobe Readerで提出前確認をする場合は、国税庁の公式入力用PDFも併せて開いてください。</p>
+    <div class="pdf-grid">
+      <article class="pdf-card">
+        <h3>扶養控除等（異動）申告書</h3>
+        <p>扶養親族、源泉控除対象配偶者、障害者・寡婦等の確認をする様式です。</p>
+        <iframe src="assets/nta/year-end-2025/2025bun_01_fillable.pdf#view=FitH" title="令和7年分扶養控除等申告書"></iframe>
+        <div class="mini-actions">
+          <a class="btn" href="assets/nta/year-end-2025/2025bun_01_fillable.pdf" target="_blank" rel="noopener">このPDFを開く</a>
+          <a class="btn secondary" href="https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_01_input.pdf" target="_blank" rel="noopener">国税庁PDF</a>
+        </div>
+      </article>
+      <article class="pdf-card">
+        <h3>基礎・配偶者等・特定親族・所得金額調整</h3>
+        <p>本人所得、配偶者、特定親族、所得金額調整控除をまとめて確認する様式です。</p>
+        <iframe src="assets/nta/year-end-2025/2025bun_06_fillable.pdf#view=FitH" title="令和7年分基礎控除申告書兼配偶者控除等申告書"></iframe>
+        <div class="mini-actions">
+          <a class="btn" href="assets/nta/year-end-2025/2025bun_06_fillable.pdf" target="_blank" rel="noopener">このPDFを開く</a>
+          <a class="btn secondary" href="https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_06_input.pdf" target="_blank" rel="noopener">国税庁PDF</a>
+        </div>
+      </article>
+      <article class="pdf-card">
+        <h3>保険料控除申告書</h3>
+        <p>生命保険料、地震保険料、社会保険料、小規模企業共済等掛金を記入する様式です。</p>
+        <iframe src="assets/nta/year-end-2025/2025bun_04_fillable.pdf#view=FitH" title="令和7年分保険料控除申告書"></iframe>
+        <div class="mini-actions">
+          <a class="btn" href="assets/nta/year-end-2025/2025bun_04_fillable.pdf" target="_blank" rel="noopener">このPDFを開く</a>
+          <a class="btn secondary" href="https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_04_input.pdf" target="_blank" rel="noopener">国税庁PDF</a>
+        </div>
+      </article>
+    </div>
+    <p class="notice">住宅借入金等特別控除申告書は、国税庁の各種申告書ページでは空欄の入力用PDFではなく記載例が公開されており、申告書は税務署から本人へ交付される案内になっています。このページの住宅欄は、交付された申告書・証明書へ転記する前の計算確認用です。</p>
   </section>
 
   <section class="app-shell" id="form">
@@ -295,7 +340,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         <button class="btn" type="button" id="combinedPdfBtn">公式様式PDFを保存（基礎・配偶者等）</button>
         <button class="btn secondary" type="button" id="dependentPdfBtn">公式様式PDFを保存（扶養控除等・共通欄）</button>
         <button class="btn secondary" type="button" id="insurancePdfBtn">公式様式PDFを保存（保険料控除・共通欄）</button>
-        <button class="btn secondary" type="button" id="housingPrintBtn">住宅控除計算シートをPDF保存 / 印刷</button>
+        <button class="btn secondary" type="button" id="housingPrintBtn">住宅控除計算メモを印刷</button>
       </div>
       <div class="pdf-status" id="pdfStatus"></div>
 
