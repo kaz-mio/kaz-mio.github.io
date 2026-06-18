@@ -125,6 +125,19 @@ h1 em{font-style:normal;color:var(--teal)}
 .precheck-card.warn .precheck-status{background:#fff4dc;color:#8b6422}
 .precheck-card.no{opacity:.76}
 .precheck-card.no .precheck-status{background:#f2f4f4;color:#647174}
+.precheck-plan{background:#f7fcf9;border:1px solid rgba(41,117,117,.14);border-radius:8px;padding:.85rem;margin-top:.8rem;display:grid;gap:.55rem}
+.precheck-plan small,.stage-panel small,.validation-panel small,.transfer-summary small,.submit-checklist small,.insurance-ledger small{display:block;font-family:'Nunito',sans-serif;font-size:.56rem;font-weight:900;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.24rem}
+.precheck-flow{display:flex;flex-wrap:wrap;gap:.42rem;align-items:center}
+.precheck-flow span{display:inline-flex;align-items:center;min-height:2rem;border-radius:999px;background:#fff;border:1px solid rgba(41,117,117,.16);padding:.24rem .62rem;color:var(--navy);font-size:.72rem;font-weight:900}
+.precheck-flow i{color:var(--sub);font-style:normal;font-weight:900}
+.stage-panel{background:#fff;border:1px solid rgba(41,117,117,.14);border-radius:8px;box-shadow:var(--soft);padding:.85rem;margin:.75rem 0 .95rem;display:grid;gap:.7rem}
+.stage-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem}
+.stage-tab{appearance:none;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--navy);font-weight:900;min-height:42px;padding:.45rem .55rem;cursor:pointer}
+.stage-tab.is-active{background:#f4fbf7;border-color:rgba(41,117,117,.62);color:var(--teal)}
+.stage-note{color:var(--muted);font-size:.76rem;line-height:1.65}
+.stage-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.stage-empty{background:#f7fcf9;border:1px solid rgba(41,117,117,.14);border-radius:8px;padding:1rem;color:var(--muted);font-weight:800;line-height:1.8;margin:.8rem 0}
+.stage-empty[hidden]{display:none}
 .form-selector{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.72rem;margin-top:.95rem}
 .choice-card{appearance:none;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.95rem;box-shadow:var(--soft);cursor:pointer;min-height:10.5rem;color:var(--ink);transition:border-color .2s,box-shadow .2s,transform .2s,background .2s}
 .choice-card:hover{border-color:rgba(41,117,117,.34);transform:translateY(-2px)}
@@ -141,6 +154,8 @@ h1 em{font-style:normal;color:var(--teal)}
 .preview-frame{width:100%;height:620px;border:0;background:#f8f8f8;display:block}
 .preview-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.2rem;color:var(--muted);font-weight:800;line-height:1.8;background:linear-gradient(180deg,#fff 0%,#f6fbf8 100%)}
 .preview-empty[hidden]{display:none}
+.preview-review-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:.75rem;align-items:start}
+.preview-side{display:grid;gap:.65rem}
 .preview-tools{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.85rem}
 .preview-tools .btn:first-child{grid-column:1/-1}
 .preview-modal{position:fixed;inset:0;z-index:1000;background:rgba(13,29,36,.82);display:grid;grid-template-rows:auto minmax(0,1fr);padding:clamp(.6rem,2vw,1.25rem);gap:.7rem}
@@ -189,6 +204,16 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .need-card.ok{border-color:rgba(41,117,117,.26);background:#f7fcf9}
 .need-card.warn{border-color:rgba(217,155,65,.32);background:#fffaf0}
 .need-card.no{opacity:.78}
+.validation-panel,.transfer-summary,.submit-checklist{background:#fff;border:1px solid var(--line);border-radius:8px;padding:.9rem;box-shadow:var(--soft);margin:.85rem 0;display:grid;gap:.55rem}
+.validation-panel.ok{background:#f7fcf9;border-color:rgba(41,117,117,.2)}
+.validation-list,.transfer-list{display:grid;gap:.42rem}
+.validation-item,.transfer-item{display:grid;grid-template-columns:auto 1fr;gap:.5rem;align-items:start;color:var(--muted);font-size:.76rem;line-height:1.65}
+.validation-item b,.transfer-item b{display:inline-flex;align-items:center;justify-content:center;min-width:2.1rem;height:1.45rem;border-radius:999px;background:#edf7f2;color:var(--teal);font-size:.62rem}
+.validation-item.warn b{background:#fff4dc;color:#8b6422}
+.validation-item.no b{background:#f2f4f4;color:#647174}
+.submit-checks{display:grid;gap:.48rem}
+.submit-checks label{display:grid;grid-template-columns:auto 1fr;gap:.52rem;align-items:start;color:var(--muted);font-size:.76rem;line-height:1.65}
+.submit-checks input{margin-top:.28rem;accent-color:var(--teal)}
 .output{width:100%;min-height:210px;border:1px solid rgba(27,42,48,.14);border-radius:8px;background:#fff;padding:.95rem;color:var(--muted);line-height:1.8;resize:vertical}
 .pdf-actions{display:grid;grid-template-columns:1fr;gap:.55rem;margin-top:.85rem}
 .pdf-status{min-height:1.4rem;color:var(--muted);font-size:.76rem;line-height:1.6;margin-top:.5rem}
@@ -200,6 +225,18 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .form-table b,.form-table span{border-bottom:1px solid #333;padding:.55rem .65rem;min-height:2.45rem}
 .form-table b{background:#f1f4f2;border-right:1px solid #333}
 .memo-list{display:grid;gap:.35rem;margin-top:.7rem;font-size:.78rem;color:var(--muted)}
+.certificate-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin:.7rem 0 .95rem}
+.guide-card{background:#f7fcf9;border:1px solid rgba(41,117,117,.14);border-radius:8px;padding:.75rem;box-shadow:var(--soft)}
+.guide-card strong{display:block;color:var(--navy);font-size:.82rem;line-height:1.45}
+.guide-card p{color:var(--muted);font-size:.72rem;line-height:1.65;margin-top:.25rem}
+.insurance-ledger{background:#fff;border:1px solid rgba(41,117,117,.14);border-radius:8px;padding:.9rem;box-shadow:var(--soft);margin:.8rem 0 1rem}
+.insurance-ledger p{color:var(--muted);font-size:.76rem;line-height:1.7;margin:.2rem 0 .65rem}
+.insurance-rows{display:grid;gap:.55rem}
+.insurance-row{display:grid;grid-template-columns:1.1fr 1.15fr .95fr auto;gap:.5rem;align-items:end;background:#f8fcf9;border:1px solid rgba(27,42,48,.08);border-radius:8px;padding:.65rem}
+.insurance-row label{display:grid;gap:.24rem}
+.insurance-row span{color:var(--navy);font-size:.68rem;font-weight:900}
+.remove-insurance-row{border:1px solid rgba(201,101,82,.24);background:#fff6f2;color:#a84937;border-radius:8px;min-height:42px;padding:.45rem .65rem;font-size:.74rem;font-weight:900;cursor:pointer}
+.import-file{display:none}
 .housing-table{width:100%;border-collapse:collapse;margin:.85rem 0;font-size:.8rem}
 .housing-table th,.housing-table td{border:1px solid #333;padding:.5rem;text-align:left;vertical-align:top}
 .housing-table th{background:#f1f4f2;width:42%}
@@ -215,9 +252,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .ft-nav{display:flex;gap:1rem;flex-wrap:wrap}
 .ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.76)}
 .ft-nav a:hover{color:#fff}
-@media(max-width:980px){.hero,.app-shell,.pdf-grid,.workflow-steps,.form-selector,.precheck-grid,.precheck-results{grid-template-columns:1fr}.precheck-head{grid-template-columns:1fr}.source-grid{grid-template-columns:1fr 1fr}.pdf-card iframe{height:520px}.preview-frame{height:560px}}
-@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.official-panel,.direct-panel,.panel,.result-panel,.print-sheet,.source-panel{padding:1rem}.grid,.grid.three,.summary-grid,.need-grid,.source-grid,.preview-tools{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.choice-card{min-height:auto}.preview-shell{min-height:430px}.preview-frame{height:470px}.preview-modal{padding:.5rem}.preview-modal-bar{align-items:stretch}.preview-modal-actions{display:grid;width:100%}.form-table{grid-template-columns:1fr}.form-table b{border-right:0}.print-head{grid-template-columns:1fr}.print-note{text-align:left;max-width:none}h1,.lead,.panel p,.field-help,.need-card p,.source-card p,.precheck-card p{overflow-wrap:anywhere;line-break:strict}}
-@media print{body{background:#fff;color:#111}.hd,.hero,.direct-panel,.panel,.result-panel>h2,.result-panel>p,.summary-grid,.need-grid,.output,.action-row,.source-panel,.ft,.notice,.official-panel,.pdf-actions,.pdf-status,.preview-modal{display:none!important}.wrap{max-width:none;padding:0}.app-shell{display:block}.result-panel{box-shadow:none;border:0;padding:0}.print-sheet{display:block;box-shadow:none;border:0;padding:0;margin:0 0 12mm}.print-head{break-inside:avoid}.form-table{font-size:10.5pt}.form-table b,.form-table span{min-height:26pt;padding:6pt}.memo-list,.housing-table{font-size:9.5pt}}
+@media(max-width:980px){.hero,.app-shell,.pdf-grid,.workflow-steps,.form-selector,.precheck-grid,.precheck-results,.certificate-guide,.preview-review-grid{grid-template-columns:1fr}.precheck-head{grid-template-columns:1fr}.source-grid{grid-template-columns:1fr 1fr}.insurance-row{grid-template-columns:1fr 1fr}.pdf-card iframe{height:520px}.preview-frame{height:560px}}
+@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.official-panel,.direct-panel,.panel,.result-panel,.print-sheet,.source-panel{padding:1rem}.grid,.grid.three,.summary-grid,.need-grid,.source-grid,.preview-tools,.stage-tabs,.insurance-row{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions,.stage-actions{display:grid}.btn,.hero-actions a{width:100%}.choice-card{min-height:auto}.preview-shell{min-height:430px}.preview-frame{height:470px}.preview-modal{padding:.5rem}.preview-modal-bar{align-items:stretch}.preview-modal-actions{display:grid;width:100%}.form-table{grid-template-columns:1fr}.form-table b{border-right:0}.print-head{grid-template-columns:1fr}.print-note{text-align:left;max-width:none}h1,.lead,.panel p,.field-help,.need-card p,.source-card p,.precheck-card p,.guide-card p{overflow-wrap:anywhere;line-break:strict}}
+@media print{body{background:#fff;color:#111}.hd,.hero,.direct-panel,.panel,.result-panel>h2,.result-panel>p,.summary-grid,.need-grid,.output,.action-row,.source-panel,.ft,.notice,.official-panel,.pdf-actions,.pdf-status,.preview-modal,.preview-review-grid{display:none!important}.wrap{max-width:none;padding:0}.app-shell{display:block}.result-panel{box-shadow:none;border:0;padding:0}.print-sheet{display:block;box-shadow:none;border:0;padding:0;margin:0 0 12mm}.print-head{break-inside:avoid}.form-table{font-size:10.5pt}.form-table b,.form-table span{min-height:26pt;padding:6pt}.memo-list,.housing-table{font-size:9.5pt}}
 </style>
 <script src="assets/analytics.js"></script>
 <script src="assets/vendor/pdf-lib.min.js"></script>
@@ -298,6 +335,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         <label class="precheck-field"><span>住宅ローン控除を年末調整で使いますか</span><select id="precheckHousing"><option value="">未選択</option><option value="yes">はい</option><option value="no">いいえ</option><option value="unknown">わからない</option></select><em>初年度の確定申告後、勤務先へ出す場合があります。</em></label>
       </div>
       <div class="precheck-results" id="precheckResults" aria-live="polite"></div>
+      <div class="precheck-plan" id="precheckPlan" aria-live="polite"></div>
     </div>
     <div class="form-selector" role="radiogroup" aria-label="作成する申告書">
       <button class="choice-card is-active" type="button" data-select-form="combined" aria-pressed="true">
@@ -325,6 +363,20 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         <strong>基礎・配偶者等・特定親族・所得金額調整</strong>
         <span>本人所得、配偶者、特定親族、所得金額調整控除を確認します。</span>
       </div>
+      <div class="stage-panel">
+        <small>Input Steps</small>
+        <div class="stage-tabs" role="tablist" aria-label="入力ステップ">
+          <button class="stage-tab is-active" type="button" data-stage="common" aria-pressed="true">1. 共通情報</button>
+          <button class="stage-tab" type="button" data-stage="details" aria-pressed="false">2. 必要な入力</button>
+          <button class="stage-tab" type="button" data-stage="review" aria-pressed="false">3. 確認・保存</button>
+        </div>
+        <div class="stage-note" id="stageNote">まず氏名、住所、勤務先など、どの申告書にも使う情報を入力します。</div>
+        <div class="stage-actions">
+          <button class="btn secondary" type="button" id="prevStageBtn">前のステップ</button>
+          <button class="btn" type="button" id="nextStageBtn">次のステップ</button>
+        </div>
+      </div>
+      <div class="stage-empty" id="stageEmpty" hidden>入力欄の確認はここまでです。右側の入力漏れチェックと転記サマリーを見て、PDFプレビューを更新してください。</div>
 
       <div class="form-block" data-form-block="common">
       <div class="section-label">Common</div>
@@ -387,6 +439,20 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <div class="form-block" data-form-block="insurance">
       <div class="section-label">Insurance</div>
       <p>保険料控除申告書は、保険会社などから届く控除証明書を見て、区分ごとに支払額を入力します。証明書が複数ある場合は、同じ区分ごとに合計して入力すると、控除額を自動計算して様式へ転記します。</p>
+      <div class="certificate-guide" aria-label="控除証明書の見方">
+        <div class="guide-card"><strong>生命保険料控除証明書</strong><p>証明書の「一般」「介護医療」「個人年金」と、「新制度」「旧制度」の表示を見て区分します。</p></div>
+        <div class="guide-card"><strong>地震保険料控除証明書</strong><p>「地震保険料」と「旧長期損害保険料」は別の欄です。証明書の区分名をそのまま見ます。</p></div>
+        <div class="guide-card"><strong>自分で払った社会保険料</strong><p>給与天引き分ではなく、国民年金や国民健康保険など自分で支払ったものを確認します。</p></div>
+      </div>
+      <div class="insurance-ledger">
+        <small>Certificate Totals</small>
+        <strong>証明書の合計補助</strong>
+        <p>保険会社が複数ある場合は、証明書ごとに明細を追加できます。入力した金額は下の合計欄へ自動反映します。</p>
+        <div class="insurance-rows" id="insuranceRows"></div>
+        <div class="mini-actions">
+          <button class="btn secondary" type="button" id="addInsuranceRow">証明書明細を追加</button>
+        </div>
+      </div>
       <div class="subhead">生命保険料控除</div>
       <div class="grid">
         <label class="field"><span class="label">一般の生命保険料 新制度</span><input id="insuranceGeneralNewAmount" type="number" min="0" step="1000" inputmode="numeric" placeholder="円"><span class="field-help">控除証明書に「一般」「新制度」などとある金額です。複数あれば合計します。</span></label>
@@ -435,10 +501,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 
       <div class="action-row">
         <button class="btn" type="button" id="saveBtn">入力を保存</button>
+        <button class="btn secondary" type="button" id="exportDataBtn">入力データを書き出し</button>
+        <button class="btn secondary" type="button" id="importDataBtn">入力データを読み込み</button>
         <button class="btn secondary" type="button" id="copyBtn">確認メモをコピー</button>
         <button class="btn secondary" type="button" id="printBtn">確認シートをPDF保存 / 印刷</button>
         <button class="btn warn" type="button" id="clearBtn">入力をクリア</button>
       </div>
+      <input class="import-file" id="importDataFile" type="file" accept="application/json,.json">
     </div>
 
     <div class="result-panel" aria-live="polite">
@@ -456,9 +525,25 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         <button class="btn secondary" type="button" id="printSelectedPdfBtn">プレビューPDFを印刷</button>
       </div>
       <div class="pdf-status" id="pdfStatus"></div>
-      <div class="preview-shell">
-        <iframe class="preview-frame" id="pdfPreviewFrame" title="選択した申告書のPDFプレビュー"></iframe>
-        <div class="preview-empty" id="pdfPreviewEmpty">入力後に「選んだ様式をプレビュー更新」を押すと、国税庁様式へ転記されたPDFをここで確認できます。</div>
+      <div class="preview-review-grid">
+        <div class="preview-shell">
+          <iframe class="preview-frame" id="pdfPreviewFrame" title="選択した申告書のPDFプレビュー"></iframe>
+          <div class="preview-empty" id="pdfPreviewEmpty">入力後に「選んだ様式をプレビュー更新」を押すと、国税庁様式へ転記されたPDFをここで確認できます。</div>
+        </div>
+        <div class="preview-side">
+          <div class="validation-panel" id="validationPanel" aria-live="polite"></div>
+          <div class="transfer-summary" id="transferSummary" aria-live="polite"></div>
+          <div class="submit-checklist" id="submitChecklist">
+            <small>Before Submit</small>
+            <strong>提出前チェック</strong>
+            <div class="submit-checks">
+              <label><input id="submitCheckProofs" type="checkbox"><span>控除証明書や住宅ローン控除の証明書など、勤務先に求められた添付・提示書類を確認した</span></label>
+              <label><input id="submitCheckDeadline" type="checkbox"><span>勤務先の提出期限と提出方法を確認した</span></label>
+              <label><input id="submitCheckPdf" type="checkbox"><span>保存したPDFを開き、氏名・住所・金額・印字の見え方を確認した</span></label>
+              <label><input id="submitCheckCompany" type="checkbox"><span>勤務先の案内と異なる点がないか確認した</span></label>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="summary-grid" id="summaryGrid"></div>
@@ -563,6 +648,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     }
   };
   var selectedForm = 'combined';
+  var activeStage = 'common';
   var currentPreview = null;
   var previewUrl = '';
   var form = {};
@@ -575,20 +661,28 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     'insuranceGeneralNewAmount','insuranceGeneralOldAmount','insuranceMedicalAmount','insurancePensionNewAmount',
     'insurancePensionOldAmount','insuranceLifeMemo','insuranceEarthquakeAmount','insuranceOldLongAmount',
     'insuranceEarthquakeMemo','insuranceSocialAmount','insurancePensionSocialAmount','insuranceSmallMutualAmount',
-    'insuranceCorporateDcAmount','insuranceIdecoAmount','insuranceDisabilityMutualAmount'
+    'insuranceCorporateDcAmount','insuranceIdecoAmount','insuranceDisabilityMutualAmount','submitCheckProofs',
+    'submitCheckDeadline','submitCheckPdf','submitCheckCompany'
   ].forEach(function(id){ form[id] = document.getElementById(id); });
 
   var relatives = [];
+  var insuranceItems = [];
   var formChoices = Array.prototype.slice.call(document.querySelectorAll('[data-select-form]'));
   var formBlocks = Array.prototype.slice.call(document.querySelectorAll('[data-form-block]'));
+  var stageButtons = Array.prototype.slice.call(document.querySelectorAll('[data-stage]'));
   var formFocus = document.getElementById('formFocus');
   var selectedTarget = document.getElementById('selectedTarget');
+  var stageNote = document.getElementById('stageNote');
+  var stageEmpty = document.getElementById('stageEmpty');
   var previewFrame = document.getElementById('pdfPreviewFrame');
   var previewEmpty = document.getElementById('pdfPreviewEmpty');
   var relativeList = document.getElementById('relativeList');
+  var insuranceRows = document.getElementById('insuranceRows');
   var summaryGrid = document.getElementById('summaryGrid');
   var needGrid = document.getElementById('needGrid');
   var copyOutput = document.getElementById('copyOutput');
+  var validationPanel = document.getElementById('validationPanel');
+  var transferSummary = document.getElementById('transferSummary');
   var printTable = document.getElementById('printTable');
   var printMemo = document.getElementById('printMemo');
   var printName = document.getElementById('printName');
@@ -600,9 +694,26 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   var precheckFields = {};
   precheckIds.forEach(function(id){ precheckFields[id] = document.getElementById(id); });
   var precheckResults = document.getElementById('precheckResults');
+  var precheckPlan = document.getElementById('precheckPlan');
   var previewModal = document.getElementById('previewModal');
   var previewModalFrame = document.getElementById('previewModalFrame');
   var previewModalTitle = document.getElementById('previewModalTitle');
+  var importDataFile = document.getElementById('importDataFile');
+  var INSURANCE_CATEGORIES = [
+    {value:'generalNew', label:'一般生命 新制度', target:'insuranceGeneralNewAmount'},
+    {value:'generalOld', label:'一般生命 旧制度', target:'insuranceGeneralOldAmount'},
+    {value:'medical', label:'介護医療', target:'insuranceMedicalAmount'},
+    {value:'pensionNew', label:'個人年金 新制度', target:'insurancePensionNewAmount'},
+    {value:'pensionOld', label:'個人年金 旧制度', target:'insurancePensionOldAmount'},
+    {value:'earthquake', label:'地震保険', target:'insuranceEarthquakeAmount'},
+    {value:'oldLong', label:'旧長期損害保険', target:'insuranceOldLongAmount'},
+    {value:'social', label:'国民健康保険など', target:'insuranceSocialAmount'},
+    {value:'pensionSocial', label:'国民年金・基金', target:'insurancePensionSocialAmount'},
+    {value:'smallMutual', label:'小規模企業共済', target:'insuranceSmallMutualAmount'},
+    {value:'corporateDc', label:'企業型DC加入者掛金', target:'insuranceCorporateDcAmount'},
+    {value:'ideco', label:'iDeCoなど個人型年金', target:'insuranceIdecoAmount'},
+    {value:'disabilityMutual', label:'心身障害者扶養共済', target:'insuranceDisabilityMutualAmount'}
+  ];
 
   function yen(value){
     var n = Number(value || 0);
@@ -813,6 +924,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var spouseSalaryIncome = effectiveSpouseSalaryIncome();
     return {
       targetForm: selectedForm,
+      activeStage: activeStage,
       taxYear: form.taxYear.value,
       taxOffice: text('taxOffice'),
       employerName: text('employerName'),
@@ -871,11 +983,20 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         values[id] = precheckValue(id);
         return values;
       }, {}),
+      submitChecklist: {
+        proofs: checked('submitCheckProofs'),
+        deadline: checked('submitCheckDeadline'),
+        pdf: checked('submitCheckPdf'),
+        company: checked('submitCheckCompany')
+      },
+      insuranceItems: insuranceItems.filter(Boolean).map(function(item){ return Object.assign({}, item); }),
       relatives: relatives.map(function(item){ return Object.assign({}, item); })
     };
   }
   function setData(data){
     if(data.targetForm && FORM_META[data.targetForm]) selectedForm = data.targetForm;
+    if(data.activeStage) activeStage = data.activeStage;
+    if(['common','details','review'].indexOf(activeStage) === -1) activeStage = 'common';
     Object.keys(form).forEach(function(key){
       if(data[key] === undefined) return;
       if(form[key].type === 'checkbox') form[key].checked = !!data[key];
@@ -892,8 +1013,16 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         if(precheckFields[id] && data.precheck[id] !== undefined) precheckFields[id].value = data.precheck[id];
       });
     }
+    if(data.submitChecklist){
+      form.submitCheckProofs.checked = !!data.submitChecklist.proofs;
+      form.submitCheckDeadline.checked = !!data.submitChecklist.deadline;
+      form.submitCheckPdf.checked = !!data.submitChecklist.pdf;
+      form.submitCheckCompany.checked = !!data.submitChecklist.company;
+    }
+    insuranceItems = Array.isArray(data.insuranceItems) ? data.insuranceItems.filter(Boolean) : [];
     relatives = Array.isArray(data.relatives) ? data.relatives : [];
     renderRelatives();
+    renderInsuranceRows();
   }
   function relativeTemplate(item, index){
     return '<div class="person-card" data-index="' + index + '">' +
@@ -911,6 +1040,59 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function renderRelatives(){
     relativeList.innerHTML = relatives.map(relativeTemplate).join('');
   }
+  function insuranceCategoryLabel(value){
+    var found = INSURANCE_CATEGORIES.filter(function(item){ return item.value === value; })[0];
+    return found ? found.label : '';
+  }
+  function insuranceItemTemplate(item, index){
+    var options = INSURANCE_CATEGORIES.map(function(category){
+      return '<option value="' + escapeHtml(category.value) + '"' + (item.category === category.value ? ' selected' : '') + '>' + escapeHtml(category.label) + '</option>';
+    }).join('');
+    return '<div class="insurance-row" data-index="' + index + '">' +
+      '<label><span>保険会社・支払先</span><input data-insurance-field="company" type="text" value="' + escapeHtml(item.company || '') + '" placeholder="例: 〇〇生命"></label>' +
+      '<label><span>証明書の区分</span><select data-insurance-field="category">' + options + '</select></label>' +
+      '<label><span>支払額</span><input data-insurance-field="amount" type="number" min="0" step="1000" inputmode="numeric" value="' + escapeHtml(item.amount || '') + '" placeholder="円"></label>' +
+      '<button class="remove-insurance-row" type="button" data-remove-insurance="' + index + '">削除</button>' +
+    '</div>';
+  }
+  function renderInsuranceRows(){
+    if(!insuranceRows) return;
+    insuranceItems = insuranceItems.filter(Boolean);
+    if(!insuranceItems.length){
+      insuranceRows.innerHTML = '<div class="notice">明細を使わない場合は、下の合計欄へ直接入力できます。</div>';
+      return;
+    }
+    insuranceRows.innerHTML = insuranceItems.map(insuranceItemTemplate).join('');
+    syncInsuranceTotalsFromRows();
+  }
+  function syncInsuranceInput(target){
+    var row = target.closest('.insurance-row');
+    if(!row) return;
+    var index = Number(row.getAttribute('data-index'));
+    var field = target.getAttribute('data-insurance-field');
+    if(!insuranceItems[index]) insuranceItems[index] = {company:'', category:'generalNew', amount:''};
+    insuranceItems[index][field] = target.value;
+    syncInsuranceTotalsFromRows();
+    invalidatePreview();
+    render();
+  }
+  function syncInsuranceTotalsFromRows(){
+    if(!insuranceItems.length) return;
+    var totals = INSURANCE_CATEGORIES.reduce(function(values, category){
+      values[category.value] = 0;
+      return values;
+    }, {});
+    insuranceItems.forEach(function(item){
+      if(!item) return;
+      var amount = Math.max(0, Number(item.amount || 0));
+      if(totals[item.category] !== undefined) totals[item.category] += amount;
+    });
+    INSURANCE_CATEGORIES.forEach(function(category){
+      if(form[category.target]) form[category.target].value = totals[category.value] ? String(totals[category.value]) : '';
+    });
+    var companies = insuranceItems.map(function(item){ return (item.company || '').trim(); }).filter(Boolean);
+    if(companies.length && !form.insuranceLifeMemo.value) form.insuranceLifeMemo.value = Array.from(new Set(companies)).join('、');
+  }
   function updateSelectedFormDisplay(){
     var meta = FORM_META[selectedForm] || FORM_META.combined;
     [formFocus, selectedTarget].forEach(function(node){
@@ -924,20 +1106,66 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       button.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
   }
+  function stageLabel(stage){
+    if(stage === 'details') return '必要な入力';
+    if(stage === 'review') return '確認・保存';
+    return '共通情報';
+  }
+  function updateStageDisplay(){
+    var notes = {
+      common: 'まず氏名、住所、勤務先など、どの申告書にも使う情報を入力します。',
+      details: selectedForm === 'insurance' ? '控除証明書を見ながら、該当する区分だけ入力します。証明書明細を使うと合計欄へ自動反映します。' :
+        selectedForm === 'housing' ? '交付された申告書・証明書へ転記する前に、住宅ローン控除の計算メモを作ります。' :
+        selectedForm === 'dependent' ? '扶養親族や非居住者区分など、扶養控除等申告書で使う情報を入力します。' :
+        '本人所得、配偶者、親族、所得金額調整控除の必要な欄だけ確認します。',
+      review: '入力漏れチェックと転記サマリーを見てから、PDFプレビューを更新します。'
+    };
+    stageButtons.forEach(function(button){
+      var active = button.getAttribute('data-stage') === activeStage;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    if(stageNote) stageNote.textContent = notes[activeStage] || notes.common;
+    if(stageEmpty) stageEmpty.hidden = activeStage !== 'review';
+  }
   function updateFormBlocks(){
-    var visible = {common:true};
-    if(selectedForm === 'combined'){
-      visible.income = true;
-      visible.spouse = true;
-      visible.relatives = true;
-      visible['income-adjustment'] = true;
+    var visible = {};
+    if(activeStage === 'common'){
+      visible = {common:true};
+    }else if(activeStage === 'review'){
+      visible = {};
+    }else{
+      if(selectedForm === 'combined'){
+        visible.income = true;
+        visible.spouse = true;
+        visible.relatives = true;
+        visible['income-adjustment'] = true;
+      }
+      if(selectedForm === 'dependent') visible.relatives = true;
+      if(selectedForm === 'insurance') visible.insurance = true;
+      if(selectedForm === 'housing') visible.housing = true;
     }
-    if(selectedForm === 'dependent') visible.relatives = true;
-    if(selectedForm === 'insurance') visible.insurance = true;
-    if(selectedForm === 'housing') visible.housing = true;
     formBlocks.forEach(function(block){
       block.hidden = !visible[block.getAttribute('data-form-block')];
     });
+    updateStageDisplay();
+  }
+  function setStage(stage){
+    if(['common','details','review'].indexOf(stage) === -1) return;
+    activeStage = stage;
+    updateFormBlocks();
+    render();
+  }
+  function moveStage(direction){
+    var stages = ['common','details','review'];
+    var index = stages.indexOf(activeStage);
+    var next = stages[Math.max(0, Math.min(stages.length - 1, index + direction))];
+    setStage(next);
+    if(next === 'review'){
+      document.querySelector('.result-panel').scrollIntoView({behavior:'smooth', block:'start'});
+    }else{
+      document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
+    }
   }
   function precheckStatus(kind, label, statusLabel, note, className, rank){
     return {kind:kind, label:label, statusLabel:statusLabel, note:note, className:className, rank:rank};
@@ -977,7 +1205,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   }
   function renderPrecheck(){
     if(!precheckResults) return;
-    precheckResults.innerHTML = getPrecheckStatuses().map(function(item){
+    var statuses = getPrecheckStatuses();
+    precheckResults.innerHTML = statuses.map(function(item){
       return '<div class="precheck-card ' + escapeHtml(item.className) + '">' +
         '<small>' + escapeHtml(item.label) + '</small>' +
         '<span class="precheck-status">' + escapeHtml(item.statusLabel) + '</span>' +
@@ -985,6 +1214,27 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         '<button class="btn secondary" type="button" data-precheck-select-form="' + escapeHtml(item.kind) + '">この様式を開く</button>' +
       '</div>';
     }).join('');
+    renderPrecheckPlan(statuses);
+  }
+  function renderPrecheckPlan(statuses){
+    if(!precheckPlan) return;
+    var active = statuses.filter(function(item){ return item.rank >= 3; });
+    var uncertain = statuses.filter(function(item){ return item.rank === 2 && !active.some(function(activeItem){ return activeItem.kind === item.kind; }); });
+    var flow = ['共通情報'];
+    active.concat(uncertain).forEach(function(item){
+      if(item.kind === 'combined') flow.push('所得・配偶者等');
+      if(item.kind === 'dependent') flow.push('扶養親族');
+      if(item.kind === 'insurance') flow.push('保険料控除');
+      if(item.kind === 'housing') flow.push('住宅控除メモ');
+    });
+    if(flow.length === 1) flow.push('勤務先の案内確認');
+    flow.push('入力漏れチェック');
+    flow.push('PDFプレビュー確認');
+    precheckPlan.innerHTML = '<small>Your Order</small><strong>あなたはまずこの順番で入力</strong><div class="precheck-flow">' +
+      flow.map(function(label, index){
+        return (index ? '<i>→</i>' : '') + '<span>' + escapeHtml(label) + '</span>';
+      }).join('') +
+      '</div>';
   }
   function applyPrecheck(){
     var statuses = getPrecheckStatuses();
@@ -993,6 +1243,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       statuses[0];
     if(target){
       setSelectedForm(target.kind);
+      setStage('common');
       document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
     }
   }
@@ -1024,6 +1275,69 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   }
   function need(title, label, note, className){
     return '<div class="need-card ' + escapeHtml(className || '') + '"><small>' + escapeHtml(title) + '</small><strong>' + escapeHtml(label) + '</strong><p>' + escapeHtml(note) + '</p></div>';
+  }
+  function validationItem(label, note, className){
+    return {label:label, note:note, className:className || 'warn'};
+  }
+  function getValidationItems(data, insurance){
+    var items = [];
+    if(!data.name) items.push(validationItem('氏名', 'PDFの氏名欄へ転記されます。提出前に入力してください。'));
+    if(!data.kana) items.push(validationItem('フリガナ', 'フリガナ欄がある様式では確認しやすくなります。'));
+    if(!data.address) items.push(validationItem('住所', '申告書に記載する住所です。住民票や勤務先届出と表記を合わせます。'));
+    if(!data.employerName) items.push(validationItem('勤務先名', '給与の支払者の名称欄へ転記されます。'));
+    if(selectedForm === 'combined'){
+      if(!data.salaryRevenue && !data.salaryIncome) items.push(validationItem('本人の所得見込', '基礎控除申告書で使うため、給与収入または給与所得を入力してください。'));
+      if(data.hasSpouse === 'yes' && !data.spouseName) items.push(validationItem('配偶者の氏名', '配偶者控除等を申告する場合は入力してください。'));
+      if(data.salaryRevenue > 8500000 && !(data.specialSelf || data.specialSpouse || data.under23Dependent)) items.push(validationItem('所得金額調整控除の条件', '給与収入850万円超の場合、特別障害者や23歳未満扶養親族などの該当有無を確認してください。'));
+    }
+    if(selectedForm === 'dependent' && !data.relatives.length) items.push(validationItem('扶養親族', '扶養親族を申告する場合は親族を追加します。本人情報だけなら勤務先の案内を確認してください。', 'no'));
+    if(selectedForm === 'insurance'){
+      var total = insurance.lifeTotal + insurance.earthquakeTotal + insurance.socialTotal + insurance.smallTotal;
+      if(!total) items.push(validationItem('保険料控除の金額', '控除証明書や自分で支払った社会保険料がある場合は、該当区分へ金額を入力してください。'));
+      if(insuranceItems.length && insuranceItems.some(function(item){ return item && (!item.company || !item.amount); })) items.push(validationItem('証明書明細', '会社名または支払額が空欄の明細があります。不要な行は削除してください。'));
+    }
+    if(selectedForm === 'housing'){
+      if(data.housing.enabled !== 'yes') items.push(validationItem('住宅ローン控除の利用有無', '年末調整で使う場合は「使う」を選んでから計算します。'));
+      if(!data.housing.loanBalance && !data.housing.landBalance) items.push(validationItem('年末残高', '住宅または土地等の年末残高を証明書と照合して入力します。'));
+    }
+    if(!items.length) items.push(validationItem('入力漏れチェック', '大きな未入力は見当たりません。保存後もPDFを開いて印字を確認してください。', 'ok'));
+    return items;
+  }
+  function renderValidation(data, insurance){
+    var items = getValidationItems(data, insurance);
+    validationPanel.classList.toggle('ok', items.every(function(item){ return item.className === 'ok' || item.className === 'no'; }));
+    validationPanel.innerHTML = '<small>Before PDF</small><strong>PDF保存前の確認</strong><div class="validation-list">' +
+      items.map(function(item){
+        var mark = item.className === 'ok' ? 'OK' : item.className === 'no' ? '任意' : '確認';
+        return '<div class="validation-item ' + escapeHtml(item.className) + '"><b>' + escapeHtml(mark) + '</b><span><strong>' + escapeHtml(item.label) + '</strong><br>' + escapeHtml(item.note) + '</span></div>';
+      }).join('') +
+      '</div>';
+  }
+  function transferItem(label, value){
+    if(value === undefined || value === null || value === '') return '';
+    return '<div class="transfer-item"><b>転記</b><span><strong>' + escapeHtml(label) + '</strong><br>' + escapeHtml(String(value)) + '</span></div>';
+  }
+  function renderTransferSummary(data, basic, spouse, incomeAdjustment, relativeResults, housing, insurance){
+    var items = [
+      transferItem('共通欄', [data.name || '氏名未入力', data.address || '住所未入力', data.employerName || '勤務先未入力'].join(' / '))
+    ];
+    if(selectedForm === 'combined'){
+      items.push(transferItem('本人所得', '給与所得 ' + yen(data.salaryIncome) + '、合計所得 ' + yen(data.totalIncome) + '、基礎控除 ' + yen(basic)));
+      items.push(transferItem('配偶者欄', spouse.label));
+      items.push(transferItem('所得金額調整控除', incomeAdjustment.label));
+      var specificCount = relativeResults.filter(function(row){ return row.result && row.result.amount; }).length;
+      items.push(transferItem('特定親族', specificCount ? specificCount + '人を候補として転記' : '候補なし'));
+    }else if(selectedForm === 'dependent'){
+      items.push(transferItem('扶養親族', data.relatives.length ? data.relatives.length + '人分を最大4人まで転記' : '親族入力なし'));
+    }else if(selectedForm === 'insurance'){
+      items.push(transferItem('生命保険料控除', yen(insurance.lifeTotal)));
+      items.push(transferItem('地震保険料控除', yen(insurance.earthquakeTotal)));
+      items.push(transferItem('社会保険料控除', yen(insurance.socialTotal)));
+      items.push(transferItem('小規模企業共済等掛金控除', yen(insurance.smallTotal)));
+    }else if(selectedForm === 'housing'){
+      items.push(transferItem('住宅控除計算メモ', '控除対象残高 ' + yen(housing.base) + '、控除見込額 ' + yen(housing.calculated)));
+    }
+    transferSummary.innerHTML = '<small>Mapped Summary</small><strong>今回PDF・確認シートへ反映する内容</strong><div class="transfer-list">' + items.filter(Boolean).join('') + '</div>';
   }
   function render(){
     updateSelectedFormDisplay();
@@ -1090,6 +1404,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     }
     summaryGrid.innerHTML = summaryCards.join('');
     needGrid.innerHTML = needCards.join('');
+    renderValidation(data, insurance);
+    renderTransferSummary(data, basic, spouse, incomeAdjustment, relativeResults, housing, insurance);
     copyOutput.value = buildMemo(data, basic, spouse, incomeAdjustment, relativeResults, housing);
     renderPrint(data, basic, spouse, incomeAdjustment, relativeResults, housing, insurance);
   }
@@ -1141,6 +1457,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     lines.push('小規模企業共済等掛金控除額: ' + yen(insurance.smallTotal));
     lines.push('生命保険料メモ: ' + (data.insuranceLifeMemo || '未入力'));
     lines.push('地震保険料メモ: ' + (data.insuranceEarthquakeMemo || '未入力'));
+    if(data.insuranceItems && data.insuranceItems.length){
+      lines.push('証明書明細:');
+      data.insuranceItems.filter(Boolean).forEach(function(item, index){
+        lines.push('  ' + (index + 1) + '. ' + (item.company || '支払先未入力') + ' / ' + (insuranceCategoryLabel(item.category) || '区分未選択') + ' / ' + yen(item.amount));
+      });
+    }
     lines.push('', '■ 住宅借入金等特別控除');
     if(housing.enabled){
       lines.push('住宅・土地の年末残高（居住用割合後）: ' + yen(housing.base));
@@ -1151,6 +1473,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     }else{
       lines.push('入力なし');
     }
+    lines.push('', '■ 提出前チェック');
+    lines.push('証明書・添付書類: ' + (data.submitChecklist.proofs ? '確認済み' : '未チェック'));
+    lines.push('勤務先の期限・提出方法: ' + (data.submitChecklist.deadline ? '確認済み' : '未チェック'));
+    lines.push('保存PDFの表示・印字: ' + (data.submitChecklist.pdf ? '確認済み' : '未チェック'));
+    lines.push('勤務先の案内との照合: ' + (data.submitChecklist.company ? '確認済み' : '未チェック'));
     lines.push('', '※このメモとPDFは提出前の確認用です。勤務先の指定、国税庁の最新様式、証明書の内容で最終確認してください。');
     return lines.join('\n');
   }
@@ -1176,6 +1503,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         memos.push((row.item.name || '氏名未入力') + ': ' + row.result.kind + ' / 所得 ' + yen(row.income) + ' / ' + row.result.note);
       });
     }
+    if(data.insuranceItems && data.insuranceItems.length){
+      data.insuranceItems.filter(Boolean).forEach(function(item){
+        memos.push('証明書明細: ' + (item.company || '支払先未入力') + ' / ' + (insuranceCategoryLabel(item.category) || '区分未選択') + ' / ' + yen(item.amount));
+      });
+    }
+    memos.push('提出前チェック: 証明書 ' + (data.submitChecklist.proofs ? '済' : '未') + ' / 期限 ' + (data.submitChecklist.deadline ? '済' : '未') + ' / PDF確認 ' + (data.submitChecklist.pdf ? '済' : '未') + ' / 勤務先案内 ' + (data.submitChecklist.company ? '済' : '未'));
     printMemo.innerHTML = memos.map(function(line){ return '<div>' + escapeHtml(line) + '</div>'; }).join('');
     housingPrintName.textContent = data.name ? data.name + ' / 居住開始年: ' + (data.housing.residenceYear || '未入力') : '氏名未入力';
     housingTable.innerHTML = [
@@ -1199,6 +1532,39 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   }
   function save(){
     localStorage.setItem(STORAGE_KEY, JSON.stringify(collectData()));
+  }
+  function exportData(){
+    var data = collectData();
+    data.exportedAt = new Date().toISOString();
+    data.tool = 'kaz-mio-year-end-adjustment';
+    var blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    var date = new Date().toISOString().slice(0,10).replace(/-/g,'');
+    a.href = url;
+    a.download = 'year-end-adjustment-' + date + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    status('入力データを書き出しました。次回は「入力データを読み込み」から復元できます。');
+  }
+  function importData(file){
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var data = JSON.parse(String(reader.result || '{}'));
+        setData(data);
+        save();
+        resetPreview('読み込んだ内容でプレビューを作るには、もう一度プレビューを更新してください。');
+        render();
+        status('入力データを読み込みました。内容を確認してください。');
+      }catch(error){
+        status('入力データを読み込めませんでした。JSONファイルか確認してください。');
+      }
+    };
+    reader.readAsText(file, 'utf-8');
   }
   function load(){
     try{
@@ -1224,9 +1590,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     form.housingMethod.value = 'paper';
     form.housingResidentialRatio.value = '';
     form.housingRate.value = '';
+    activeStage = 'common';
+    insuranceItems = [];
     selectedForm = 'combined';
     relatives = [];
     renderRelatives();
+    renderInsuranceRows();
     resetPreview();
     render();
   }
@@ -1241,6 +1610,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   }
   function status(message){
     pdfStatus.textContent = message || '';
+  }
+  function preflightStatusPrefix(){
+    var data = collectData();
+    var warnings = getValidationItems(data, insuranceCalc(data)).filter(function(item){ return item.className === 'warn'; });
+    return warnings.length ? '未入力・要確認が' + warnings.length + '件あります。このまま作成できますが、保存前に確認してください。 ' : '';
   }
   async function fetchPdf(path){
     var response = await fetch(path);
@@ -1312,7 +1686,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     return {bytes:out, filename:filenameFor(kind, data)};
   }
   async function createPdf(kind){
-    status('PDFを作成しています...');
+    status(preflightStatusPrefix() + 'PDFを作成しています...');
     try{
       var result = await buildPdfBytes(kind);
       downloadBlob(result.bytes, result.filename);
@@ -1329,7 +1703,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       status('住宅控除は計算メモを印刷画面からPDF保存できます。');
       return null;
     }
-    status('プレビューPDFを作成しています...');
+    status(preflightStatusPrefix() + 'プレビューPDFを作成しています...');
     try{
       var result = await buildPdfBytes(kind);
       if(previewUrl) URL.revokeObjectURL(previewUrl);
@@ -1349,7 +1723,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   async function downloadSelectedPdf(){
     if(selectedForm === 'housing'){
       render();
-      status('印刷画面を開きます。送信先で「PDFに保存」を選ぶと、計算メモをPDF保存できます。');
+      status(preflightStatusPrefix() + '印刷画面を開きます。送信先で「PDFに保存」を選ぶと、計算メモをPDF保存できます。');
       window.print();
       return;
     }
@@ -1359,6 +1733,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   async function printSelectedPdf(){
     if(selectedForm === 'housing'){
       render();
+      status(preflightStatusPrefix() + '住宅控除計算メモの印刷画面を開きます。');
       window.print();
       return;
     }
@@ -1601,18 +1976,27 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   formChoices.forEach(function(button){
     button.addEventListener('click', function(){
       setSelectedForm(button.getAttribute('data-select-form'));
+      setStage('common');
       document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
     });
   });
+  stageButtons.forEach(function(button){
+    button.addEventListener('click', function(){
+      setStage(button.getAttribute('data-stage'));
+    });
+  });
+  document.getElementById('prevStageBtn').addEventListener('click', function(){ moveStage(-1); });
+  document.getElementById('nextStageBtn').addEventListener('click', function(){ moveStage(1); });
   precheckIds.forEach(function(id){
     if(!precheckFields[id]) return;
-    precheckFields[id].addEventListener('change', renderPrecheck);
+    precheckFields[id].addEventListener('change', function(){ renderPrecheck(); save(); });
   });
   document.getElementById('applyPrecheckBtn').addEventListener('click', applyPrecheck);
   precheckResults.addEventListener('click', function(event){
     var button = event.target.closest('[data-precheck-select-form]');
     if(!button) return;
     setSelectedForm(button.getAttribute('data-precheck-select-form'));
+    setStage('common');
     document.getElementById('form').scrollIntoView({behavior:'smooth', block:'start'});
   });
   relativeList.addEventListener('input', function(event){ invalidatePreview(); syncRelativeInput(event.target); });
@@ -1631,9 +2015,31 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     invalidatePreview();
     render();
   });
+  insuranceRows.addEventListener('input', function(event){ syncInsuranceInput(event.target); });
+  insuranceRows.addEventListener('change', function(event){ syncInsuranceInput(event.target); });
+  insuranceRows.addEventListener('click', function(event){
+    var remove = event.target.getAttribute('data-remove-insurance');
+    if(remove === null) return;
+    insuranceItems.splice(Number(remove), 1);
+    renderInsuranceRows();
+    invalidatePreview();
+    render();
+  });
+  document.getElementById('addInsuranceRow').addEventListener('click', function(){
+    insuranceItems.push({company:'', category:'generalNew', amount:''});
+    renderInsuranceRows();
+    invalidatePreview();
+    render();
+  });
   document.getElementById('saveBtn').addEventListener('click', function(){
     save();
     alert('このブラウザに入力内容を保存しました。');
+  });
+  document.getElementById('exportDataBtn').addEventListener('click', exportData);
+  document.getElementById('importDataBtn').addEventListener('click', function(){ importDataFile.click(); });
+  importDataFile.addEventListener('change', function(){
+    importData(importDataFile.files[0]);
+    importDataFile.value = '';
   });
   document.getElementById('copyBtn').addEventListener('click', function(){
     render();
@@ -1665,6 +2071,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   document.getElementById('insurancePdfBtn').addEventListener('click', function(){ createPdf('insurance'); });
   load();
   setSelectedForm(selectedForm, true);
+  renderInsuranceRows();
   if(!relatives.length){
     relatives.push({name:'', kana:'', relationship:'', birth:'', address:'', income:'', nonResident:''});
     renderRelatives();
