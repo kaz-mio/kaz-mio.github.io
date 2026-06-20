@@ -98,7 +98,8 @@
         { "@type": "ListItem", "position": 42, "name": "リビング散らかりタイプ診断", "url": "https://kaz-mio.github.io/toy_storage_type_check.html" },
         { "@type": "ListItem", "position": 43, "name": "子育て家計メモ", "url": "https://kaz-mio.github.io/childcare_budget_memo.html" },
         { "@type": "ListItem", "position": 44, "name": "副業の確定申告準備メモ", "url": "https://kaz-mio.github.io/side_income_tax_memo.html" },
-        { "@type": "ListItem", "position": 45, "name": "会社員の年末調整申告書作成サポート", "url": "https://kaz-mio.github.io/year_end_adjustment_forms.html" }
+        { "@type": "ListItem", "position": 45, "name": "会社員の年末調整申告書作成サポート", "url": "https://kaz-mio.github.io/year_end_adjustment_forms.html" },
+        { "@type": "ListItem", "position": 46, "name": "扶養・副業・手取りかんたん判定", "url": "https://kaz-mio.github.io/fuyou_side_income_check.html" }
       ]
     }
   ]
@@ -548,6 +549,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <a href="school_prep_checklist.html">入園準備チェック</a>
     <a href="kids_size_check.html">サイズチェック</a>
     <a href="diaper_size_check.html">おむつチェック</a>
+    <a href="fuyou_side_income_check.html">扶養・副業チェック</a>
     <a href="year_end_adjustment_forms.html">年末調整申告書</a>
     <a href="side_income_tax_memo.html">副業申告メモ</a>
     <a href="baby_stock_manager.html">ストック管理</a>
@@ -567,6 +569,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <a href="school_prep_checklist.html">入園準備</a>
     <a href="kids_size_check.html">サイズ確認</a>
     <a href="diaper_size_check.html">おむつ在庫</a>
+    <a href="fuyou_side_income_check.html">扶養・副業</a>
     <a href="year_end_adjustment_forms.html">年末調整</a>
     <a href="side_income_tax_memo.html">副業申告</a>
     <a href="baby_stock_manager.html">ストック管理</a>
@@ -637,6 +640,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           <a href="family_stay_search.html"><small>Trip</small><strong>子連れ宿・<br>食事さがし</strong><span>泊まる場所と食べる場所を予約前に確認。</span></a>
           <a href="outing_checklist.html"><small>Outing</small><strong>持ち物<br>チェック</strong><span>年齢、季節、行き先に合わせてバッグを整理。</span></a>
           <a href="childcare_budget_memo.html"><small>Budget</small><strong>子育て<br>家計メモ</strong><span>育児まわりの支出を今月分だけ軽く見る。</span></a>
+          <a href="fuyou_side_income_check.html"><small>Money</small><strong>扶養・副業<br>手取り</strong><span>年収の壁や申告の確認順を先に見る。</span></a>
           <a href="year_end_adjustment_forms.html"><small>Work</small><strong>年末調整<br>申告書</strong><span>複数の申告書と住宅控除を提出前に確認する。</span></a>
           <a href="side_income_tax_memo.html"><small>Work</small><strong>副業の<br>確定申告</strong><span>売上、経費、源泉徴収を毎月少しずつ残す。</span></a>
         </div>
@@ -764,6 +768,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a class="memo-card" href="diaper_size_check.html"><small>Diaper</small><strong>おむつを買いすぎない</strong><span>体重、在庫、交換枚数から次の量を見る。</span></a>
         <a class="memo-card" href="kids_size_check.html"><small>Kids Size</small><strong>服と靴の今を測る</strong><span>身長と足長から買い替え前の目安へ。</span></a>
         <a class="memo-card" href="family_stay_search.html"><small>Trip</small><strong>泊まる・食べる条件を整える</strong><span>畳、個室、子どもイス、洗い場付き風呂。</span></a>
+        <a class="memo-card" href="fuyou_side_income_check.html"><small>Money</small><strong>扶養・副業・手取りを先に見る</strong><span>税の扶養、社会保険の扶養、副業申告を分けて確認。</span></a>
       </div>
     </div>
   </section>
@@ -834,8 +839,9 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a class="band-card" href="family_stay_search.html"><small>02 / TRIP</small><h3>小さい子と<br>泊まる・食べる</h3><p>畳、個室、洗い場、子どもイス。予約前に見たい条件をまとめます。</p></a>
         <a class="band-card" href="outing_checklist.html"><small>03 / OUTING</small><h3>出かける前の<br>忘れものを減らす</h3><p>年齢、季節、行き先に合わせて、バッグの中身を見直せます。</p></a>
         <a class="band-card" href="childcare_budget_memo.html"><small>04 / BUDGET</small><h3>育児まわりの<br>支出を軽く見る</h3><p>おむつ、食事、服、おでかけ。今月増えたところをメモにできます。</p></a>
-        <a class="band-card" href="side_income_tax_memo.html"><small>05 / WORK</small><h3>副業の確定申告で<br>探すものを減らす</h3><p>売上、経費、源泉徴収、住民税の確認メモを月ごとに残します。</p></a>
-        <a class="band-card" href="year_end_adjustment_forms.html"><small>06 / WORK</small><h3>年末調整の申告書を<br>様式ごとに作る</h3><p>扶養控除等、基礎・配偶者等、保険料控除、住宅控除を確認できます。</p></a>
+        <a class="band-card" href="fuyou_side_income_check.html"><small>05 / MONEY</small><h3>扶養・副業・手取りを<br>最初に分ける</h3><p>税の扶養、社会保険の扶養、副業申告の確認順を作ります。</p></a>
+        <a class="band-card" href="side_income_tax_memo.html"><small>06 / WORK</small><h3>副業の確定申告で<br>探すものを減らす</h3><p>売上、経費、源泉徴収、住民税の確認メモを月ごとに残します。</p></a>
+        <a class="band-card" href="year_end_adjustment_forms.html"><small>07 / WORK</small><h3>年末調整の申告書を<br>様式ごとに作る</h3><p>扶養控除等、基礎・配偶者等、保険料控除、住宅控除を確認できます。</p></a>
       </div>
     </div>
   </section>
@@ -1052,6 +1058,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
             <a href="outing_checklist.html"><small>Outing</small><span>バッグに入るか見る</span></a>
             <a href="baby_stock_manager.html"><small>Stock</small><span>残りをメモする</span></a>
             <a href="childcare_budget_memo.html"><small>Budget</small><span>今月の支出を見る</span></a>
+            <a href="fuyou_side_income_check.html"><small>Money</small><span>扶養・副業の確認順を見る</span></a>
             <a href="side_income_tax_memo.html"><small>Work</small><span>副業の申告準備を見る</span></a>
             <a href="year_end_adjustment_forms.html"><small>Work</small><span>年末調整申告書を作る</span></a>
             <a href="buy_before_diagnosis_lp.html"><small>Before</small><span>使う場面を確認</span></a>
@@ -1082,6 +1089,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="toy_storage_type_check.html" class="article"><span class="article-icon">診</span><div><h3>リビング散らかりタイプ診断</h3><p>診断ツール・おもちゃ収納・戻す場所づくり</p></div><span>→</span></a>
       <a href="baby_stock_manager.html" class="article"><span class="article-icon">在</span><div><h3>育児消耗品ストック管理ツール</h3><p>子育て・在庫管理・買い物メモ</p></div><span>→</span></a>
       <a href="childcare_budget_memo.html" class="article"><span class="article-icon">計</span><div><h3>子育て家計メモ</h3><p>子育て・家計メモ・今月の見直し</p></div><span>→</span></a>
+      <a href="fuyou_side_income_check.html" class="article"><span class="article-icon">扶</span><div><h3>扶養・副業・手取りかんたん判定</h3><p>年収の壁・税の扶養・社会保険・申告順</p></div><span>→</span></a>
       <a href="side_income_tax_memo.html" class="article"><span class="article-icon">申</span><div><h3>副業の確定申告準備メモ</h3><p>副業・売上経費・源泉徴収・住民税</p></div><span>→</span></a>
       <a href="year_end_adjustment_forms.html" class="article"><span class="article-icon">年</span><div><h3>会社員の年末調整申告書作成サポート</h3><p>公式様式PDF・住宅控除計算・提出前確認</p></div><span>→</span></a>
       <a href="diaper_size_check.html" class="article"><span class="article-icon">紙</span><div><h3>おむつサイズ＆買い置きチェック</h3><p>子育て・おむつ・メーカー別サイズ目安</p></div><span>→</span></a>
@@ -1147,6 +1155,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a href="diaper_size_check.html">おむつチェック</a>
         <a href="baby_stock_manager.html">ストック管理</a>
         <a href="childcare_budget_memo.html">子育て家計メモ</a>
+        <a href="fuyou_side_income_check.html">扶養・副業・手取りかんたん判定</a>
         <a href="side_income_tax_memo.html">副業の確定申告準備メモ</a>
         <a href="year_end_adjustment_forms.html">年末調整申告書作成サポート</a>
         <a href="baby_circle_fit_check.html">置ける診断</a>

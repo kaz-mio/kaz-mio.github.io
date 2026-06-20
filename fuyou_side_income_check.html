@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="R4_LTr6ogVlBzVQraulLCxlMklt-SKLQ-wnvMtQuFdw">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<title>扶養・副業・手取りかんたん判定｜年収の壁と確定申告の確認メモ | KAZ &amp; MIO | LIFE, LIGHTLY</title>
+<meta name="description" content="給与収入、副業所得、家族の収入見込を入力して、所得税の確定申告、税の扶養、社会保険の扶養、年末調整で確認する順番を整理するブラウザ内メモです。">
+<link rel="canonical" href="https://kaz-mio.github.io/fuyou_side_income_check.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="扶養・副業・手取りかんたん判定">
+<meta property="og:description" content="副業、扶養、年収の壁、年末調整でまず何を確認するかを短く整理できます。">
+<meta property="og:url" content="https://kaz-mio.github.io/fuyou_side_income_check.html">
+<meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
+<meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="扶養・副業・手取りかんたん判定">
+<meta name="twitter:description" content="給与収入、副業所得、家族の収入見込から、次に確認することを整理します。">
+<meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://kaz-mio.github.io/fuyou_side_income_check.html#app",
+      "name": "扶養・副業・手取りかんたん判定",
+      "url": "https://kaz-mio.github.io/fuyou_side_income_check.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "inLanguage": "ja",
+      "description": "給与収入、副業所得、家族の収入見込から、所得税の確定申告、税の扶養、社会保険の扶養、年末調整で確認する順番を整理するブラウザ内メモです。"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"ホーム","item":"https://kaz-mio.github.io/"},
+        {"@type":"ListItem","position":2,"name":"扶養・副業・手取りかんたん判定","item":"https://kaz-mio.github.io/fuyou_side_income_check.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"副業所得が20万円以下なら何もしなくてよいですか？","acceptedAnswer":{"@type":"Answer","text":"給与所得者で一定の条件に当てはまる場合、所得税の確定申告は20万円が目安になります。ただし住民税の申告、医療費控除など別の理由による確定申告、勤務先のルールは別に確認が必要です。"}},
+        {"@type":"Question","name":"税の扶養と社会保険の扶養は同じですか？","acceptedAnswer":{"@type":"Answer","text":"別の制度です。税の扶養は所得税の控除、社会保険の扶養は健康保険や年金の被扶養者認定に関わります。このページでは混ぜずに、確認順を分けて表示します。"}},
+        {"@type":"Question","name":"このページだけで税額や手取りが確定しますか？","acceptedAnswer":{"@type":"Answer","text":"確定はしません。入力結果は確認メモです。最終判断は国税庁、自治体、勤務先、加入している健康保険組合などの案内で確認してください。"}}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700;800&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ec;--paper:#fffdf8;--white:#fff;--ink:#1b2a30;--muted:#5f6d70;--sub:#8a9698;--line:rgba(27,42,48,.13);--navy:#17384a;--teal:#297575;--mint:#dff1e9;--amber:#d99b41;--coral:#c96552;--shadow:0 18px 48px rgba(22,47,60,.12);--soft:0 8px 24px rgba(22,47,60,.08)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:linear-gradient(180deg,#f8f4ea 0%,#eef6f2 48%,#f8f4ea 100%);color:var(--ink);font-family:'Noto Sans JP',sans-serif;line-height:1.75;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(41,117,117,.35);outline-offset:4px}
+.hd{position:sticky;top:0;z-index:50;height:66px;padding:0 clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;background:rgba(248,244,234,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);box-shadow:0 10px 28px rgba(22,47,60,.06)}
+.brand{display:flex;align-items:center;gap:.7rem;min-width:0}
+.brand-mark{width:38px;height:38px;border-radius:50%;background:url('assets/favicon-192.png') center/cover no-repeat;box-shadow:0 0 0 3px rgba(255,255,255,.85);flex-shrink:0}
+.brand-text{display:flex;flex-direction:column;line-height:1.05}
+.brand-en{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.2em;color:var(--teal);text-transform:uppercase}
+.brand-ja{font-family:'Shippori Mincho',serif;font-size:1.1rem;font-weight:800;color:var(--ink)}
+.nav{display:flex;align-items:center;gap:.25rem}
+.nav a{font-family:'Nunito',sans-serif;font-size:.74rem;font-weight:900;letter-spacing:.04em;color:var(--navy);padding:.52rem .86rem;border-radius:8px;transition:background .2s,color .2s,transform .2s}
+.nav a:hover,.nav a.active{background:#fff;color:var(--teal);transform:translateY(-2px)}
+.nav .contact{background:var(--navy);color:#fff;margin-left:.35rem}
+.wrap{max-width:1240px;margin:0 auto;padding:4.2rem clamp(1rem,4vw,3rem) 6rem}
+.hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);gap:1.4rem;align-items:stretch;margin-bottom:1.25rem}
+.hero-copy,.hero-panel,.panel,.result-panel,.source-panel,.route-panel{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow)}
+.hero-copy{padding:clamp(1.45rem,3vw,2.35rem);display:flex;flex-direction:column;justify-content:center}
+.eyebrow{font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
+.eyebrow::before{content:'';width:42px;height:2px;background:var(--teal)}
+h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.05rem,5vw,3.95rem);font-weight:800;line-height:1.18;letter-spacing:0;margin-bottom:1rem}
+h1 em{font-style:normal;color:var(--teal)}
+.lead{color:var(--muted);font-size:.98rem;line-height:2;max-width:43rem}
+.hero-actions,.action-row,.mini-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}
+.btn,.hero-actions a{border:0;border-radius:8px;background:var(--navy);color:#fff;font-weight:900;padding:.72rem .95rem;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 22px rgba(23,56,74,.16);transition:background .2s,transform .2s,box-shadow .2s;text-align:center}
+.btn:hover,.hero-actions a:hover{background:var(--teal);transform:translateY(-2px);box-shadow:0 14px 28px rgba(41,117,117,.2)}
+.btn.secondary,.hero-actions a.secondary{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:var(--soft)}
+.btn.secondary:hover,.hero-actions a.secondary:hover{background:#eff9f4;color:var(--teal)}
+.hero-panel{padding:1rem;display:grid;gap:.8rem}
+.hero-image{min-height:300px;border-radius:8px;background:url('assets/kaz-mio-adventure-hero.webp') center/cover no-repeat;position:relative;overflow:hidden}
+.hero-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,56,74,.08),rgba(23,56,74,.42))}
+.answer-card{position:relative;margin-top:-4.5rem;background:#fff;border:1px solid rgba(255,255,255,.72);border-radius:8px;box-shadow:var(--shadow);padding:1rem}
+.answer-card small,.source-panel small,.route-card small,.result-chip small,.check-card small{display:block;font-family:'Nunito',sans-serif;font-size:.56rem;font-weight:900;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.24rem}
+.answer-card strong{display:block;font-family:'Shippori Mincho',serif;color:var(--navy);font-size:1.18rem;line-height:1.42}
+.answer-card p{color:var(--muted);font-size:.78rem;line-height:1.75;margin-top:.35rem}
+.direct-panel{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:1.25rem;margin:0 0 1.2rem}
+.direct-panel h2,.route-panel h2,.source-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.5rem,3vw,2.35rem);line-height:1.35;margin-bottom:.45rem}
+.direct-panel>p,.route-panel>p,.source-panel>p{color:var(--muted);font-size:.84rem;line-height:1.85;margin-bottom:.9rem}
+.answer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.72rem}
+.check-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:.9rem;box-shadow:var(--soft)}
+.check-card strong{display:block;color:var(--navy);font-size:.94rem;line-height:1.45}
+.check-card p{color:var(--muted);font-size:.76rem;line-height:1.7;margin-top:.28rem}
+.app-shell{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(390px,.96fr);gap:1.2rem;align-items:start}
+.panel,.result-panel,.source-panel,.route-panel{padding:1.25rem}
+.panel h2,.result-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,3vw,2.18rem);line-height:1.35;margin-bottom:.45rem}
+.panel>p,.result-panel>p{color:var(--muted);font-size:.84rem;line-height:1.85;margin-bottom:.9rem}
+.section-label{font-family:'Nunito',sans-serif;font-size:.64rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin:1.1rem 0 .62rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:.72rem}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.field{background:rgba(255,255,255,.74);border:1px solid rgba(27,42,48,.08);border-radius:8px;padding:.78rem;box-shadow:0 8px 18px rgba(22,47,60,.045)}
+.field.wide{grid-column:1/-1}
+.label{display:block;font-weight:900;font-size:.77rem;color:var(--navy);margin-bottom:.36rem}
+.field-help{display:block;color:var(--sub);font-size:.7rem;line-height:1.55;margin-top:.34rem}
+input[type="text"],input[type="number"],select,textarea{width:100%;border:1px solid rgba(27,42,48,.16);border-radius:8px;background:#fff;color:var(--ink);padding:.74rem .82rem}
+textarea{min-height:130px;resize:vertical;line-height:1.7}
+input:hover,select:hover,textarea:hover{border-color:rgba(41,117,117,.34)}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(41,117,117,.13);outline:0}
+.toggle-grid{display:grid;gap:.55rem;margin-top:.45rem}
+.check-line{display:grid;grid-template-columns:auto 1fr;gap:.55rem;align-items:start;color:var(--muted);font-size:.8rem;line-height:1.7}
+.check-line input{margin-top:.34rem;accent-color:var(--teal)}
+.mode-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin:.8rem 0 1rem}
+.mode-tabs button{appearance:none;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--navy);font-weight:900;min-height:48px;padding:.55rem;cursor:pointer}
+.mode-tabs button.is-active{background:#f4fbf7;border-color:rgba(41,117,117,.62);color:var(--teal)}
+.result-title{background:#f4fbf7;border:1px solid rgba(41,117,117,.16);border-radius:8px;padding:.9rem;margin:.8rem 0}
+.result-title strong{display:block;color:var(--navy);font-family:'Shippori Mincho',serif;font-size:1.15rem;line-height:1.45}
+.result-title span{display:block;color:var(--muted);font-size:.78rem;line-height:1.65;margin-top:.24rem}
+.summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.72rem;margin:.85rem 0}
+.result-chip{background:#fff;border:1px solid var(--line);border-radius:8px;padding:.92rem;box-shadow:var(--soft)}
+.result-chip strong{display:block;font-family:'Shippori Mincho',serif;font-size:1.28rem;line-height:1.3;color:var(--navy)}
+.result-chip p{font-size:.76rem;line-height:1.68;color:var(--muted);margin:.3rem 0 0}
+.route-list,.notice-list,.memo-list{display:grid;gap:.55rem;margin-top:.75rem}
+.route-item,.notice-item{display:grid;grid-template-columns:auto 1fr;gap:.65rem;align-items:start;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.82rem;box-shadow:var(--soft)}
+.route-item b,.notice-item b{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;border-radius:999px;background:#edf7f2;color:var(--teal);font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:900}
+.notice-item.warn b{background:#fff4dc;color:#8b6422}
+.notice-item.no b{background:#f2f4f4;color:#647174}
+.route-item strong,.notice-item strong{display:block;color:var(--navy);font-size:.88rem;line-height:1.45}
+.route-item span,.notice-item span{display:block;color:var(--muted);font-size:.76rem;line-height:1.65;margin-top:.18rem}
+.output{width:100%;min-height:210px;border:1px solid rgba(27,42,48,.14);border-radius:8px;background:#fff;padding:.95rem;color:var(--muted);line-height:1.8;resize:vertical}
+.notice{background:#fff8e8;border:1px solid rgba(217,155,65,.2);border-radius:8px;padding:.85rem;color:#6f5830;font-size:.78rem;line-height:1.75;margin:.85rem 0}
+.route-panel{margin:1.2rem 0}
+.route-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.72rem}
+.route-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1rem;box-shadow:var(--soft);display:flex;flex-direction:column;gap:.4rem}
+.route-card strong{font-family:'Shippori Mincho',serif;color:var(--navy);font-size:1.03rem;line-height:1.45}
+.route-card p{color:var(--muted);font-size:.77rem;line-height:1.7}
+.route-card a{margin-top:auto;color:var(--teal);font-weight:900;font-size:.82rem;border-bottom:1px solid rgba(41,117,117,.35);align-self:flex-start}
+.source-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.72rem}
+.source-link{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:.86rem;color:var(--teal);font-weight:900;font-size:.8rem;box-shadow:var(--soft)}
+.ft{background:var(--navy);color:rgba(255,255,255,.62);padding:2.6rem clamp(1rem,4vw,3rem) 2rem}
+.ft-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:1.4rem;margin-bottom:1.2rem}
+.ft .brand-ja{color:#fff}
+.ft-nav{display:flex;gap:1.2rem;flex-wrap:wrap}
+.ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68);transition:color .2s,transform .2s}
+.ft-nav a:hover{color:#fff;transform:translateY(-2px)}
+.ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38)}
+@media(max-width:980px){.hero,.app-shell,.answer-grid,.route-grid,.source-grid{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.hero-panel,.direct-panel,.panel,.result-panel,.source-panel,.route-panel{padding:1rem}.grid,.grid.three,.mode-tabs,.summary-grid{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.hero-image{min-height:230px}.answer-card{margin-top:0}.ft-inner{align-items:flex-start;flex-direction:column}h1,.lead,.panel p,.field-help,.check-card p,.route-card p,.notice-item span,.route-item span{overflow-wrap:anywhere;line-break:strict}}
+</style>
+<script src="assets/analytics.js"></script>
+</head>
+<body>
+<header class="hd">
+  <a href="index.html" class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
+  </a>
+  <nav class="nav" aria-label="サイト内メニュー">
+    <a href="index.html">Home</a>
+    <a href="side_income_tax_memo.html">Tax Memo</a>
+    <a href="year_end_adjustment_forms.html">Year-End</a>
+    <a class="contact" href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Everyday Money Check</div>
+      <h1>扶養・副業・手取りを<br><em>まず何から確認するか</em></h1>
+      <p class="lead">給与収入、副業所得、家族の収入見込を入れると、所得税の確定申告、税の扶養、社会保険の扶養、年末調整で見る順番を整理します。年末だけでなく、働き方や収入調整を考える時期に使う確認メモです。</p>
+      <div class="hero-actions">
+        <a href="#tool">判定メモを使う</a>
+        <a class="secondary" href="side_income_tax_memo.html">副業の月別メモへ</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="hero-image" aria-hidden="true"></div>
+      <div class="answer-card">
+        <small>First Answer</small>
+        <strong>税の扶養、社会保険の扶養、副業申告は別々に確認します。</strong>
+        <p>同じ「年収の壁」でも、見る制度が違います。このページでは混ざりやすいところを分け、次に開くページまで案内します。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="direct-panel" aria-labelledby="direct-title">
+    <h2 id="direct-title">このページで分かること</h2>
+    <p>検索で来た人が最初に知りたい答えだけを先に並べます。細かい計算より、まず「どこを確認すればよいか」を見つけるためのページです。</p>
+    <div class="answer-grid">
+      <div class="check-card"><small>Side Job</small><strong>副業の確定申告目安</strong><p>給与所得者の副業所得が20万円を超えるか、住民税の確認が必要かを分けて表示します。</p></div>
+      <div class="check-card"><small>Tax Dependent</small><strong>税の扶養・配偶者控除</strong><p>家族の所得見込から、配偶者控除、配偶者特別控除、扶養控除の候補を確認します。</p></div>
+      <div class="check-card"><small>Social Insurance</small><strong>社会保険の扶養</strong><p>106万円、130万円、19歳以上23歳未満の確認点を、税とは別に表示します。</p></div>
+      <div class="check-card"><small>Next Step</small><strong>次に入力する順番</strong><p>副業メモ、年末調整申告書、勤務先・健康保険の確認を、状況に合わせて並べます。</p></div>
+    </div>
+  </section>
+
+  <section class="app-shell" id="tool">
+    <form class="panel" id="checkForm">
+      <h2>収入見込を入力</h2>
+      <p>分かるところだけで大丈夫です。金額は年額の見込で入れてください。最終判断ではなく、確認順を作るためのメモです。</p>
+
+      <div class="mode-tabs" role="group" aria-label="確認したいこと">
+        <button type="button" class="is-active" data-mode="side">副業</button>
+        <button type="button" data-mode="spouse">配偶者</button>
+        <button type="button" data-mode="relative">子・親族</button>
+      </div>
+
+      <div class="section-label">You</div>
+      <div class="grid">
+        <label class="field"><span class="label">あなたの給与収入</span><input id="salaryIncome" type="number" min="0" step="10000" inputmode="numeric" placeholder="例: 4200000"><span class="field-help">源泉徴収票の支払金額、または今年の見込額です。</span></label>
+        <label class="field"><span class="label">給与は1か所で年末調整される</span><select id="salaryAdjusted"><option value="yes">はい</option><option value="no">いいえ・複数あり</option><option value="unknown">わからない</option></select><span class="field-help">副業の確定申告目安を出す時に使います。</span></label>
+        <label class="field"><span class="label">副業の売上・入金</span><input id="sideRevenue" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 350000"><span class="field-help">報酬、売上、アフィリエイト、制作代などの入金見込です。</span></label>
+        <label class="field"><span class="label">副業の経費</span><input id="sideExpense" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 90000"><span class="field-help">副業に直接関係する支出の合計です。</span></label>
+        <label class="field"><span class="label">副業から源泉徴収された金額</span><input id="sideWithheld" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 20420"><span class="field-help">支払調書や明細で、報酬から差し引かれている所得税です。</span></label>
+        <label class="field"><span class="label">医療費控除などで確定申告する予定</span><select id="otherFilingReason"><option value="no">今のところない</option><option value="yes">ある</option><option value="unknown">わからない</option></select><span class="field-help">別理由で申告するなら、副業も一緒に確認します。</span></label>
+      </div>
+
+      <div class="section-label">Family</div>
+      <div class="grid">
+        <label class="field"><span class="label">確認したい家族</span><select id="familyType"><option value="none">まだ入力しない</option><option value="spouse">配偶者</option><option value="child">子・親族</option></select><span class="field-help">税の扶養と社会保険の扶養は別に表示します。</span></label>
+        <label class="field"><span class="label">家族の年齢</span><input id="familyAge" type="number" min="0" max="99" step="1" inputmode="numeric" placeholder="例: 20"><span class="field-help">16歳以上、19歳以上23歳未満、70歳以上などの確認に使います。</span></label>
+        <label class="field"><span class="label">家族の給与収入</span><input id="familySalary" type="number" min="0" step="10000" inputmode="numeric" placeholder="例: 1200000"><span class="field-help">アルバイト、パートなど給与だけならここに入れます。</span></label>
+        <label class="field"><span class="label">家族の給与以外の所得</span><input id="familyOtherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">事業、雑所得など。売上ではなく、経費を引いた所得で入れます。</span></label>
+      </div>
+
+      <div class="section-label">Social Insurance</div>
+      <div class="grid three">
+        <label class="field"><span class="label">家族の週の勤務時間</span><input id="weeklyHours" type="number" min="0" step="1" inputmode="numeric" placeholder="例: 20"><span class="field-help">社会保険加入の確認に使います。</span></label>
+        <label class="field"><span class="label">家族の月額賃金</span><input id="monthlyWage" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 88000"><span class="field-help">所定内賃金の目安です。交通費等の扱いは勤務先で確認します。</span></label>
+        <label class="field"><span class="label">勤務先の従業員規模</span><select id="companySize"><option value="unknown">わからない</option><option value="over50">50人超</option><option value="under50">50人以下</option></select><span class="field-help">社会保険の適用拡大は会社規模も確認します。</span></label>
+      </div>
+      <div class="toggle-grid">
+        <label class="check-line"><input id="isStudent" type="checkbox"><span>家族は学生です</span></label>
+        <label class="check-line"><input id="temporaryOver" type="checkbox"><span>一時的な勤務増で収入が増えただけです</span></label>
+      </div>
+
+      <div class="action-row">
+        <button class="btn" type="button" id="copyMemoBtn">結果をコピー</button>
+        <button class="btn secondary" type="button" id="saveDataBtn">このブラウザに保存</button>
+        <button class="btn secondary" type="button" id="clearBtn">入力をクリア</button>
+      </div>
+      <p class="notice">このページの計算は目安です。税額、社会保険の加入、勤務先手当の扱いは、公式情報や勤務先の案内で確認してください。</p>
+    </form>
+
+    <aside class="result-panel" aria-live="polite">
+      <h2>いまの判定</h2>
+      <p>入力した内容から、先に確認した方がよいことを並べます。</p>
+      <div class="result-title" id="mainAnswer"></div>
+      <div class="summary-grid" id="summaryGrid"></div>
+      <div class="section-label">Check Points</div>
+      <div class="notice-list" id="noticeList"></div>
+      <div class="section-label">Your Order</div>
+      <div class="route-list" id="nextOrder"></div>
+      <div class="section-label">Copy Memo</div>
+      <textarea class="output" id="memoOutput" readonly></textarea>
+    </aside>
+  </section>
+
+  <section class="route-panel" aria-labelledby="route-title">
+    <h2 id="route-title">次に開くページ</h2>
+    <p>この判定で分かったことを、さらに入力しやすいページへつなげます。</p>
+    <div class="route-grid">
+      <div class="route-card"><small>Side Job</small><strong>副業の確定申告準備メモ</strong><p>売上、経費、源泉徴収、住民税確認を月別に残すページです。</p><a href="side_income_tax_memo.html">副業メモへ</a></div>
+      <div class="route-card"><small>Year-End</small><strong>年末調整申告書作成サポート</strong><p>基礎控除、配偶者控除、特定親族、保険料控除、住宅控除の提出前確認へ進めます。</p><a href="year_end_adjustment_forms.html">年末調整ツールへ</a></div>
+      <div class="route-card"><small>Budget</small><strong>子育て家計メモ</strong><p>働き方を変える前に、月の支出をざっくり見たいときに使えます。</p><a href="childcare_budget_memo.html">家計メモへ</a></div>
+    </div>
+  </section>
+
+  <section class="source-panel" aria-labelledby="source-title">
+    <h2 id="source-title">確認した公式情報</h2>
+    <p>数字や制度は変わることがあります。最終確認は公式ページと勤務先・自治体・健康保険の案内で行ってください。</p>
+    <div class="source-grid">
+      <a class="source-link" href="https://www.nta.go.jp/users/gensen/2025kiso/index.htm" target="_blank" rel="noopener">国税庁 令和7年度税制改正</a>
+      <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" target="_blank" rel="noopener">国税庁 給与所得者で確定申告が必要な人</a>
+      <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" target="_blank" rel="noopener">国税庁 給与所得控除</a>
+      <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" target="_blank" rel="noopener">国税庁 扶養控除</a>
+      <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" target="_blank" rel="noopener">国税庁 配偶者控除</a>
+      <a class="source-link" href="https://www.mhlw.go.jp/stf/taiou_001_00002.html" target="_blank" rel="noopener">厚生労働省 年収の壁への対応</a>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="ft-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
+    </a>
+    <nav class="ft-nav" aria-label="フッターメニュー">
+      <a href="side_income_tax_memo.html">副業メモ</a>
+      <a href="year_end_adjustment_forms.html">年末調整</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+  <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var STORAGE_KEY = 'kazMioFuyouSideIncomeCheck';
+  var form = document.getElementById('checkForm');
+  var mainAnswer = document.getElementById('mainAnswer');
+  var summaryGrid = document.getElementById('summaryGrid');
+  var noticeList = document.getElementById('noticeList');
+  var nextOrder = document.getElementById('nextOrder');
+  var memoOutput = document.getElementById('memoOutput');
+  var activeMode = 'side';
+  var fields = [
+    'salaryIncome','salaryAdjusted','sideRevenue','sideExpense','sideWithheld','otherFilingReason',
+    'familyType','familyAge','familySalary','familyOtherIncome','weeklyHours','monthlyWage','companySize',
+    'isStudent','temporaryOver'
+  ];
+
+  function num(id){
+    var value = document.getElementById(id).value;
+    if(value === '') return 0;
+    var parsed = Number(value);
+    return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+  }
+  function val(id){ return document.getElementById(id).value; }
+  function checked(id){ return document.getElementById(id).checked; }
+  function yen(value){ return Math.round(value || 0).toLocaleString('ja-JP') + '円'; }
+  function escapeHtml(value){
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function salaryDeduction2025(salary){
+    if(salary <= 0) return 0;
+    if(salary <= 1900000) return 650000;
+    if(salary <= 3600000) return salary * 0.3 + 80000;
+    if(salary <= 6600000) return salary * 0.2 + 440000;
+    if(salary <= 8500000) return salary * 0.1 + 1100000;
+    return 1950000;
+  }
+  function salaryIncome2025(salary){
+    if(salary <= 0) return 0;
+    return Math.max(0, Math.floor(salary - salaryDeduction2025(salary)));
+  }
+  function basicDeduction2025(totalIncome){
+    if(totalIncome <= 1320000) return 950000;
+    if(totalIncome <= 3360000) return 880000;
+    if(totalIncome <= 4890000) return 680000;
+    if(totalIncome <= 6550000) return 630000;
+    if(totalIncome <= 23500000) return 580000;
+    if(totalIncome <= 24000000) return 480000;
+    if(totalIncome <= 24500000) return 320000;
+    if(totalIncome <= 25000000) return 160000;
+    return 0;
+  }
+  function collect(){
+    return {
+      mode: activeMode,
+      salaryIncome: num('salaryIncome'),
+      salaryAdjusted: val('salaryAdjusted'),
+      sideRevenue: num('sideRevenue'),
+      sideExpense: num('sideExpense'),
+      sideWithheld: num('sideWithheld'),
+      otherFilingReason: val('otherFilingReason'),
+      familyType: val('familyType'),
+      familyAge: num('familyAge'),
+      familySalary: num('familySalary'),
+      familyOtherIncome: num('familyOtherIncome'),
+      weeklyHours: num('weeklyHours'),
+      monthlyWage: num('monthlyWage'),
+      companySize: val('companySize'),
+      isStudent: checked('isStudent'),
+      temporaryOver: checked('temporaryOver')
+    };
+  }
+  function makeNotice(kind, title, text){
+    return {kind:kind || '', title:title, text:text};
+  }
+  function analyze(data){
+    var salaryInc = salaryIncome2025(data.salaryIncome);
+    var sideProfit = Math.max(0, data.sideRevenue - data.sideExpense);
+    var totalIncome = salaryInc + sideProfit;
+    var basic = basicDeduction2025(totalIncome);
+    var approxTaxable = Math.max(0, totalIncome - basic);
+    var familySalaryInc = salaryIncome2025(data.familySalary);
+    var familyTotalIncome = familySalaryInc + data.familyOtherIncome;
+    var familyAnnualIncome = data.familySalary + data.familyOtherIncome;
+    var notices = [];
+    var order = [];
+    var answerTitle = 'まず収入見込を入れて、確認順を作ります。';
+    var answerText = '副業、税の扶養、社会保険の扶養は別の制度です。分かるところだけ入力すると、次に見る場所が絞れます。';
+
+    if(data.sideRevenue || data.sideExpense || data.salaryIncome){
+      if(data.salaryAdjusted === 'yes' && sideProfit > 200000){
+        notices.push(makeNotice('warn','所得税の確定申告を確認', '給与が1か所で年末調整される前提では、副業所得が20万円を超えると所得税の確定申告が必要になりやすいです。'));
+        answerTitle = '副業所得が20万円を超えています。確定申告の確認を先に。';
+        answerText = '売上、経費、源泉徴収額を月別に残し、国税庁の作成コーナーで最終確認する流れが向いています。';
+        order.push(['副業の売上・経費を月別に整理','副業メモで、入金・経費・源泉徴収額を残します。']);
+      } else if(data.salaryAdjusted === 'yes' && sideProfit > 0) {
+        notices.push(makeNotice('','20万円以下でも住民税は確認', '所得税の確定申告が不要寄りでも、住民税の申告が必要になる場合があります。自治体の案内を確認してください。'));
+        answerTitle = '副業所得は20万円以下です。住民税の確認を忘れずに。';
+        answerText = '所得税だけで判断せず、自治体と勤務先の副業ルールも確認します。';
+        order.push(['住民税の申告先を確認','住んでいる自治体の案内で、副業所得の扱いを確認します。']);
+      } else if(data.salaryAdjusted !== 'yes' && sideProfit > 0) {
+        notices.push(makeNotice('warn','複数給与・年末調整なしは別確認', '給与が複数ある、年末調整されないなどの場合は、20万円だけで判断しない方が安全です。'));
+        answerTitle = '給与の状況が複雑です。副業と給与を合わせて確認。';
+        answerText = '年末調整されなかった給与や副業所得を合わせて、確定申告の要否を見ます。';
+        order.push(['給与と副業を合わせて整理','源泉徴収票、支払調書、月別売上を集めます。']);
+      }
+      if(data.sideWithheld > 0){
+        notices.push(makeNotice('','源泉徴収済みの副業報酬あり', '副業報酬から差し引かれた所得税は、確定申告で精算されることがあります。給与の源泉徴収とは分けて残します。'));
+      }
+      if(data.otherFilingReason === 'yes'){
+        notices.push(makeNotice('warn','別理由で確定申告する予定あり', '医療費控除などで確定申告する場合、副業所得も申告内容に含めて確認します。'));
+      }
+    }
+
+    if(data.familyType !== 'none' || data.familySalary || data.familyOtherIncome){
+      if(data.familyType === 'spouse'){
+        if(familyTotalIncome <= 580000){
+          notices.push(makeNotice('','配偶者控除の候補', '配偶者の合計所得金額が58万円以下なら、配偶者控除の候補です。給与のみなら給与収入123万円以下が目安です。'));
+          answerTitle = '配偶者控除の候補です。年末調整の配偶者欄を確認。';
+          answerText = '本人の合計所得金額が1,000万円以下か、配偶者の所得見込を年末調整ページで確認します。';
+        } else if(familyTotalIncome <= 1330000) {
+          notices.push(makeNotice('warn','配偶者特別控除の候補', '配偶者の合計所得金額が58万円超133万円以下なら、配偶者特別控除の候補です。'));
+          answerTitle = '配偶者特別控除の候補です。所得見込を丁寧に確認。';
+          answerText = '配偶者の給与所得とその他所得を分け、年末調整申告書に転記する流れが向いています。';
+        } else {
+          notices.push(makeNotice('no','税の配偶者控除は対象外寄り', '配偶者の合計所得金額が133万円を超える場合、配偶者控除・配偶者特別控除は対象外寄りです。'));
+        }
+        order.push(['配偶者の所得見込を確認','給与収入、給与以外の所得、勤務先の年末調整案内をそろえます。']);
+      } else if(data.familyType === 'child') {
+        if(data.familyAge >= 19 && data.familyAge < 23 && familyTotalIncome > 580000 && familyTotalIncome <= 1230000){
+          notices.push(makeNotice('warn','特定親族特別控除の候補', '19歳以上23歳未満の親族で、合計所得金額が58万円超123万円以下なら、特定親族特別控除の確認候補です。'));
+          answerTitle = '特定親族特別控除の候補です。年末調整の新しい欄を確認。';
+          answerText = 'アルバイト収入が扶養控除の枠を超えても、特定親族特別控除の対象になる場合があります。';
+        } else if(data.familyAge >= 16 && familyTotalIncome <= 580000) {
+          notices.push(makeNotice('','扶養控除の候補', '16歳以上の親族で合計所得金額が58万円以下なら、扶養控除の候補です。'));
+          answerTitle = '扶養控除の候補です。扶養控除等申告書を確認。';
+          answerText = '年齢、生計を一にしているか、所得見込を確認して勤務先の案内に沿って入力します。';
+        } else if(data.familyAge < 16) {
+          notices.push(makeNotice('no','16歳未満は所得税の扶養控除対象外', '16歳未満の扶養親族は、所得税の扶養控除の対象にはなりません。住民税や手当の扱いは別に確認します。'));
+        } else {
+          notices.push(makeNotice('no','税の扶養控除は対象外寄り', '年齢または所得見込から、所得税の扶養控除は対象外寄りです。'));
+        }
+        order.push(['親族の年齢と所得見込を確認','16歳以上か、19歳以上23歳未満か、給与以外の所得がないかを見ます。']);
+      }
+
+      if(data.weeklyHours || data.monthlyWage || familyAnnualIncome){
+        if(data.weeklyHours >= 20 && data.monthlyWage >= 88000 && data.companySize === 'over50' && !data.isStudent){
+          notices.push(makeNotice('warn','社会保険加入の確認候補', '週20時間以上、月額賃金8.8万円以上、従業員50人超などに当てはまる場合は、健康保険・厚生年金の加入を勤務先に確認します。'));
+        }
+        if(data.familyType === 'child' && data.familyAge >= 19 && data.familyAge < 23 && familyAnnualIncome >= 1300000 && familyAnnualIncome < 1500000){
+          notices.push(makeNotice('warn','19歳以上23歳未満の社会保険扶養を確認', '19歳以上23歳未満の親族は、社会保険の被扶養者認定で年間収入要件が150万円未満へ見直されています。加入先に確認してください。'));
+        } else if(familyAnnualIncome >= 1300000){
+          notices.push(makeNotice('warn','130万円の壁を確認', '社会保険の扶養は税と別です。年収130万円前後になる場合は、加入している健康保険や勤務先に確認します。'));
+        }
+        if(data.temporaryOver){
+          notices.push(makeNotice('','一時的な収入増の証明を確認', '一時的な勤務増で130万円以上になる場合、事業主の証明などで被扶養者認定を継続できる場合があります。'));
+        }
+        order.push(['社会保険の扶養を勤務先・健保に確認','税の扶養と別制度として、週の勤務時間、月額賃金、年収見込を確認します。']);
+      }
+    }
+
+    if(order.length === 0){
+      order.push(['副業・家族収入の見込を入力','分かる金額だけ入れると、確認順が出ます。']);
+      order.push(['税と社会保険を分けて見る','同じ年収でも、制度ごとに見る場所が違います。']);
+    }
+    if(!order.some(function(item){ return item[0].indexOf('年末調整') >= 0; })){
+      order.push(['年末調整で使う欄を確認','配偶者、扶養親族、特定親族、保険料控除は年末調整ページへ進めます。']);
+    }
+    if(!order.some(function(item){ return item[0].indexOf('副業') >= 0; }) && sideProfit > 0){
+      order.push(['副業の月別メモを残す','年末にまとめて探さないよう、売上・経費・源泉徴収を月別で残します。']);
+    }
+
+    return {
+      salaryInc: salaryInc,
+      sideProfit: sideProfit,
+      totalIncome: totalIncome,
+      basic: basic,
+      approxTaxable: approxTaxable,
+      familySalaryInc: familySalaryInc,
+      familyTotalIncome: familyTotalIncome,
+      familyAnnualIncome: familyAnnualIncome,
+      notices: notices,
+      order: order,
+      answerTitle: answerTitle,
+      answerText: answerText
+    };
+  }
+  function render(){
+    var data = collect();
+    var result = analyze(data);
+    mainAnswer.innerHTML = '<strong>' + escapeHtml(result.answerTitle) + '</strong><span>' + escapeHtml(result.answerText) + '</span>';
+    summaryGrid.innerHTML = [
+      ['給与所得の目安', yen(result.salaryInc), '給与所得控除後の概算です。660万円未満は最終確認で公式表も見ます。'],
+      ['副業所得の目安', yen(result.sideProfit), '売上から経費を引いた金額です。'],
+      ['家族の合計所得目安', yen(result.familyTotalIncome), '給与所得と給与以外の所得を合わせた目安です。'],
+      ['基礎控除後の所得目安', yen(result.approxTaxable), '税額確定ではなく、負担感を見るための概算です。']
+    ].map(function(item){
+      return '<div class="result-chip"><small>' + escapeHtml(item[0]) + '</small><strong>' + escapeHtml(item[1]) + '</strong><p>' + escapeHtml(item[2]) + '</p></div>';
+    }).join('');
+    noticeList.innerHTML = (result.notices.length ? result.notices : [makeNotice('','入力待ち','給与、副業、家族収入のどれかを入力すると、確認点が表示されます。')]).map(function(item, index){
+      return '<div class="notice-item ' + escapeHtml(item.kind) + '"><b>' + (index + 1) + '</b><div><strong>' + escapeHtml(item.title) + '</strong><span>' + escapeHtml(item.text) + '</span></div></div>';
+    }).join('');
+    nextOrder.innerHTML = result.order.map(function(item, index){
+      return '<div class="route-item"><b>' + (index + 1) + '</b><div><strong>' + escapeHtml(item[0]) + '</strong><span>' + escapeHtml(item[1]) + '</span></div></div>';
+    }).join('');
+    memoOutput.value = buildMemo(data, result);
+  }
+  function buildMemo(data, result){
+    var lines = [];
+    lines.push('扶養・副業・手取り確認メモ');
+    lines.push('給与収入: ' + yen(data.salaryIncome));
+    lines.push('給与所得の目安: ' + yen(result.salaryInc));
+    lines.push('副業売上: ' + yen(data.sideRevenue));
+    lines.push('副業経費: ' + yen(data.sideExpense));
+    lines.push('副業所得の目安: ' + yen(result.sideProfit));
+    lines.push('副業の源泉徴収: ' + yen(data.sideWithheld));
+    lines.push('家族区分: ' + ({none:'未入力',spouse:'配偶者',child:'子・親族'}[data.familyType] || '未入力'));
+    lines.push('家族の給与収入: ' + yen(data.familySalary));
+    lines.push('家族の合計所得目安: ' + yen(result.familyTotalIncome));
+    lines.push('');
+    lines.push('先に確認すること:');
+    result.order.forEach(function(item, index){ lines.push((index + 1) + '. ' + item[0] + ' - ' + item[1]); });
+    lines.push('');
+    lines.push('注意点:');
+    result.notices.forEach(function(item){ lines.push('- ' + item.title + ': ' + item.text); });
+    lines.push('');
+    lines.push('最終確認: 国税庁、自治体、勤務先、加入している健康保険の案内で確認');
+    return lines.join('\n');
+  }
+  function save(){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(collect())); } catch(e) {}
+  }
+  function load(){
+    try {
+      var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      fields.forEach(function(id){
+        var el = document.getElementById(id);
+        if(!el || saved[id] === undefined) return;
+        if(el.type === 'checkbox') el.checked = !!saved[id];
+        else el.value = saved[id];
+      });
+      if(saved.mode) setMode(saved.mode);
+    } catch(e) {}
+  }
+  function setMode(mode){
+    activeMode = mode;
+    document.querySelectorAll('[data-mode]').forEach(function(button){
+      button.classList.toggle('is-active', button.getAttribute('data-mode') === mode);
+    });
+    if(mode === 'spouse') document.getElementById('familyType').value = 'spouse';
+    if(mode === 'relative') document.getElementById('familyType').value = 'child';
+    render();
+  }
+  document.querySelectorAll('[data-mode]').forEach(function(button){
+    button.addEventListener('click', function(){ setMode(button.getAttribute('data-mode')); save(); });
+  });
+  form.addEventListener('input', function(){ render(); save(); });
+  form.addEventListener('change', function(){ render(); save(); });
+  document.getElementById('saveDataBtn').addEventListener('click', function(){ save(); alert('このブラウザに保存しました。'); });
+  document.getElementById('copyMemoBtn').addEventListener('click', function(){
+    memoOutput.select();
+    try {
+      navigator.clipboard.writeText(memoOutput.value);
+      alert('コピーしました。');
+    } catch(e) {
+      document.execCommand('copy');
+      alert('コピーしました。');
+    }
+  });
+  document.getElementById('clearBtn').addEventListener('click', function(){
+    if(!confirm('入力内容をクリアしますか？')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    form.reset();
+    activeMode = 'side';
+    setMode('side');
+    render();
+  });
+  load();
+  render();
+})();
+</script>
+</body>
+</html>
