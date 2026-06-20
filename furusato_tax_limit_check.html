@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>ふるさと納税 控除上限額かんたん確認メモ｜会社員・副業あり対応 | KAZ &amp; MIO</title>
-<meta name="description" content="年収と家族構成だけでも、ふるさと納税の控除上限額をざっくり確認できます。社会保険料や扶養控除は自動見積もりし、詳しく見たい人だけ詳細入力できます。">
+<meta name="description" content="年収と家族構成だけでも、ふるさと納税の控除上限額と、あといくら寄附できるかをざっくり確認できます。社会保険料や扶養控除は自動見積もりし、詳しく見たい人だけ詳細入力できます。">
 <link rel="canonical" href="https://kaz-mio.github.io/furusato_tax_limit_check.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ふるさと納税 控除上限額かんたん確認メモ">
@@ -35,7 +35,7 @@
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "inLanguage": "ja",
-      "description": "年収と家族構成だけでも、ふるさと納税の控除上限額をざっくり確認できます。社会保険料や扶養控除は自動見積もりし、詳しく見たい人だけ詳細入力できます。"
+      "description": "年収と家族構成だけでも、ふるさと納税の控除上限額と、あといくら寄附できるかをざっくり確認できます。社会保険料や扶養控除は自動見積もりし、詳しく見たい人だけ詳細入力できます。"
     },
     {
       "@type": "BreadcrumbList",
@@ -215,14 +215,15 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   <section class="app-shell" id="tool">
     <form class="panel" id="taxForm">
       <h2>まずは少ない入力で確認</h2>
-      <p>最初は年収、家族構成、寄附予定額だけでも大丈夫です。社会保険料や扶養控除は自動で仮置きし、詳しく見たい人だけ下の詳細欄を開いて調整できます。</p>
+      <p>最初は年収、家族構成、すでに寄附した金額だけでも大丈夫です。社会保険料や扶養控除は自動で仮置きし、あといくら寄附できるかを先に見られます。</p>
       <div class="quick-note" id="autoEstimateNote">年収を入れると、社会保険料は年収の目安から自動で見ます。源泉徴収票や住民税決定通知書が手元にある場合だけ、詳細欄で実額に置き換えてください。</div>
 
       <div class="section-label">Quick Check</div>
       <div class="grid">
         <label class="field"><span class="label">給与収入（年額）</span><input id="salaryIncome" type="number" min="0" step="10000" inputmode="numeric" placeholder="例: 5200000"><span class="field-help">源泉徴収票の支払金額、または今年の見込額です。まずは大体の年収で使えます。</span></label>
         <label class="field"><span class="label">家族構成</span><select id="quickProfile"><option value="single">扶養なし・まず概算</option><option value="spouse">配偶者控除あり</option><option value="oneDependent">扶養親族1人</option><option value="spouseOneDependent">配偶者控除あり＋扶養親族1人</option><option value="twoDependents">扶養親族2人</option></select><span class="field-help">分からない場合は「扶養なし」で一度確認し、必要なら詳細欄で調整します。</span></label>
-        <label class="field"><span class="label">今年寄附したい金額</span><input id="plannedDonation" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 60000"><span class="field-help">決まっていなければ空欄でもOKです。上限目安だけ確認できます。</span></label>
+        <label class="field"><span class="label">今年すでに寄附した金額</span><input id="donatedSoFar" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 30000"><span class="field-help">まだ寄附していなければ空欄でOKです。残り枠の計算に使います。</span></label>
+        <label class="field"><span class="label">これから追加したい金額</span><input id="plannedDonation" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 30000"><span class="field-help">決まっていなければ空欄でもOKです。追加後に残る枠も確認できます。</span></label>
         <label class="field"><span class="label">副業など給与以外の所得</span><input id="otherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">なければ空欄でOK。ある場合は、売上ではなく経費を引いた所得見込です。</span></label>
       </div>
       <div class="toggle-grid">
@@ -324,7 +325,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   var noticeList = document.getElementById('noticeList');
   var nextOrder = document.getElementById('nextOrder');
   var memoOutput = document.getElementById('memoOutput');
-  var fields = ['salaryIncome','quickProfile','otherIncome','socialInsurance','ideco','spouseDeduction','dependentDeduction','otherDeductions','medicalDeduction','housingCredit','residentIncomeLevy','plannedDonation','municipalityCount','willFileReturn','hasMedicalExpense','hasHousingCredit','overFiveMunicipalities','wantsOneStop'];
+  var fields = ['salaryIncome','quickProfile','otherIncome','socialInsurance','ideco','spouseDeduction','dependentDeduction','otherDeductions','medicalDeduction','housingCredit','residentIncomeLevy','donatedSoFar','plannedDonation','municipalityCount','willFileReturn','hasMedicalExpense','hasHousingCredit','overFiveMunicipalities','wantsOneStop'];
 
   function num(id){
     var value = document.getElementById(id).value;
@@ -414,6 +415,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       medicalDeduction: num('medicalDeduction'),
       housingCredit: num('housingCredit'),
       residentIncomeLevy: num('residentIncomeLevy'),
+      donatedSoFar: num('donatedSoFar'),
       plannedDonation: num('plannedDonation'),
       municipalityCount: num('municipalityCount'),
       willFileReturn: checked('willFileReturn'),
@@ -446,7 +448,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     if(data.hasMedicalExpense && !data.medicalDeduction) safeFactor = Math.min(safeFactor, .82);
     if(data.hasHousingCredit && !data.housingCredit) safeFactor = Math.min(safeFactor, .78);
     var safeLimit = floorThousand(roundedLimit * safeFactor);
-    var donation = data.plannedDonation;
+    var donation = data.donatedSoFar + data.plannedDonation;
+    var remainingLimit = floorThousand(Math.max(0, roundedLimit - data.donatedSoFar));
+    var safeRemaining = floorThousand(Math.max(0, safeLimit - data.donatedSoFar));
+    var afterPlanRemaining = floorThousand(Math.max(0, safeLimit - donation));
     var eligible = Math.max(0, donation - 2000);
     var incomePart = Math.min(eligible, Math.max(0, totalIncome * .40)) * rateWithSpecial;
     var residentBasic = eligible * .10;
@@ -459,8 +464,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var answerText = '住民税所得割額が分かる場合は、その金額を入れると目安が近づきます。';
 
     if(roundedLimit > 0){
-      answerTitle = '控除上限額の目安は ' + yen(roundedLimit) + ' 前後です。';
-      answerText = '安全寄りに見るなら ' + yen(safeLimit) + ' くらいまでを先に候補にし、公式シミュレーションで仕上げます。';
+      answerTitle = 'あと寄附できる目安は ' + yen(safeRemaining) + ' くらいです。';
+      answerText = '控除上限額の目安は ' + yen(roundedLimit) + ' 前後、安全寄りに見るなら合計 ' + yen(safeLimit) + ' くらいまでを先に候補にします。';
+      if(data.plannedDonation > 0){
+        answerText += ' 追加後に安全寄りで残る目安は ' + yen(afterPlanRemaining) + ' です。';
+      }
       if(data.socialInsuranceAuto){
         answerText += ' 社会保険料は年収から自動で仮置きしています。';
       }
@@ -487,10 +495,15 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     } else if(data.otherIncome > 0) {
       notices.push(notice('', '副業所得あり', '副業所得がある場合は、所得税だけでなく住民税の申告も確認してください。'));
     }
+    if(data.donatedSoFar > safeLimit && safeLimit > 0){
+      notices.push(notice('warn', 'すでに安全寄りの目安を超えています', '追加寄附をする前に、住民税所得割額や控除を入れて見直してください。'));
+    }
     if(donation > 0 && donation > roundedLimit){
-      notices.push(notice('warn', '予定寄附額が上限目安を超えています', '自己負担が基準額より増えやすい状態です。寄附額を下げるか、住民税所得割額を入れて見直してください。'));
+      notices.push(notice('warn', '寄附合計が上限目安を超えています', '自己負担が基準額より増えやすい状態です。追加額を下げるか、住民税所得割額を入れて見直してください。'));
+    } else if(data.plannedDonation > 0 && data.plannedDonation > safeRemaining) {
+      notices.push(notice('warn', '追加したい金額が安全寄りの残り枠を超えています', '上限目安内でも、控えめに見るなら追加額を下げるか、実額入力で見直してください。'));
     } else if(donation > 0) {
-      notices.push(notice('', '予定寄附額は目安内', '入力条件では、予定寄附額は上限目安の範囲内です。証明書やワンストップ申請の期限を確認します。'));
+      notices.push(notice('', '寄附合計は目安内', '入力条件では、すでに寄附した分と追加予定分の合計は上限目安の範囲内です。'));
     }
     if(data.wantsOneStop){
       if(data.willFileReturn || data.hasMedicalExpense || data.medicalDeduction > 0 || data.otherIncome > 200000){
@@ -501,7 +514,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         notices.push(notice('', 'ワンストップ特例の確認', '確定申告予定がなく、寄附先が5団体以内なら、ワンストップ特例で進めやすい条件です。'));
       }
     }
-    order.push(route('上限目安を安全寄りで決める', 'まず ' + yen(safeLimit || roundedLimit) + ' を候補にして、寄附前に公式シミュレーションで確認します。'));
+    order.push(route('追加寄附の目安を決める', '安全寄りなら、まずあと ' + yen(safeRemaining) + ' くらいまでを候補にします。'));
     if(data.socialInsuranceAuto) order.push(route('源泉徴収票が出たら実額で見直す', '社会保険料等の金額が分かったら詳細欄に入れて、目安を近づけます。'));
     if(data.quickProfileApplied) order.push(route('家族構成の控除だけ確認', '配偶者控除や扶養控除の対象が合っているかだけ確認します。細かい金額が分かれば詳細欄で上書きできます。'));
     if(!data.residentIncomeLevy) order.push(route('住民税所得割額が分かれば入力', '住民税決定通知書などで所得割額が分かる場合は、再入力して目安を近づけます。'));
@@ -522,6 +535,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       rateWithSpecial: rateWithSpecial,
       roundedLimit: roundedLimit,
       safeLimit: safeLimit,
+      remainingLimit: remainingLimit,
+      safeRemaining: safeRemaining,
+      afterPlanRemaining: afterPlanRemaining,
       selfPay: selfPay,
       totalDeduction: totalDeduction,
       notices: notices,
@@ -534,17 +550,21 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var data = collect();
     var result = estimate(data);
     mainAnswer.innerHTML = '<strong>' + escapeHtml(result.answerTitle) + '</strong><span>' + escapeHtml(result.answerText) + '</span>';
-    var usage = result.roundedLimit > 0 && data.plannedDonation > 0 ? Math.min(100, data.plannedDonation / result.roundedLimit * 100) : 0;
+    var donationTotal = data.donatedSoFar + data.plannedDonation;
+    var usage = result.roundedLimit > 0 && donationTotal > 0 ? Math.min(100, donationTotal / result.roundedLimit * 100) : 0;
     summaryGrid.innerHTML = [
+      ['あと寄附できる目安', yen(result.safeRemaining), '安全寄りの寄附額から、すでに寄附した金額を引いた目安です。'],
+      ['上限目安までの残り', yen(result.remainingLimit), '控除上限額の目安から、すでに寄附した金額を引いた残りです。'],
+      ['追加後に残る目安', data.plannedDonation ? yen(result.afterPlanRemaining) : '未入力', '追加したい金額まで寄附した後、安全寄りに残る目安です。'],
       ['上限額の目安', yen(result.roundedLimit), '自己負担の基準額に近づきやすい寄附額の概算です。'],
       ['安全寄りの目安', yen(result.safeLimit), '控除や収入見込のズレを考え、少し控えめに見た金額です。'],
-      ['予定寄附後の自己負担目安', data.plannedDonation ? yen(result.selfPay) : '未入力', '寄附予定額を入れると、控除後の負担目安を出します。'],
+      ['寄附合計後の自己負担目安', donationTotal ? yen(result.selfPay) : '未入力', 'すでに寄附した金額と追加予定額の合計で見ます。'],
       ['住民税所得割額の目安', yen(result.residentLevy), data.residentIncomeLevy ? '入力値を優先しています。' : '収入と控除から概算しています。'],
       ['社会保険料控除', yen(data.socialInsurance), data.socialInsuranceAuto ? '年収から自動で仮置きしています。' : '入力された金額を使っています。'],
       ['家族構成の控除', yen(data.spouseDeduction + data.dependentDeduction), data.quickProfileApplied ? '選んだ家族構成から仮置きしています。' : '詳細欄または扶養なしで見ています。']
     ].map(function(item){
       return '<div class="result-chip"><small>' + escapeHtml(item[0]) + '</small><strong>' + escapeHtml(item[1]) + '</strong><p>' + escapeHtml(item[2]) + '</p></div>';
-    }).join('') + '<div class="result-chip"><small>Planned Use</small><strong>' + (usage ? Math.round(usage) + '%' : '未入力') + '</strong><div class="meter"><span style="width:' + Math.round(usage) + '%"></span></div><p>予定寄附額が上限目安に対してどのくらいかを表示します。</p></div><div class="result-chip"><small>Tax Rate</small><strong>' + Math.round(result.rate * 100) + '%</strong><p>概算の課税所得から見た所得税率です。復興特別所得税は計算内で加味しています。</p></div>';
+    }).join('') + '<div class="result-chip"><small>Used</small><strong>' + (usage ? Math.round(usage) + '%' : '未入力') + '</strong><div class="meter"><span style="width:' + Math.round(usage) + '%"></span></div><p>寄附合計が上限目安に対してどのくらいかを表示します。</p></div><div class="result-chip"><small>Tax Rate</small><strong>' + Math.round(result.rate * 100) + '%</strong><p>概算の課税所得から見た所得税率です。復興特別所得税は計算内で加味しています。</p></div>';
     noticeList.innerHTML = (result.notices.length ? result.notices : [notice('', '入力待ち', '給与収入と家族構成を入れると、概算の確認点が表示されます。')]).map(function(item, index){
       return '<div class="notice-item ' + escapeHtml(item.kind) + '"><b>' + (index + 1) + '</b><div><strong>' + escapeHtml(item.title) + '</strong><span>' + escapeHtml(item.text) + '</span></div></div>';
     }).join('');
@@ -568,9 +588,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     lines.push('住民税所得割額: ' + yen(result.residentLevy) + (data.residentIncomeLevy ? '（入力値）' : '（概算）'));
     lines.push('上限額の目安: ' + yen(result.roundedLimit));
     lines.push('安全寄りの目安: ' + yen(result.safeLimit));
-    lines.push('予定寄附額: ' + yen(data.plannedDonation));
+    lines.push('今年すでに寄附した金額: ' + yen(data.donatedSoFar));
+    lines.push('これから追加したい金額: ' + yen(data.plannedDonation));
+    lines.push('あと寄附できる目安: ' + yen(result.safeRemaining));
+    lines.push('上限目安までの残り: ' + yen(result.remainingLimit));
+    lines.push('追加後に残る目安: ' + yen(result.afterPlanRemaining));
     lines.push('寄附先が6自治体以上になりそう: ' + (data.overFiveMunicipalities ? 'はい' : 'いいえ・未定'));
-    lines.push('予定寄附後の自己負担目安: ' + (data.plannedDonation ? yen(result.selfPay) : '未入力'));
+    lines.push('寄附合計後の自己負担目安: ' + (data.donatedSoFar + data.plannedDonation ? yen(result.selfPay) : '未入力'));
     lines.push('');
     lines.push('確認すること:');
     result.order.forEach(function(item, index){ lines.push((index + 1) + '. ' + item[0] + ' - ' + item[1]); });
