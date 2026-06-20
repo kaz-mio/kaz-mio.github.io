@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>ふるさと納税 控除上限額かんたん確認メモ｜会社員・副業あり対応 | KAZ &amp; MIO</title>
-<meta name="description" content="給与収入、副業所得、社会保険料、扶養、住宅ローン控除、医療費控除などを入力して、ふるさと納税の控除上限額とワンストップ特例の確認順を整理するブラウザ内ツールです。">
+<meta name="description" content="年収と家族構成だけでも、ふるさと納税の控除上限額をざっくり確認できます。社会保険料や扶養控除は自動見積もりし、詳しく見たい人だけ詳細入力できます。">
 <link rel="canonical" href="https://kaz-mio.github.io/furusato_tax_limit_check.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ふるさと納税 控除上限額かんたん確認メモ">
@@ -35,7 +35,7 @@
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "inLanguage": "ja",
-      "description": "給与収入、副業所得、社会保険料、扶養、住宅ローン控除、医療費控除などを入力して、ふるさと納税の控除上限額とワンストップ特例の確認順を整理するブラウザ内ツールです。"
+      "description": "年収と家族構成だけでも、ふるさと納税の控除上限額をざっくり確認できます。社会保険料や扶養控除は自動見積もりし、詳しく見たい人だけ詳細入力できます。"
     },
     {
       "@type": "BreadcrumbList",
@@ -118,6 +118,14 @@ input[type="text"],input[type="number"],select,textarea{width:100%;border:1px so
 textarea{min-height:184px;resize:vertical;line-height:1.7}
 input:hover,select:hover,textarea:hover{border-color:rgba(41,117,117,.34)}
 input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(41,117,117,.13);outline:0}
+.quick-note{background:#edf8f3;border:1px solid rgba(41,117,117,.16);border-radius:8px;padding:.82rem;color:#315f58;font-size:.78rem;line-height:1.75;margin:.8rem 0}
+.details-box{margin-top:1rem;border:1px solid rgba(27,42,48,.12);border-radius:8px;background:rgba(255,255,255,.72);box-shadow:var(--soft);overflow:hidden}
+.details-box summary{cursor:pointer;list-style:none;padding:.9rem 1rem;color:var(--navy);font-weight:900;display:flex;justify-content:space-between;gap:.8rem;align-items:center}
+.details-box summary::-webkit-details-marker{display:none}
+.details-box summary::after{content:'+';font-family:'Nunito',sans-serif;font-weight:900;color:var(--teal);font-size:1.2rem}
+.details-box[open] summary::after{content:'-'}
+.details-body{border-top:1px solid rgba(27,42,48,.1);padding:1rem}
+.details-body>p{color:var(--muted);font-size:.78rem;line-height:1.75;margin-bottom:.8rem}
 .toggle-grid{display:grid;gap:.55rem;margin-top:.45rem}
 .check-line{display:grid;grid-template-columns:auto 1fr;gap:.55rem;align-items:start;color:var(--muted);font-size:.8rem;line-height:1.7}
 .check-line input{margin-top:.34rem;accent-color:var(--teal)}
@@ -177,7 +185,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     <div class="hero-copy">
       <div class="eyebrow">Furusato Tax Limit</div>
       <h1>ふるさと納税は<br><em>今年いくらまで</em>寄附できそう？</h1>
-      <p class="lead">給与収入、社会保険料、扶養、副業、住宅ローン控除、医療費控除を入れると、自己負担の基準額に近づきやすい寄附上限額の目安と、ワンストップ特例で進められるかを確認できます。</p>
+      <p class="lead">年収と家族構成だけでも、自己負担の基準額に近づきやすい寄附上限額の目安を確認できます。社会保険料や扶養控除は自動で仮置きし、詳しく見たい人だけ実額に置き換えられます。</p>
       <div class="hero-actions">
         <a href="#tool">上限額を確認する</a>
         <a class="secondary" href="fuyou_side_income_check.html">扶養・副業チェックへ</a>
@@ -206,36 +214,43 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 
   <section class="app-shell" id="tool">
     <form class="panel" id="taxForm">
-      <h2>金額を入力</h2>
-      <p>まずは分かるところだけで大丈夫です。住民税決定通知書などで「所得割額」が分かる場合は、概算より優先して使います。</p>
+      <h2>まずは少ない入力で確認</h2>
+      <p>最初は年収、家族構成、寄附予定額だけでも大丈夫です。社会保険料や扶養控除は自動で仮置きし、詳しく見たい人だけ下の詳細欄を開いて調整できます。</p>
+      <div class="quick-note" id="autoEstimateNote">年収を入れると、社会保険料は年収の目安から自動で見ます。源泉徴収票や住民税決定通知書が手元にある場合だけ、詳細欄で実額に置き換えてください。</div>
 
-      <div class="section-label">Income</div>
+      <div class="section-label">Quick Check</div>
       <div class="grid">
-        <label class="field"><span class="label">給与収入（年額）</span><input id="salaryIncome" type="number" min="0" step="10000" inputmode="numeric" placeholder="例: 5200000"><span class="field-help">源泉徴収票の支払金額、または今年の見込額です。</span></label>
-        <label class="field"><span class="label">副業など給与以外の所得</span><input id="otherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 180000"><span class="field-help">売上ではなく、経費を引いた所得見込です。</span></label>
-        <label class="field"><span class="label">社会保険料控除</span><input id="socialInsurance" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 760000"><span class="field-help">源泉徴収票の社会保険料等の金額を使うと近づきます。</span></label>
-        <label class="field"><span class="label">iDeCo・小規模企業共済等</span><input id="ideco" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 144000"><span class="field-help">小規模企業共済等掛金控除に入る金額です。</span></label>
-      </div>
-
-      <div class="section-label">Deductions</div>
-      <div class="grid three">
-        <label class="field"><span class="label">配偶者控除・配偶者特別控除</span><select id="spouseDeduction"><option value="0">なし・不明</option><option value="380000">38万円</option><option value="260000">26万円</option><option value="130000">13万円</option></select><span class="field-help">本人所得や配偶者所得により変わります。</span></label>
-        <label class="field"><span class="label">扶養控除の合計</span><input id="dependentDeduction" type="number" min="0" step="10000" inputmode="numeric" placeholder="例: 380000"><span class="field-help">一般扶養38万円、特定扶養63万円などを合計します。</span></label>
-        <label class="field"><span class="label">生命保険料控除など</span><input id="otherDeductions" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 80000"><span class="field-help">生命保険料控除、地震保険料控除などの所得税側の控除目安です。</span></label>
-        <label class="field"><span class="label">医療費控除の見込</span><input id="medicalDeduction" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">確定申告する場合、ワンストップ特例は使えません。</span></label>
-        <label class="field"><span class="label">住宅ローン控除の見込</span><input id="housingCredit" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">税額控除です。ある年は公式シミュレーションで確認してください。</span></label>
-        <label class="field"><span class="label">住民税所得割額が分かる場合</span><input id="residentIncomeLevy" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 245000"><span class="field-help">通知書の「所得割額」等が分かる場合だけ入力。ここを優先します。</span></label>
-      </div>
-
-      <div class="section-label">Donation Plan</div>
-      <div class="grid">
-        <label class="field"><span class="label">今年寄附したい金額</span><input id="plannedDonation" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 60000"><span class="field-help">自己負担がどれくらいになりそうか確認します。</span></label>
-        <label class="field"><span class="label">寄附先の自治体数</span><input id="municipalityCount" type="number" min="0" step="1" inputmode="numeric" placeholder="例: 3"><span class="field-help">ワンストップ特例は5団体以内が確認点です。</span></label>
+        <label class="field"><span class="label">給与収入（年額）</span><input id="salaryIncome" type="number" min="0" step="10000" inputmode="numeric" placeholder="例: 5200000"><span class="field-help">源泉徴収票の支払金額、または今年の見込額です。まずは大体の年収で使えます。</span></label>
+        <label class="field"><span class="label">家族構成</span><select id="quickProfile"><option value="single">扶養なし・まず概算</option><option value="spouse">配偶者控除あり</option><option value="oneDependent">扶養親族1人</option><option value="spouseOneDependent">配偶者控除あり＋扶養親族1人</option><option value="twoDependents">扶養親族2人</option></select><span class="field-help">分からない場合は「扶養なし」で一度確認し、必要なら詳細欄で調整します。</span></label>
+        <label class="field"><span class="label">今年寄附したい金額</span><input id="plannedDonation" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 60000"><span class="field-help">決まっていなければ空欄でもOKです。上限目安だけ確認できます。</span></label>
+        <label class="field"><span class="label">副業など給与以外の所得</span><input id="otherIncome" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">なければ空欄でOK。ある場合は、売上ではなく経費を引いた所得見込です。</span></label>
       </div>
       <div class="toggle-grid">
         <label class="check-line"><input id="willFileReturn" type="checkbox"><span>医療費控除、副業、住宅ローン控除初年度などで確定申告する予定がある</span></label>
+        <label class="check-line"><input id="hasMedicalExpense" type="checkbox"><span>医療費控除を使うかもしれない</span></label>
+        <label class="check-line"><input id="hasHousingCredit" type="checkbox"><span>住宅ローン控除がある</span></label>
+        <label class="check-line"><input id="overFiveMunicipalities" type="checkbox"><span>寄附先が6自治体以上になりそう</span></label>
         <label class="check-line"><input id="wantsOneStop" type="checkbox" checked><span>できればワンストップ特例を使いたい</span></label>
       </div>
+
+      <details class="details-box">
+        <summary>もっと正確に入れる（分かる人だけ）</summary>
+        <div class="details-body">
+          <p>通知書や源泉徴収票が手元にある人向けです。空欄のままなら、かんたん入力の内容から自動で見ます。</p>
+          <div class="section-label">Manual Deductions</div>
+          <div class="grid three">
+            <label class="field"><span class="label">社会保険料控除</span><input id="socialInsurance" type="number" min="0" step="1000" inputmode="numeric" placeholder="空欄なら自動見積もり"><span class="field-help">源泉徴収票の社会保険料等の金額。空欄なら年収から概算します。</span></label>
+            <label class="field"><span class="label">iDeCo・小規模企業共済等</span><input id="ideco" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 144000"><span class="field-help">なければ空欄でOKです。</span></label>
+            <label class="field"><span class="label">配偶者控除・配偶者特別控除</span><select id="spouseDeduction"><option value="0">家族構成から見る・なし</option><option value="380000">38万円</option><option value="260000">26万円</option><option value="130000">13万円</option></select><span class="field-help">選んだ場合は、家族構成よりこちらを優先します。</span></label>
+            <label class="field"><span class="label">扶養控除の合計</span><input id="dependentDeduction" type="number" min="0" step="10000" inputmode="numeric" placeholder="空欄なら家族構成から見る"><span class="field-help">一般扶養38万円、特定扶養63万円などを合計します。</span></label>
+            <label class="field"><span class="label">生命保険料控除など</span><input id="otherDeductions" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 80000"><span class="field-help">生命保険料控除、地震保険料控除などです。分からなければ空欄でOK。</span></label>
+            <label class="field"><span class="label">医療費控除の見込</span><input id="medicalDeduction" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">金額が分かる場合だけ入力。使う予定だけなら上のチェックで十分です。</span></label>
+            <label class="field"><span class="label">住宅ローン控除の見込</span><input id="housingCredit" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">税額控除です。金額が分かる場合だけ入力してください。</span></label>
+            <label class="field"><span class="label">住民税所得割額が分かる場合</span><input id="residentIncomeLevy" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 245000"><span class="field-help">通知書の「所得割額」等が分かる場合だけ入力。ここを最優先します。</span></label>
+            <label class="field"><span class="label">寄附先の自治体数</span><input id="municipalityCount" type="number" min="0" step="1" inputmode="numeric" placeholder="例: 3"><span class="field-help">ワンストップ特例を使いたい場合の確認用です。</span></label>
+          </div>
+        </div>
+      </details>
 
       <div class="action-row">
         <button class="btn" type="button" id="copyMemoBtn">結果をコピー</button>
@@ -309,7 +324,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   var noticeList = document.getElementById('noticeList');
   var nextOrder = document.getElementById('nextOrder');
   var memoOutput = document.getElementById('memoOutput');
-  var fields = ['salaryIncome','otherIncome','socialInsurance','ideco','spouseDeduction','dependentDeduction','otherDeductions','medicalDeduction','housingCredit','residentIncomeLevy','plannedDonation','municipalityCount','willFileReturn','wantsOneStop'];
+  var fields = ['salaryIncome','quickProfile','otherIncome','socialInsurance','ideco','spouseDeduction','dependentDeduction','otherDeductions','medicalDeduction','housingCredit','residentIncomeLevy','plannedDonation','municipalityCount','willFileReturn','hasMedicalExpense','hasHousingCredit','overFiveMunicipalities','wantsOneStop'];
 
   function num(id){
     var value = document.getElementById(id).value;
@@ -317,6 +332,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var parsed = Number(value);
     return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
   }
+  function value(id){ return document.getElementById(id).value; }
   function checked(id){ return document.getElementById(id).checked; }
   function yen(value){ return Math.round(value || 0).toLocaleString('ja-JP') + '円'; }
   function plain(value){ return Math.round(value || 0).toLocaleString('ja-JP'); }
@@ -358,14 +374,42 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     if(taxable <= 39999000) return .40;
     return .45;
   }
+  function estimateSocialInsurance(salary){
+    if(salary <= 0) return 0;
+    return Math.round(salary * 0.145 / 1000) * 1000;
+  }
+  function profileDeductions(profile){
+    var patterns = {
+      single: {label:'扶養なし・まず概算', spouse:0, dependent:0},
+      spouse: {label:'配偶者控除あり', spouse:380000, dependent:0},
+      oneDependent: {label:'扶養親族1人', spouse:0, dependent:380000},
+      spouseOneDependent: {label:'配偶者控除あり＋扶養親族1人', spouse:380000, dependent:380000},
+      twoDependents: {label:'扶養親族2人', spouse:0, dependent:760000}
+    };
+    return patterns[profile] || patterns.single;
+  }
   function collect(){
+    var salary = num('salaryIncome');
+    var rawSocialInsurance = num('socialInsurance');
+    var profile = profileDeductions(value('quickProfile'));
+    var spouseInput = num('spouseDeduction');
+    var dependentInput = num('dependentDeduction');
+    var estimatedSocialInsurance = estimateSocialInsurance(salary);
     return {
-      salaryIncome: num('salaryIncome'),
+      salaryIncome: salary,
+      quickProfile: value('quickProfile'),
+      quickProfileLabel: profile.label,
       otherIncome: num('otherIncome'),
-      socialInsurance: num('socialInsurance'),
+      socialInsurance: rawSocialInsurance || estimatedSocialInsurance,
+      socialInsuranceInput: rawSocialInsurance,
+      socialInsuranceAuto: !rawSocialInsurance && salary > 0,
+      socialInsuranceEstimate: estimatedSocialInsurance,
       ideco: num('ideco'),
-      spouseDeduction: num('spouseDeduction'),
-      dependentDeduction: num('dependentDeduction'),
+      spouseDeduction: spouseInput || profile.spouse,
+      spouseDeductionInput: spouseInput,
+      dependentDeduction: dependentInput || profile.dependent,
+      dependentDeductionInput: dependentInput,
+      quickProfileApplied: !spouseInput && !dependentInput && (profile.spouse > 0 || profile.dependent > 0),
       otherDeductions: num('otherDeductions'),
       medicalDeduction: num('medicalDeduction'),
       housingCredit: num('housingCredit'),
@@ -373,6 +417,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       plannedDonation: num('plannedDonation'),
       municipalityCount: num('municipalityCount'),
       willFileReturn: checked('willFileReturn'),
+      hasMedicalExpense: checked('hasMedicalExpense'),
+      hasHousingCredit: checked('hasHousingCredit'),
+      overFiveMunicipalities: checked('overFiveMunicipalities'),
       wantsOneStop: checked('wantsOneStop')
     };
   }
@@ -395,7 +442,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     var incomeCap = totalIncome * .40 + 2000;
     var limit = Math.min(theoretical, incomeCap || theoretical);
     var roundedLimit = floorThousand(limit);
-    var safeLimit = floorThousand(roundedLimit * .88);
+    var safeFactor = .88;
+    if(data.hasMedicalExpense && !data.medicalDeduction) safeFactor = Math.min(safeFactor, .82);
+    if(data.hasHousingCredit && !data.housingCredit) safeFactor = Math.min(safeFactor, .78);
+    var safeLimit = floorThousand(roundedLimit * safeFactor);
     var donation = data.plannedDonation;
     var eligible = Math.max(0, donation - 2000);
     var incomePart = Math.min(eligible, Math.max(0, totalIncome * .40)) * rateWithSpecial;
@@ -411,17 +461,26 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     if(roundedLimit > 0){
       answerTitle = '控除上限額の目安は ' + yen(roundedLimit) + ' 前後です。';
       answerText = '安全寄りに見るなら ' + yen(safeLimit) + ' くらいまでを先に候補にし、公式シミュレーションで仕上げます。';
+      if(data.socialInsuranceAuto){
+        answerText += ' 社会保険料は年収から自動で仮置きしています。';
+      }
+    }
+    if(data.socialInsuranceAuto){
+      notices.push(notice('', '社会保険料は自動見積もり', '源泉徴収票の金額が未入力のため、年収から概算しています。実額が分かる場合は詳細欄に入れると見直しやすくなります。'));
+    }
+    if(data.quickProfileApplied){
+      notices.push(notice('', '家族構成から控除を仮置き', '詳細欄の配偶者控除・扶養控除が未入力のため、選んだ家族構成から控除額を仮置きしています。'));
     }
     if(data.residentIncomeLevy > 0){
       notices.push(notice('', '住民税所得割額を優先', '入力された住民税所得割額を使って上限額を出しています。通知書の年度と寄附する年の収入見込が近いか確認してください。'));
     } else if(data.salaryIncome > 0) {
       notices.push(notice('warn', '住民税所得割額は概算', '住民税所得割額が未入力のため、給与収入と控除から概算しています。通知書がある場合は所得割額を入れると見直しやすくなります。'));
     }
-    if(data.housingCredit > 0){
-      notices.push(notice('warn', '住宅ローン控除あり', '住宅ローン控除がある年は、所得税と住民税の控除の出方で実質負担が変わることがあります。安全寄りの金額で公式確認してください。'));
+    if(data.hasHousingCredit || data.housingCredit > 0){
+      notices.push(notice('warn', '住宅ローン控除あり', data.housingCredit > 0 ? '住宅ローン控除の金額を入れて概算しています。所得税と住民税の控除の出方で実質負担が変わることがあるため、公式確認してください。' : '金額が未入力のため、上限額はそのまま、安全寄りの目安を控えめにしています。金額が分かる場合は詳細欄に入れてください。'));
     }
-    if(data.medicalDeduction > 0){
-      notices.push(notice('warn', '医療費控除あり', '医療費控除で確定申告する場合、ワンストップ特例は使えません。寄附金控除も確定申告に含めます。'));
+    if(data.hasMedicalExpense || data.medicalDeduction > 0){
+      notices.push(notice('warn', '医療費控除あり', data.medicalDeduction > 0 ? '医療費控除で確定申告する場合、ワンストップ特例は使えません。寄附金控除も確定申告に含めます。' : '医療費控除を使うかもしれない場合は、ワンストップではなく確定申告で寄附金控除も一緒に確認します。'));
     }
     if(data.otherIncome > 200000){
       notices.push(notice('warn', '副業所得が20万円超', '給与所得者の副業所得が20万円を超える場合は、確定申告の確認候補です。ふるさと納税も申告に含めます。'));
@@ -434,17 +493,19 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       notices.push(notice('', '予定寄附額は目安内', '入力条件では、予定寄附額は上限目安の範囲内です。証明書やワンストップ申請の期限を確認します。'));
     }
     if(data.wantsOneStop){
-      if(data.willFileReturn || data.medicalDeduction > 0 || data.otherIncome > 200000){
+      if(data.willFileReturn || data.hasMedicalExpense || data.medicalDeduction > 0 || data.otherIncome > 200000){
         notices.push(notice('warn', 'ワンストップではなく確定申告寄り', '確定申告をする場合、ワンストップ特例の申請は無効になります。寄附金控除も確定申告に入れます。'));
-      } else if(data.municipalityCount > 5) {
+      } else if(data.overFiveMunicipalities || data.municipalityCount > 5) {
         notices.push(notice('warn', '寄附先が5団体を超えています', 'ワンストップ特例は5団体以内が条件です。6団体以上なら確定申告で寄附金控除を確認します。'));
-      } else if(data.municipalityCount > 0) {
-        notices.push(notice('', 'ワンストップ特例で進めやすい条件', '確定申告予定がなく、寄附先が5団体以内なら、ワンストップ特例で進めやすい条件です。'));
+      } else {
+        notices.push(notice('', 'ワンストップ特例の確認', '確定申告予定がなく、寄附先が5団体以内なら、ワンストップ特例で進めやすい条件です。'));
       }
     }
     order.push(route('上限目安を安全寄りで決める', 'まず ' + yen(safeLimit || roundedLimit) + ' を候補にして、寄附前に公式シミュレーションで確認します。'));
+    if(data.socialInsuranceAuto) order.push(route('源泉徴収票が出たら実額で見直す', '社会保険料等の金額が分かったら詳細欄に入れて、目安を近づけます。'));
+    if(data.quickProfileApplied) order.push(route('家族構成の控除だけ確認', '配偶者控除や扶養控除の対象が合っているかだけ確認します。細かい金額が分かれば詳細欄で上書きできます。'));
     if(!data.residentIncomeLevy) order.push(route('住民税所得割額が分かれば入力', '住民税決定通知書などで所得割額が分かる場合は、再入力して目安を近づけます。'));
-    if(data.willFileReturn || data.medicalDeduction > 0 || data.otherIncome > 200000 || data.municipalityCount > 5){
+    if(data.willFileReturn || data.hasMedicalExpense || data.medicalDeduction > 0 || data.otherIncome > 200000 || data.overFiveMunicipalities || data.municipalityCount > 5){
       order.push(route('確定申告に寄附金控除を入れる', 'ワンストップ特例ではなく、確定申告書の寄附金控除と住民税欄に反映します。'));
     } else {
       order.push(route('ワンストップ申請の期限を確認', '寄附先ごとに申請書やオンライン申請の期限を確認します。'));
@@ -478,11 +539,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       ['上限額の目安', yen(result.roundedLimit), '自己負担の基準額に近づきやすい寄附額の概算です。'],
       ['安全寄りの目安', yen(result.safeLimit), '控除や収入見込のズレを考え、少し控えめに見た金額です。'],
       ['予定寄附後の自己負担目安', data.plannedDonation ? yen(result.selfPay) : '未入力', '寄附予定額を入れると、控除後の負担目安を出します。'],
-      ['住民税所得割額の目安', yen(result.residentLevy), data.residentIncomeLevy ? '入力値を優先しています。' : '収入と控除から概算しています。']
+      ['住民税所得割額の目安', yen(result.residentLevy), data.residentIncomeLevy ? '入力値を優先しています。' : '収入と控除から概算しています。'],
+      ['社会保険料控除', yen(data.socialInsurance), data.socialInsuranceAuto ? '年収から自動で仮置きしています。' : '入力された金額を使っています。'],
+      ['家族構成の控除', yen(data.spouseDeduction + data.dependentDeduction), data.quickProfileApplied ? '選んだ家族構成から仮置きしています。' : '詳細欄または扶養なしで見ています。']
     ].map(function(item){
       return '<div class="result-chip"><small>' + escapeHtml(item[0]) + '</small><strong>' + escapeHtml(item[1]) + '</strong><p>' + escapeHtml(item[2]) + '</p></div>';
     }).join('') + '<div class="result-chip"><small>Planned Use</small><strong>' + (usage ? Math.round(usage) + '%' : '未入力') + '</strong><div class="meter"><span style="width:' + Math.round(usage) + '%"></span></div><p>予定寄附額が上限目安に対してどのくらいかを表示します。</p></div><div class="result-chip"><small>Tax Rate</small><strong>' + Math.round(result.rate * 100) + '%</strong><p>概算の課税所得から見た所得税率です。復興特別所得税は計算内で加味しています。</p></div>';
-    noticeList.innerHTML = (result.notices.length ? result.notices : [notice('', '入力待ち', '給与収入、社会保険料、寄附予定額などを入れると確認点が表示されます。')]).map(function(item, index){
+    noticeList.innerHTML = (result.notices.length ? result.notices : [notice('', '入力待ち', '給与収入と家族構成を入れると、概算の確認点が表示されます。')]).map(function(item, index){
       return '<div class="notice-item ' + escapeHtml(item.kind) + '"><b>' + (index + 1) + '</b><div><strong>' + escapeHtml(item.title) + '</strong><span>' + escapeHtml(item.text) + '</span></div></div>';
     }).join('');
     nextOrder.innerHTML = result.order.map(function(item, index){
@@ -495,15 +558,18 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     lines.push('ふるさと納税 控除上限額確認メモ');
     lines.push('給与収入: ' + yen(data.salaryIncome));
     lines.push('給与所得目安: ' + yen(result.salaryInc));
+    lines.push('家族構成: ' + data.quickProfileLabel);
     lines.push('給与以外の所得: ' + yen(data.otherIncome));
-    lines.push('社会保険料控除: ' + yen(data.socialInsurance));
+    lines.push('社会保険料控除: ' + yen(data.socialInsurance) + (data.socialInsuranceAuto ? '（年収から自動見積もり）' : '（入力値）'));
+    lines.push('配偶者・扶養控除: ' + yen(data.spouseDeduction + data.dependentDeduction) + (data.quickProfileApplied ? '（家族構成から仮置き）' : ''));
     lines.push('iDeCo等: ' + yen(data.ideco));
-    lines.push('医療費控除: ' + yen(data.medicalDeduction));
-    lines.push('住宅ローン控除見込: ' + yen(data.housingCredit));
+    lines.push('医療費控除: ' + yen(data.medicalDeduction) + (data.hasMedicalExpense && !data.medicalDeduction ? '（使うかもしれない）' : ''));
+    lines.push('住宅ローン控除見込: ' + yen(data.housingCredit) + (data.hasHousingCredit && !data.housingCredit ? '（あり・金額未入力）' : ''));
     lines.push('住民税所得割額: ' + yen(result.residentLevy) + (data.residentIncomeLevy ? '（入力値）' : '（概算）'));
     lines.push('上限額の目安: ' + yen(result.roundedLimit));
     lines.push('安全寄りの目安: ' + yen(result.safeLimit));
     lines.push('予定寄附額: ' + yen(data.plannedDonation));
+    lines.push('寄附先が6自治体以上になりそう: ' + (data.overFiveMunicipalities ? 'はい' : 'いいえ・未定'));
     lines.push('予定寄附後の自己負担目安: ' + (data.plannedDonation ? yen(result.selfPay) : '未入力'));
     lines.push('');
     lines.push('確認すること:');
