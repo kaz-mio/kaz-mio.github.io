@@ -99,10 +99,12 @@ h1 em{font-style:normal;color:var(--teal)}
 .direct-panel,.route-panel,.source-panel{padding:1.25rem;margin:0 0 1.2rem}
 .direct-panel h2,.route-panel h2,.source-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.5rem,3vw,2.35rem);line-height:1.35;margin-bottom:.45rem}
 .direct-panel>p,.route-panel>p,.source-panel>p{color:var(--muted);font-size:.84rem;line-height:1.85;margin-bottom:.9rem}
-.goal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.72rem}
-.goal-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:.9rem;box-shadow:var(--soft)}
-.goal-card strong{display:block;color:var(--navy);font-size:.94rem;line-height:1.45}
-.goal-card p{color:var(--muted);font-size:.76rem;line-height:1.7;margin-top:.28rem}
+.goal-grid,.trust-grid,.case-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.72rem}
+.goal-card,.trust-card,.case-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:.9rem;box-shadow:var(--soft)}
+.goal-card strong,.trust-card strong,.case-card strong{display:block;color:var(--navy);font-size:.94rem;line-height:1.45}
+.goal-card p,.trust-card p,.case-card p{color:var(--muted);font-size:.76rem;line-height:1.7;margin-top:.28rem}
+.trust-grid,.case-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.trust-card small,.case-card small{display:block;font-family:'Nunito',sans-serif;font-size:.56rem;font-weight:900;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.24rem}
 .app-shell{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(390px,.96fr);gap:1.2rem;align-items:start}
 .panel,.result-panel{padding:1.25rem}
 .panel h2,.result-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,3vw,2.18rem);line-height:1.35;margin-bottom:.45rem}
@@ -147,7 +149,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .route-item span,.notice-item span{display:block;color:var(--muted);font-size:.76rem;line-height:1.65;margin-top:.18rem}
 .output{width:100%;min-height:210px;border:1px solid rgba(27,42,48,.14);border-radius:8px;background:#fff;padding:.95rem;color:var(--muted);line-height:1.8;resize:vertical}
 .notice{background:#fff8e8;border:1px solid rgba(217,155,65,.2);border-radius:8px;padding:.85rem;color:#6f5830;font-size:.78rem;line-height:1.75;margin:.85rem 0}
-.route-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.72rem}
+.route-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.72rem}
 .route-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1rem;box-shadow:var(--soft);display:flex;flex-direction:column;gap:.4rem}
 .route-card strong{font-family:'Shippori Mincho',serif;color:var(--navy);font-size:1.03rem;line-height:1.45}
 .route-card p{color:var(--muted);font-size:.77rem;line-height:1.7}
@@ -161,8 +163,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68);transition:color .2s,transform .2s}
 .ft-nav a:hover{color:#fff;transform:translateY(-2px)}
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38)}
-@media(max-width:980px){.hero,.app-shell,.goal-grid,.route-grid,.source-grid{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.hero-panel,.direct-panel,.panel,.result-panel,.source-panel,.route-panel{padding:1rem}.grid,.grid.three,.summary-grid{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.hero-image{min-height:230px}.answer-card{margin-top:0}.ft-inner{align-items:flex-start;flex-direction:column}h1,.lead,.panel p,.field-help,.goal-card p,.route-card p,.notice-item span,.route-item span{overflow-wrap:anywhere;line-break:strict}}
+@media(max-width:980px){.hero,.app-shell,.goal-grid,.trust-grid,.case-grid,.route-grid,.source-grid{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.hero-panel,.direct-panel,.panel,.result-panel,.source-panel,.route-panel{padding:1rem}.grid,.grid.three,.summary-grid{grid-template-columns:1fr}.hero-actions,.action-row,.mini-actions{display:grid}.btn,.hero-actions a{width:100%}.hero-image{min-height:230px}.answer-card{margin-top:0}.ft-inner{align-items:flex-start;flex-direction:column}h1,.lead,.panel p,.field-help,.goal-card p,.trust-card p,.case-card p,.route-card p,.notice-item span,.route-item span{overflow-wrap:anywhere;line-break:strict}}
 </style>
 <script src="assets/analytics.js"></script>
 </head>
@@ -174,6 +176,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   </a>
   <nav class="nav" aria-label="サイト内メニュー">
     <a href="index.html">Home</a>
+    <a href="money_tax_flow_guide.html">Money Flow</a>
     <a href="fuyou_side_income_check.html">Money Check</a>
     <a href="year_end_adjustment_forms.html">Year-End</a>
     <a class="contact" href="contact.html">Contact</a>
@@ -209,6 +212,26 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <div class="goal-card"><small>Safe Line</small><strong>安全寄りの寄附額</strong><p>住宅ローン控除や医療費控除がある年でも見直しやすいように、控えめな目安を出します。</p></div>
       <div class="goal-card"><small>One Stop</small><strong>ワンストップ特例</strong><p>5団体以内か、確定申告予定があるか、副業や医療費控除と一緒に確認します。</p></div>
       <div class="goal-card"><small>Next</small><strong>次に見るページ</strong><p>年末調整、副業申告、扶養チェックへつなげます。</p></div>
+    </div>
+  </section>
+
+  <section class="direct-panel" aria-labelledby="trust-title">
+    <h2 id="trust-title">このページの確認範囲</h2>
+    <p>ふるさと納税の上限額は、所得、控除、住民税所得割額、住宅ローン控除などで変わります。このページでは寄附前の目安づくりに絞ります。</p>
+    <div class="trust-grid">
+      <div class="trust-card"><small>できること</small><strong>寄附前の目安を出す</strong><p>年収、家族構成、すでに寄附した金額から、あと寄附できる目安を表示します。</p></div>
+      <div class="trust-card"><small>できないこと</small><strong>控除額を確定しない</strong><p>実際の控除額、ワンストップ特例の適用、確定申告の必要性は個別確認が必要です。</p></div>
+      <div class="trust-card"><small>確認先</small><strong>公式情報で照合する</strong><p>国税庁、総務省、自治体、勤務先資料、住民税決定通知書を寄附前・申告前に確認します。</p></div>
+    </div>
+  </section>
+
+  <section class="direct-panel" aria-labelledby="case-title">
+    <h2 id="case-title">年収別・ケース別の使い方</h2>
+    <p>年収だけで決めきらず、控除や副業の有無で確認順を変えます。近い例から始めると入力欄を選びやすくなります。</p>
+    <div class="case-grid">
+      <div class="case-card"><small>給与400万円台</small><strong>家族構成を先に入れる</strong><p>配偶者控除や扶養控除の有無で目安が変わるため、年収と家族構成だけ入れて大枠を見ます。</p></div>
+      <div class="case-card"><small>給与500〜700万円台</small><strong>寄附済み額も一緒に見る</strong><p>今年すでに寄附した金額を入れて、上限目安までの残りと追加後の余白を確認します。</p></div>
+      <div class="case-card"><small>副業・医療費・住宅控除あり</small><strong>安全寄りに見直す</strong><p>副業所得、医療費控除、住宅ローン控除がある年は、詳細欄と公式確認を前提にします。</p></div>
     </div>
   </section>
 
@@ -279,6 +302,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     <h2 id="route-title">一緒に使いやすいページ</h2>
     <p>ふるさと納税は、年末調整・副業・扶養の確認とつながります。条件がある場合は先に整理しておくと安全です。</p>
     <div class="route-grid">
+      <div class="route-card"><small>Guide</small><strong>お金まわりの確認順</strong><p>扶養、副業、年末調整、ふるさと納税をどこから見るか先に整理します。</p><a href="money_tax_flow_guide.html">確認順を見る</a></div>
       <div class="route-card"><small>Money</small><strong>扶養・副業・手取りかんたん判定</strong><p>税の扶養、社会保険の扶養、副業申告を分けて確認します。</p><a href="fuyou_side_income_check.html">扶養・副業チェックへ</a></div>
       <div class="route-card"><small>Year-End</small><strong>年末調整申告書作成サポート</strong><p>配偶者、扶養、保険料、住宅控除の入力前確認へ進めます。</p><a href="year_end_adjustment_forms.html">年末調整ツールへ</a></div>
       <div class="route-card"><small>Side Job</small><strong>副業の確定申告準備メモ</strong><p>副業所得や源泉徴収がある人は、寄附前に所得見込も整理できます。</p><a href="side_income_tax_memo.html">副業メモへ</a></div>
@@ -306,6 +330,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
     </a>
     <nav class="ft-nav" aria-label="フッターメニュー">
+      <a href="money_tax_flow_guide.html">確認順</a>
       <a href="fuyou_side_income_check.html">扶養・副業</a>
       <a href="year_end_adjustment_forms.html">年末調整</a>
       <a href="privacy.html">プライバシーポリシー</a>
