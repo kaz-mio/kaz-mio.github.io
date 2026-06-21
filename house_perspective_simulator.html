@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="R4_LTr6ogVlBzVQraulLCxlMklt-SKLQ-wnvMtQuFdw">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<title>住宅計画シミュレーター｜敷地・建坪・雪置き場・平面図・3Dパース | KAZ &amp; MIO</title>
+<meta name="description" content="敷地幅、奥行き、方位、地域条件から、推奨建坪、雪置き場、平面図、3Dパースを確認できる住宅計画シミュレーターです。高精細PNG出力にも対応しています。">
+<link rel="canonical" href="https://kaz-mio.github.io/house_perspective_simulator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="住宅計画シミュレーター">
+<meta property="og:description" content="土地の数字から、推奨建坪、雪置き場、平面図、3Dパースをまとめて確認できます。">
+<meta property="og:url" content="https://kaz-mio.github.io/house_perspective_simulator.html">
+<meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
+<meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="住宅計画シミュレーター">
+<meta name="twitter:description" content="敷地、建坪、雪置き場、平面図、3Dパースを同じ画面で確認できます。">
+<meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://kaz-mio.github.io/house_perspective_simulator.html#app",
+      "name": "住宅計画シミュレーター",
+      "url": "https://kaz-mio.github.io/house_perspective_simulator.html",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any",
+      "inLanguage": "ja",
+      "description": "敷地幅、奥行き、方位、地域条件から、推奨建坪、雪置き場、平面図、3Dパースを確認できる住宅計画シミュレーターです。"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"ホーム","item":"https://kaz-mio.github.io/"},
+        {"@type":"ListItem","position":2,"name":"住宅計画シミュレーター","item":"https://kaz-mio.github.io/house_perspective_simulator.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"このページで何を確認できますか？","acceptedAnswer":{"@type":"Answer","text":"敷地寸法、方位、地域条件を入力して、推奨建坪、雪置き場、平面図、3Dパース、高精細PNG出力を確認できます。"}},
+        {"@type":"Question","name":"北海道や多雪地域にも対応していますか？","acceptedAnswer":{"@type":"Answer","text":"北海道、多雪地域、標準地域、都市部を選べます。北海道や多雪地域では雪置き場や落雪余白の目安も表示します。"}},
+        {"@type":"Question","name":"法規判定や構造計算までできますか？","acceptedAnswer":{"@type":"Answer","text":"できません。建築基準法、構造計算、日影計算、積雪荷重計算などを確定するものではなく、住宅計画を考え始めるための下見メモとして使う想定です。"}}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f2ed;--paper:#fff;--ink:#252525;--muted:#747474;--line:#dedbd3;--gold:#dfcf98;--gold2:#c9b675;--dark:#171717;--sage:#6f7c70;--soft:0 18px 46px rgba(35,31,22,.12)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);outline-offset:4px}
+.hd{position:sticky;top:0;z-index:40;height:66px;padding:0 clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;background:rgba(243,242,237,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.75rem;min-width:0}
+.brand-mark{width:40px;height:40px;border-radius:50%;background:url('assets/favicon-192.png') center/cover no-repeat;box-shadow:0 0 0 3px rgba(255,255,255,.78);flex-shrink:0}
+.brand-text{display:flex;flex-direction:column;line-height:1.05}
+.brand-en{font-family:Arial,sans-serif;font-size:.62rem;font-weight:900;letter-spacing:.2em;color:var(--gold2);text-transform:uppercase}
+.brand-ja{font-family:'Shippori Mincho',serif;font-size:1.1rem;font-weight:800;color:#777}
+.nav{display:flex;align-items:center;gap:.35rem}
+.nav a{font-size:.78rem;font-weight:900;color:#777;padding:.52rem .82rem;transition:background .2s,color .2s,transform .2s}
+.nav a:hover,.nav a.active{background:#fff;color:#222;transform:translateY(-2px)}
+.nav .contact{background:#222;color:#fff}
+.wrap{max-width:1500px;margin:0 auto;padding:4.6rem clamp(1rem,4vw,3rem) 5.6rem}
+.hero{display:grid;grid-template-columns:minmax(0,.92fr) minmax(340px,1.08fr);gap:2rem;align-items:end;margin-bottom:2rem}
+.kicker{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.7rem;color:var(--gold2);font-weight:900;margin-bottom:1rem}
+h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.3rem,5vw,4.6rem);line-height:1.22;font-weight:500;color:#777;margin-bottom:1.2rem}
+h1 span{color:#222}
+.lead{color:#707070;font-size:.96rem;max-width:44rem}
+.hero-card{background:#fff;border:1px solid var(--line);box-shadow:var(--soft);padding:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1px}
+.hero-card span{background:#f8f7f2;min-height:132px;padding:1rem;display:flex;flex-direction:column;gap:.35rem}
+.hero-card small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold2)}
+.hero-card strong{font-family:'Shippori Mincho',serif;font-size:1.08rem;line-height:1.45;color:#333}
+.hero-card em{font-style:normal;color:#777;font-size:.78rem;line-height:1.65}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.4rem}
+.actions a{min-height:48px;border:1px solid var(--gold);padding:.78rem 1rem;font-size:.82rem;font-weight:900;color:var(--gold2);display:inline-flex;align-items:center;justify-content:center;transition:transform .2s,background .2s,color .2s,border-color .2s,box-shadow .2s}
+.actions a.primary{background:#222;border-color:#222;color:#fff;box-shadow:0 16px 34px rgba(34,34,34,.12)}
+.actions a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff}
+.sim-section{background:#e8ece6;border:1px solid var(--line);box-shadow:var(--soft);padding:1.2rem;margin-bottom:1.5rem}
+.sim-head{display:flex;justify-content:space-between;gap:1.4rem;align-items:end;margin-bottom:1rem}
+.sim-head h2,.info h2,.related h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,3vw,2.8rem);font-weight:500;line-height:1.35;color:#666}
+.sim-head p{max-width:44rem;color:#69726b;font-size:.86rem}
+.sim-scroll{overflow-x:auto;overflow-y:hidden;background:#fff;border:1px solid rgba(34,34,34,.12);box-shadow:0 22px 58px rgba(34,48,42,.16)}
+.sim-scroll iframe{display:block;width:100%;min-width:1120px;height:clamp(880px,90vh,980px);border:0;background:#fff}
+.sim-note{margin-top:.8rem;color:#737b74;font-size:.78rem;line-height:1.75}
+.info{display:grid;grid-template-columns:.8fr 1.2fr;gap:1.5rem;align-items:start;background:#fff;border:1px solid var(--line);padding:1.4rem;box-shadow:0 12px 34px rgba(35,31,22,.08);margin-bottom:1.5rem}
+.info p{color:#777;font-size:.88rem}
+.info-grid,.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.info-card,.related-card{background:#f9f8f4;min-height:150px;padding:1rem;display:flex;flex-direction:column;gap:.45rem}
+.info-card small,.related-card small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold2)}
+.info-card strong,.related-card strong{font-family:'Shippori Mincho',serif;font-size:1.08rem;line-height:1.45;color:#333}
+.info-card p,.related-card p{font-size:.78rem;line-height:1.7;color:#777}
+.related{background:#151515;color:#fff;padding:1.5rem;margin-bottom:1.5rem}
+.related h2{color:#eee;margin-bottom:.8rem}
+.related>p{color:#aaa;font-size:.88rem;max-width:46rem;margin-bottom:1rem}
+.related-grid{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.18)}
+.related-card{background:#202020;color:#eee}
+.related-card p{color:#aaa}
+.related-card a{margin-top:auto;color:var(--gold);font-weight:900;font-size:.82rem;border-bottom:1px solid rgba(223,207,152,.55);align-self:flex-start}
+.ft{background:#111;color:rgba(255,255,255,.62);padding:2.6rem clamp(1rem,4vw,3rem) 2rem}
+.ft-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:1.4rem;margin-bottom:1.2rem}
+.ft .brand-ja{color:#fff}
+.ft-nav{display:flex;gap:1.2rem;flex-wrap:wrap}
+.ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68);transition:color .2s,transform .2s}
+.ft-nav a:hover{color:#fff;transform:translateY(-2px)}
+.ft-copy{max-width:1280px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38)}
+@media(max-width:980px){.hero,.info{grid-template-columns:1fr}.hero-card,.info-grid,.related-grid{grid-template-columns:1fr}.sim-head{display:block}.sim-head p{margin-top:.55rem}.wrap{padding:3rem 1rem 4rem}.sim-section{padding:.9rem}.sim-scroll iframe{height:940px}.ft-inner{align-items:flex-start;flex-direction:column}}
+@media(max-width:640px){.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.actions{display:grid}.actions a{width:100%}h1{font-size:2.25rem}.lead,.sim-head p,.info p,.related>p{overflow-wrap:anywhere;line-break:strict}}
+</style>
+<script src="assets/analytics.js"></script>
+</head>
+<body>
+<header class="hd">
+  <a href="index.html" class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
+  </a>
+  <nav class="nav" aria-label="サイト内メニュー">
+    <a href="index.html">Home</a>
+    <a class="active" href="house_perspective_simulator.html">House</a>
+    <a href="buy_before_check.html">Check</a>
+    <a href="interior_furniture_article.html">Room</a>
+    <a class="contact" href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="kicker">House Perspective Simulator</div>
+      <h1>敷地から、<br><span>家の置き方</span>を試す。</h1>
+      <p class="lead">土地の幅と奥行き、方位、地域条件を入れて、建坪、雪置き場、駐車、平面図、3Dパースを同じ画面で確認できます。家づくりの前半で、広さと余白の感覚をつかむためのシミュレーターです。</p>
+      <div class="actions">
+        <a class="primary" href="#simulator">シミュレーターを使う</a>
+        <a href="/house-perspective-app/index.html#embed">アプリだけを開く</a>
+      </div>
+    </div>
+    <div class="hero-card" aria-label="このページで確認できること">
+      <span><small>Site</small><strong>敷地入力</strong><em>幅、奥行き、方位、地域条件から始めます。</em></span>
+      <span><small>Estimate</small><strong>推奨建坪</strong><em>土地の広さと外構余白から、建物の目安を見ます。</em></span>
+      <span><small>Snow</small><strong>雪置き場</strong><em>北海道・多雪地域では落雪余白も確認します。</em></span>
+      <span><small>View</small><strong>平面図と3D</strong><em>高精細PNGとして書き出すこともできます。</em></span>
+    </div>
+  </section>
+
+  <section class="sim-section" id="simulator" aria-labelledby="sim-title">
+    <div class="sim-head">
+      <h2 id="sim-title">住宅計画シミュレーター</h2>
+      <p>公開表示モードで埋め込んでいます。保存・JSON・埋込などの管理系ボタンは非表示にし、敷地入力、推奨建坪、平面図、3Dパース、高精細PNG出力を使える状態にしています。</p>
+    </div>
+    <div class="sim-scroll">
+      <iframe src="/house-perspective-app/index.html#embed" loading="lazy" title="住宅計画シミュレーター"></iframe>
+    </div>
+    <p class="sim-note">スマホではシミュレーター部分を横に動かして全体を確認できます。入力内容はブラウザ内で動作し、バックエンドへの送信はありません。</p>
+  </section>
+
+  <section class="info" aria-labelledby="scope-title">
+    <div>
+      <div class="kicker">Scope</div>
+      <h2 id="scope-title">このページの確認範囲</h2>
+      <p>住宅計画の初期段階で、土地に対して建物と外構をどう置けそうかを考えるためのページです。見た目と面積感を早めに掴むことを目的にしています。</p>
+    </div>
+    <div class="info-grid">
+      <article class="info-card"><small>できること</small><strong>敷地と建物の目安を見る</strong><p>土地坪、建築面積、延床面積、建坪、畳数、外構余白をまとめて確認できます。</p></article>
+      <article class="info-card"><small>雪の余白</small><strong>北海道・多雪地域を分ける</strong><p>雪置き場、落雪余白、駐車、玄関アプローチを一緒に見ます。</p></article>
+      <article class="info-card"><small>できないこと</small><strong>法規や構造は確定しない</strong><p>建築基準法、構造計算、日影計算、積雪荷重計算などは専門家と確認してください。</p></article>
+    </div>
+  </section>
+
+  <section class="related" aria-labelledby="related-title">
+    <div class="kicker">Related Memo</div>
+    <h2 id="related-title">家まわりを一緒に見る</h2>
+    <p>住宅そのものを考える前後で、家具、買う前チェック、リビングの動線も合わせて見ると、暮らし始めたあとの違和感に気づきやすくなります。</p>
+    <div class="related-grid">
+      <article class="related-card"><small>Before Buy</small><strong>買う前に確認したいこと</strong><p>玄関、車、部屋、在庫、季節の見落としを短く確認します。</p><a href="buy_before_check.html">確認する</a></article>
+      <article class="related-card"><small>Room</small><strong>子育て家庭のリビング家具選び</strong><p>家具の置き方と通路、掃除、子どもの動きを一緒に見ます。</p><a href="interior_furniture_article.html">読む</a></article>
+      <article class="related-card"><small>Route</small><strong>迷ったらここから</strong><p>いま引っかかっている場面から、近いメモやツールへ進めます。</p><a href="mio_route_finder.html">探す</a></article>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="ft-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
+    </a>
+    <nav class="ft-nav">
+      <a href="index.html">トップ</a>
+      <a href="house_perspective_simulator.html">住宅計画シミュレーター</a>
+      <a href="buy_before_check.html">買う前チェック</a>
+      <a href="interior_furniture_article.html">リビング家具</a>
+      <a href="editorial_policy.html">運営方針</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+  <p class="ft-copy">&copy; 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります。</p>
+</footer>
+</body>
+</html>

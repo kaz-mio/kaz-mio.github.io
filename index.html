@@ -102,7 +102,7 @@
         { "@type": "ListItem", "position": 46, "name": "会社員の年末調整申告書作成サポート", "url": "https://kaz-mio.github.io/year_end_adjustment_forms.html" },
         { "@type": "ListItem", "position": 47, "name": "扶養・副業・手取りかんたん判定", "url": "https://kaz-mio.github.io/fuyou_side_income_check.html" },
         { "@type": "ListItem", "position": 48, "name": "ふるさと納税 控除上限額かんたん確認メモ", "url": "https://kaz-mio.github.io/furusato_tax_limit_check.html" },
-        { "@type": "ListItem", "position": 49, "name": "敷地から考える住宅計画シミュレーター", "url": "https://kaz-mio.github.io/house-perspective-app/index.html#embed" }
+        { "@type": "ListItem", "position": 49, "name": "敷地から考える住宅計画シミュレーター", "url": "https://kaz-mio.github.io/house_perspective_simulator.html" }
       ]
     }
   ]
@@ -293,8 +293,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .house-sim-actions a{min-height:46px;border:1px solid var(--gold);padding:.74rem 1rem;font-size:.82rem;font-weight:900;color:var(--gold2);display:inline-flex;align-items:center;justify-content:center;transition:transform .2s,background .2s,color .2s,border-color .2s,box-shadow .2s;}
 .house-sim-actions a:first-child{background:#222;border-color:#222;color:#fff;box-shadow:0 16px 34px rgba(34,34,34,.12);}
 .house-sim-actions a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff;}
-.house-sim-frame{background:#fff;border:1px solid rgba(34,34,34,.12);box-shadow:0 28px 70px rgba(34,48,42,.16);overflow:hidden;}
-.house-sim-frame iframe{display:block;width:100%;height:clamp(860px,88vh,960px);border:0;background:#fff;}
+.house-sim-frame{background:#fff;border:1px solid rgba(34,34,34,.12);box-shadow:0 28px 70px rgba(34,48,42,.16);overflow-x:auto;overflow-y:hidden;}
+.house-sim-frame iframe{display:block;width:100%;min-width:1120px;height:clamp(860px,88vh,960px);border:0;background:#fff;}
 .house-sim-note{margin-top:.9rem;color:#788078;font-size:.78rem;line-height:1.7;}
 .route-teaser{padding:5.4rem 5.8rem;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
 .route-teaser::before{content:'ROUTE FINDER';position:absolute;right:-.8rem;top:.5rem;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,8.8rem);font-weight:800;line-height:1;color:rgba(34,34,34,.04);letter-spacing:.08em;white-space:nowrap;}
@@ -796,7 +796,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a class="memo-card" href="family_stay_search.html"><small>Trip</small><strong>泊まる・食べる条件を整える</strong><span>畳、個室、子どもイス、洗い場付き風呂。</span></a>
         <a class="memo-card" href="money_tax_flow_guide.html"><small>Money Flow</small><strong>お金まわりの確認順を見る</strong><span>扶養、副業、年末調整、ふるさと納税を先に分ける。</span></a>
         <a class="memo-card" href="furusato_tax_limit_check.html"><small>Furusato</small><strong>ふるさと納税の上限額を見る</strong><span>寄附予定額、ワンストップ、確定申告の確認まで。</span></a>
-        <a class="memo-card" href="#house-perspective-simulator"><small>House Plan</small><strong>敷地から家の形を試す</strong><span>建坪、雪置き場、平面図、3Dパースを同じ画面で見る。</span></a>
+        <a class="memo-card" href="house_perspective_simulator.html"><small>House Plan</small><strong>敷地から家の形を試す</strong><span>建坪、雪置き場、平面図、3Dパースを同じ画面で見る。</span></a>
       </div>
     </div>
   </section>
@@ -809,7 +809,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           <h2 id="house-sim-title">土地の数字から、家の置き方を試す。</h2>
           <p>敷地幅、奥行き、方位、地域条件を入れると、推奨建坪、雪置き場、駐車、平面図、3Dパースをまとめて確認できます。</p>
           <div class="house-sim-actions">
-            <a href="/house-perspective-app/index.html#embed">大きく開く</a>
+            <a href="house_perspective_simulator.html">専用ページで開く</a>
             <a href="#articles">ほかのメモも見る</a>
           </div>
         </div>
@@ -1150,7 +1150,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="fuyou_side_income_check.html" class="article"><span class="article-icon">扶</span><div><h3>扶養・副業・手取りかんたん判定</h3><p>年収の壁・税の扶養・社会保険・申告順</p></div><span>→</span></a>
       <a href="side_income_tax_memo.html" class="article"><span class="article-icon">申</span><div><h3>副業の確定申告準備メモ</h3><p>副業・売上経費・源泉徴収・住民税</p></div><span>→</span></a>
       <a href="year_end_adjustment_forms.html" class="article"><span class="article-icon">年</span><div><h3>会社員の年末調整申告書作成サポート</h3><p>公式様式PDF・住宅控除計算・提出前確認</p></div><span>→</span></a>
-      <a href="house-perspective-app/index.html#embed" class="article"><span class="article-icon">住</span><div><h3>敷地から考える住宅計画シミュレーター</h3><p>建坪・雪置き場・平面図・3Dパース</p></div><span>→</span></a>
+      <a href="house_perspective_simulator.html" class="article"><span class="article-icon">住</span><div><h3>敷地から考える住宅計画シミュレーター</h3><p>建坪・雪置き場・平面図・3Dパース</p></div><span>→</span></a>
       <a href="diaper_size_check.html" class="article"><span class="article-icon">紙</span><div><h3>おむつサイズ＆買い置きチェック</h3><p>子育て・おむつ・メーカー別サイズ目安</p></div><span>→</span></a>
       <a href="pet_sheet_diaper_article.html" class="article"><span class="article-icon">替</span><div><h3>おむつ替えにペットシーツが便利だった理由</h3><p>子育て・おむつ替え・便利アイテム</p></div><span>→</span></a>
       <a href="mamakids_milky_lotion_article.html" class="article"><span class="article-icon">保</span><div><h3>赤ちゃん保湿にママ＆キッズ ミルキーローションは使いやすい？</h3><p>子育て・保湿・ベビースキンケア</p></div><span>→</span></a>
