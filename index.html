@@ -101,7 +101,8 @@
         { "@type": "ListItem", "position": 45, "name": "副業の確定申告準備メモ", "url": "https://kaz-mio.github.io/side_income_tax_memo.html" },
         { "@type": "ListItem", "position": 46, "name": "会社員の年末調整申告書作成サポート", "url": "https://kaz-mio.github.io/year_end_adjustment_forms.html" },
         { "@type": "ListItem", "position": 47, "name": "扶養・副業・手取りかんたん判定", "url": "https://kaz-mio.github.io/fuyou_side_income_check.html" },
-        { "@type": "ListItem", "position": 48, "name": "ふるさと納税 控除上限額かんたん確認メモ", "url": "https://kaz-mio.github.io/furusato_tax_limit_check.html" }
+        { "@type": "ListItem", "position": 48, "name": "ふるさと納税 控除上限額かんたん確認メモ", "url": "https://kaz-mio.github.io/furusato_tax_limit_check.html" },
+        { "@type": "ListItem", "position": 49, "name": "敷地から考える住宅計画シミュレーター", "url": "https://kaz-mio.github.io/house-perspective-app/index.html#embed" }
       ]
     }
   ]
@@ -279,6 +280,22 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 @keyframes roomPath{0%,100%{transform:translateX(-22%);opacity:.28;}50%{transform:translateX(22%);opacity:.72;}}
 @keyframes roomPulse{0%{box-shadow:0 0 0 0 rgba(223,207,152,.42);}70%,100%{box-shadow:0 0 0 26px rgba(223,207,152,0);}}
 @keyframes roadMove{from{transform:translateX(-18%);}to{transform:translateX(18%);}}
+.house-sim{position:relative;padding:5.8rem;background:#e8ece6;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;}
+.house-sim::before{content:'HOUSE PLAN';position:absolute;left:-.6rem;top:.35rem;font-family:Arial,sans-serif;font-size:clamp(4.2rem,9vw,8.8rem);font-weight:900;line-height:1;letter-spacing:.1em;color:rgba(34,34,34,.045);white-space:nowrap;pointer-events:none;}
+.house-sim-inner{position:relative;z-index:1;max-width:1440px;margin:0 auto;}
+.house-sim-head{display:grid;grid-template-columns:minmax(0,.86fr) minmax(320px,1.14fr);gap:2.6rem;align-items:end;margin-bottom:1.6rem;}
+.house-sim-head h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.8vw,4rem);line-height:1.34;font-weight:500;color:#747474;margin-bottom:1rem;}
+.house-sim-head p{color:#6f776f;font-size:.92rem;max-width:48rem;}
+.house-sim-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(34,34,34,.14);border:1px solid rgba(34,34,34,.12);}
+.house-sim-points span{display:block;background:#f7f8f4;color:#5f6960;min-height:86px;padding:1rem;font-size:.78rem;line-height:1.65;}
+.house-sim-points strong{display:block;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.58rem;color:var(--gold2);margin-bottom:.25rem;}
+.house-sim-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.1rem;}
+.house-sim-actions a{min-height:46px;border:1px solid var(--gold);padding:.74rem 1rem;font-size:.82rem;font-weight:900;color:var(--gold2);display:inline-flex;align-items:center;justify-content:center;transition:transform .2s,background .2s,color .2s,border-color .2s,box-shadow .2s;}
+.house-sim-actions a:first-child{background:#222;border-color:#222;color:#fff;box-shadow:0 16px 34px rgba(34,34,34,.12);}
+.house-sim-actions a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff;}
+.house-sim-frame{background:#fff;border:1px solid rgba(34,34,34,.12);box-shadow:0 28px 70px rgba(34,48,42,.16);overflow:hidden;}
+.house-sim-frame iframe{display:block;width:100%;height:clamp(860px,88vh,960px);border:0;background:#fff;}
+.house-sim-note{margin-top:.9rem;color:#788078;font-size:.78rem;line-height:1.7;}
 .route-teaser{padding:5.4rem 5.8rem;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
 .route-teaser::before{content:'ROUTE FINDER';position:absolute;right:-.8rem;top:.5rem;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,8.8rem);font-weight:800;line-height:1;color:rgba(34,34,34,.04);letter-spacing:.08em;white-space:nowrap;}
 .route-teaser-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:2.4rem;align-items:center;}
@@ -464,10 +481,13 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .mini-stage{min-height:0;grid-template-columns:1fr;}
   .mini-panel.bag{grid-row:auto;min-height:420px;}
   .mini-panel.room,.mini-panel.car{min-height:250px;}
-  .dark-band,.family-navi,.section,.about,.ft{padding:4rem 1rem;}
+  .dark-band,.family-navi,.section,.about,.ft,.house-sim{padding:4rem 1rem;}
   .route-teaser{padding:4rem 1rem;}
   .route-teaser-inner{grid-template-columns:1fr;gap:2rem;}
   .route-board{grid-template-columns:1fr 1fr;}
+  .house-sim-head{grid-template-columns:1fr;gap:1.4rem;}
+  .house-sim-points{grid-template-columns:1fr;}
+  .house-sim-frame iframe{height:940px;}
   .intent-guide{padding:4rem 1rem;}
   .band-inner,.about-inner{grid-template-columns:1fr;gap:2rem;}
   .intent-head{grid-template-columns:1fr;gap:1rem;}
@@ -496,7 +516,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .hero-copy p{max-width:320px;word-break:break-all;}
   .lead-text p,.section-head p,.about p{overflow-wrap:anywhere;}
   .family-navi-actions a{width:100%;}
-  .route-actions a{width:100%;}
+  .route-actions a,.house-sim-actions a{width:100%;}
   .route-board{grid-template-columns:1fr;}
   .intent-grid{grid-template-columns:1fr;}
   .intent-card{min-height:0;}
@@ -776,7 +796,33 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a class="memo-card" href="family_stay_search.html"><small>Trip</small><strong>泊まる・食べる条件を整える</strong><span>畳、個室、子どもイス、洗い場付き風呂。</span></a>
         <a class="memo-card" href="money_tax_flow_guide.html"><small>Money Flow</small><strong>お金まわりの確認順を見る</strong><span>扶養、副業、年末調整、ふるさと納税を先に分ける。</span></a>
         <a class="memo-card" href="furusato_tax_limit_check.html"><small>Furusato</small><strong>ふるさと納税の上限額を見る</strong><span>寄附予定額、ワンストップ、確定申告の確認まで。</span></a>
+        <a class="memo-card" href="#house-perspective-simulator"><small>House Plan</small><strong>敷地から家の形を試す</strong><span>建坪、雪置き場、平面図、3Dパースを同じ画面で見る。</span></a>
       </div>
+    </div>
+  </section>
+
+  <section class="house-sim" id="house-perspective-simulator" aria-labelledby="house-sim-title">
+    <div class="house-sim-inner">
+      <div class="house-sim-head">
+        <div>
+          <div class="kicker">House Perspective</div>
+          <h2 id="house-sim-title">土地の数字から、家の置き方を試す。</h2>
+          <p>敷地幅、奥行き、方位、地域条件を入れると、推奨建坪、雪置き場、駐車、平面図、3Dパースをまとめて確認できます。</p>
+          <div class="house-sim-actions">
+            <a href="/house-perspective-app/index.html#embed">大きく開く</a>
+            <a href="#articles">ほかのメモも見る</a>
+          </div>
+        </div>
+        <div class="house-sim-points" aria-label="住宅計画シミュレーターで確認できること">
+          <span><strong>Site</strong>敷地入力と地域条件から、建坪や外構の余白を見ます。</span>
+          <span><strong>Snow</strong>北海道・多雪地域では、雪置き場と落雪余白も目安に入れます。</span>
+          <span><strong>View</strong>平面図、3Dパース、高精細PNG出力を同じ画面で使えます。</span>
+        </div>
+      </div>
+      <div class="house-sim-frame">
+        <iframe src="/house-perspective-app/index.html#embed" loading="lazy" title="住宅計画シミュレーター"></iframe>
+      </div>
+      <p class="house-sim-note">法規判定や構造計算を確定するものではありません。土地や間取りを考え始めるときの下見メモとして使ってください。</p>
     </div>
   </section>
 
@@ -1104,6 +1150,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="fuyou_side_income_check.html" class="article"><span class="article-icon">扶</span><div><h3>扶養・副業・手取りかんたん判定</h3><p>年収の壁・税の扶養・社会保険・申告順</p></div><span>→</span></a>
       <a href="side_income_tax_memo.html" class="article"><span class="article-icon">申</span><div><h3>副業の確定申告準備メモ</h3><p>副業・売上経費・源泉徴収・住民税</p></div><span>→</span></a>
       <a href="year_end_adjustment_forms.html" class="article"><span class="article-icon">年</span><div><h3>会社員の年末調整申告書作成サポート</h3><p>公式様式PDF・住宅控除計算・提出前確認</p></div><span>→</span></a>
+      <a href="house-perspective-app/index.html#embed" class="article"><span class="article-icon">住</span><div><h3>敷地から考える住宅計画シミュレーター</h3><p>建坪・雪置き場・平面図・3Dパース</p></div><span>→</span></a>
       <a href="diaper_size_check.html" class="article"><span class="article-icon">紙</span><div><h3>おむつサイズ＆買い置きチェック</h3><p>子育て・おむつ・メーカー別サイズ目安</p></div><span>→</span></a>
       <a href="pet_sheet_diaper_article.html" class="article"><span class="article-icon">替</span><div><h3>おむつ替えにペットシーツが便利だった理由</h3><p>子育て・おむつ替え・便利アイテム</p></div><span>→</span></a>
       <a href="mamakids_milky_lotion_article.html" class="article"><span class="article-icon">保</span><div><h3>赤ちゃん保湿にママ＆キッズ ミルキーローションは使いやすい？</h3><p>子育て・保湿・ベビースキンケア</p></div><span>→</span></a>
@@ -1296,7 +1343,7 @@ const requestSceneUpdate = () => {
 };
 
 const setupScrollReveals = () => {
-  const revealTargets = [...document.querySelectorAll('.lead-photo,.scene-media,.visual-paths,.visual-path-card,.memo-wall,.mini-flow,.route-teaser,.route-board a,.dark-band,.band-card,.family-navi,.family-navi-panel,.intent-card,.review-card,.shopping-strip,.article,.about')];
+  const revealTargets = [...document.querySelectorAll('.lead-photo,.scene-media,.visual-paths,.visual-path-card,.memo-wall,.house-sim,.mini-flow,.route-teaser,.route-board a,.dark-band,.band-card,.family-navi,.family-navi-panel,.intent-card,.review-card,.shopping-strip,.article,.about')];
   if (!revealTargets.length) return;
   const hashTarget = window.location.hash ? document.querySelector(window.location.hash) : null;
   revealVisibleTargets = () => {
