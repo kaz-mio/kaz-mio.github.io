@@ -103,7 +103,8 @@
         { "@type": "ListItem", "position": 47, "name": "扶養・副業・手取りかんたん判定", "url": "https://kaz-mio.github.io/fuyou_side_income_check.html" },
         { "@type": "ListItem", "position": 48, "name": "ふるさと納税 控除上限額かんたん確認メモ", "url": "https://kaz-mio.github.io/furusato_tax_limit_check.html" },
         { "@type": "ListItem", "position": 49, "name": "敷地から考える住宅計画シミュレーター", "url": "https://kaz-mio.github.io/house_perspective_simulator.html" },
-        { "@type": "ListItem", "position": 50, "name": "土地候補比較メモ", "url": "https://kaz-mio.github.io/land_candidate_compare.html" }
+        { "@type": "ListItem", "position": 50, "name": "土地候補比較メモ", "url": "https://kaz-mio.github.io/land_candidate_compare.html" },
+        { "@type": "ListItem", "position": 51, "name": "家づくり総予算シミュレーター", "url": "https://kaz-mio.github.io/house_total_budget_simulator.html" }
       ]
     }
   ]
@@ -578,6 +579,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <a href="side_income_tax_memo.html">副業申告メモ</a>
     <a href="land_candidate_compare.html">土地候補比較</a>
     <a href="house_perspective_simulator.html">住宅計画</a>
+    <a href="house_total_budget_simulator.html">家づくり総予算</a>
     <a href="baby_stock_manager.html">ストック管理</a>
     <a href="baby_circle_fit_check.html">置ける診断</a>
     <a href="car_seat_fit_check.html">乗せ降ろし診断</a>
@@ -601,6 +603,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <a href="side_income_tax_memo.html">副業申告</a>
     <a href="land_candidate_compare.html">土地候補比較</a>
     <a href="house_perspective_simulator.html">住宅計画</a>
+    <a href="house_total_budget_simulator.html">家づくり総予算</a>
     <a href="baby_stock_manager.html">ストック管理</a>
     <a href="baby_circle_fit_check.html">置ける診断</a>
     <a href="car_seat_fit_check.html">乗せ降ろし診断</a>
@@ -676,6 +679,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           <a href="side_income_tax_memo.html"><small>Work</small><strong>副業の<br>確定申告</strong><span>売上、経費、源泉徴収を毎月少しずつ残す。</span></a>
           <a href="land_candidate_compare.html"><small>House</small><strong>土地候補<br>比較メモ</strong><span>敷地、駐車、雪置き場、生活条件を並べる。</span></a>
           <a href="house_perspective_simulator.html"><small>House</small><strong>住宅計画<br>シミュレーター</strong><span>建坪、雪置き場、平面図、3Dパースを見る。</span></a>
+          <a href="house_total_budget_simulator.html"><small>Budget</small><strong>家づくり<br>総予算</strong><span>土地、建物、外構、諸費用、毎月返済を見る。</span></a>
         </div>
         <form class="site-search" id="siteSearch" role="search">
           <input id="siteSearchInput" type="search" placeholder="気になる言葉で検索" aria-label="サイト内を検索">
@@ -804,6 +808,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a class="memo-card" href="money_tax_flow_guide.html"><small>Money Flow</small><strong>お金まわりの確認順を見る</strong><span>扶養、副業、年末調整、ふるさと納税を先に分ける。</span></a>
         <a class="memo-card" href="furusato_tax_limit_check.html"><small>Furusato</small><strong>ふるさと納税の上限額を見る</strong><span>寄附予定額、ワンストップ、確定申告の確認まで。</span></a>
         <a class="memo-card" href="house_perspective_simulator.html"><small>House Plan</small><strong>敷地から家の形を試す</strong><span>建坪、雪置き場、平面図、3Dパースを同じ画面で見る。</span></a>
+        <a class="memo-card" href="house_total_budget_simulator.html"><small>House Budget</small><strong>家づくりの総予算を見る</strong><span>土地、建物、外構、諸費用、手元資金、毎月返済をまとめる。</span></a>
       </div>
     </div>
   </section>
@@ -818,6 +823,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           <div class="house-sim-actions">
             <a href="land_candidate_compare.html">土地候補を比較する</a>
             <a href="house_perspective_simulator.html">専用ページで開く</a>
+            <a href="house_total_budget_simulator.html">総予算を見る</a>
             <a href="#articles">ほかのメモも見る</a>
           </div>
         </div>
@@ -907,6 +913,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a class="band-card" href="year_end_adjustment_forms.html"><small>09 / WORK</small><h3>年末調整の申告書を<br>様式ごとに作る</h3><p>扶養控除等、基礎・配偶者等、保険料控除、住宅控除を確認できます。</p></a>
         <a class="band-card" href="land_candidate_compare.html"><small>10 / HOUSE</small><h3>土地候補を<br>同じ表で比べる</h3><p>敷地、駐車、雪置き場、日当たり、生活条件を候補ごとに並べます。</p></a>
         <a class="band-card" href="house_perspective_simulator.html"><small>11 / HOUSE</small><h3>家の置き方を<br>画面で試す</h3><p>建坪、雪置き場、平面図、3Dパースを同じ画面で確認します。</p></a>
+        <a class="band-card" href="house_total_budget_simulator.html"><small>12 / BUDGET</small><h3>家づくりの<br>総予算を見る</h3><p>土地、建物、外構、諸費用、手元資金、毎月返済をまとめます。</p></a>
       </div>
     </div>
   </section>
@@ -1162,6 +1169,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       <a href="year_end_adjustment_forms.html" class="article"><span class="article-icon">年</span><div><h3>会社員の年末調整申告書作成サポート</h3><p>公式様式PDF・住宅控除計算・提出前確認</p></div><span>→</span></a>
       <a href="land_candidate_compare.html" class="article"><span class="article-icon">土</span><div><h3>土地候補比較メモ</h3><p>敷地・雪置き場・駐車・生活条件</p></div><span>→</span></a>
       <a href="house_perspective_simulator.html" class="article"><span class="article-icon">住</span><div><h3>敷地から考える住宅計画シミュレーター</h3><p>建坪・雪置き場・平面図・3Dパース</p></div><span>→</span></a>
+      <a href="house_total_budget_simulator.html" class="article"><span class="article-icon">予</span><div><h3>家づくり総予算シミュレーター</h3><p>土地・建物・外構・諸費用・毎月返済</p></div><span>→</span></a>
       <a href="diaper_size_check.html" class="article"><span class="article-icon">紙</span><div><h3>おむつサイズ＆買い置きチェック</h3><p>子育て・おむつ・メーカー別サイズ目安</p></div><span>→</span></a>
       <a href="pet_sheet_diaper_article.html" class="article"><span class="article-icon">替</span><div><h3>おむつ替えにペットシーツが便利だった理由</h3><p>子育て・おむつ替え・便利アイテム</p></div><span>→</span></a>
       <a href="mamakids_milky_lotion_article.html" class="article"><span class="article-icon">保</span><div><h3>赤ちゃん保湿にママ＆キッズ ミルキーローションは使いやすい？</h3><p>子育て・保湿・ベビースキンケア</p></div><span>→</span></a>
@@ -1232,6 +1240,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a href="year_end_adjustment_forms.html">年末調整申告書作成サポート</a>
         <a href="land_candidate_compare.html">土地候補比較メモ</a>
         <a href="house_perspective_simulator.html">住宅計画シミュレーター</a>
+        <a href="house_total_budget_simulator.html">家づくり総予算シミュレーター</a>
         <a href="baby_circle_fit_check.html">置ける診断</a>
         <a href="car_seat_fit_check.html">乗せ降ろし診断</a>
         <a href="stroller_fit_check.html">ベビーカー診断</a>

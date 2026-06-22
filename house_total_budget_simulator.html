@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="R4_LTr6ogVlBzVQraulLCxlMklt-SKLQ-wnvMtQuFdw">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<title>家づくり総予算シミュレーター｜土地・建物・外構・諸費用・住宅ローン返済を確認 | KAZ &amp; MIO</title>
+<meta name="description" content="土地代、建物本体、付帯工事、外構、諸費用、家具家電、手元に残す現金、住宅ローン返済額をまとめて確認できる家づくり総予算シミュレーターです。">
+<link rel="canonical" href="https://kaz-mio.github.io/house_total_budget_simulator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="家づくり総予算シミュレーター">
+<meta property="og:description" content="土地・建物・外構・諸費用・手元資金・毎月返済を、ひとつの画面でざっくり確認できます。">
+<meta property="og:url" content="https://kaz-mio.github.io/house_total_budget_simulator.html">
+<meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
+<meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="家づくり総予算シミュレーター">
+<meta name="twitter:description" content="土地・建物・外構・諸費用・住宅ローン返済をまとめて確認できます。">
+<meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://kaz-mio.github.io/house_total_budget_simulator.html#app",
+      "name": "家づくり総予算シミュレーター",
+      "url": "https://kaz-mio.github.io/house_total_budget_simulator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "inLanguage": "ja",
+      "description": "土地代、建物本体、付帯工事、外構、諸費用、手元に残す現金、住宅ローン返済額をまとめて確認できる家づくり総予算シミュレーター"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"ホーム","item":"https://kaz-mio.github.io/"},
+        {"@type":"ListItem","position":2,"name":"家づくり総予算シミュレーター","item":"https://kaz-mio.github.io/house_total_budget_simulator.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"このページで住宅ローンの借入可能額が決まりますか？","acceptedAnswer":{"@type":"Answer","text":"決まりません。土地、建物、外構、諸費用、手元資金、毎月返済を整理するための概算メモです。実際の借入可能額、審査、金利、団体信用生命保険、諸費用は金融機関や専門家に確認してください。"}},
+        {"@type":"Question","name":"建物本体価格が分からない場合は使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えます。建坪と坪単価を入力すると建物本体価格を仮計算します。見積書がある場合は建物本体価格を直接入力できます。"}},
+        {"@type":"Question","name":"住宅ローン減税や補助金は自動で計算されますか？","acceptedAnswer":{"@type":"Answer","text":"自動では計算しません。補助金や贈与など、総予算から差し引いて見たい金額は入力できますが、適用条件や税額への影響は公式情報や専門家に確認してください。"}}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f2ed;--ink:#242424;--muted:#747474;--line:#dedbd3;--gold:#dfcf98;--gold2:#b9a45d;--sage:#6f7c70;--clay:#a67861;--soft:0 18px 46px rgba(35,31,22,.12)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#f3f2ed 0%,#e8ede8 45%,#f5f2ea 100%);color:var(--ink);line-height:1.85;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(201,182,117,.55);outline-offset:4px}
+.hd{position:sticky;top:0;z-index:40;height:66px;padding:0 clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;background:rgba(243,242,237,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.75rem;min-width:0}.brand-mark{width:40px;height:40px;border-radius:50%;background:url('assets/favicon-192.png') center/cover no-repeat;box-shadow:0 0 0 3px rgba(255,255,255,.78);flex-shrink:0}.brand-text{display:flex;flex-direction:column;line-height:1.05}.brand-en{font-family:Arial,sans-serif;font-size:.62rem;font-weight:900;letter-spacing:.2em;color:var(--gold2);text-transform:uppercase}.brand-ja{font-family:'Shippori Mincho',serif;font-size:1.1rem;font-weight:800;color:#777}
+.nav{display:flex;align-items:center;gap:.35rem}.nav a{font-size:.78rem;font-weight:900;color:#777;padding:.52rem .82rem;transition:background .2s,color .2s,transform .2s}.nav a:hover,.nav a.active{background:#fff;color:#222;transform:translateY(-2px)}.nav .contact{background:#222;color:#fff}
+.wrap{max-width:1280px;margin:0 auto;padding:3.4rem clamp(1rem,4vw,3rem) 5.6rem}.hero{display:grid;grid-template-columns:minmax(0,.95fr) minmax(340px,1.05fr);gap:1.4rem;align-items:stretch;margin-bottom:1.2rem}
+.hero-copy,.hero-panel,.tool-panel,.result-panel,.guide-panel,.related-panel,.source-panel{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;box-shadow:var(--soft)}.hero-copy{padding:1.55rem}
+.kicker{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.68rem;color:var(--gold2);font-weight:900;margin-bottom:.85rem}
+h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.05rem,4.8vw,4.2rem);line-height:1.2;font-weight:500;color:#777;margin-bottom:1rem}h1 span{color:#222}.lead{color:#696969;font-size:.96rem;max-width:44rem}
+.actions{display:flex;flex-wrap:wrap;gap:.68rem;margin-top:1.1rem}.actions a,.btn{min-height:46px;border:1px solid var(--gold);border-radius:999px;padding:.72rem 1rem;font-size:.82rem;font-weight:900;color:var(--gold2);background:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s,background .2s,color .2s,border-color .2s,box-shadow .2s}.actions a.primary,.btn.primary{background:#222;border-color:#222;color:#fff;box-shadow:0 16px 34px rgba(34,34,34,.12)}.actions a:hover,.btn:hover{transform:translateY(-2px);background:var(--gold);border-color:var(--gold);color:#fff}
+.hero-panel{padding:1.2rem;display:grid;gap:.75rem}.hero-panel h2,.tool-panel h2,.result-panel h2,.guide-panel h2,.related-panel h2,.source-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,2.8vw,2.25rem);line-height:1.35;font-weight:500;color:#666;margin-bottom:.35rem}
+.quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}.quick-card{background:#f9f8f4;border:1px solid var(--line);border-radius:8px;padding:.9rem;min-height:128px}
+.quick-card small,.result-card small,.note-card small,.case-card small,.source-card small{display:block;font-family:Arial,sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:.28rem}
+.quick-card strong,.result-card strong,.note-card strong,.case-card strong,.source-card strong{font-family:'Shippori Mincho',serif;font-size:1.05rem;line-height:1.45;color:#333}.quick-card p,.result-card p,.note-card p,.case-card p,.source-card p{font-size:.77rem;line-height:1.7;color:#777;margin-top:.25rem}
+.app{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(360px,.96fr);gap:1rem;align-items:start}.tool-panel,.result-panel,.guide-panel,.related-panel,.source-panel{padding:1.2rem;margin-bottom:1rem}
+.input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.field{display:grid;gap:.32rem}.field span{font-size:.76rem;font-weight:900;color:#555}.field input,.field select{width:100%;border:1px solid rgba(35,31,22,.14);border-radius:8px;background:#fff;padding:.66rem .72rem;color:#222}.field em{font-style:normal;color:#888;font-size:.68rem;line-height:1.5}
+.group{border-top:1px solid var(--line);padding-top:1rem;margin-top:1rem}.group h3{font-family:'Shippori Mincho',serif;color:#555;font-size:1.12rem;margin-bottom:.65rem}
+.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}.result-card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(35,31,22,.08);padding:.95rem}.result-card strong{font-size:1.28rem}.result-card.is-main{grid-column:1/-1;background:#151515;color:#fff}.result-card.is-main strong{color:#fff;font-size:1.65rem}.result-card.is-main p{color:#bbb}
+.meter{height:10px;border-radius:999px;background:#eceae2;overflow:hidden;margin:.65rem 0}.meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--gold),var(--clay));border-radius:999px;transition:width .25s}
+.note-list{display:grid;gap:.55rem;margin-top:.8rem}.note-card{background:#f9f8f4;border:1px solid var(--line);border-radius:8px;padding:.82rem}.output{width:100%;min-height:188px;border:1px solid var(--line);border-radius:8px;padding:.9rem;background:#fff;color:#555;resize:vertical;margin-top:.8rem}.button-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem}.notice{color:#777;font-size:.76rem;line-height:1.75;margin-top:.65rem}
+.case-grid,.source-grid,.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}.case-card,.source-card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(35,31,22,.08);padding:.95rem}.source-card a{color:#786427;border-bottom:1px solid rgba(120,100,39,.35);font-weight:900}
+.related-card{display:flex;flex-direction:column;gap:.4rem;background:#151515;color:#eee;border-radius:8px;padding:1rem;min-height:150px}.related-card small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold)}.related-card strong{font-family:'Shippori Mincho',serif;font-size:1.04rem;line-height:1.45}.related-card p{font-size:.77rem;line-height:1.7;color:#aaa}.related-card a{margin-top:auto;color:var(--gold);font-weight:900;font-size:.82rem;border-bottom:1px solid rgba(223,207,152,.55);align-self:flex-start}
+.ft{background:#111;color:rgba(255,255,255,.62);padding:2.6rem clamp(1rem,4vw,3rem) 2rem}.ft-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:1.4rem;margin-bottom:1.2rem}.ft .brand-ja{color:#fff}.ft-nav{display:flex;gap:1.2rem;flex-wrap:wrap}.ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68)}.ft-copy{max-width:1280px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38)}
+@media(max-width:1040px){.hero,.app{grid-template-columns:1fr}.case-grid,.source-grid,.related-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.hero-panel,.tool-panel,.result-panel,.guide-panel,.related-panel,.source-panel{padding:1rem}.quick-grid,.input-grid,.result-grid,.case-grid,.source-grid,.related-grid{grid-template-columns:1fr}.actions,.button-row{display:grid}.actions a,.btn{width:100%}h1,.lead,.quick-card p,.result-card p,.note-card p,.case-card p,.source-card p,.related-card p{overflow-wrap:anywhere;line-break:strict}.ft-inner{align-items:flex-start;flex-direction:column}}
+@media print{.hd,.hero,.guide-panel,.related-panel,.source-panel,.button-row,.ft{display:none!important}.wrap{max-width:none;padding:0}.app{display:block}.tool-panel,.result-panel{box-shadow:none;border:0}body{background:#fff;color:#111}}
+</style>
+<script src="assets/analytics.js"></script>
+</head>
+<body>
+<header class="hd">
+  <a href="index.html" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span></a>
+  <nav class="nav" aria-label="サイト内メニュー">
+    <a href="index.html">Home</a>
+    <a href="land_candidate_compare.html">Land</a>
+    <a class="active" href="house_total_budget_simulator.html">Budget</a>
+    <a href="house_perspective_simulator.html">House</a>
+    <a href="money_tax_flow_guide.html">Money</a>
+    <a class="contact" href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">House Total Budget</div>
+      <h1>家づくりの総額を、<br><span>先に一枚で見る。</span></h1>
+      <p class="lead">土地代と建物本体だけで終わらない、付帯工事、外構、諸費用、家具家電、引越し、予備費までまとめて見るための概算メモです。最後に、自己資金を差し引いた借入目安と毎月返済も出します。</p>
+      <div class="actions">
+        <a class="primary" href="#budget-tool">総予算を試算する</a>
+        <a href="land_candidate_compare.html">土地候補から見る</a>
+        <a href="house_perspective_simulator.html">建坪を試す</a>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-label="このツールで見られること">
+      <h2>最初に見たい4つ。</h2>
+      <div class="quick-grid">
+        <div class="quick-card"><small>Total</small><strong>総額の目安</strong><p>土地、建物、外構、諸費用、予備費を足して全体を見ます。</p></div>
+        <div class="quick-card"><small>Cash</small><strong>手元資金</strong><p>自己資金を全部入れず、残したい現金を分けて考えます。</p></div>
+        <div class="quick-card"><small>Loan</small><strong>借入目安</strong><p>差し引き後に、どれくらいローンで見るかを出します。</p></div>
+        <div class="quick-card"><small>Monthly</small><strong>毎月返済</strong><p>金利と年数から、返済負担率までざっくり確認します。</p></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="app" id="budget-tool" aria-label="家づくり総予算シミュレーター">
+    <div class="tool-panel">
+      <h2>分かるところだけ入れる</h2>
+      <p class="notice">金額はすべて万円です。建物本体価格が分からないときは、建坪と坪単価から仮計算します。</p>
+      <div class="group"><h3>土地・建物</h3><div class="input-grid">
+        <label class="field"><span>土地価格</span><input id="landPrice" type="number" min="0" step="10" inputmode="decimal"><em>土地を買う場合。すでにある土地なら0でも大丈夫です。</em></label>
+        <label class="field"><span>建坪</span><input id="buildingTsubo" type="number" min="0" step="0.5" inputmode="decimal"><em>住宅計画シミュレーターの建坪目安を入れられます。</em></label>
+        <label class="field"><span>坪単価</span><input id="unitPrice" type="number" min="0" step="1" inputmode="decimal"><em>建物本体価格が空欄のときに使います。</em></label>
+        <label class="field"><span>建物本体価格</span><input id="buildingBase" type="number" min="0" step="10" inputmode="decimal"><em>見積書がある場合はこちらを優先します。</em></label>
+      </div></div>
+      <div class="group"><h3>見落としやすい費用</h3><div class="input-grid">
+        <label class="field"><span>付帯工事率</span><input id="ancillaryRate" type="number" min="0" step="1" inputmode="decimal"><em>建物本体に対する割合。給排水、地盤、屋外設備などの仮置き。</em></label>
+        <label class="field"><span>外構・駐車・雪対策</span><input id="exterior" type="number" min="0" step="10" inputmode="decimal"><em>駐車、庭、フェンス、アプローチ、雪置き場など。</em></label>
+        <label class="field"><span>設計・申請・検査など</span><input id="designFee" type="number" min="0" step="10" inputmode="decimal"><em>別見積りになりやすい費用を入れます。</em></label>
+        <label class="field"><span>諸費用率</span><input id="miscRate" type="number" min="0" step="1" inputmode="decimal"><em>登記、融資、火災保険、印紙、税金などの仮置き。</em></label>
+        <label class="field"><span>家具・家電・カーテン</span><input id="furniture" type="number" min="0" step="10" inputmode="decimal"></label>
+        <label class="field"><span>引越し・仮住まい</span><input id="moving" type="number" min="0" step="10" inputmode="decimal"></label>
+        <label class="field"><span>予備費率</span><input id="reserveRate" type="number" min="0" step="1" inputmode="decimal"><em>総額のブレを受け止めるための余白です。</em></label>
+      </div></div>
+      <div class="group"><h3>自己資金・ローン</h3><div class="input-grid">
+        <label class="field"><span>自己資金</span><input id="ownCash" type="number" min="0" step="10" inputmode="decimal"></label>
+        <label class="field"><span>手元に残したい現金</span><input id="keepCash" type="number" min="0" step="10" inputmode="decimal"></label>
+        <label class="field"><span>援助・補助金など</span><input id="support" type="number" min="0" step="10" inputmode="decimal"><em>確定している金額だけを入れるのがおすすめです。</em></label>
+        <label class="field"><span>年収</span><input id="income" type="number" min="0" step="10" inputmode="decimal"><em>返済負担率の目安に使います。</em></label>
+        <label class="field"><span>金利 年率</span><input id="rate" type="number" min="0" step="0.01" inputmode="decimal"><em>実際の金利は金融機関で確認します。</em></label>
+        <label class="field"><span>返済年数</span><input id="years" type="number" min="1" max="50" step="1" inputmode="numeric"></label>
+      </div></div>
+    </div>
+    <aside class="result-panel" aria-live="polite">
+      <h2>試算結果</h2>
+      <div class="result-grid" id="resultGrid"></div>
+      <div class="note-list" id="noteList"></div>
+      <div class="button-row">
+        <button class="btn primary" type="button" id="copyBtn">メモをコピー</button>
+        <button class="btn" type="button" id="printBtn">印刷する</button>
+        <button class="btn" type="button" id="resetBtn">初期値に戻す</button>
+      </div>
+      <textarea class="output" id="output" readonly aria-label="コピー用の家づくり総予算メモ"></textarea>
+      <p class="notice">このページは概算メモです。実際の見積り、住宅ローン審査、税制、補助金、登記・保険・地盤・外構は、金融機関、住宅会社、自治体、税理士などに確認してください。</p>
+    </aside>
+  </section>
+
+  <section class="guide-panel"><h2>年収別・ケース別に、最初に見るところ</h2><p class="notice">同じ総額でも、手元に残す現金、金利、返済年数、車や教育費で負担感は変わります。借りられる額ではなく、暮らしながら返せるかを先に見ます。</p><div class="case-grid">
+    <article class="case-card"><small>共働き</small><strong>片方の収入が下がる時期も見る</strong><p>育休、時短、転職、保育料、車の買い替えが重なると、返済の感じ方が変わります。</p></article>
+    <article class="case-card"><small>土地あり</small><strong>建物以外の費用を薄く見ない</strong><p>解体、造成、地盤、上下水道、外構、登記が別で出ることがあります。</p></article>
+    <article class="case-card"><small>雪国</small><strong>外構と除雪の余白を残す</strong><p>カーポート、融雪、雪置き場、アプローチの除雪範囲は、後から効いてきます。</p></article>
+    <article class="case-card"><small>土地購入</small><strong>土地代と建物代を同じ表で見る</strong><p>土地を頑張りすぎると、外構や家具家電、手元資金が薄くなりやすいです。</p></article>
+    <article class="case-card"><small>金利上昇</small><strong>0.5%上がった時も試す</strong><p>金利を少し上げて入れ直すだけで、毎月返済と返済負担率の変化が見えます。</p></article>
+    <article class="case-card"><small>予備費</small><strong>最後に削らない</strong><p>仕様変更や外構追加、家電買い替えを受け止める余白として残しておきます。</p></article>
+  </div></section>
+
+  <section class="source-panel"><h2>信頼性メモ</h2><div class="source-grid">
+    <article class="source-card"><small>Updated</small><strong>2026年6月22日確認</strong><p>住宅ローン減税など、制度は変わります。ページ内では公式情報へのリンクを置き、金額は概算として扱います。</p></article>
+    <article class="source-card"><small>Official</small><strong>住宅ローン減税</strong><p><a href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk2_000017.html" target="_blank" rel="noopener">国土交通省の住宅ローン減税</a>、<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm" target="_blank" rel="noopener">国税庁 No.1210</a>を確認します。</p></article>
+    <article class="source-card"><small>Scope</small><strong>借入可能額ではありません</strong><p>審査結果、団信、金利タイプ、保証料、事務手数料、補助金の適用は、このページでは判定しません。</p></article>
+    <article class="source-card"><small>Privacy</small><strong>入力はブラウザ内</strong><p>入力内容はこのブラウザ内で計算し、保存もローカルストレージだけです。</p></article>
+    <article class="source-card"><small>Compare</small><strong>土地と建坪へ戻れる</strong><p>土地候補比較メモ、住宅計画シミュレーターと行き来しながら、数字の前提をそろえられます。</p></article>
+    <article class="source-card"><small>Next</small><strong>見積書で上書きする</strong><p>住宅会社の見積書が出たら、坪単価ではなく実額を入力して差を見ます。</p></article>
+  </div></section>
+
+  <section class="related-panel"><h2>次に見るページ</h2><div class="related-grid">
+    <article class="related-card"><small>Land</small><strong>土地候補比較メモ</strong><p>敷地、駐車、雪置き場、日当たり、生活条件を候補ごとに並べます。</p><a href="land_candidate_compare.html">比較する</a></article>
+    <article class="related-card"><small>House</small><strong>住宅計画シミュレーター</strong><p>建坪、雪置き場、平面図、3Dパースを画面で試します。</p><a href="house_perspective_simulator.html">建坪を見る</a></article>
+    <article class="related-card"><small>Money</small><strong>扶養・副業・年末調整の確認順</strong><p>家計に関わるお金まわりを、提出前に分けて確認します。</p><a href="money_tax_flow_guide.html">確認順へ</a></article>
+  </div></section>
+</main>
+
+<footer class="ft"><div class="ft-inner"><a href="index.html" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span></a><nav class="ft-nav"><a href="index.html">トップ</a><a href="land_candidate_compare.html">土地候補比較メモ</a><a href="house_total_budget_simulator.html">家づくり総予算</a><a href="house_perspective_simulator.html">住宅計画シミュレーター</a><a href="editorial_policy.html">運営方針</a><a href="contact.html">お問い合わせ</a></nav></div><p class="ft-copy">&copy; 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります。</p></footer>
+
+<script>
+const STORAGE_KEY='kazmio_house_total_budget_v1';
+const defaults={landPrice:1200,buildingTsubo:32,unitPrice:85,buildingBase:'',ancillaryRate:12,exterior:250,designFee:120,miscRate:8,furniture:120,moving:40,reserveRate:7,ownCash:600,keepCash:200,support:0,income:650,rate:1.9,years:35};
+const ids=Object.keys(defaults),resultGrid=document.getElementById('resultGrid'),noteList=document.getElementById('noteList'),output=document.getElementById('output'),copyBtn=document.getElementById('copyBtn'),printBtn=document.getElementById('printBtn'),resetBtn=document.getElementById('resetBtn');
+function el(id){return document.getElementById(id)}function num(id){return Number(el(id).value||0)}function man(v){return Math.round(v).toLocaleString('ja-JP')+'万円'}function yen(v){return Math.round(v).toLocaleString('ja-JP')+'円'}function pct(v){return (Math.round(v*10)/10).toLocaleString('ja-JP')+'%'}
+function monthlyPayment(loanMan,rate,years){const p=loanMan*10000,m=Math.max(1,Math.round(years*12)),r=Math.max(0,rate)/100/12;if(!p)return 0;if(!r)return p/m;const f=Math.pow(1+r,m);return p*r*f/(f-1)}
+function collect(){const d={};ids.forEach(id=>d[id]=el(id).value);return d}
+function calc(){const land=num('landPrice'),tsubo=num('buildingTsubo'),unit=num('unitPrice'),direct=num('buildingBase'),building=direct||(tsubo*unit),ancillary=building*num('ancillaryRate')/100,exterior=num('exterior'),design=num('designFee'),miscBase=land+building+ancillary+exterior+design,misc=miscBase*num('miscRate')/100,furniture=num('furniture'),moving=num('moving'),beforeReserve=miscBase+misc+furniture+moving,reserve=beforeReserve*num('reserveRate')/100,total=beforeReserve+reserve,availableCash=num('ownCash')+num('support'),cashForProject=Math.max(0,availableCash-num('keepCash')),loan=Math.max(0,total-cashForProject),monthly=monthlyPayment(loan,num('rate'),num('years')),annual=monthly*12,incomeYen=num('income')*10000,burden=incomeYen?annual/incomeYen*100:0,totalPayment=monthly*Math.max(1,num('years')*12),interest=Math.max(0,totalPayment-loan*10000)/10000,cashAfter=availableCash-Math.max(0,total-loan);return{land,tsubo,unit,direct,building,ancillary,exterior,design,misc,furniture,moving,reserve,total,availableCash,cashForProject,loan,monthly,annual,burden,interest,cashAfter}}
+function card(label,value,text,main){return '<article class="result-card'+(main?' is-main':'')+'"><small>'+label+'</small><strong>'+value+'</strong><p>'+text+'</p></article>'}
+function notes(c){const list=[];if(c.burden>=30)list.push('返済負担率が高めです。金利を上げたケース、借入額を下げるケース、返済年数を変えるケースも見ておきたいです。');else if(c.burden>=25)list.push('返済負担率は少し慎重に見たい範囲です。車、教育費、育休・時短の時期も一緒に確認します。');else list.push('返済負担率だけで見れば、いったん比較しやすい範囲です。固定費全体では必ず見直します。');if(num('keepCash')<150)list.push('手元に残す現金が少なめです。引越し後の家電、外構追加、車検、医療費などを別で残せるか確認します。');if(num('reserveRate')<5)list.push('予備費率が低めです。仕様変更、外構、地盤、カーテン、照明の追加に備えて余白を見ます。');if(num('exterior')<150)list.push('外構費が薄めです。駐車、フェンス、アプローチ、雪置き場、物置まで含めるか確認します。');if(!num('buildingBase'))list.push('建物本体価格は建坪と坪単価からの仮計算です。見積書が出たら実額で上書きします。');return list}
+function memo(c){return['家づくり総予算メモ','作成日: '+new Date().toLocaleDateString('ja-JP'),'','土地価格: '+man(c.land),'建物本体: '+man(c.building)+(c.direct?'（実額入力）':'（'+num('buildingTsubo')+'坪 × '+num('unitPrice')+'万円）'),'付帯工事: '+man(c.ancillary),'外構・駐車・雪対策: '+man(c.exterior),'設計・申請・検査など: '+man(c.design),'諸費用: '+man(c.misc),'家具・家電・カーテン: '+man(c.furniture),'引越し・仮住まい: '+man(c.moving),'予備費: '+man(c.reserve),'総予算目安: '+man(c.total),'','自己資金・援助等: '+man(c.availableCash),'手元に残したい現金: '+man(num('keepCash')),'借入目安: '+man(c.loan),'金利: 年'+num('rate')+'% / 返済年数: '+num('years')+'年','毎月返済目安: '+yen(c.monthly),'返済負担率目安: '+pct(c.burden),'利息総額の目安: '+man(c.interest),'','確認: 見積書、金融機関、自治体の補助金、住宅ローン減税の条件は別途確認。','KAZ & MIO 家づくり総予算シミュレーター'].join('\n')}
+function update(){const c=calc(),mw=Math.min(100,Math.max(0,c.burden/35*100));resultGrid.innerHTML=[card('TOTAL',man(c.total),'土地、建物、付帯工事、外構、諸費用、家具家電、引越し、予備費を足した目安です。',true),card('LOAN',man(c.loan),'手元に残したい現金を除いて、ローンで見る金額の目安です。'),card('MONTHLY',yen(c.monthly),'元利均等返済での概算です。ボーナス払いは入れていません。'),card('BURDEN',pct(c.burden),'<div class="meter"><span style="width:'+mw+'%"></span></div>年収に対する年間返済額の割合です。'),card('CASH LEFT',man(c.cashAfter),'自己資金と援助等から支払い後に残る現金の目安です。'),card('INTEREST',man(c.interest),'入力した金利と年数での利息総額の目安です。')].join('');noteList.innerHTML=notes(c).map(t=>'<div class="note-card"><small>Check</small><strong>'+t+'</strong></div>').join('');output.value=memo(c);try{localStorage.setItem(STORAGE_KEY,JSON.stringify(collect()))}catch(e){}}
+function load(values){ids.forEach(id=>{el(id).value=values&&values[id]!==undefined?values[id]:defaults[id]});update()}
+ids.forEach(id=>el(id).addEventListener('input',update));copyBtn.addEventListener('click',async()=>{output.select();try{await navigator.clipboard.writeText(output.value);copyBtn.textContent='コピーしました';setTimeout(()=>copyBtn.textContent='メモをコピー',1400)}catch(e){document.execCommand('copy')}});printBtn.addEventListener('click',()=>window.print());resetBtn.addEventListener('click',()=>load(defaults));let saved=null;try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null')}catch(e){}load(saved||defaults);
+</script>
+</body>
+</html>
