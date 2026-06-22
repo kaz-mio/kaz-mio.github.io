@@ -785,3 +785,78 @@ body.simple-version .perspective-panel {
     padding: 7px 9px;
   }
 }
+
+@media (max-width: 760px) {
+  body {
+    min-width: 0;
+    overflow: auto;
+  }
+
+  body.embed-mode {
+    min-width: 0;
+  }
+
+  .app {
+    height: auto;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .top-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .version-switch {
+    width: 116px;
+    min-width: 116px;
+  }
+
+  .button {
+    padding: 7px 8px;
+  }
+
+  .workspace,
+  body.embed-mode .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 10px;
+  }
+
+  .left-panel,
+  .right-panel {
+    overflow: visible;
+  }
+
+  .fields.two,
+  .summary-grid,
+  .metric-grid,
+  .quality-grid,
+  .export-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-area {
+    min-width: 0;
+  }
+
+  .canvas-wrap {
+    min-width: 0;
+  }
+
+  .perspective-panel,
+  body.embed-mode .perspective-panel,
+  body.simple-version .perspective-panel {
+    min-height: 360px;
+    grid-template-rows: auto minmax(300px, 58vh);
+  }
+}

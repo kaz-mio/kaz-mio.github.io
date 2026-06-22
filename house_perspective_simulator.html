@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>住宅計画シミュレーター｜敷地・建坪・雪置き場・平面図・3Dパース | KAZ &amp; MIO</title>
-<meta name="description" content="敷地幅、奥行き、方位、地域条件から、推奨建坪、雪置き場、平面図、3Dパースを確認できる住宅計画シミュレーターです。高精細PNG出力にも対応しています。">
+<meta name="description" content="敷地幅、奥行き、方位、地域条件から、推奨建坪、雪置き場、平面図、3Dパースを確認できる住宅計画シミュレーターです。土地候補比較メモや高精細PNG出力にもつなげられます。">
 <link rel="canonical" href="https://kaz-mio.github.io/house_perspective_simulator.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="住宅計画シミュレーター">
@@ -49,7 +49,9 @@
       "mainEntity": [
         {"@type":"Question","name":"このページで何を確認できますか？","acceptedAnswer":{"@type":"Answer","text":"敷地寸法、方位、地域条件を入力して、推奨建坪、雪置き場、平面図、3Dパース、高精細PNG出力を確認できます。"}},
         {"@type":"Question","name":"北海道や多雪地域にも対応していますか？","acceptedAnswer":{"@type":"Answer","text":"北海道、多雪地域、標準地域、都市部を選べます。北海道や多雪地域では雪置き場や落雪余白の目安も表示します。"}},
-        {"@type":"Question","name":"法規判定や構造計算までできますか？","acceptedAnswer":{"@type":"Answer","text":"できません。建築基準法、構造計算、日影計算、積雪荷重計算などを確定するものではなく、住宅計画を考え始めるための下見メモとして使う想定です。"}}
+        {"@type":"Question","name":"法規判定や構造計算までできますか？","acceptedAnswer":{"@type":"Answer","text":"できません。建築基準法、構造計算、日影計算、積雪荷重計算などを確定するものではなく、住宅計画を考え始めるための下見メモとして使う想定です。"}},
+        {"@type":"Question","name":"土地候補を比べてから使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えます。土地候補比較メモで敷地面積、間口、奥行き、雪置き場、駐車、生活条件を並べたあと、候補の幅と奥行きをこのシミュレーターに入力すると見比べやすくなります。"}},
+        {"@type":"Question","name":"出力したPNGは何に使えますか？","acceptedAnswer":{"@type":"Answer","text":"家族内の相談、住宅会社への相談前メモ、土地候補の比較メモとして使えます。正式な図面や建築確認用の資料ではありません。"}}
       ]
     }
   ]
@@ -92,18 +94,25 @@ h1 span{color:#222}
 .actions a:hover{transform:translateY(-3px);background:var(--gold);border-color:var(--gold);color:#fff}
 .sim-section{background:#e8ece6;border:1px solid var(--line);box-shadow:var(--soft);padding:1.2rem;margin-bottom:1.5rem}
 .sim-head{display:flex;justify-content:space-between;gap:1.4rem;align-items:end;margin-bottom:1rem}
-.sim-head h2,.info h2,.related h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,3vw,2.8rem);font-weight:500;line-height:1.35;color:#666}
+.sim-head h2,.info h2,.related h2,.case-panel h2,.faq-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,3vw,2.8rem);font-weight:500;line-height:1.35;color:#666}
 .sim-head p{max-width:44rem;color:#69726b;font-size:.86rem}
 .sim-scroll{overflow-x:auto;overflow-y:hidden;background:#fff;border:1px solid rgba(34,34,34,.12);box-shadow:0 22px 58px rgba(34,48,42,.16)}
 .sim-scroll iframe{display:block;width:100%;min-width:1120px;height:clamp(880px,90vh,980px);border:0;background:#fff}
 .sim-note{margin-top:.8rem;color:#737b74;font-size:.78rem;line-height:1.75}
 .info{display:grid;grid-template-columns:.8fr 1.2fr;gap:1.5rem;align-items:start;background:#fff;border:1px solid var(--line);padding:1.4rem;box-shadow:0 12px 34px rgba(35,31,22,.08);margin-bottom:1.5rem}
 .info p{color:#777;font-size:.88rem}
-.info-grid,.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.info-card,.related-card{background:#f9f8f4;min-height:150px;padding:1rem;display:flex;flex-direction:column;gap:.45rem}
-.info-card small,.related-card small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold2)}
-.info-card strong,.related-card strong{font-family:'Shippori Mincho',serif;font-size:1.08rem;line-height:1.45;color:#333}
-.info-card p,.related-card p{font-size:.78rem;line-height:1.7;color:#777}
+.info-grid,.related-grid,.case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.info-card,.related-card,.case-card{background:#f9f8f4;min-height:150px;padding:1rem;display:flex;flex-direction:column;gap:.45rem}
+.info-card small,.related-card small,.case-card small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold2)}
+.info-card strong,.related-card strong,.case-card strong{font-family:'Shippori Mincho',serif;font-size:1.08rem;line-height:1.45;color:#333}
+.info-card p,.related-card p,.case-card p{font-size:.78rem;line-height:1.7;color:#777}
+.case-panel,.faq-panel{background:#fff;border:1px solid var(--line);padding:1.4rem;box-shadow:0 12px 34px rgba(35,31,22,.08);margin-bottom:1.5rem}
+.case-panel>p,.faq-panel>p{color:#777;font-size:.88rem;max-width:46rem;margin:.6rem 0 1rem}
+.case-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.faq-list{display:grid;gap:.7rem}
+.faq-list details{background:#f9f8f4;border:1px solid var(--line);padding:.9rem}
+.faq-list summary{cursor:pointer;font-weight:900;color:#333}
+.faq-list p{color:#777;font-size:.82rem;line-height:1.8;margin-top:.55rem}
 .related{background:#151515;color:#fff;padding:1.5rem;margin-bottom:1.5rem}
 .related h2{color:#eee;margin-bottom:.8rem}
 .related>p{color:#aaa;font-size:.88rem;max-width:46rem;margin-bottom:1rem}
@@ -118,7 +127,7 @@ h1 span{color:#222}
 .ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68);transition:color .2s,transform .2s}
 .ft-nav a:hover{color:#fff;transform:translateY(-2px)}
 .ft-copy{max-width:1280px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38)}
-@media(max-width:980px){.hero,.info{grid-template-columns:1fr}.hero-card,.info-grid,.related-grid{grid-template-columns:1fr}.sim-head{display:block}.sim-head p{margin-top:.55rem}.wrap{padding:3rem 1rem 4rem}.sim-section{padding:.9rem}.sim-scroll iframe{height:940px}.ft-inner{align-items:flex-start;flex-direction:column}}
+@media(max-width:980px){.hero,.info{grid-template-columns:1fr}.hero-card,.info-grid,.related-grid,.case-grid{grid-template-columns:1fr}.sim-head{display:block}.sim-head p{margin-top:.55rem}.wrap{padding:3rem 1rem 4rem}.sim-section{padding:.9rem}.sim-scroll iframe{height:940px}.ft-inner{align-items:flex-start;flex-direction:column}}
 @media(max-width:640px){.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.actions{display:grid}.actions a{width:100%}h1{font-size:2.25rem}.lead,.sim-head p,.info p,.related>p{overflow-wrap:anywhere;line-break:strict}}
 </style>
 <script src="assets/analytics.js"></script>
@@ -181,14 +190,48 @@ h1 span{color:#222}
     </div>
   </section>
 
+  <section class="case-panel" aria-labelledby="case-title">
+    <div class="kicker">Examples</div>
+    <h2 id="case-title">敷地面積別に、最初に見るところ</h2>
+    <p>同じ坪数でも、間口、奥行き、道路、雪置き場で置きやすさは変わります。数字を入れる前に、近いケースを見ておくと確認しやすくなります。</p>
+    <div class="case-grid">
+      <article class="case-card"><small>40坪台</small><strong>駐車と雪置き場を先に見る</strong><p>建物を広げるほど、駐車、庭、雪置き場の余白が小さくなります。まず外の余白から見ます。</p></article>
+      <article class="case-card"><small>50〜60坪台</small><strong>建物と外構の配分を見る</strong><p>2階建てなら庭を残しやすく、平屋なら建築面積が大きくなりやすいです。建坪を変えて比べます。</p></article>
+      <article class="case-card"><small>70坪以上</small><strong>除雪範囲と外構費も見る</strong><p>余白は取りやすい一方で、除雪や外構の範囲が広がります。置けるかだけでなく、管理しやすさも見ます。</p></article>
+      <article class="case-card"><small>角地・変形地</small><strong>幅と奥行きを分けて見る</strong><p>面積だけでは判断しにくい候補です。道路、乗り入れ、電柱、隣地との距離を現地メモに残します。</p></article>
+    </div>
+  </section>
+
+  <section class="case-panel" aria-labelledby="land-compare-title">
+    <div class="kicker">Before Simulation</div>
+    <h2 id="land-compare-title">複数の土地を見たら、先に比較メモへ</h2>
+    <p>土地候補が2件以上あるときは、敷地面積、間口、奥行き、駐車、雪置き場、日当たり、生活条件を同じ表で並べると、シミュレーターに入れる候補を選びやすくなります。</p>
+    <div class="actions">
+      <a class="primary" href="land_candidate_compare.html">土地候補比較メモを開く</a>
+      <a href="#simulator">このページで配置を試す</a>
+    </div>
+  </section>
+
+  <section class="faq-panel" aria-labelledby="faq-title">
+    <div class="kicker">FAQ</div>
+    <h2 id="faq-title">よくある確認</h2>
+    <p>土地や間取りを考え始めた段階で、先に知っておきたいことをまとめました。</p>
+    <div class="faq-list">
+      <details open><summary>土地候補を比べてから使った方がよいですか？</summary><p>候補が複数ある場合は、土地候補比較メモで敷地面積、間口、奥行き、駐車、雪置き場を並べてから使うと、入力する候補を選びやすくなります。</p></details>
+      <details><summary>建坪の目安はそのまま設計に使えますか？</summary><p>使えません。建坪の目安は、土地に対して建物の大きさを想像するための下見用です。実際の設計では、建ぺい率、容積率、道路、用途地域、斜線制限、構造、予算を専門家と確認します。</p></details>
+      <details><summary>雪置き場はどこまで見ればよいですか？</summary><p>道路側、駐車スペース横、庭側など、除雪した雪を一時的に置ける場所を見ます。落雪する屋根形状や隣地との距離も後で確認が必要です。</p></details>
+      <details><summary>PNG出力は住宅会社に送ってもよいですか？</summary><p>相談前のメモとして送るのは便利です。ただし正式な図面ではないため、寸法や法規判断は住宅会社、設計者、不動産会社の確認を優先してください。</p></details>
+    </div>
+  </section>
+
   <section class="related" aria-labelledby="related-title">
     <div class="kicker">Related Memo</div>
     <h2 id="related-title">家まわりを一緒に見る</h2>
     <p>住宅そのものを考える前後で、家具、買う前チェック、リビングの動線も合わせて見ると、暮らし始めたあとの違和感に気づきやすくなります。</p>
     <div class="related-grid">
+      <article class="related-card"><small>Land</small><strong>土地候補比較メモ</strong><p>敷地、駐車、雪置き場、日当たり、生活条件を候補ごとに並べます。</p><a href="land_candidate_compare.html">比較する</a></article>
       <article class="related-card"><small>Before Buy</small><strong>買う前に確認したいこと</strong><p>玄関、車、部屋、在庫、季節の見落としを短く確認します。</p><a href="buy_before_check.html">確認する</a></article>
       <article class="related-card"><small>Room</small><strong>子育て家庭のリビング家具選び</strong><p>家具の置き方と通路、掃除、子どもの動きを一緒に見ます。</p><a href="interior_furniture_article.html">読む</a></article>
-      <article class="related-card"><small>Route</small><strong>迷ったらここから</strong><p>いま引っかかっている場面から、近いメモやツールへ進めます。</p><a href="mio_route_finder.html">探す</a></article>
     </div>
   </section>
 </main>
@@ -201,6 +244,7 @@ h1 span{color:#222}
     </a>
     <nav class="ft-nav">
       <a href="index.html">トップ</a>
+      <a href="land_candidate_compare.html">土地候補比較メモ</a>
       <a href="house_perspective_simulator.html">住宅計画シミュレーター</a>
       <a href="buy_before_check.html">買う前チェック</a>
       <a href="interior_furniture_article.html">リビング家具</a>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="R4_LTr6ogVlBzVQraulLCxlMklt-SKLQ-wnvMtQuFdw">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<title>土地候補比較メモ｜敷地・雪置き場・駐車・生活条件を並べて確認 | KAZ &amp; MIO</title>
+<meta name="description" content="土地候補を3件まで並べ、敷地面積、間口、奥行き、駐車、雪置き場、日当たり、生活条件を比較できるブラウザ内メモです。住宅計画シミュレーターと一緒に使えます。">
+<link rel="canonical" href="https://kaz-mio.github.io/land_candidate_compare.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="土地候補比較メモ">
+<meta property="og:description" content="土地候補を、敷地・駐車・雪置き場・日当たり・生活条件で並べて確認できます。">
+<meta property="og:url" content="https://kaz-mio.github.io/land_candidate_compare.html">
+<meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
+<meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="土地候補比較メモ">
+<meta name="twitter:description" content="土地候補を、敷地・駐車・雪置き場・日当たり・生活条件で並べて確認できます。">
+<meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://kaz-mio.github.io/land_candidate_compare.html#app",
+      "name": "土地候補比較メモ",
+      "url": "https://kaz-mio.github.io/land_candidate_compare.html",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any",
+      "inLanguage": "ja",
+      "description": "土地候補を3件まで並べ、敷地面積、間口、奥行き、駐車、雪置き場、日当たり、生活条件を比較できるブラウザ内メモ"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"ホーム","item":"https://kaz-mio.github.io/"},
+        {"@type":"ListItem","position":2,"name":"土地候補比較メモ","item":"https://kaz-mio.github.io/land_candidate_compare.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"このページだけで土地を決められますか？","acceptedAnswer":{"@type":"Answer","text":"決められません。土地候補の比較メモとして、敷地、駐車、雪置き場、生活条件の見落としを減らすために使います。法規、地盤、上下水道、ハザード、費用は不動産会社や専門家、自治体情報で確認してください。"}},
+        {"@type":"Question","name":"雪置き場も比較できますか？","acceptedAnswer":{"@type":"Answer","text":"できます。北海道や多雪地域の下見で見落としやすい、雪置き場、除雪のしやすさ、前面道路の幅、駐車と玄関までの動線を点数に入れています。"}},
+        {"@type":"Question","name":"入力内容は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"送信されません。入力内容はこのブラウザ内で処理され、必要に応じてコピー用メモとして保存できます。"}}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f2ed;--paper:#fff;--ink:#242424;--muted:#747474;--line:#dedbd3;--gold:#dfcf98;--gold2:#b9a45d;--sage:#6f7c70;--sky:#637f8d;--clay:#a67861;--dark:#171717;--soft:0 18px 46px rgba(35,31,22,.12)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#f3f2ed 0%,#e9ede8 48%,#f3f2ed 100%);color:var(--ink);line-height:1.85;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(201,182,117,.55);outline-offset:4px}
+.hd{position:sticky;top:0;z-index:40;height:66px;padding:0 clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;background:rgba(243,242,237,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.75rem;min-width:0}
+.brand-mark{width:40px;height:40px;border-radius:50%;background:url('assets/favicon-192.png') center/cover no-repeat;box-shadow:0 0 0 3px rgba(255,255,255,.78);flex-shrink:0}
+.brand-text{display:flex;flex-direction:column;line-height:1.05}
+.brand-en{font-family:Arial,sans-serif;font-size:.62rem;font-weight:900;letter-spacing:.2em;color:var(--gold2);text-transform:uppercase}
+.brand-ja{font-family:'Shippori Mincho',serif;font-size:1.1rem;font-weight:800;color:#777}
+.nav{display:flex;align-items:center;gap:.35rem}
+.nav a{font-size:.78rem;font-weight:900;color:#777;padding:.52rem .82rem;transition:background .2s,color .2s,transform .2s}
+.nav a:hover,.nav a.active{background:#fff;color:#222;transform:translateY(-2px)}
+.nav .contact{background:#222;color:#fff}
+.wrap{max-width:1280px;margin:0 auto;padding:3.4rem clamp(1rem,4vw,3rem) 5.6rem}
+.hero{display:grid;grid-template-columns:minmax(0,.95fr) minmax(340px,1.05fr);gap:1.4rem;align-items:stretch;margin-bottom:1.2rem}
+.hero-copy,.hero-panel,.tool-panel,.result-panel,.guide-panel,.related-panel{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;box-shadow:var(--soft)}
+.hero-copy{padding:1.55rem}
+.kicker{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.68rem;color:var(--gold2);font-weight:900;margin-bottom:.85rem}
+h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.05rem,4.8vw,4.2rem);line-height:1.2;font-weight:500;color:#777;margin-bottom:1rem}
+h1 span{color:#222}
+.lead{color:#696969;font-size:.96rem;max-width:44rem}
+.actions{display:flex;flex-wrap:wrap;gap:.68rem;margin-top:1.1rem}
+.actions a,.btn{min-height:46px;border:1px solid var(--gold);border-radius:999px;padding:.72rem 1rem;font-size:.82rem;font-weight:900;color:var(--gold2);background:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s,background .2s,color .2s,border-color .2s,box-shadow .2s}
+.actions a.primary,.btn.primary{background:#222;border-color:#222;color:#fff;box-shadow:0 16px 34px rgba(34,34,34,.12)}
+.actions a:hover,.btn:hover{transform:translateY(-2px);background:var(--gold);border-color:var(--gold);color:#fff}
+.hero-panel{padding:1.2rem;display:grid;gap:.75rem}
+.hero-panel h2,.tool-panel h2,.result-panel h2,.guide-panel h2,.related-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.45rem,2.8vw,2.25rem);line-height:1.35;font-weight:500;color:#666;margin-bottom:.35rem}
+.quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.quick-card{background:#f9f8f4;border:1px solid var(--line);border-radius:8px;padding:.9rem;min-height:128px}
+.quick-card small,.score-card small,.note-card small,.case-card small{display:block;font-family:Arial,sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:.28rem}
+.quick-card strong,.score-card strong,.note-card strong,.case-card strong{font-family:'Shippori Mincho',serif;font-size:1.05rem;line-height:1.45;color:#333}
+.quick-card p,.score-card p,.note-card p,.case-card p{font-size:.77rem;line-height:1.7;color:#777;margin-top:.25rem}
+.app{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(360px,.88fr);gap:1rem;align-items:start}
+.tool-panel,.result-panel,.guide-panel,.related-panel{padding:1.2rem;margin-bottom:1rem}
+.candidate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem}
+.candidate{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(35,31,22,.08);padding:1rem;display:grid;gap:.7rem}
+.candidate h3{font-family:'Shippori Mincho',serif;font-size:1.12rem;color:#333}
+.field{display:grid;gap:.32rem}
+.field span{font-size:.76rem;font-weight:900;color:#555}
+.field input,.field select,.field textarea{width:100%;border:1px solid rgba(35,31,22,.14);border-radius:8px;background:#fff;padding:.66rem .72rem;color:#222}
+.field textarea{min-height:74px;resize:vertical}
+.field em{font-style:normal;color:#888;font-size:.68rem;line-height:1.5}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.check-line{display:flex;gap:.45rem;align-items:flex-start;font-size:.72rem;color:#666;line-height:1.55}
+.check-line input{margin-top:.25rem;accent-color:var(--sage)}
+.score-board{display:grid;gap:.75rem}
+.score-card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(35,31,22,.08);padding:.95rem}
+.score-top{display:flex;justify-content:space-between;gap:.8rem;align-items:start}
+.score{font-family:'Shippori Mincho',serif;font-size:2.05rem;line-height:1;color:#222}
+.meter{height:10px;border-radius:999px;background:#eceae2;overflow:hidden;margin:.65rem 0}
+.meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--gold),var(--clay));border-radius:999px;transition:width .25s}
+.note-list{display:grid;gap:.55rem;margin-top:.7rem}
+.note-card{background:#f9f8f4;border:1px solid var(--line);border-radius:8px;padding:.82rem}
+.output{width:100%;min-height:188px;border:1px solid var(--line);border-radius:8px;padding:.9rem;background:#fff;color:#555;resize:vertical;margin-top:.8rem}
+.button-row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem}
+.guide-grid,.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+.case-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem}
+.case-card{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(35,31,22,.08);padding:.95rem}
+.related-card{display:flex;flex-direction:column;gap:.4rem;background:#151515;color:#eee;border-radius:8px;padding:1rem;min-height:150px}
+.related-card small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold)}
+.related-card strong{font-family:'Shippori Mincho',serif;font-size:1.04rem;line-height:1.45}
+.related-card p{font-size:.77rem;line-height:1.7;color:#aaa}
+.related-card a{margin-top:auto;color:var(--gold);font-weight:900;font-size:.82rem;border-bottom:1px solid rgba(223,207,152,.55);align-self:flex-start}
+.notice{color:#777;font-size:.76rem;line-height:1.75;margin-top:.65rem}
+.ft{background:#111;color:rgba(255,255,255,.62);padding:2.6rem clamp(1rem,4vw,3rem) 2rem}
+.ft-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem;align-items:center;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:1.4rem;margin-bottom:1.2rem}
+.ft .brand-ja{color:#fff}
+.ft-nav{display:flex;gap:1.2rem;flex-wrap:wrap}
+.ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68)}
+.ft-copy{max-width:1280px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38)}
+@media(max-width:1040px){.hero,.app{grid-template-columns:1fr}.candidate-grid,.guide-grid,.related-grid,.case-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.wrap{padding:2.6rem .9rem 4rem}.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.hero-copy,.hero-panel,.tool-panel,.result-panel,.guide-panel,.related-panel{padding:1rem}.candidate-grid,.quick-grid,.check-grid,.guide-grid,.related-grid,.case-grid{grid-template-columns:1fr}.actions,.button-row{display:grid}.actions a,.btn{width:100%}h1,.lead,.quick-card p,.score-card p,.note-card p,.case-card p,.related-card p{overflow-wrap:anywhere;line-break:strict}.ft-inner{align-items:flex-start;flex-direction:column}}
+@media print{.hd,.hero,.guide-panel,.related-panel,.button-row,.ft{display:none!important}.wrap{max-width:none;padding:0}.app{display:block}.tool-panel,.result-panel{box-shadow:none;border:0}.candidate-grid{grid-template-columns:repeat(3,1fr)}body{background:#fff;color:#111}}
+</style>
+<script src="assets/analytics.js"></script>
+</head>
+<body>
+<header class="hd">
+  <a href="index.html" class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
+  </a>
+  <nav class="nav" aria-label="サイト内メニュー">
+    <a href="index.html">Home</a>
+    <a class="active" href="land_candidate_compare.html">Land</a>
+    <a href="house_perspective_simulator.html">House</a>
+    <a href="money_tax_flow_guide.html">Money</a>
+    <a class="contact" href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Land Candidate Memo</div>
+      <h1>土地候補を、<br><span>同じものさし</span>で見る。</h1>
+      <p class="lead">土地を見たあとに、広さ、間口、駐車、雪置き場、日当たり、生活条件を並べるためのメモです。候補ごとに点数を出し、住宅計画シミュレーターへ渡しやすい形でコピーできます。</p>
+      <div class="actions">
+        <a class="primary" href="#land-tool">比較メモを作る</a>
+        <a href="house_perspective_simulator.html">住宅計画シミュレーターへ</a>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-label="このツールで見られること">
+      <h2>土地を見る前後で、残したいこと。</h2>
+      <div class="quick-grid">
+        <div class="quick-card"><small>Site</small><strong>間口と奥行き</strong><p>面積だけでなく、建物・駐車・庭の置きやすさを見ます。</p></div>
+        <div class="quick-card"><small>Snow</small><strong>雪置き場</strong><p>北海道や多雪地域で、除雪と落雪の余白を見落としにくくします。</p></div>
+        <div class="quick-card"><small>Life</small><strong>毎日の動線</strong><p>学校、駅、買い物、前面道路、日当たりを同じ表で比べます。</p></div>
+        <div class="quick-card"><small>Next</small><strong>次の確認へ</strong><p>よさそうな候補は、敷地幅と奥行きを住宅計画シミュレーターへ移せます。</p></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="guide-panel">
+    <h2>敷地面積別・ケース別の見方</h2>
+    <p class="notice">同じ坪数でも、間口、奥行き、駐車台数、雪置き場で使いやすさは変わります。ここでは土地を見るときの入口だけ整理します。</p>
+    <div class="case-grid">
+      <article class="case-card"><small>40坪台</small><strong>駐車と雪置き場を先に見る</strong><p>建物を大きくすると、駐車と庭の余白が薄くなりやすいです。玄関までの動線も一緒に見ます。</p></article>
+      <article class="case-card"><small>50〜60坪台</small><strong>建物・庭・駐車の配分を見る</strong><p>平屋か2階建てかで余白の使い方が変わります。候補ごとに建坪の目安を試すと比べやすいです。</p></article>
+      <article class="case-card"><small>70坪以上</small><strong>除雪と外構費も残す</strong><p>広い土地は余白が増えますが、除雪範囲や外構費も増えやすいので、後から確認できるメモを残します。</p></article>
+      <article class="case-card"><small>角地・変形地</small><strong>数字だけで決めない</strong><p>道路の向き、隣地、電柱、乗り入れ位置で置き方が変わります。現地写真や不動産資料と一緒に見ます。</p></article>
+    </div>
+  </section>
+
+  <section class="app" id="land-tool" aria-label="土地候補比較メモ作成ツール">
+    <div class="tool-panel">
+      <h2>候補を3件まで並べる</h2>
+      <p class="notice">分かるところだけで大丈夫です。空欄は点数に入れず、チェックした条件から比較メモを作ります。</p>
+      <div class="candidate-grid" id="candidateGrid"></div>
+    </div>
+    <aside class="result-panel" aria-live="polite">
+      <h2>比較結果</h2>
+      <div class="score-board" id="scoreBoard"></div>
+      <div class="note-list" id="noteList"></div>
+      <div class="button-row">
+        <button class="btn primary" type="button" id="copyBtn">メモをコピー</button>
+        <button class="btn" type="button" id="printBtn">印刷する</button>
+        <button class="btn" type="button" id="resetBtn">入力をリセット</button>
+      </div>
+      <textarea class="output" id="output" readonly aria-label="コピー用の土地候補比較メモ"></textarea>
+      <p class="notice">この点数は下見用の目安です。用途地域、建ぺい率、容積率、道路、上下水道、地盤、ハザード、総費用は不動産会社・自治体・専門家に確認してください。</p>
+    </aside>
+  </section>
+
+  <section class="related-panel">
+    <h2>次に見るページ</h2>
+    <div class="related-grid">
+      <article class="related-card"><small>House</small><strong>住宅計画シミュレーター</strong><p>候補の幅・奥行きで、建坪、雪置き場、平面図、3Dパースを試します。</p><a href="house_perspective_simulator.html">シミュレーターへ</a></article>
+      <article class="related-card"><small>Room</small><strong>リビング家具の置き方</strong><p>土地や間取りを考える前後で、暮らし始めたあとの動線も見ます。</p><a href="interior_furniture_article.html">家具メモへ</a></article>
+      <article class="related-card"><small>Check</small><strong>買う前に確認したいこと</strong><p>玄関、車、部屋、在庫、季節の見落としを短く確認します。</p><a href="buy_before_check.html">チェックへ</a></article>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="ft-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
+    </a>
+    <nav class="ft-nav">
+      <a href="index.html">トップ</a>
+      <a href="land_candidate_compare.html">土地候補比較メモ</a>
+      <a href="house_perspective_simulator.html">住宅計画シミュレーター</a>
+      <a href="editorial_policy.html">運営方針</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+  <p class="ft-copy">&copy; 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります。</p>
+</footer>
+
+<script>
+const STORAGE_KEY = 'kazmio_land_candidate_compare_v1';
+const labels = ['候補A','候補B','候補C'];
+const grid = document.getElementById('candidateGrid');
+const scoreBoard = document.getElementById('scoreBoard');
+const noteList = document.getElementById('noteList');
+const output = document.getElementById('output');
+const copyBtn = document.getElementById('copyBtn');
+const printBtn = document.getElementById('printBtn');
+const resetBtn = document.getElementById('resetBtn');
+const checks = [
+  ['parking','駐車2台以上が取りやすい'],
+  ['snow','雪置き場を確保しやすい'],
+  ['sun','日当たりを取りやすい'],
+  ['road','前面道路が広め'],
+  ['school','学校・園へ行きやすい'],
+  ['station','駅・バス停へ行きやすい'],
+  ['shop','買い物へ行きやすい'],
+  ['hazard','ハザード確認が済んでいる']
+];
+function template(index){
+  return `<article class="candidate" data-index="${index}">
+    <h3>${labels[index]}</h3>
+    <label class="field"><span>候補名</span><input data-key="name" type="text" placeholder="例: 南道路の土地"></label>
+    <label class="field"><span>敷地面積</span><input data-key="area" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例: 58"><em>坪で入力します。</em></label>
+    <label class="field"><span>間口</span><input data-key="width" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例: 12"><em>m。建物と駐車の置きやすさに関係します。</em></label>
+    <label class="field"><span>奥行き</span><input data-key="depth" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例: 16"><em>m。庭や雪置き場の余白を見ます。</em></label>
+    <label class="field"><span>土地価格</span><input data-key="price" type="number" min="0" step="10" inputmode="numeric" placeholder="例: 980"><em>万円。分かる場合だけ。</em></label>
+    <label class="field"><span>地域条件</span><select data-key="region"><option value="standard">標準地域</option><option value="snow">多雪地域</option><option value="hokkaido">北海道</option><option value="urban">都市部</option></select></label>
+    <div class="check-grid">${checks.map(item => `<label class="check-line"><input data-key="${item[0]}" type="checkbox"><span>${item[1]}</span></label>`).join('')}</div>
+    <label class="field"><span>現地メモ</span><textarea data-key="memo" placeholder="気になったこと、写真番号、確認したいこと"></textarea></label>
+  </article>`;
+}
+grid.innerHTML = labels.map((_, index) => template(index)).join('');
+function number(value){return Number(value || 0)}
+function collect(){
+  return [...grid.querySelectorAll('.candidate')].map(card => {
+    const data = {};
+    card.querySelectorAll('[data-key]').forEach(input => {
+      data[input.dataset.key] = input.type === 'checkbox' ? input.checked : input.value.trim();
+    });
+    return data;
+  });
+}
+function score(data){
+  let total = 0;
+  let possible = 0;
+  const area = number(data.area);
+  const width = number(data.width);
+  const depth = number(data.depth);
+  if(area){possible += 18; total += area >= 60 ? 18 : area >= 50 ? 15 : area >= 40 ? 11 : 7}
+  if(width){possible += 16; total += width >= 13 ? 16 : width >= 10 ? 12 : width >= 8 ? 8 : 4}
+  if(depth){possible += 12; total += depth >= 15 ? 12 : depth >= 12 ? 9 : depth >= 9 ? 6 : 3}
+  checks.forEach(item => { possible += item[0] === 'hazard' ? 10 : 8; if(data[item[0]]) total += item[0] === 'hazard' ? 10 : 8; });
+  if(data.region === 'hokkaido' || data.region === 'snow'){possible += 10; total += data.snow ? 10 : 2}
+  if(data.region === 'urban'){possible += 8; total += data.parking ? 5 : 2}
+  return possible ? Math.round(total / possible * 100) : 0;
+}
+function yenMan(value){return value ? Number(value).toLocaleString('ja-JP') + '万円' : '-'}
+function displayName(data, index){return data.name || labels[index]}
+function candidateNotes(data, index){
+  const notes = [];
+  const hasAny = data.name || data.area || data.width || data.depth || data.price || data.memo || checks.some(item => data[item[0]]);
+  if(!hasAny) return notes;
+  const area = number(data.area);
+  const width = number(data.width);
+  if(area && area < 45) notes.push(`${displayName(data,index)}は、駐車・庭・雪置き場の配分を先に見たい候補です。`);
+  if(width && width < 9) notes.push(`${displayName(data,index)}は、間口が細めです。駐車位置と玄関までの動線を現地で確認します。`);
+  if((data.region === 'hokkaido' || data.region === 'snow') && !data.snow) notes.push(`${displayName(data,index)}は、雪置き場をまだ確認できていません。除雪後の置き場を写真で残しておくと安心です。`);
+  if(!data.hazard) notes.push(`${displayName(data,index)}は、ハザードマップや前面道路、上下水道の確認が残っています。`);
+  return notes;
+}
+function update(){
+  const all = collect();
+  scoreBoard.innerHTML = all.map((data, index) => {
+    const s = score(data);
+    const filled = data.name || data.area || data.width || data.depth || data.price || data.memo || checks.some(item => data[item[0]]);
+    return `<section class="score-card">
+      <div class="score-top"><div><small>${labels[index]}</small><strong>${displayName(data,index)}</strong><p>${filled ? `敷地 ${data.area || '-'}坪 / 間口 ${data.width || '-'}m / 奥行き ${data.depth || '-'}m / 価格 ${yenMan(data.price)}` : '候補を入力すると点数が出ます。'}</p></div><div class="score">${s}</div></div>
+      <div class="meter"><span style="width:${s}%"></span></div>
+      <p>${s >= 75 ? '条件がそろいやすい候補です。次は建坪と配置を試します。' : s >= 50 ? '確認済みの項目が増えると判断しやすくなります。' : 'まだ確認前の項目が多い状態です。現地と資料で埋めていきます。'}</p>
+    </section>`;
+  }).join('');
+  const notes = all.flatMap(candidateNotes);
+  noteList.innerHTML = notes.length ? notes.slice(0, 8).map(note => `<div class="note-card"><small>Check</small><strong>${note}</strong></div>`).join('') : '<div class="note-card"><small>Next</small><strong>土地候補を入力すると、確認したい点がここに出ます。</strong></div>';
+  output.value = makeMemo(all);
+  try{localStorage.setItem(STORAGE_KEY, JSON.stringify(all));}catch(e){}
+}
+function makeMemo(all){
+  const lines = ['土地候補比較メモ', '作成日: ' + new Date().toLocaleDateString('ja-JP'), ''];
+  all.forEach((data, index) => {
+    const hasAny = data.name || data.area || data.width || data.depth || data.price || data.memo || checks.some(item => data[item[0]]);
+    if(!hasAny) return;
+    lines.push(`【${displayName(data,index)}】`);
+    lines.push(`スコア目安: ${score(data)}/100`);
+    lines.push(`敷地: ${data.area || '-'}坪 / 間口: ${data.width || '-'}m / 奥行き: ${data.depth || '-'}m / 価格: ${yenMan(data.price)}`);
+    lines.push(`地域条件: ${data.region === 'hokkaido' ? '北海道' : data.region === 'snow' ? '多雪地域' : data.region === 'urban' ? '都市部' : '標準地域'}`);
+    const checkedLabels = checks.filter(item => data[item[0]]).map(item => item[1]).join(' / ');
+    lines.push('確認済み: ' + (checkedLabels || '-'));
+    if(data.memo) lines.push('現地メモ: ' + data.memo);
+    lines.push('');
+  });
+  lines.push('次に確認: 用途地域、建ぺい率、容積率、道路、上下水道、地盤、ハザード、総費用。');
+  lines.push('KAZ & MIO 土地候補比較メモ');
+  return lines.join('\n');
+}
+function restore(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    saved.forEach((data, index) => {
+      const card = grid.querySelector(`[data-index="${index}"]`);
+      if(!card) return;
+      card.querySelectorAll('[data-key]').forEach(input => {
+        const value = data[input.dataset.key];
+        if(input.type === 'checkbox') input.checked = !!value;
+        else if(value !== undefined) input.value = value;
+      });
+    });
+  }catch(e){}
+  update();
+}
+grid.addEventListener('input', update);
+grid.addEventListener('change', update);
+copyBtn.addEventListener('click', async () => {
+  try{
+    await navigator.clipboard.writeText(output.value);
+    copyBtn.textContent = 'コピーしました';
+    setTimeout(() => copyBtn.textContent = 'メモをコピー', 1600);
+  }catch(e){
+    output.focus();
+    output.select();
+  }
+});
+printBtn.addEventListener('click', () => window.print());
+resetBtn.addEventListener('click', () => {
+  grid.querySelectorAll('input,textarea,select').forEach(input => {
+    if(input.type === 'checkbox') input.checked = false;
+    else if(input.tagName === 'SELECT') input.value = 'standard';
+    else input.value = '';
+  });
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  update();
+});
+restore();
+</script>
+</body>
+</html>
