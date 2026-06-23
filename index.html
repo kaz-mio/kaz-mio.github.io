@@ -125,10 +125,38 @@ a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
 a[href],button{cursor:pointer;}
 a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);outline-offset:4px;}
-.scroll-progress{position:fixed;top:0;left:220px;right:0;height:3px;z-index:120;pointer-events:none;background:rgba(34,34,34,.045);}
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:120;pointer-events:none;background:rgba(34,34,34,.045);}
 .scroll-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--sage),var(--gold),var(--clay));transform-origin:left center;transition:width .08s linear;}
 .mobile-head{display:none;}
-.side{position:fixed;inset:0 auto 0 0;width:220px;background:#f1f1ef;border-right:1px solid var(--line);z-index:50;padding:2.4rem 2rem;display:flex;flex-direction:column;align-items:flex-start;overflow-y:auto;overscroll-behavior:contain;}
+.site-head{position:sticky;top:0;z-index:100;min-height:76px;display:flex;align-items:center;gap:1.2rem;padding:.72rem clamp(1rem,3.2vw,3.8rem);border-bottom:1px solid rgba(34,34,34,.08);background:rgba(244,244,242,.92);backdrop-filter:blur(18px);box-shadow:0 18px 48px rgba(35,31,22,.08);}
+.site-brand{display:flex;align-items:center;gap:.78rem;min-width:max-content;}
+.site-brand img{width:42px;height:42px;border-radius:50%;filter:grayscale(.12);opacity:.86;}
+.site-brand span{display:flex;flex-direction:column;font-family:Arial,sans-serif;font-size:.78rem;font-weight:900;line-height:1.08;letter-spacing:.14em;text-transform:uppercase;color:#777;}
+.site-brand small{font-size:.52rem;letter-spacing:.18em;color:#aaa;margin-top:.15rem;}
+.site-nav{display:flex;align-items:center;justify-content:center;gap:.34rem;flex:1;min-width:0;}
+.site-nav>a,.nav-dropdown summary{min-height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;border-radius:999px;padding:.58rem .88rem;color:#777;font-size:.78rem;font-weight:900;letter-spacing:.04em;line-height:1.1;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s;}
+.site-nav>a:hover,.nav-dropdown summary:hover{background:#fff;border-color:rgba(201,182,117,.56);color:#222;box-shadow:0 14px 34px rgba(35,31,22,.08);transform:translateY(-2px);}
+.site-nav .is-primary{background:#222;color:#fff;border-color:#222;}
+.site-nav .is-primary:hover{background:var(--gold);border-color:var(--gold);color:#fff;}
+.nav-dropdown{position:relative;}
+.nav-dropdown summary{list-style:none;cursor:pointer;gap:.42rem;}
+.nav-dropdown summary::-webkit-details-marker{display:none;}
+.nav-dropdown summary::after{content:'v';font-family:Arial,sans-serif;font-size:.62rem;color:var(--gold2);transform:translateY(-1px);transition:transform .2s;}
+.nav-dropdown[open]{z-index:110;}
+.nav-dropdown[open] summary{background:#fff;border-color:rgba(201,182,117,.62);color:#222;box-shadow:0 14px 34px rgba(35,31,22,.08);}
+.nav-dropdown[open] summary::after{transform:rotate(180deg);}
+.nav-panel{position:absolute;top:calc(100% + .78rem);left:50%;width:min(760px,calc(100vw - 2rem));transform:translateX(-50%);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;padding:1px;border:1px solid rgba(34,34,34,.1);border-radius:8px;background:rgba(34,34,34,.1);box-shadow:0 28px 72px rgba(35,31,22,.18);overflow:hidden;isolation:isolate;}
+.nav-panel::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);z-index:-1;}
+.nav-group{background:rgba(255,255,255,.72);padding:1rem;min-width:0;}
+.nav-group-title{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold2);margin-bottom:.72rem;}
+.nav-group a{display:block;padding:.48rem 0;color:#555;font-size:.78rem;font-weight:800;line-height:1.45;border-bottom:1px solid rgba(34,34,34,.06);transition:color .2s,transform .2s;}
+.nav-group a:last-child{border-bottom:0;}
+.nav-group a:hover{color:#111;transform:translateX(4px);}
+.site-utility{display:flex;align-items:center;justify-content:flex-end;gap:.38rem;min-width:max-content;}
+.site-utility a{min-width:40px;height:40px;border-radius:999px;border:1px solid rgba(34,34,34,.16);background:#fff;color:#222;display:inline-flex;align-items:center;justify-content:center;padding:0 .78rem;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;letter-spacing:.04em;transition:background .2s,color .2s,border-color .2s,transform .2s;}
+.site-utility a:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px);}
+.site-utility .site-contact{background:#222;color:#fff;border-color:#222;font-family:'Noto Sans JP',sans-serif;font-size:.76rem;}
+.side{display:none;}
 .side-logo{display:flex;flex-direction:column;align-items:center;gap:.85rem;margin:0 auto 1.25rem;color:#b8b8b8;text-align:center;}
 .side-logo img{width:64px;height:64px;border-radius:50%;filter:grayscale(.18);opacity:.72;}
 .logo-main{font-family:Arial,sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#9a9a9a;}
@@ -145,9 +173,9 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .social-x::before{content:'X';}
 .social-instagram::before{content:'IG';}
 .social a:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px);}
-.main{margin-left:220px;min-height:100vh;}
-.hero{position:relative;min-height:100vh;padding:0 4.8rem 0 0;}
-.hero-stage{position:sticky;top:0;min-height:760px;display:grid;grid-template-columns:minmax(460px,54vw) 1fr;align-items:center;overflow:hidden;}
+.main{margin-left:0;min-height:100vh;}
+.hero{position:relative;min-height:calc(100vh - 76px);padding:0 clamp(1rem,3.8vw,4.8rem);}
+.hero-stage{position:sticky;top:76px;min-height:calc(100vh - 76px);display:grid;grid-template-columns:minmax(460px,54vw) 1fr;align-items:center;overflow:hidden;}
 .brand-marquee{position:absolute;left:0;right:0;bottom:4.8rem;z-index:0;overflow:hidden;white-space:nowrap;pointer-events:none;}
 .brand-marquee-track{display:inline-flex;gap:4rem;min-width:max-content;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,9.4rem);font-weight:800;letter-spacing:.1em;color:rgba(34,34,34,.08);text-transform:uppercase;animation:brandMarquee 28s linear infinite;}
 .brand-marquee-track span{padding-right:4rem;}
@@ -417,7 +445,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .about-icon{width:150px;height:150px;border-radius:50%;background:url('assets/favicon-192.png') center/cover no-repeat;filter:grayscale(.12);opacity:.85;}
 .about h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.4vw,3.6rem);font-weight:500;color:#858585;line-height:1.35;margin-bottom:1rem;}
 .about p{color:#777;max-width:46rem;}
-.ft{background:#141414;color:#aaa;margin-left:220px;padding:4rem 5.8rem 3rem;position:relative;}
+.ft{background:#141414;color:#aaa;margin-left:0;padding:4rem 5.8rem 3rem;position:relative;}
 .ft-inner{display:grid;grid-template-columns:150px 1fr;gap:3rem;max-width:1100px;margin:0 auto;}
 .ft-logo{font-family:Arial,sans-serif;color:#eee;font-size:.88rem;line-height:1.8;letter-spacing:.18em;font-weight:700;text-transform:uppercase;}
 .ft-nav{display:flex;gap:1.4rem;flex-wrap:wrap;margin-bottom:2rem;}
@@ -442,7 +470,18 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 @media(max-width:1100px){
   .scroll-progress{left:0;}
   .side{display:none;}
-  .mobile-head{display:flex;position:sticky;top:0;z-index:60;height:64px;background:rgba(244,244,242,.92);backdrop-filter:blur(12px);align-items:center;justify-content:space-between;padding:0 1rem;border-bottom:1px solid var(--line);}
+  .site-head{align-items:flex-start;flex-wrap:wrap;gap:.62rem;padding:.62rem 1rem;}
+  .site-brand img{width:38px;height:38px;}
+  .site-brand span{font-size:.72rem;letter-spacing:.1em;}
+  .site-brand small{font-size:.5rem;}
+  .site-nav{order:3;width:100%;justify-content:flex-start;overflow-x:auto;gap:.34rem;padding-bottom:.15rem;scrollbar-width:none;}
+  .site-nav::-webkit-scrollbar{display:none;}
+  .site-nav>a,.nav-dropdown summary{min-height:36px;white-space:nowrap;padding:.52rem .74rem;font-size:.72rem;}
+  .nav-panel{position:fixed;top:112px;left:1rem;right:1rem;width:auto;max-height:calc(100vh - 128px);grid-template-columns:repeat(2,minmax(0,1fr));transform:none;overflow:auto;}
+  .site-utility{margin-left:auto;gap:.3rem;}
+  .site-utility a{min-width:38px;height:38px;padding:0 .66rem;}
+  .site-utility .site-contact{font-size:.72rem;}
+  .mobile-head{display:none;}
   .mobile-brand{display:flex;align-items:center;gap:.65rem;font-family:Arial,sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
   .mobile-brand img{width:38px;height:38px;border-radius:50%;}
   .mobile-brand span{display:flex;flex-direction:column;line-height:1.05;}
@@ -522,6 +561,19 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .ft-copy{text-align:left;}
 }
 @media(max-width:520px){
+  .site-head{padding:.58rem .72rem;gap:.48rem;}
+  .site-brand{gap:.5rem;}
+  .site-brand img{width:34px;height:34px;}
+  .site-brand span{font-size:.66rem;letter-spacing:.08em;}
+  .site-brand small{font-size:.48rem;}
+  .site-utility{gap:.25rem;}
+  .site-utility a{min-width:34px;height:34px;padding:0 .55rem;font-size:.64rem;}
+  .site-utility .site-contact{width:34px;min-width:34px;padding:0;font-size:0;}
+  .site-utility .site-contact::before{content:'問';font-size:.64rem;font-weight:900;}
+  .site-nav{gap:.28rem;}
+  .site-nav>a,.nav-dropdown summary{min-height:34px;padding:.48rem .66rem;font-size:.68rem;}
+  .nav-panel{top:108px;left:.72rem;right:.72rem;grid-template-columns:1fr;max-height:calc(100vh - 124px);}
+  .nav-group{padding:.88rem;}
   .mobile-head{padding:0 .72rem;}
   .mobile-brand{gap:.48rem;font-size:.72rem;letter-spacing:.08em;}
   .mobile-brand img{width:34px;height:34px;}
@@ -569,13 +621,62 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 </head>
 <body id="top">
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
-<header class="mobile-head">
-  <a href="index.html" class="mobile-brand"><img src="assets/favicon-192.png" alt=""><span>KAZ &amp; MIO<small>LIFE, LIGHTLY</small></span></a>
-  <nav class="mobile-actions" aria-label="主要リンク">
-    <a href="https://x.com/kaaz361001" class="mobile-sns" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">X</a>
-    <a href="https://www.instagram.com/oqdsfy/" class="mobile-sns" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのInstagramを見る">IG</a>
-    <a href="en/" class="mobile-contact" aria-label="English">EN</a>
-    <a href="contact.html" class="mobile-contact" aria-label="お問い合わせ">✉</a>
+<header class="site-head">
+  <a href="index.html" class="site-brand" aria-label="KAZ & MIO ホーム">
+    <img src="assets/favicon-192.png" alt="">
+    <span>KAZ &amp; MIO<small>LIFE, LIGHTLY</small></span>
+  </a>
+  <nav class="site-nav" aria-label="サイトメニュー">
+    <a href="#top">ホーム</a>
+    <a class="is-primary" href="mio_route_finder.html">迷ったらここから</a>
+    <a href="#search-guides">困りごとから探す</a>
+    <details class="nav-dropdown">
+      <summary>メニュー</summary>
+      <div class="nav-panel">
+        <div class="nav-group">
+          <p class="nav-group-title">Start</p>
+          <a href="mio_route_finder.html">迷ったらここから</a>
+          <a href="#search-guides">困りごとから探す</a>
+          <a href="#reviews">レビューのご案内</a>
+          <a href="#articles">記事一覧</a>
+        </div>
+        <div class="nav-group">
+          <p class="nav-group-title">Money / House</p>
+          <a href="furusato_tax_limit_check.html">ふるさと納税</a>
+          <a href="fuyou_side_income_check.html">扶養・副業チェック</a>
+          <a href="year_end_adjustment_forms.html">年末調整申告書</a>
+          <a href="side_income_tax_memo.html">副業申告メモ</a>
+          <a href="land_candidate_compare.html">土地候補比較</a>
+          <a href="house_perspective_simulator.html">住宅計画</a>
+          <a href="house_total_budget_simulator.html">家づくり総予算</a>
+        </div>
+        <div class="nav-group">
+          <p class="nav-group-title">Family Tools</p>
+          <a href="family_stay_search.html">宿・食事さがし</a>
+          <a href="outing_checklist.html">持ち物チェック</a>
+          <a href="school_prep_checklist.html">入園準備チェック</a>
+          <a href="kids_size_check.html">サイズチェック</a>
+          <a href="diaper_size_check.html">おむつチェック</a>
+          <a href="baby_stock_manager.html">ストック管理</a>
+          <a href="baby_circle_fit_check.html">置ける診断</a>
+          <a href="car_seat_fit_check.html">乗せ降ろし診断</a>
+          <a href="stroller_fit_check.html">ベビーカー診断</a>
+        </div>
+        <div class="nav-group">
+          <p class="nav-group-title">Site</p>
+          <a href="profile.html">KAZ &amp; MIOについて</a>
+          <a href="editorial_policy.html">運営方針</a>
+          <a href="en/">English</a>
+          <a href="contact.html">お問い合わせ</a>
+        </div>
+      </div>
+    </details>
+  </nav>
+  <nav class="site-utility" aria-label="SNSと連絡先">
+    <a href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">X</a>
+    <a href="https://www.instagram.com/oqdsfy/" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのInstagramを見る">IG</a>
+    <a href="en/" aria-label="English">EN</a>
+    <a class="site-contact" href="contact.html">お問い合わせ</a>
   </nav>
 </header>
 
