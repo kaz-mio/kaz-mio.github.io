@@ -2,9 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kaz-mio.github.io/</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://kaz-mio.github.io/en/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
+  </url>
+  <url>
+    <loc>https://kaz-mio.github.io/en/baby-outing-checklist.html</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://kaz-mio.github.io/en/kids-size-check.html</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://kaz-mio.github.io/en/house-budget-simulator.html</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
   </url>
   <url>
     <loc>https://kaz-mio.github.io/asp_affiliate_article.html</loc>
@@ -80,7 +104,7 @@
   </url>
   <url>
     <loc>https://kaz-mio.github.io/outing_checklist.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -92,7 +116,7 @@
   </url>
   <url>
     <loc>https://kaz-mio.github.io/kids_size_check.html</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -398,7 +422,7 @@
   </url>
   <url>
     <loc>https://kaz-mio.github.io/house_total_budget_simulator.html</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.82</priority>
   </url>
