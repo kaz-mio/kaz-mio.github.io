@@ -128,8 +128,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .scroll-progress{position:fixed;top:0;left:220px;right:0;height:3px;z-index:120;pointer-events:none;background:rgba(34,34,34,.045);}
 .scroll-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--sage),var(--gold),var(--clay));transform-origin:left center;transition:width .08s linear;}
 .mobile-head{display:none;}
-.side{position:fixed;inset:0 auto 0 0;width:220px;background:#f1f1ef;border-right:1px solid var(--line);z-index:50;padding:2.4rem 2rem;display:flex;flex-direction:column;align-items:flex-start;}
-.side-logo{display:flex;flex-direction:column;align-items:center;gap:.85rem;margin:0 auto 3rem;color:#b8b8b8;text-align:center;}
+.side{position:fixed;inset:0 auto 0 0;width:220px;background:#f1f1ef;border-right:1px solid var(--line);z-index:50;padding:2.4rem 2rem;display:flex;flex-direction:column;align-items:flex-start;overflow-y:auto;overscroll-behavior:contain;}
+.side-logo{display:flex;flex-direction:column;align-items:center;gap:.85rem;margin:0 auto 1.25rem;color:#b8b8b8;text-align:center;}
 .side-logo img{width:64px;height:64px;border-radius:50%;filter:grayscale(.18);opacity:.72;}
 .logo-main{font-family:Arial,sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#9a9a9a;}
 .logo-sub{font-family:'Shippori Mincho',serif;font-size:1.72rem;font-weight:600;line-height:1.08;letter-spacing:.06em;color:#b1b1b1;text-transform:uppercase;}
@@ -139,7 +139,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .side-cta{width:100%;display:grid;gap:.65rem;margin-top:auto;}
 .side-cta a{border:1px solid var(--gold);color:var(--gold2);text-align:center;padding:.7rem .4rem;font-size:.78rem;transition:background .2s,color .2s,transform .2s;}
 .side-cta a:hover{background:var(--gold);color:#fff;transform:translateY(-2px);}
-.social{width:100%;margin-top:1rem;display:grid;gap:.55rem;}
+.social{width:100%;margin:0 0 1.6rem;display:grid;gap:.55rem;}
 .social a{width:100%;border:1px solid #222;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;gap:.55rem;padding:.78rem .6rem;font-size:.78rem;font-weight:800;letter-spacing:.05em;transition:background .2s,color .2s,border-color .2s,transform .2s;}
 .social a::before{width:24px;height:24px;border-radius:50%;background:#fff;color:#222;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;}
 .social-x::before{content:'X';}
@@ -585,6 +585,10 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <span class="logo-main">KAZ &amp; MIO</span>
     <span class="logo-sub">LIFE,<br>LIGHTLY</span>
   </a>
+  <nav class="social" aria-label="SNSリンク">
+    <a class="social-x" href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">Xで更新を見る</a>
+    <a class="social-instagram" href="https://www.instagram.com/oqdsfy/" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのInstagramを見る">Instagramを見る</a>
+  </nav>
   <nav class="side-nav">
     <a href="#top">ホーム</a>
     <a href="mio_route_finder.html">迷ったらここから</a>
@@ -633,10 +637,6 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <a href="stroller_fit_check.html">ベビーカー診断</a>
     <a href="contact.html">お問い合わせ</a>
   </div>
-  <nav class="social" aria-label="SNSリンク">
-    <a class="social-x" href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">Xで更新を見る</a>
-    <a class="social-instagram" href="https://www.instagram.com/oqdsfy/" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのInstagramを見る">Instagramを見る</a>
-  </nav>
 </aside>
 
 <main class="main">
