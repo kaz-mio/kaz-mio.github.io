@@ -43,7 +43,8 @@
         "description": "北海道のとある街で暮らす1児のママ。子育て・お買いもの・節約を発信中。"
       },
       "sameAs": [
-        "https://x.com/kaaz361001"
+        "https://x.com/kaaz361001",
+        "https://www.instagram.com/oqdsfy/"
       ]
     },
     {
@@ -138,9 +139,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .side-cta{width:100%;display:grid;gap:.65rem;margin-top:auto;}
 .side-cta a{border:1px solid var(--gold);color:var(--gold2);text-align:center;padding:.7rem .4rem;font-size:.78rem;transition:background .2s,color .2s,transform .2s;}
 .side-cta a:hover{background:var(--gold);color:#fff;transform:translateY(-2px);}
-.social{width:100%;margin-top:1rem;}
+.social{width:100%;margin-top:1rem;display:grid;gap:.55rem;}
 .social a{width:100%;border:1px solid #222;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;gap:.55rem;padding:.78rem .6rem;font-size:.78rem;font-weight:800;letter-spacing:.05em;transition:background .2s,color .2s,border-color .2s,transform .2s;}
-.social a::before{content:'X';width:24px;height:24px;border-radius:50%;background:#fff;color:#222;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;}
+.social a::before{width:24px;height:24px;border-radius:50%;background:#fff;color:#222;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;}
+.social-x::before{content:'X';}
+.social-instagram::before{content:'IG';}
 .social a:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px);}
 .main{margin-left:220px;min-height:100vh;}
 .hero{position:relative;min-height:100vh;padding:0 4.8rem 0 0;}
@@ -420,9 +423,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .ft-nav{display:flex;gap:1.4rem;flex-wrap:wrap;margin-bottom:2rem;}
 .ft-nav a{font-size:.78rem;color:#aaa;}
 .ft-nav a:hover{color:#fff;}
-.ft-x{display:inline-flex;align-items:center;gap:.65rem;border:1px solid rgba(223,207,152,.75);color:#fff!important;background:rgba(223,207,152,.12);padding:.72rem 1rem;font-weight:800;letter-spacing:.04em;}
-.ft-x::before{content:'X';width:24px;height:24px;border-radius:50%;background:#fff;color:#141414;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;}
-.ft-x:hover{background:var(--gold);border-color:var(--gold);color:#141414!important;}
+.ft-x,.ft-instagram{display:inline-flex;align-items:center;gap:.65rem;border:1px solid rgba(223,207,152,.75);color:#fff!important;background:rgba(223,207,152,.12);padding:.72rem 1rem;font-weight:800;letter-spacing:.04em;}
+.ft-x::before,.ft-instagram::before{width:24px;height:24px;border-radius:50%;background:#fff;color:#141414;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;}
+.ft-x::before{content:'X';}
+.ft-instagram::before{content:'IG';}
+.ft-x:hover,.ft-instagram:hover{background:var(--gold);border-color:var(--gold);color:#141414!important;}
 .ft-copy{font-size:.72rem;color:#666;text-align:right;}
 .to-top{position:fixed;right:1rem;bottom:1rem;z-index:90;width:58px;height:58px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;}
 .to-top.is-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
@@ -616,7 +621,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <a href="contact.html">お問い合わせ</a>
   </div>
   <nav class="social" aria-label="SNSリンク">
-    <a href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">Xで更新を見る</a>
+    <a class="social-x" href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">Xで更新を見る</a>
+    <a class="social-instagram" href="https://www.instagram.com/oqdsfy/" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのInstagramを見る">Instagramを見る</a>
   </nav>
 </aside>
 
@@ -1250,6 +1256,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a href="car_seat_fit_check.html">乗せ降ろし診断</a>
         <a href="stroller_fit_check.html">ベビーカー診断</a>
         <a class="ft-x" href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer">Xで更新を見る</a>
+        <a class="ft-instagram" href="https://www.instagram.com/oqdsfy/" target="_blank" rel="noopener noreferrer">Instagramを見る</a>
       </nav>
       <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
     </div>
