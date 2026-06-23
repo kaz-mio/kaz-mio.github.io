@@ -471,14 +471,15 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .scroll-progress{left:0;}
   .side{display:none;}
   .site-head{align-items:flex-start;flex-wrap:wrap;gap:.62rem;padding:.62rem 1rem;}
+  .site-brand{order:1;}
   .site-brand img{width:38px;height:38px;}
   .site-brand span{font-size:.72rem;letter-spacing:.1em;}
   .site-brand small{font-size:.5rem;}
-  .site-nav{order:3;width:100%;justify-content:flex-start;overflow-x:auto;gap:.34rem;padding-bottom:.15rem;scrollbar-width:none;}
+  .site-nav{order:3;flex:0 0 100%;width:100%;justify-content:flex-start;overflow-x:auto;gap:.34rem;padding-bottom:.15rem;scrollbar-width:none;}
   .site-nav::-webkit-scrollbar{display:none;}
   .site-nav>a,.nav-dropdown summary{min-height:36px;white-space:nowrap;padding:.52rem .74rem;font-size:.72rem;}
   .nav-panel{position:fixed;top:112px;left:1rem;right:1rem;width:auto;max-height:calc(100vh - 128px);grid-template-columns:repeat(2,minmax(0,1fr));transform:none;overflow:auto;}
-  .site-utility{margin-left:auto;gap:.3rem;}
+  .site-utility{order:2;margin-left:auto;gap:.3rem;}
   .site-utility a{min-width:38px;height:38px;padding:0 .66rem;}
   .site-utility .site-contact{font-size:.72rem;}
   .mobile-head{display:none;}
