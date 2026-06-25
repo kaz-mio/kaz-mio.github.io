@@ -134,19 +134,18 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .site-brand span{display:flex;flex-direction:column;font-family:Arial,sans-serif;font-size:.78rem;font-weight:900;line-height:1.08;letter-spacing:.14em;text-transform:uppercase;color:#777;}
 .site-brand small{font-size:.52rem;letter-spacing:.18em;color:#aaa;margin-top:.15rem;}
 .site-nav{display:flex;align-items:center;justify-content:center;gap:.34rem;flex:1;min-width:0;}
-.site-nav>a,.nav-dropdown summary{min-height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;border-radius:999px;padding:.58rem .88rem;color:#777;font-size:.78rem;font-weight:900;letter-spacing:.04em;line-height:1.1;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s;}
-.site-nav>a:hover,.nav-dropdown summary:hover{background:#fff;border-color:rgba(201,182,117,.56);color:#222;box-shadow:0 14px 34px rgba(35,31,22,.08);transform:translateY(-2px);}
+.site-nav>a,.nav-trigger{min-height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;border-radius:999px;padding:.58rem .88rem;color:#777;background:transparent;font:inherit;font-size:.78rem;font-weight:900;letter-spacing:.04em;line-height:1.1;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s;}
+.site-nav>a:hover,.nav-trigger:hover{background:#fff;border-color:rgba(201,182,117,.56);color:#222;box-shadow:0 14px 34px rgba(35,31,22,.08);transform:translateY(-2px);}
 .site-nav .is-primary{background:#222;color:#fff;border-color:#222;}
 .site-nav .is-primary:hover{background:var(--gold);border-color:var(--gold);color:#fff;}
 .nav-dropdown{position:relative;}
-.nav-dropdown summary{list-style:none;cursor:pointer;gap:.42rem;}
-.nav-dropdown summary::-webkit-details-marker{display:none;}
-.nav-dropdown summary::after{content:'v';font-family:Arial,sans-serif;font-size:.62rem;color:var(--gold2);transform:translateY(-1px);transition:transform .2s;}
-.nav-dropdown[open],.nav-dropdown:hover,.nav-dropdown:focus-within{z-index:110;}
-.nav-dropdown[open] summary,.nav-dropdown:hover summary,.nav-dropdown:focus-within summary{background:#fff;border-color:rgba(201,182,117,.62);color:#222;box-shadow:0 14px 34px rgba(35,31,22,.08);}
-.nav-dropdown[open] summary::after{transform:rotate(180deg);}
+.nav-trigger{cursor:pointer;gap:.42rem;}
+.nav-trigger::after{content:'v';font-family:Arial,sans-serif;font-size:.62rem;color:var(--gold2);transform:translateY(-1px);transition:transform .2s;}
+.nav-dropdown.is-open,.nav-dropdown:hover,.nav-dropdown:focus-within{z-index:110;}
+.nav-dropdown.is-open .nav-trigger,.nav-dropdown:hover .nav-trigger,.nav-dropdown:focus-within .nav-trigger{background:#fff;border-color:rgba(201,182,117,.62);color:#222;box-shadow:0 14px 34px rgba(35,31,22,.08);}
+.nav-dropdown.is-open .nav-trigger::after,.nav-dropdown:hover .nav-trigger::after,.nav-dropdown:focus-within .nav-trigger::after{transform:rotate(180deg);}
 .nav-panel{position:absolute;top:calc(100% + .78rem);left:50%;width:min(760px,calc(100vw - 2rem));transform:translateX(-50%) translateY(10px) scale(.98);transform-origin:top center;opacity:0;visibility:hidden;pointer-events:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;padding:1px;border:1px solid rgba(34,34,34,.1);border-radius:8px;background:rgba(34,34,34,.1);box-shadow:0 28px 72px rgba(35,31,22,.18);overflow:hidden;isolation:isolate;transition:opacity .18s ease,visibility .18s ease,transform .24s cubic-bezier(.2,.8,.2,1);}
-.nav-dropdown[open] .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1);}
+.nav-dropdown.is-open .nav-panel,.nav-dropdown:hover .nav-panel,.nav-dropdown:focus-within .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1);}
 .nav-panel::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);z-index:-1;}
 .nav-group{background:rgba(255,255,255,.72);padding:1rem;min-width:0;}
 .nav-group-title{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold2);margin-bottom:.72rem;}
@@ -485,9 +484,9 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .site-brand small{font-size:.5rem;}
   .site-nav{order:3;flex:0 0 100%;width:100%;justify-content:flex-start;overflow-x:auto;gap:.34rem;padding-bottom:.15rem;scrollbar-width:none;}
   .site-nav::-webkit-scrollbar{display:none;}
-  .site-nav>a,.nav-dropdown summary{min-height:36px;white-space:nowrap;padding:.52rem .74rem;font-size:.72rem;}
+  .site-nav>a,.nav-trigger{min-height:36px;white-space:nowrap;padding:.52rem .74rem;font-size:.72rem;}
   .nav-panel{position:fixed;top:112px;left:1rem;right:1rem;width:auto;max-height:calc(100vh - 128px);grid-template-columns:repeat(2,minmax(0,1fr));transform:translateY(10px) scale(.98);overflow:auto;}
-  .nav-dropdown[open] .nav-panel{transform:translateY(0) scale(1);}
+  .nav-dropdown.is-open .nav-panel,.nav-dropdown:hover .nav-panel,.nav-dropdown:focus-within .nav-panel{transform:translateY(0) scale(1);}
   .site-utility{order:2;margin-left:auto;gap:.3rem;}
   .site-utility a{min-width:38px;height:38px;padding:0 .66rem;}
   .site-utility .site-contact{font-size:.72rem;}
@@ -585,7 +584,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .site-utility .site-contact{width:34px;min-width:34px;padding:0;font-size:0;}
   .site-utility .site-contact::before{content:'問';font-size:.64rem;font-weight:900;}
   .site-nav{gap:.28rem;}
-  .site-nav>a,.nav-dropdown summary{min-height:34px;padding:.48rem .66rem;font-size:.68rem;}
+  .site-nav>a,.nav-trigger{min-height:34px;padding:.48rem .66rem;font-size:.68rem;}
   .nav-panel{top:108px;left:.72rem;right:.72rem;grid-template-columns:1fr;max-height:calc(100vh - 124px);}
   .nav-group{padding:.88rem;}
   .mobile-head{padding:0 .72rem;}
@@ -644,8 +643,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     <a href="#top">ホーム</a>
     <a class="is-primary" href="mio_route_finder.html">迷ったらここから</a>
     <a href="#search-guides">困りごとから探す</a>
-    <details class="nav-dropdown">
-      <summary>メニュー</summary>
+    <div class="nav-dropdown">
+      <button class="nav-trigger" type="button" aria-expanded="false">メニュー</button>
       <div class="nav-panel">
         <div class="nav-group">
           <p class="nav-group-title">Start</p>
@@ -684,7 +683,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           <a href="contact.html">お問い合わせ</a>
         </div>
       </div>
-    </details>
+    </div>
   </nav>
   <nav class="site-utility" aria-label="SNSと連絡先">
     <a href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">
@@ -1425,29 +1424,40 @@ const heroMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').
 const navDropdown = document.querySelector('.nav-dropdown');
 
 if (navDropdown) {
+  const navTrigger = navDropdown.querySelector('.nav-trigger');
   let navCloseTimer = null;
   const openNavMenu = () => {
     window.clearTimeout(navCloseTimer);
-    navDropdown.open = true;
+    navDropdown.classList.add('is-open');
+    navTrigger?.setAttribute('aria-expanded', 'true');
   };
   const scheduleNavClose = () => {
     window.clearTimeout(navCloseTimer);
     navCloseTimer = window.setTimeout(() => {
       if (navDropdown.matches(':hover') || navDropdown.contains(document.activeElement)) return;
-      navDropdown.open = false;
+      navDropdown.classList.remove('is-open');
+      navTrigger?.setAttribute('aria-expanded', 'false');
     }, 160);
   };
   navDropdown.addEventListener('mouseenter', openNavMenu);
   navDropdown.addEventListener('mouseleave', scheduleNavClose);
   navDropdown.addEventListener('focusin', openNavMenu);
   navDropdown.addEventListener('focusout', scheduleNavClose);
+  navTrigger?.addEventListener('click', () => {
+    const willOpen = !navDropdown.classList.contains('is-open');
+    navDropdown.classList.toggle('is-open', willOpen);
+    navTrigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  });
   navDropdown.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      navDropdown.open = false;
+      navDropdown.classList.remove('is-open');
+      navTrigger?.setAttribute('aria-expanded', 'false');
     });
   });
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') navDropdown.open = false;
+    if (event.key !== 'Escape') return;
+    navDropdown.classList.remove('is-open');
+    navTrigger?.setAttribute('aria-expanded', 'false');
   });
 }
 
