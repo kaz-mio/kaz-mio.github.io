@@ -1444,9 +1444,7 @@ if (navDropdown) {
   navDropdown.addEventListener('focusin', openNavMenu);
   navDropdown.addEventListener('focusout', scheduleNavClose);
   navTrigger?.addEventListener('click', () => {
-    const willOpen = !navDropdown.classList.contains('is-open');
-    navDropdown.classList.toggle('is-open', willOpen);
-    navTrigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    openNavMenu();
   });
   navDropdown.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
