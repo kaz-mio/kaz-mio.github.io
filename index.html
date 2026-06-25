@@ -142,10 +142,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .nav-dropdown summary{list-style:none;cursor:pointer;gap:.42rem;}
 .nav-dropdown summary::-webkit-details-marker{display:none;}
 .nav-dropdown summary::after{content:'v';font-family:Arial,sans-serif;font-size:.62rem;color:var(--gold2);transform:translateY(-1px);transition:transform .2s;}
-.nav-dropdown[open]{z-index:110;}
-.nav-dropdown[open] summary{background:#fff;border-color:rgba(201,182,117,.62);color:#222;box-shadow:0 14px 34px rgba(35,31,22,.08);}
+.nav-dropdown[open],.nav-dropdown:hover,.nav-dropdown:focus-within{z-index:110;}
+.nav-dropdown[open] summary,.nav-dropdown:hover summary,.nav-dropdown:focus-within summary{background:#fff;border-color:rgba(201,182,117,.62);color:#222;box-shadow:0 14px 34px rgba(35,31,22,.08);}
 .nav-dropdown[open] summary::after{transform:rotate(180deg);}
-.nav-panel{position:absolute;top:calc(100% + .78rem);left:50%;width:min(760px,calc(100vw - 2rem));transform:translateX(-50%);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;padding:1px;border:1px solid rgba(34,34,34,.1);border-radius:8px;background:rgba(34,34,34,.1);box-shadow:0 28px 72px rgba(35,31,22,.18);overflow:hidden;isolation:isolate;}
+.nav-panel{position:absolute;top:calc(100% + .78rem);left:50%;width:min(760px,calc(100vw - 2rem));transform:translateX(-50%) translateY(10px) scale(.98);transform-origin:top center;opacity:0;visibility:hidden;pointer-events:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;padding:1px;border:1px solid rgba(34,34,34,.1);border-radius:8px;background:rgba(34,34,34,.1);box-shadow:0 28px 72px rgba(35,31,22,.18);overflow:hidden;isolation:isolate;transition:opacity .18s ease,visibility .18s ease,transform .24s cubic-bezier(.2,.8,.2,1);}
+.nav-dropdown[open] .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1);}
 .nav-panel::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);z-index:-1;}
 .nav-group{background:rgba(255,255,255,.72);padding:1rem;min-width:0;}
 .nav-group-title{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;font-weight:900;color:var(--gold2);margin-bottom:.72rem;}
@@ -153,9 +154,16 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .nav-group a:last-child{border-bottom:0;}
 .nav-group a:hover{color:#111;transform:translateX(4px);}
 .site-utility{display:flex;align-items:center;justify-content:flex-end;gap:.38rem;min-width:max-content;}
-.site-utility a{min-width:40px;height:40px;border-radius:999px;border:1px solid rgba(34,34,34,.16);background:#fff;color:#222;display:inline-flex;align-items:center;justify-content:center;padding:0 .78rem;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;letter-spacing:.04em;transition:background .2s,color .2s,border-color .2s,transform .2s;}
+.site-utility a{min-width:40px;height:40px;border-radius:999px;border:1px solid rgba(34,34,34,.16);background:#fff;color:#222;display:inline-flex;align-items:center;justify-content:center;gap:.38rem;padding:0 .78rem;font-family:Arial,sans-serif;font-size:.72rem;font-weight:900;letter-spacing:.04em;transition:background .2s,color .2s,border-color .2s,transform .2s;}
 .site-utility a:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px);}
 .site-utility .site-contact{background:#222;color:#fff;border-color:#222;font-family:'Noto Sans JP',sans-serif;font-size:.76rem;}
+.site-icon{width:18px;height:18px;display:block;stroke:currentColor;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;}
+.site-icon-x{stroke-width:2.4;}
+.site-lang{min-width:94px;}
+.site-lang-text{display:flex;flex-direction:column;align-items:flex-start;line-height:1.08;}
+.site-lang-text strong{font-size:.72rem;letter-spacing:.03em;}
+.site-lang-text small{font-family:'Noto Sans JP',sans-serif;font-size:.55rem;font-weight:700;color:#888;letter-spacing:.02em;}
+.site-utility a:hover .site-lang-text small{color:#fff;}
 .side{display:none;}
 .side-logo{display:flex;flex-direction:column;align-items:center;gap:.85rem;margin:0 auto 1.25rem;color:#b8b8b8;text-align:center;}
 .side-logo img{width:64px;height:64px;border-radius:50%;filter:grayscale(.18);opacity:.72;}
@@ -478,7 +486,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .site-nav{order:3;flex:0 0 100%;width:100%;justify-content:flex-start;overflow-x:auto;gap:.34rem;padding-bottom:.15rem;scrollbar-width:none;}
   .site-nav::-webkit-scrollbar{display:none;}
   .site-nav>a,.nav-dropdown summary{min-height:36px;white-space:nowrap;padding:.52rem .74rem;font-size:.72rem;}
-  .nav-panel{position:fixed;top:112px;left:1rem;right:1rem;width:auto;max-height:calc(100vh - 128px);grid-template-columns:repeat(2,minmax(0,1fr));transform:none;overflow:auto;}
+  .nav-panel{position:fixed;top:112px;left:1rem;right:1rem;width:auto;max-height:calc(100vh - 128px);grid-template-columns:repeat(2,minmax(0,1fr));transform:translateY(10px) scale(.98);overflow:auto;}
+  .nav-dropdown[open] .nav-panel{transform:translateY(0) scale(1);}
   .site-utility{order:2;margin-left:auto;gap:.3rem;}
   .site-utility a{min-width:38px;height:38px;padding:0 .66rem;}
   .site-utility .site-contact{font-size:.72rem;}
@@ -569,6 +578,10 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .site-brand small{font-size:.48rem;}
   .site-utility{gap:.25rem;}
   .site-utility a{min-width:34px;height:34px;padding:0 .55rem;font-size:.64rem;}
+  .site-icon{width:16px;height:16px;}
+  .site-lang{min-width:74px;}
+  .site-lang-text strong{font-size:.62rem;}
+  .site-lang-text small{font-size:.48rem;}
   .site-utility .site-contact{width:34px;min-width:34px;padding:0;font-size:0;}
   .site-utility .site-contact::before{content:'問';font-size:.64rem;font-weight:900;}
   .site-nav{gap:.28rem;}
@@ -674,9 +687,15 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     </details>
   </nav>
   <nav class="site-utility" aria-label="SNSと連絡先">
-    <a href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">X</a>
-    <a href="https://www.instagram.com/oqdsfy/" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのInstagramを見る">IG</a>
-    <a href="en/" aria-label="English">EN</a>
+    <a href="https://x.com/kaaz361001" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのXを見る">
+      <svg class="site-icon site-icon-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+    </a>
+    <a href="https://www.instagram.com/oqdsfy/" target="_blank" rel="noopener noreferrer" aria-label="KAZ & MIOのInstagramを見る">
+      <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"></rect><circle cx="12" cy="12" r="3.6"></circle><path d="M17.2 6.9h.01"></path></svg>
+    </a>
+    <a class="site-lang" href="en/" aria-label="English page">
+      <span class="site-lang-text"><strong>English</strong><small>英語ページ</small></span>
+    </a>
     <a class="site-contact" href="contact.html">お問い合わせ</a>
   </nav>
 </header>
@@ -1403,6 +1422,34 @@ let sceneTicking = false;
 let revealVisibleTargets = () => {};
 const heroAutoDelay = 5200;
 const heroMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const navDropdown = document.querySelector('.nav-dropdown');
+
+if (navDropdown) {
+  let navCloseTimer = null;
+  const openNavMenu = () => {
+    window.clearTimeout(navCloseTimer);
+    navDropdown.open = true;
+  };
+  const scheduleNavClose = () => {
+    window.clearTimeout(navCloseTimer);
+    navCloseTimer = window.setTimeout(() => {
+      if (navDropdown.matches(':hover') || navDropdown.contains(document.activeElement)) return;
+      navDropdown.open = false;
+    }, 160);
+  };
+  navDropdown.addEventListener('mouseenter', openNavMenu);
+  navDropdown.addEventListener('mouseleave', scheduleNavClose);
+  navDropdown.addEventListener('focusin', openNavMenu);
+  navDropdown.addEventListener('focusout', scheduleNavClose);
+  navDropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navDropdown.open = false;
+    });
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') navDropdown.open = false;
+  });
+}
 
 const setHeroSlide = index => {
   if (!heroSlides.length || index === activeHeroSlide) return;
