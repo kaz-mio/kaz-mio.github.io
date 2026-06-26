@@ -4,6 +4,8 @@ const SOURCE_DOCS = {
   hotpepper: 'https://webservice.recruit.co.jp/doc/hotpepper/reference.html'
 };
 
+const FUNCTION_VERSION = '2026-06-27-rakuten-header-only';
+
 const GEO_POINTS = [
   {tokens: ['東京ディズニー', '舞浜', '浦安'], lat: 35.6329, lng: 139.8804},
   {tokens: ['札幌', '大通', 'すすきの', '札幌駅'], lat: 43.0618, lng: 141.3545},
@@ -173,6 +175,7 @@ exports.handler = async event => {
       ok: true,
       type,
       generatedAt: new Date().toISOString(),
+      functionVersion: FUNCTION_VERSION,
       configured: providers.some(provider => provider.configured),
       providers,
       items,
@@ -219,8 +222,7 @@ async function searchRakuten(context) {
       headers: {
         accessKey,
         Referer: rakutenReferer
-      },
-      referrer: rakutenReferer
+      }
     });
     const hotels = Array.isArray(data.hotels) ? data.hotels : [];
     const items = hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean);
