@@ -1,10 +1,12 @@
+const https = require('https');
+
 const SOURCE_DOCS = {
   rakuten: 'https://webservice.rakuten.co.jp/documentation/simple-hotel-search',
   jalan: 'https://www.jalan.net/jw/jwp0100/jww0101.do',
   hotpepper: 'https://webservice.recruit.co.jp/doc/hotpepper/reference.html'
 };
 
-const FUNCTION_VERSION = '2026-06-27-rakuten-header-only';
+const FUNCTION_VERSION = '2026-06-27-rakuten-node-https';
 
 const GEO_POINTS = [
   {tokens: ['東京ディズニー', '舞浜', '浦安'], lat: 35.6329, lng: 139.8804},
@@ -218,10 +220,10 @@ async function searchRakuten(context) {
 
   try {
     const rakutenReferer = process.env.RAKUTEN_REFERER || 'https://kaz-mio.github.io/';
-    const data = await fetchJson(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`, {
+    const data = await fetchJsonWithHttps(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`, {
       headers: {
         accessKey,
-        Referer: rakutenReferer
+        referer: rakutenReferer
       }
     });
     const hotels = Array.isArray(data.hotels) ? data.hotels : [];
@@ -437,6 +439,38 @@ async function fetchJson(url, options = {}) {
   const text = await res.text();
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 160)}`);
   return JSON.parse(text);
+}
+
+async function fetchJsonWithHttps(url, options = {}) {
+  const text = await fetchTextWithHttps(url, options);
+  return JSON.parse(text);
+}
+
+function fetchTextWithHttps(url, options = {}) {
+  const headers = {
+    'User-Agent': 'KAZ-MIO-family-trip-search/1.0',
+    ...(options.headers || {})
+  };
+  return new Promise((resolve, reject) => {
+    const req = https.get(url, {headers, timeout: 8500}, res => {
+      let text = '';
+      res.setEncoding('utf8');
+      res.on('data', chunk => {
+        text += chunk;
+      });
+      res.on('end', () => {
+        if (res.statusCode < 200 || res.statusCode >= 300) {
+          reject(new Error(`HTTP ${res.statusCode}: ${text.slice(0, 160)}`));
+          return;
+        }
+        resolve(text);
+      });
+    });
+    req.on('timeout', () => {
+      req.destroy(new Error('request timeout'));
+    });
+    req.on('error', reject);
+  });
 }
 
 async function fetchText(url) {
