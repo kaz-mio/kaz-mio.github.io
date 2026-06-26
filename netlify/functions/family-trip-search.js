@@ -7,7 +7,7 @@ const SOURCE_DOCS = {
   hotpepper: 'https://webservice.recruit.co.jp/doc/hotpepper/reference.html'
 };
 
-const FUNCTION_VERSION = '2026-06-27-rakuten-keyword-fallback';
+const FUNCTION_VERSION = '2026-06-27-rakuten-diagnostics';
 
 const GEO_POINTS = [
   {tokens: ['東京ディズニー', '舞浜', '浦安'], lat: 35.6329, lng: 139.8804},
@@ -229,13 +229,27 @@ async function searchRakuten(context) {
     const data = await fetchJsonWithHttps(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`, {
       headers: rakutenHeaders
     });
+    const apiError = rakutenApiError(data);
+    if (apiError) return providerNotice('楽天トラベル', true, apiError);
     const hotels = Array.isArray(data.hotels) ? data.hotels : [];
     let items = hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean);
+    let keywordCount = 0;
     if (!items.length) {
       const keywordItems = await searchRakutenByKeyword(context, appId, rakutenHeaders);
-      items = keywordItems;
+      keywordCount = keywordItems.rawCount;
+      if (keywordItems.message) return providerNotice('楽天トラベル', true, keywordItems.message);
+      if (!keywordItems.items.length && keywordCount) {
+        return providerNotice('楽天トラベル', true, `楽天から${keywordCount}件取得しましたが、表示用データに変換できませんでした。`);
+      }
+      if (!keywordItems.items.length) {
+        return providerNotice('楽天トラベル', true, `楽天検索は0件でした。検索語: ${rakutenKeyword(context)}`);
+      }
+      items = keywordItems.items;
     }
-    return {name: '楽天トラベル', configured: true, items, source: SOURCE_DOCS.rakuten};
+    const message = hotels.length || keywordCount
+      ? `楽天から${items.length}件取得しました。`
+      : '';
+    return {name: '楽天トラベル', configured: true, items, message, source: SOURCE_DOCS.rakuten};
   } catch (error) {
     return providerNotice('楽天トラベル', true, safeError(error));
   }
@@ -255,8 +269,14 @@ async function searchRakutenByKeyword(context, appId, headers) {
   const data = await fetchJsonWithHttps(`https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426?${params.toString()}`, {
     headers
   });
+  const apiError = rakutenApiError(data);
+  if (apiError) return {items: [], rawCount: 0, message: apiError};
   const hotels = Array.isArray(data.hotels) ? data.hotels : [];
-  return hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean);
+  return {
+    items: hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean),
+    rawCount: hotels.length,
+    message: ''
+  };
 }
 
 async function searchJalan(context) {
@@ -338,8 +358,12 @@ function hotpepperRequest(params) {
 }
 
 function normalizeRakuten(entry, context) {
-  const parts = Array.isArray(entry.hotel) ? entry.hotel : [entry.hotel || entry].filter(Boolean);
-  const basic = findPart(parts, 'hotelBasicInfo') || entry.hotelBasicInfo || {};
+  const parts = Array.isArray(entry?.hotel)
+    ? entry.hotel
+    : Array.isArray(entry)
+      ? entry
+      : [entry?.hotel || entry].filter(Boolean);
+  const basic = findPart(parts, 'hotelBasicInfo') || entry?.hotelBasicInfo || {};
   const rating = findPart(parts, 'hotelRatingInfo') || {};
   if (!basic.hotelName) return null;
   const price = Number(basic.hotelMinCharge || 0);
@@ -553,6 +577,17 @@ function findPart(parts, key) {
     if (part && part[key]) return part[key];
   }
   return null;
+}
+
+function rakutenApiError(data) {
+  if (!data || typeof data !== 'object') return '楽天APIの応答を読み取れませんでした。';
+  if (data.error || data.error_description) {
+    return compact([data.error, data.error_description]).join(': ');
+  }
+  if (data.statusCode && data.message) {
+    return `HTTP ${data.statusCode}: ${data.message}`;
+  }
+  return '';
 }
 
 function xmlValue(block, tag) {
