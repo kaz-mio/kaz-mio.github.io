@@ -2,11 +2,12 @@ const https = require('https');
 
 const SOURCE_DOCS = {
   rakuten: 'https://webservice.rakuten.co.jp/documentation/simple-hotel-search',
+  rakutenKeyword: 'https://webservice.rakuten.co.jp/documentation/keyword-hotel-search',
   jalan: 'https://www.jalan.net/jw/jwp0100/jww0101.do',
   hotpepper: 'https://webservice.recruit.co.jp/doc/hotpepper/reference.html'
 };
 
-const FUNCTION_VERSION = '2026-06-27-rakuten-netlify-referer';
+const FUNCTION_VERSION = '2026-06-27-rakuten-keyword-fallback';
 
 const GEO_POINTS = [
   {tokens: ['東京ディズニー', '舞浜', '浦安'], lat: 35.6329, lng: 139.8804},
@@ -200,6 +201,12 @@ async function searchRakuten(context) {
   const geo = findGeo(context);
   if (!geo) return providerNotice('楽天トラベル', true, 'No supported destination coordinate was found.');
 
+  const rakutenReferer = rakutenRequestReferer();
+  const rakutenHeaders = {
+    accessKey,
+    Referer: rakutenReferer,
+    Origin: rakutenReferer.replace(/\/$/, '')
+  };
   const params = new URLSearchParams({
     applicationId: appId,
     format: 'json',
@@ -219,21 +226,37 @@ async function searchRakuten(context) {
   if (squeeze.length) params.set('squeezeCondition', squeeze.join(','));
 
   try {
-    const rakutenBaseUrl = process.env.RAKUTEN_REFERER || process.env.URL || 'https://bespoke-twilight-56d54d.netlify.app';
-    const rakutenReferer = rakutenBaseUrl.endsWith('/') ? rakutenBaseUrl : `${rakutenBaseUrl}/`;
     const data = await fetchJsonWithHttps(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`, {
-      headers: {
-        accessKey,
-        Referer: rakutenReferer,
-        Origin: rakutenReferer.replace(/\/$/, '')
-      }
+      headers: rakutenHeaders
     });
     const hotels = Array.isArray(data.hotels) ? data.hotels : [];
-    const items = hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean);
+    let items = hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean);
+    if (!items.length) {
+      const keywordItems = await searchRakutenByKeyword(context, appId, rakutenHeaders);
+      items = keywordItems;
+    }
     return {name: '楽天トラベル', configured: true, items, source: SOURCE_DOCS.rakuten};
   } catch (error) {
     return providerNotice('楽天トラベル', true, safeError(error));
   }
+}
+
+async function searchRakutenByKeyword(context, appId, headers) {
+  const params = new URLSearchParams({
+    applicationId: appId,
+    format: 'json',
+    formatVersion: '2',
+    keyword: rakutenKeyword(context),
+    hits: '6',
+    responseType: 'middle',
+    hotelThumbnailSize: '2'
+  });
+  if (process.env.RAKUTEN_AFFILIATE_ID) params.set('affiliateId', process.env.RAKUTEN_AFFILIATE_ID);
+  const data = await fetchJsonWithHttps(`https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20170426?${params.toString()}`, {
+    headers
+  });
+  const hotels = Array.isArray(data.hotels) ? data.hotels : [];
+  return hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean);
 }
 
 async function searchJalan(context) {
@@ -434,6 +457,31 @@ function findJalanArea(context) {
   if (text.includes('四国')) return {pref: JALAN_PREF.香川};
   if (text.includes('九州')) return {pref: JALAN_PREF.福岡};
   return null;
+}
+
+function rakutenRequestReferer() {
+  const baseUrl = process.env.RAKUTEN_REFERER || process.env.URL || 'https://bespoke-twilight-56d54d.netlify.app';
+  return baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+}
+
+function rakutenKeyword(context) {
+  const text = cleanText(`${context.destination} ${context.q}`, 80);
+  const regionFallbacks = [
+    ['北海道', '札幌'],
+    ['東北', '仙台'],
+    ['関東', '東京'],
+    ['甲信越', '長野'],
+    ['北陸', '金沢'],
+    ['東海', '名古屋'],
+    ['関西', '大阪'],
+    ['中国地方', '広島'],
+    ['四国', '高松'],
+    ['九州', '福岡'],
+    ['沖縄', '那覇']
+  ];
+  const fallback = regionFallbacks.find(([token]) => text.includes(token));
+  if (fallback) return fallback[1];
+  return text.split(/\s+/).filter(Boolean).slice(0, 2).join(' ') || '東京';
 }
 
 async function fetchJson(url, options = {}) {
