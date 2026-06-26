@@ -197,7 +197,6 @@ async function searchRakuten(context) {
 
   const params = new URLSearchParams({
     applicationId: appId,
-    accessKey,
     format: 'json',
     formatVersion: '2',
     latitude: String(geo.lat),
