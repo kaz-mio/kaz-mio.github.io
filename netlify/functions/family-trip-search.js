@@ -215,7 +215,9 @@ async function searchRakuten(context) {
   if (squeeze.length) params.set('squeezeCondition', squeeze.join(','));
 
   try {
-    const data = await fetchJson(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`);
+    const data = await fetchJson(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`, {
+      Referer: process.env.RAKUTEN_REFERER || 'https://kaz-mio.github.io/'
+    });
     const hotels = Array.isArray(data.hotels) ? data.hotels : [];
     const items = hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean);
     return {name: '楽天トラベル', configured: true, items, source: SOURCE_DOCS.rakuten};
@@ -424,8 +426,8 @@ function findJalanArea(context) {
   return null;
 }
 
-async function fetchJson(url) {
-  const res = await fetchWithTimeout(url);
+async function fetchJson(url, headers = {}) {
+  const res = await fetchWithTimeout(url, headers);
   const text = await res.text();
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 160)}`);
   return JSON.parse(text);
@@ -438,13 +440,16 @@ async function fetchText(url) {
   return text;
 }
 
-async function fetchWithTimeout(url) {
+async function fetchWithTimeout(url, headers = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 8500);
   try {
     return await fetch(url, {
       signal: controller.signal,
-      headers: {'User-Agent': 'KAZ-MIO-family-trip-search/1.0'}
+      headers: {
+        'User-Agent': 'KAZ-MIO-family-trip-search/1.0',
+        ...headers
+      }
     });
   } finally {
     clearTimeout(timer);
