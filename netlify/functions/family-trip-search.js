@@ -215,8 +215,13 @@ async function searchRakuten(context) {
   if (squeeze.length) params.set('squeezeCondition', squeeze.join(','));
 
   try {
+    const rakutenReferer = process.env.RAKUTEN_REFERER || 'https://kaz-mio.github.io/';
     const data = await fetchJson(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`, {
-      Referer: process.env.RAKUTEN_REFERER || 'https://kaz-mio.github.io/'
+      headers: {
+        accessKey,
+        Referer: rakutenReferer
+      },
+      referrer: rakutenReferer
     });
     const hotels = Array.isArray(data.hotels) ? data.hotels : [];
     const items = hotels.map(entry => normalizeRakuten(entry, context)).filter(Boolean);
@@ -426,8 +431,8 @@ function findJalanArea(context) {
   return null;
 }
 
-async function fetchJson(url, headers = {}) {
-  const res = await fetchWithTimeout(url, headers);
+async function fetchJson(url, options = {}) {
+  const res = await fetchWithTimeout(url, options);
   const text = await res.text();
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 160)}`);
   return JSON.parse(text);
@@ -440,12 +445,14 @@ async function fetchText(url) {
   return text;
 }
 
-async function fetchWithTimeout(url, headers = {}) {
+async function fetchWithTimeout(url, options = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 8500);
+  const headers = options.headers || {};
   try {
     return await fetch(url, {
       signal: controller.signal,
+      referrer: options.referrer,
       headers: {
         'User-Agent': 'KAZ-MIO-family-trip-search/1.0',
         ...headers
