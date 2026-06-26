@@ -168,6 +168,7 @@ select{appearance:auto;cursor:pointer;}
 .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
 .result-card{border:1px solid var(--line);border-radius:8px;background:#fffdf8;min-height:210px;padding:.9rem;display:flex;flex-direction:column;gap:.58rem;position:relative;overflow:hidden;}
 .result-card::before{content:'';position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--coral),var(--sun),var(--aqua));opacity:.9;}
+.result-image{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:#eef8f6;margin-top:.12rem;}
 .result-provider{font-family:'Nunito',sans-serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);font-weight:900;margin-top:.2rem;}
 .result-title{font-family:'Shippori Mincho',serif;font-size:1rem;line-height:1.45;color:var(--navy);}
 .result-meta{font-size:.73rem;color:var(--ink2);line-height:1.7;}
@@ -713,7 +714,9 @@ const stayLinks = {
   trivago: document.getElementById('trivagoLink'),
   google: document.getElementById('googleLink')
 };
-const API_ENDPOINT = '/api/family-trip-search';
+const API_ENDPOINTS = location.hostname === 'kaz-mio.github.io'
+  ? ['https://regal-platypus-193128.netlify.app/api/family-trip-search', '/api/family-trip-search']
+  : ['/api/family-trip-search', '/.netlify/functions/family-trip-search'];
 const stayResultGrid = document.getElementById('stayResultGrid');
 const stayApiStatus = document.getElementById('stayApiStatus');
 const refreshStayCompare = document.getElementById('refreshStayCompare');
@@ -1000,29 +1003,44 @@ const normalizeApiItems = data => {
     ? data.providers.flatMap(provider => (provider.items || []).map(item => ({...item, provider: item.provider || provider.name})))
     : [];
   const items = Array.isArray(data?.items) ? data.items : Array.isArray(data?.results) ? data.results : providerItems;
-  return items.slice(0, 6).map(item => ({
+  return items.slice(0, 8).map(item => ({
     provider: item.provider || item.source || '検索結果',
     title: item.title || item.name || item.hotelName || item.shopName || '候補',
     url: item.url || item.link || item.reserveUrl || item.detailUrl || '#',
-    meta: [item.price || item.charge || item.budget, item.address, item.access, item.review].filter(Boolean).join(' / '),
+    image: item.image || item.imageUrl || item.photo || item.thumbnail || '',
+    meta: item.meta || [item.price || item.charge || item.budget, item.address, item.access].filter(Boolean).join(' / '),
     tags: Array.isArray(item.tags) ? item.tags.slice(0, 4) : [item.genre, item.area, item.rating].filter(Boolean).slice(0, 4),
-    label: item.score ? `Score ${item.score}` : item.reviewAverage ? `Review ${item.reviewAverage}` : 'API'
+    label: item.label || (item.score ? `適合 ${item.score}` : item.reviewAverage ? `評価 ${item.reviewAverage}` : '候補')
   }));
+};
+const safeUrl = value => {
+  if (!value) return '#';
+  try {
+    const url = new URL(value || '#', location.href);
+    return ['http:', 'https:'].includes(url.protocol) ? url.href : '#';
+  } catch {
+    return '#';
+  }
 };
 const renderComparisonCards = (type, items, label) => {
   const config = comparisonConfig[type];
-  config.grid.innerHTML = items.map((item, index) => `
-    <article class="result-card">
-      <div class="result-provider">${escapeHtml(item.provider)}</div>
-      <div class="result-title">${escapeHtml(item.title)}</div>
-      <div class="result-meta">${escapeHtml(item.meta || 'リンク先で料金、空き状況、設備の最新情報を確認してください。')}</div>
-      <div class="result-tags">${(item.tags || []).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
-      <div class="result-foot">
-        <span class="score-pill">${escapeHtml(item.label || `${index + 1}番目`)}</span>
-        <a class="result-link" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noopener">開く</a>
-      </div>
-    </article>
-  `).join('');
+  config.grid.innerHTML = items.map((item, index) => {
+    const itemUrl = safeUrl(item.url);
+    const imageUrl = safeUrl(item.image);
+    return `
+      <article class="result-card">
+        ${imageUrl !== '#' ? `<img class="result-image" src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}の掲載写真" loading="lazy">` : ''}
+        <div class="result-provider">${escapeHtml(item.provider)}</div>
+        <div class="result-title">${escapeHtml(item.title)}</div>
+        <div class="result-meta">${escapeHtml(item.meta || 'リンク先で料金、空き状況、設備の最新情報を確認してください。')}</div>
+        <div class="result-tags">${(item.tags || []).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
+        <div class="result-foot">
+          <span class="score-pill">${escapeHtml(item.label || `${index + 1}番目`)}</span>
+          <a class="result-link" href="${escapeHtml(itemUrl)}" target="_blank" rel="noopener">開く</a>
+        </div>
+      </article>
+    `;
+  }).join('');
   if (label) {
     config.status.className = 'api-status';
     config.status.innerHTML = label;
@@ -1051,9 +1069,8 @@ const fetchApiComparison = async type => {
   }
   try {
     if (location.protocol === 'file:') throw new Error('local-file');
-    const response = await fetch(`${API_ENDPOINT}?${params.toString()}`, {headers: {'Accept': 'application/json'}});
-    if (!response.ok) throw new Error(`api-${response.status}`);
-    const items = normalizeApiItems(await response.json());
+    const data = await fetchApiResults(params);
+    const items = normalizeApiItems(data);
     if (!items.length) throw new Error('empty-api-results');
     renderComparisonCards(type, items, '<strong>候補表示:</strong> 条件に近い候補を表示しています。予約前に各掲載元で最新情報を確認してください。');
     config.status.classList.add('is-live');
@@ -1062,6 +1079,20 @@ const fetchApiComparison = async type => {
     config.status.className = 'api-status is-error';
     config.status.innerHTML = '<strong>検索リンクで比較:</strong> 現在は各掲載元の最新ページを開いて確認する形です。比較メモもこの条件で作れます。';
   }
+};
+const fetchApiResults = async params => {
+  let lastError;
+  for (const endpoint of API_ENDPOINTS) {
+    try {
+      const response = await fetch(`${endpoint}?${params.toString()}`, {headers: {'Accept': 'application/json'}});
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.message || `api-${response.status}`);
+      return data;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error('api-unavailable');
 };
 const buildComparisonMemo = type => {
   const config = comparisonConfig[type];

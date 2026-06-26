@@ -1,0 +1,8 @@
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/family-trip-search"
+  to = "/.netlify/functions/family-trip-search"
+  status = 200
