@@ -6,7 +6,7 @@ const SOURCE_DOCS = {
   hotpepper: 'https://webservice.recruit.co.jp/doc/hotpepper/reference.html'
 };
 
-const FUNCTION_VERSION = '2026-06-27-rakuten-node-https';
+const FUNCTION_VERSION = '2026-06-27-rakuten-netlify-referer';
 
 const GEO_POINTS = [
   {tokens: ['東京ディズニー', '舞浜', '浦安'], lat: 35.6329, lng: 139.8804},
@@ -219,11 +219,13 @@ async function searchRakuten(context) {
   if (squeeze.length) params.set('squeezeCondition', squeeze.join(','));
 
   try {
-    const rakutenReferer = process.env.RAKUTEN_REFERER || 'https://kaz-mio.github.io/';
+    const rakutenBaseUrl = process.env.RAKUTEN_REFERER || process.env.URL || 'https://bespoke-twilight-56d54d.netlify.app';
+    const rakutenReferer = rakutenBaseUrl.endsWith('/') ? rakutenBaseUrl : `${rakutenBaseUrl}/`;
     const data = await fetchJsonWithHttps(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`, {
       headers: {
         accessKey,
-        referer: rakutenReferer
+        Referer: rakutenReferer,
+        Origin: rakutenReferer.replace(/\/$/, '')
       }
     });
     const hotels = Array.isArray(data.hotels) ? data.hotels : [];
