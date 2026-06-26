@@ -10,18 +10,18 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索 | KAZ &amp; MIO | LIFE, LIGHTLY</title>
-<meta name="description" content="小さい子ども連れの宿・食事場所探しに。ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェア、施設の新しさなど、ファミリー向け条件を選んで横断検索できます。持ち物チェックもあわせて確認できます。">
+<meta name="description" content="小さい子ども連れの宿・食事場所探しに。楽天トラベル、じゃらん、ホットペッパーなどを見比べる前に、ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェアなどの条件を整理できます。">
 <link rel="canonical" href="https://kaz-mio.github.io/family_stay_search.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
-<meta property="og:description" content="ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェア、開業・リニューアル年数など、子連れで見たい条件から複数サイトを探せます。">
+<meta property="og:description" content="楽天トラベル、じゃらん、ホットペッパーなどを見比べる前に、子連れで見たい条件を整理できます。検索リンク、比較メモ、問い合わせ文例つき。">
 <meta property="og:url" content="https://kaz-mio.github.io/family_stay_search.html">
 <meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
-<meta name="twitter:description" content="小さい子連れに便利な宿泊・食事条件や開業・リニューアル年数で、複数サイトを探せるページです。">
+<meta name="twitter:description" content="楽天トラベル、じゃらん、ホットペッパーなどを見比べる前に、子連れで見たい条件を整理できるページです。">
 <meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <script type="application/ld+json">
 {
@@ -154,6 +154,30 @@ select{appearance:auto;cursor:pointer;}
 .providers .provider:nth-child(3){background:linear-gradient(135deg,#c65342,#ffd66e);color:#fff;}
 .providers .provider:nth-child(4){background:linear-gradient(135deg,#111827,#52616a);}
 .providers .provider:nth-child(5){background:linear-gradient(135deg,#174b7a,#1f5f7a);}
+.compare-panel{margin-top:1.05rem;background:#fff;border:1px solid rgba(24,36,43,.1);border-radius:8px;box-shadow:var(--soft);padding:1rem;}
+.compare-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.9rem;}
+.compare-head h3{font-family:'Shippori Mincho',serif;font-size:1.18rem;line-height:1.45;color:var(--navy);}
+.compare-head p{font-size:.78rem;color:var(--ink2);line-height:1.8;margin-top:.22rem;}
+.compare-kicker{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);display:block;margin-bottom:.25rem;}
+.compare-actions{display:flex;gap:.55rem;flex-wrap:wrap;justify-content:flex-end;}
+.compare-actions .copy-btn{font-size:.76rem;padding:.62rem .88rem;box-shadow:0 6px 16px rgba(24,52,71,.08);}
+.api-status{border:1px dashed rgba(31,95,122,.22);border-radius:8px;background:#f4fbfb;color:var(--ink2);font-size:.76rem;line-height:1.75;padding:.72rem .82rem;margin-bottom:.85rem;}
+.api-status strong{color:var(--navy);}
+.api-status.is-live{border-style:solid;background:#f1fbf4;color:#315f3b;}
+.api-status.is-error{background:#fff8f1;color:#7a4a1f;}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
+.result-card{border:1px solid var(--line);border-radius:8px;background:#fffdf8;min-height:210px;padding:.9rem;display:flex;flex-direction:column;gap:.58rem;position:relative;overflow:hidden;}
+.result-card::before{content:'';position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--coral),var(--sun),var(--aqua));opacity:.9;}
+.result-provider{font-family:'Nunito',sans-serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);font-weight:900;margin-top:.2rem;}
+.result-title{font-family:'Shippori Mincho',serif;font-size:1rem;line-height:1.45;color:var(--navy);}
+.result-meta{font-size:.73rem;color:var(--ink2);line-height:1.7;}
+.result-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:auto;}
+.result-tags span{border-radius:999px;background:#eef8f6;color:var(--blue);font-size:.66rem;font-weight:800;line-height:1.2;padding:.34rem .5rem;}
+.result-foot{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.25rem;}
+.score-pill{border-radius:999px;background:var(--navy);color:#fff;font-family:'Nunito',sans-serif;font-size:.62rem;font-weight:900;letter-spacing:.08em;padding:.36rem .52rem;white-space:nowrap;}
+.result-link{font-size:.72rem;font-weight:900;color:var(--coral-d);text-decoration:none;}
+.result-link:hover{text-decoration:underline;}
+.compare-note{font-size:.72rem;color:var(--ink3);line-height:1.75;margin-top:.8rem;}
 .note{font-size:.74rem;color:var(--ink3);line-height:1.8;margin-top:1rem;}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;}
 .tip{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:1.2rem;box-shadow:var(--soft);}
@@ -175,9 +199,9 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 .ft-nav a{font-size:.74rem;font-weight:800;text-decoration:none;color:rgba(255,255,255,.68);transition:color .2s,transform .2s;}
 .ft-nav a:hover{color:#fff;transform:translateY(-2px);}
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38);}
-@media(max-width:980px){.hero,.form-row,.focus-strip,.template-grid{grid-template-columns:1fr;}.providers{grid-template-columns:repeat(2,1fr);}.checks{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}.focus-grid,.tool-brief-grid{grid-template-columns:1fr;}.tool-brief-head{display:block;}.tool-brief-head p{margin-top:.55rem;}}
-@media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}.wrap{padding:2.6rem 1rem 4rem;}h1{font-size:2.45rem;}.lead,.panel-head p,.note,.tip p,.memo p{overflow-wrap:anywhere;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.search-panel{padding:1rem;}.panel-head{display:block;}.panel-head p{margin-top:.6rem;}.checks,.providers{grid-template-columns:1fr;}.query-box{grid-template-columns:1fr;}.copy-btn{width:100%;}.query-actions{width:100%;}.preset-btn.clear{margin-left:0;}.ft-inner{align-items:flex-start;flex-direction:column;}}
-@media(max-width:520px){.hd,.wrap,.ft{width:100vw;max-width:390px;margin-left:0;margin-right:0;overflow:hidden;}.hero,.hero-card,.search-panel,.grid,.template,.focus-strip,.ft-inner{max-width:358px;}.provider,.check,input[type="text"],input[type="date"],input[type="number"],select,textarea{max-width:100%;}}
+@media(max-width:980px){.hero,.form-row,.focus-strip,.template-grid{grid-template-columns:1fr;}.providers{grid-template-columns:repeat(2,1fr);}.checks{grid-template-columns:repeat(2,1fr);}.grid,.result-grid{grid-template-columns:1fr;}.focus-grid,.tool-brief-grid{grid-template-columns:1fr;}.tool-brief-head{display:block;}.tool-brief-head p{margin-top:.55rem;}}
+@media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}.wrap{padding:2.6rem 1rem 4rem;}h1{font-size:2.45rem;}.lead,.panel-head p,.note,.tip p,.memo p{overflow-wrap:anywhere;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.search-panel{padding:1rem;}.panel-head,.compare-head{display:block;}.panel-head p,.compare-head p{margin-top:.6rem;}.compare-actions{justify-content:stretch;margin-top:.8rem;}.checks,.providers{grid-template-columns:1fr;}.query-box{grid-template-columns:1fr;}.copy-btn{width:100%;}.query-actions{width:100%;}.preset-btn.clear{margin-left:0;}.ft-inner{align-items:flex-start;flex-direction:column;}}
+@media(max-width:520px){.hd,.wrap,.ft{width:100%;max-width:390px;margin-left:0;margin-right:0;overflow:hidden;}.hero,.hero-card,.search-panel,.grid,.template,.focus-strip,.ft-inner{max-width:358px;}.provider,.check,input[type="text"],input[type="date"],input[type="number"],select,textarea{max-width:100%;}}
 </style>
 <script src="assets/analytics.js" defer></script>
 </head>
@@ -409,6 +433,22 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <a class="provider alt" id="trivagoLink" target="_blank" rel="noopener">トリバゴ検索</a>
       <a class="provider alt" id="googleLink" target="_blank" rel="noopener">Google横断</a>
     </div>
+    <div class="compare-panel" aria-labelledby="stay-compare-title">
+      <div class="compare-head">
+        <div>
+          <span class="compare-kicker">Rakuten / Jalan / Hotel Compare</span>
+          <h3 id="stay-compare-title">宿候補を並べて見る準備</h3>
+          <p>楽天トラベル・じゃらんなどで開いた候補を、子連れ目線の確認軸で見比べやすくします。</p>
+        </div>
+        <div class="compare-actions">
+          <button class="copy-btn ghost" type="button" id="refreshStayCompare">比較候補を更新</button>
+          <button class="copy-btn ghost" type="button" id="copyStayCompare">比較メモをコピー</button>
+        </div>
+      </div>
+      <div class="api-status" id="stayApiStatus"><strong>比較準備:</strong> 各掲載元を開いて、最新の空き状況・料金・設備を確認できる形にしています。</div>
+      <div class="result-grid" id="stayResultGrid" aria-live="polite"></div>
+      <p class="compare-note">宿の設備や貸出品は部屋タイプ・プランで変わります。気になる候補は、掲載元の詳細ページと宿への確認で最終判断してください。</p>
+    </div>
     <p class="note">※楽天トラベルとじゃらんは日本語の文字化けを避けるため、各サイト内をGoogle経由で探す形にしています。日付・人数はサイトによって反映範囲が異なるため、移動後の画面でも確認してください。<br>※選んだ条件はこのブラウザに自動で保存され、次に開いたときも残ります。「条件リンクをコピー」を使うと、同じ条件のままこのページを家族と共有できます。</p>
   </section>
 
@@ -562,6 +602,22 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       <a class="provider" id="gnaviLink" target="_blank" rel="noopener">ぐるなび検索</a>
       <a class="provider alt" id="foodGoogleLink" target="_blank" rel="noopener">Google横断</a>
     </div>
+    <div class="compare-panel" aria-labelledby="food-compare-title">
+      <div class="compare-head">
+        <div>
+          <span class="compare-kicker">Hot Pepper / Maps / Gourmet Compare</span>
+          <h3 id="food-compare-title">食事候補を並べて見る準備</h3>
+          <p>ホットペッパーや地図検索で見つけたお店を、座席・待ち時間・設備の観点で比べます。</p>
+        </div>
+        <div class="compare-actions">
+          <button class="copy-btn ghost" type="button" id="refreshFoodCompare">比較候補を更新</button>
+          <button class="copy-btn ghost" type="button" id="copyFoodCompare">比較メモをコピー</button>
+        </div>
+      </div>
+      <div class="api-status" id="foodApiStatus"><strong>比較準備:</strong> 各掲載元を開いて、最新の席情報・予約可否・設備を確認できる形にしています。</div>
+      <div class="result-grid" id="foodResultGrid" aria-live="polite"></div>
+      <p class="compare-note">飲食店の席や設備は時間帯・店舗運用で変わります。気になる候補は、掲載元の詳細ページとお店への確認で最終判断してください。</p>
+    </div>
     <p class="note">※飲食店の設備は店舗や時間帯で変わることがあります。座敷・個室・ベビーカー可否・離乳食持ち込みは、予約前に店舗へ確認すると安心です。<br>※こちらの条件もブラウザに自動保存されます。条件リンクのコピーで共有もできます。</p>
   </section>
 
@@ -657,6 +713,11 @@ const stayLinks = {
   trivago: document.getElementById('trivagoLink'),
   google: document.getElementById('googleLink')
 };
+const API_ENDPOINT = '/api/family-trip-search';
+const stayResultGrid = document.getElementById('stayResultGrid');
+const stayApiStatus = document.getElementById('stayApiStatus');
+const refreshStayCompare = document.getElementById('refreshStayCompare');
+const copyStayCompare = document.getElementById('copyStayCompare');
 const foodDestination = document.getElementById('foodDestination');
 const foodArea = document.getElementById('foodArea');
 const foodExtra = document.getElementById('foodExtra');
@@ -678,6 +739,10 @@ const foodLinks = {
   gnavi: document.getElementById('gnaviLink'),
   google: document.getElementById('foodGoogleLink')
 };
+const foodResultGrid = document.getElementById('foodResultGrid');
+const foodApiStatus = document.getElementById('foodApiStatus');
+const refreshFoodCompare = document.getElementById('refreshFoodCompare');
+const copyFoodCompare = document.getElementById('copyFoodCompare');
 const stayPresets = {
   baby: {
     label: '赤ちゃんと初めての宿',
@@ -797,6 +862,10 @@ const updateAreaSelect = (destination, area) => {
   area.disabled = !areas.length;
 };
 const destinationWords = (destination, area) => [destination.value.trim(), area.value.trim()].filter(Boolean).join(' ');
+const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+}[char]));
+const checkedValues = inputs => inputs.filter(input => input.checked).map(input => input.value);
 const buildStayQuery = () => {
   const words = [
     destinationWords(stayDestination, stayArea),
@@ -864,6 +933,158 @@ const buildBookingUrl = () => {
   }
   return `https://www.booking.com/searchresults.ja.html?${params.toString()}`;
 };
+const comparisonConfig = {
+  stay: {
+    grid: stayResultGrid,
+    status: stayApiStatus,
+    query: () => buildStayQuery() || '子連れ 宿 ファミリー',
+    location: () => destinationWords(stayDestination, stayArea) || '行き先未指定',
+    conditions: () => checkedValues(stayChecks),
+    links: () => [
+      {
+        provider: '楽天トラベル',
+        title: '評価件数・料金・写真を確認',
+        url: stayLinks.rakuten.href,
+        meta: '宿泊施設数や掲載情報を見ながら、プラン差と部屋タイプを確認します。',
+        tags: ['評価件数', '料金', '部屋タイプ']
+      },
+      {
+        provider: 'じゃらん',
+        title: '部屋設備と子連れ条件を確認',
+        url: stayLinks.jalan.href,
+        meta: '和室、貸切風呂、ベッドガードなど、設備説明の書き方を見比べます。',
+        tags: ['設備', '和室', '貸切風呂']
+      },
+      {
+        provider: 'Googleホテル比較',
+        title: '立地と価格帯をざっくり確認',
+        url: stayLinks.googleHotels.href,
+        meta: '地図上の場所、価格帯、周辺施設を先に見て候補を絞ります。',
+        tags: ['立地', '価格帯', '地図']
+      }
+    ]
+  },
+  food: {
+    grid: foodResultGrid,
+    status: foodApiStatus,
+    query: () => buildFoodQuery() || '子連れ 食事 レストラン',
+    location: () => destinationWords(foodDestination, foodArea) || 'エリア未指定',
+    conditions: () => checkedValues(foodChecks),
+    links: () => [
+      {
+        provider: 'ホットペッパー',
+        title: '個室・座席・予約可を確認',
+        url: foodLinks.hotpepper.href,
+        meta: 'ネット予約、個室、座敷、禁煙など、外食前に知りたい条件を確認します。',
+        tags: ['予約可', '個室', '座席']
+      },
+      {
+        provider: 'Googleマップ',
+        title: '距離・写真・混雑感を確認',
+        url: foodLinks.maps.href,
+        meta: '現在地や宿からの移動時間、入口の雰囲気、写真を見て判断します。',
+        tags: ['距離', '写真', '混雑']
+      },
+      {
+        provider: '食べログ・ぐるなび',
+        title: '席情報と掲載写真を補足確認',
+        url: foodLinks.google.href,
+        meta: '複数サイトの席情報や掲載写真を照らし合わせ、最終確認の候補にします。',
+        tags: ['席情報', '掲載写真', '横断']
+      }
+    ]
+  }
+};
+const normalizeApiItems = data => {
+  const providerItems = Array.isArray(data?.providers)
+    ? data.providers.flatMap(provider => (provider.items || []).map(item => ({...item, provider: item.provider || provider.name})))
+    : [];
+  const items = Array.isArray(data?.items) ? data.items : Array.isArray(data?.results) ? data.results : providerItems;
+  return items.slice(0, 6).map(item => ({
+    provider: item.provider || item.source || '検索結果',
+    title: item.title || item.name || item.hotelName || item.shopName || '候補',
+    url: item.url || item.link || item.reserveUrl || item.detailUrl || '#',
+    meta: [item.price || item.charge || item.budget, item.address, item.access, item.review].filter(Boolean).join(' / '),
+    tags: Array.isArray(item.tags) ? item.tags.slice(0, 4) : [item.genre, item.area, item.rating].filter(Boolean).slice(0, 4),
+    label: item.score ? `Score ${item.score}` : item.reviewAverage ? `Review ${item.reviewAverage}` : 'API'
+  }));
+};
+const renderComparisonCards = (type, items, label) => {
+  const config = comparisonConfig[type];
+  config.grid.innerHTML = items.map((item, index) => `
+    <article class="result-card">
+      <div class="result-provider">${escapeHtml(item.provider)}</div>
+      <div class="result-title">${escapeHtml(item.title)}</div>
+      <div class="result-meta">${escapeHtml(item.meta || 'リンク先で料金、空き状況、設備の最新情報を確認してください。')}</div>
+      <div class="result-tags">${(item.tags || []).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
+      <div class="result-foot">
+        <span class="score-pill">${escapeHtml(item.label || `${index + 1}番目`)}</span>
+        <a class="result-link" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noopener">開く</a>
+      </div>
+    </article>
+  `).join('');
+  if (label) {
+    config.status.className = 'api-status';
+    config.status.innerHTML = label;
+  }
+};
+const renderFallbackComparison = type => {
+  const config = comparisonConfig[type];
+  const items = config.links().map((item, index) => ({...item, label: `${index + 1}番目`}));
+  renderComparisonCards(type, items, '<strong>比較準備:</strong> 条件に合わせた検索先を並べています。リンク先で最新の空き状況・席情報・設備を確認してください。');
+};
+const fetchApiComparison = async type => {
+  const config = comparisonConfig[type];
+  config.status.className = 'api-status';
+  config.status.innerHTML = '<strong>更新中:</strong> 条件に合わせて比較候補を整えています。';
+  const params = new URLSearchParams({
+    type,
+    q: config.query(),
+    destination: config.location(),
+    conditions: config.conditions().join(',')
+  });
+  if (type === 'stay') {
+    params.set('checkin', checkinDate.value || '');
+    params.set('nights', String(clampNumber(nightsInput.value, 1, 1, 14)));
+    params.set('adults', String(clampNumber(adultsInput.value, 2, 1, 8)));
+    params.set('children', String(clampNumber(childrenInput.value, 1, 0, 6)));
+  }
+  try {
+    if (location.protocol === 'file:') throw new Error('local-file');
+    const response = await fetch(`${API_ENDPOINT}?${params.toString()}`, {headers: {'Accept': 'application/json'}});
+    if (!response.ok) throw new Error(`api-${response.status}`);
+    const items = normalizeApiItems(await response.json());
+    if (!items.length) throw new Error('empty-api-results');
+    renderComparisonCards(type, items, '<strong>候補表示:</strong> 条件に近い候補を表示しています。予約前に各掲載元で最新情報を確認してください。');
+    config.status.classList.add('is-live');
+  } catch {
+    renderFallbackComparison(type);
+    config.status.className = 'api-status is-error';
+    config.status.innerHTML = '<strong>検索リンクで比較:</strong> 現在は各掲載元の最新ページを開いて確認する形です。比較メモもこの条件で作れます。';
+  }
+};
+const buildComparisonMemo = type => {
+  const config = comparisonConfig[type];
+  const heading = type === 'stay' ? '子連れ宿候補の比較メモ' : '子連れ食事場所の比較メモ';
+  const conditions = config.conditions();
+  const links = config.links();
+  return [
+    `【${heading}】`,
+    `エリア: ${config.location()}`,
+    `検索語: ${config.query()}`,
+    conditions.length ? `確認したい条件: ${conditions.join(' / ')}` : '確認したい条件: 未選択',
+    '',
+    '見るところ:',
+    ...(type === 'stay'
+      ? ['・寝る場所（ベッドガード、和室、敷布団）', '・お風呂（洗い場付き、バストイレ別、貸切風呂）', '・プラン差（部屋タイプ、食事場所、貸出品）']
+      : ['・座る場所（座敷、個室、キッズチェア）', '・入りやすさ（ベビーカー、禁煙、混雑しにくい時間）', '・予約前確認（おむつ替え、離乳食、駐車場）']),
+    '',
+    '検索先:',
+    ...links.map(item => `・${item.provider}: ${item.url}`),
+    '',
+    'メモ:'
+  ].join('\n');
+};
 const updateStayLinks = () => {
   const query = buildStayQuery() || '子連れ 宿 ファミリー ベッドガード 畳 洗い場付き風呂';
   stayQueryText.textContent = query;
@@ -879,6 +1100,7 @@ const updateStayLinks = () => {
   stayLinks.googleHotels.href = `https://www.google.com/travel/hotels?q=${q}`;
   stayLinks.trivago.href = siteSearch('trivago.jp');
   stayLinks.google.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:travel.rakuten.co.jp OR site:jalan.net OR site:travel.yahoo.co.jp OR site:ikyu.com')}`;
+  renderFallbackComparison('stay');
   saveState();
 };
 const updateFoodLinks = () => {
@@ -892,6 +1114,7 @@ const updateFoodLinks = () => {
   foodLinks.hotpepper.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:hotpepper.jp')}`;
   foodLinks.gnavi.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:gnavi.co.jp')}`;
   foodLinks.google.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:tabelog.com OR site:hotpepper.jp OR site:gnavi.co.jp OR site:retty.me')}`;
+  renderFallbackComparison('food');
   saveState();
 };
 const copyText = async (text, button) => {
@@ -999,6 +1222,10 @@ document.getElementById('copyTemplate').addEventListener('click', () => copyText
 document.getElementById('copyFoodTemplate').addEventListener('click', () => copyText(document.getElementById('foodMessageTemplate').value, document.getElementById('copyFoodTemplate')));
 document.getElementById('shareStay').addEventListener('click', () => copyText(buildShareUrl(), document.getElementById('shareStay')));
 document.getElementById('shareFood').addEventListener('click', () => copyText(buildShareUrl(), document.getElementById('shareFood')));
+refreshStayCompare.addEventListener('click', () => fetchApiComparison('stay'));
+refreshFoodCompare.addEventListener('click', () => fetchApiComparison('food'));
+copyStayCompare.addEventListener('click', () => copyText(buildComparisonMemo('stay'), copyStayCompare));
+copyFoodCompare.addEventListener('click', () => copyText(buildComparisonMemo('food'), copyFoodCompare));
 stayAgeSuggest.addEventListener('click', () => {
   addSuggestedChecks(stayChecks, stayAgeSuggestions[stayChildAge.value]);
   updateStayLinks();
