@@ -163,6 +163,7 @@ select{appearance:auto;cursor:pointer;}
 .compare-actions .copy-btn{font-size:.76rem;padding:.62rem .88rem;box-shadow:0 6px 16px rgba(24,52,71,.08);}
 .api-status{border:1px dashed rgba(31,95,122,.22);border-radius:8px;background:#f4fbfb;color:var(--ink2);font-size:.76rem;line-height:1.75;padding:.72rem .82rem;margin-bottom:.85rem;}
 .api-status strong{color:var(--navy);}
+.api-status .provider-note{display:block;margin-top:.28rem;color:inherit;}
 .api-status.is-live{border-style:solid;background:#f1fbf4;color:#315f3b;}
 .api-status.is-error{background:#fff8f1;color:#7a4a1f;}
 .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
@@ -1051,6 +1052,12 @@ const renderFallbackComparison = type => {
   const items = config.links().map((item, index) => ({...item, label: `${index + 1}番目`}));
   renderComparisonCards(type, items, '<strong>比較準備:</strong> 条件に合わせた検索先を並べています。リンク先で最新の空き状況・席情報・設備を確認してください。');
 };
+const providerNoticeHtml = data => {
+  const notices = Array.isArray(data?.providers)
+    ? data.providers.filter(provider => provider?.message).map(provider => `${provider.name}: ${provider.message}`)
+    : [];
+  return notices.length ? `<span class="provider-note">${notices.map(escapeHtml).join(' / ')}</span>` : '';
+};
 const fetchApiComparison = async type => {
   const config = comparisonConfig[type];
   config.status.className = 'api-status';
@@ -1072,7 +1079,7 @@ const fetchApiComparison = async type => {
     const data = await fetchApiResults(params);
     const items = normalizeApiItems(data);
     if (!items.length) throw new Error('empty-api-results');
-    renderComparisonCards(type, items, '<strong>候補表示:</strong> 条件に近い候補を表示しています。予約前に各掲載元で最新情報を確認してください。');
+    renderComparisonCards(type, items, `<strong>候補表示:</strong> 条件に近い候補を表示しています。予約前に各掲載元で最新情報を確認してください。${providerNoticeHtml(data)}`);
     config.status.classList.add('is-live');
   } catch {
     renderFallbackComparison(type);

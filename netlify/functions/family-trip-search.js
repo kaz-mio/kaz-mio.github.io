@@ -7,7 +7,8 @@ const SOURCE_DOCS = {
   hotpepper: 'https://webservice.recruit.co.jp/doc/hotpepper/reference.html'
 };
 
-const FUNCTION_VERSION = '2026-06-27-rakuten-diagnostics';
+const FUNCTION_VERSION = '2026-06-27-jalan-key-diagnostics';
+const JALAN_KEY_MESSAGE = 'じゃらんWebサービス専用の半角数字16桁以下のAPIキーが必要です。リクルートWebサービス/ホットペッパーのキーでは利用できません。';
 
 const GEO_POINTS = [
   {tokens: ['東京ディズニー', '舞浜', '浦安'], lat: 35.6329, lng: 139.8804},
@@ -280,8 +281,9 @@ async function searchRakutenByKeyword(context, appId, headers) {
 }
 
 async function searchJalan(context) {
-  const key = process.env.JALAN_API_KEY;
+  const key = cleanText(process.env.JALAN_API_KEY, 32);
   if (!key) return providerNotice('じゃらん', false, 'JALAN_API_KEY is not configured.');
+  if (!/^\d{1,16}$/.test(key)) return providerNotice('じゃらん', true, JALAN_KEY_MESSAGE);
 
   const area = findJalanArea(context);
   if (!area) return providerNotice('じゃらん', true, 'No supported Jalan area code was found.');
@@ -303,7 +305,7 @@ async function searchJalan(context) {
     const items = parseJalanHotels(xml).map(item => scoreItem(item, context, 'じゃらん'));
     return {name: 'じゃらん', configured: true, items, source: SOURCE_DOCS.jalan};
   } catch (error) {
-    return providerNotice('じゃらん', true, safeError(error));
+    return providerNotice('じゃらん', true, jalanError(error));
   }
 }
 
@@ -632,4 +634,10 @@ function providerNotice(name, configured, message) {
 
 function safeError(error) {
   return String(error?.message || error || 'request failed').slice(0, 180);
+}
+
+function jalanError(error) {
+  const message = safeError(error);
+  if (message.includes('不正なアカウント')) return JALAN_KEY_MESSAGE;
+  return message;
 }
