@@ -3,11 +3,13 @@ const https = require('https');
 const SOURCE_DOCS = {
   rakuten: 'https://webservice.rakuten.co.jp/documentation/simple-hotel-search',
   rakutenKeyword: 'https://webservice.rakuten.co.jp/documentation/keyword-hotel-search',
+  rakutenVacant: 'https://webservice.rakuten.co.jp/documentation/vacant-hotel-search',
   jalan: 'https://www.jalan.net/jw/jwp0100/jww0101.do',
-  hotpepper: 'https://webservice.recruit.co.jp/doc/hotpepper/reference.html'
+  hotpepper: 'https://webservice.recruit.co.jp/doc/hotpepper/reference.html',
+  googlePlaces: 'https://developers.google.com/maps/documentation/places/web-service/text-search'
 };
 
-const FUNCTION_VERSION = '2026-06-27-jalan-key-diagnostics';
+const FUNCTION_VERSION = '2026-06-27-rakuten-vacancy-google-places';
 const JALAN_KEY_MESSAGE = 'じゃらんWebサービス専用の半角数字16桁以下のAPIキーが必要です。リクルートWebサービス/ホットペッパーのキーでは利用できません。';
 
 const GEO_POINTS = [
@@ -168,8 +170,8 @@ exports.handler = async event => {
     const conditions = cleanText(params.conditions, 180).split(',').map(v => v.trim()).filter(Boolean).slice(0, 12);
     const context = {type, q, destination, conditions, params};
     const providers = type === 'food'
-      ? [await searchHotpepper(context)]
-      : await Promise.all([searchRakuten(context), searchJalan(context)]);
+      ? await Promise.all([searchHotpepper(context), searchGooglePlaces(context)])
+      : await Promise.all([searchRakuten(context), searchJalan(context), searchGooglePlaces(context)]);
     const items = providers
       .flatMap(provider => provider.items || [])
       .sort((a, b) => Number(b.score || 0) - Number(a.score || 0))
@@ -208,6 +210,25 @@ async function searchRakuten(context) {
     Referer: rakutenReferer,
     Origin: rakutenReferer.replace(/\/$/, '')
   };
+  const stayDates = rakutenStayDates(context);
+  let preface = '';
+  if (stayDates) {
+    try {
+      const vacantItems = await searchRakutenVacant(context, appId, rakutenHeaders, geo, stayDates);
+      if (vacantItems.length) {
+        return {
+          name: '楽天トラベル',
+          configured: true,
+          items: vacantItems,
+          message: `楽天トラベル空室検索から${vacantItems.length}件取得しました。`,
+          source: SOURCE_DOCS.rakutenVacant
+        };
+      }
+      preface = '楽天トラベル空室検索は0件でした。施設検索に切り替えました。';
+    } catch (error) {
+      preface = `楽天トラベル空室検索は取得できませんでした。施設検索に切り替えました。(${safeError(error)})`;
+    }
+  }
   const params = new URLSearchParams({
     applicationId: appId,
     format: 'json',
@@ -221,10 +242,7 @@ async function searchRakuten(context) {
     hotelThumbnailSize: '2'
   });
   if (process.env.RAKUTEN_AFFILIATE_ID) params.set('affiliateId', process.env.RAKUTEN_AFFILIATE_ID);
-  const squeeze = [];
-  if (hasAny(context.conditions, ['禁煙'])) squeeze.push('kinen');
-  if (hasAny(context.conditions, ['温泉', '貸切風呂', '家族風呂'])) squeeze.push('onsen');
-  if (squeeze.length) params.set('squeezeCondition', squeeze.join(','));
+  applyRakutenSqueeze(params, context);
 
   try {
     const data = await fetchJsonWithHttps(`https://openapi.rakuten.co.jp/engine/api/Travel/SimpleHotelSearch/20170426?${params.toString()}`, {
@@ -248,12 +266,44 @@ async function searchRakuten(context) {
       items = keywordItems.items;
     }
     const message = hotels.length || keywordCount
-      ? `楽天から${items.length}件取得しました。`
+      ? compact([preface, `楽天から${items.length}件取得しました。`]).join(' ')
       : '';
     return {name: '楽天トラベル', configured: true, items, message, source: SOURCE_DOCS.rakuten};
   } catch (error) {
     return providerNotice('楽天トラベル', true, safeError(error));
   }
+}
+
+async function searchRakutenVacant(context, appId, headers, geo, stayDates) {
+  const params = new URLSearchParams({
+    applicationId: appId,
+    format: 'json',
+    formatVersion: '2',
+    latitude: String(geo.lat),
+    longitude: String(geo.lng),
+    datumType: '1',
+    searchRadius: '3',
+    hits: '8',
+    page: '1',
+    searchPattern: '0',
+    responseType: 'middle',
+    hotelThumbnailSize: '2',
+    sort: 'standard',
+    checkinDate: stayDates.checkin,
+    checkoutDate: stayDates.checkout,
+    adultNum: String(stayDates.adults),
+    roomNum: '1'
+  });
+  applyRakutenChildParams(params, context, stayDates.children);
+  applyRakutenSqueeze(params, context);
+  if (process.env.RAKUTEN_AFFILIATE_ID) params.set('affiliateId', process.env.RAKUTEN_AFFILIATE_ID);
+  const data = await fetchJsonWithHttps(`https://openapi.rakuten.co.jp/engine/api/Travel/VacantHotelSearch/20170426?${params.toString()}`, {
+    headers
+  });
+  const apiError = rakutenApiError(data);
+  if (apiError) throw new Error(apiError);
+  const hotels = Array.isArray(data.hotels) ? data.hotels : [];
+  return hotels.map(entry => normalizeRakuten(entry, context, {available: true})).filter(Boolean);
 }
 
 async function searchRakutenByKeyword(context, appId, headers) {
@@ -359,7 +409,56 @@ function hotpepperRequest(params) {
   return fetchJson(`http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?${params.toString()}`);
 }
 
-function normalizeRakuten(entry, context) {
+async function searchGooglePlaces(context) {
+  const key = cleanText(process.env.GOOGLE_PLACES_API_KEY, 120);
+  if (!key) return providerNotice('Google Places', false, '');
+
+  const geo = findGeo(context);
+  const isFood = context.type === 'food';
+  const body = {
+    textQuery: googlePlacesQuery(context, isFood),
+    languageCode: 'ja',
+    regionCode: 'JP',
+    pageSize: isFood ? 6 : 5,
+    includedType: isFood ? 'restaurant' : 'lodging',
+    strictTypeFiltering: true,
+    rankPreference: 'RELEVANCE'
+  };
+  if (geo) {
+    body.locationBias = {
+      circle: {
+        center: {latitude: geo.lat, longitude: geo.lng},
+        radius: isFood ? 5000 : 10000
+      }
+    };
+  }
+
+  try {
+    const data = await fetchJson('https://places.googleapis.com/v1/places:searchText', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': key,
+        'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.googleMapsUri,places.primaryTypeDisplayName,places.rating,places.userRatingCount,places.priceLevel,places.editorialSummary'
+      },
+      body: JSON.stringify(body)
+    });
+    const items = (Array.isArray(data.places) ? data.places : [])
+      .map(place => normalizeGooglePlace(place, context, isFood))
+      .filter(Boolean);
+    return {
+      name: 'Google Places',
+      configured: true,
+      items,
+      message: items.length ? `Google Placesから${items.length}件取得しました。` : 'Google Placesは0件でした。',
+      source: SOURCE_DOCS.googlePlaces
+    };
+  } catch (error) {
+    return providerNotice('Google Places', true, safeError(error));
+  }
+}
+
+function normalizeRakuten(entry, context, options = {}) {
   const parts = Array.isArray(entry?.hotel)
     ? entry.hotel
     : Array.isArray(entry)
@@ -367,23 +466,34 @@ function normalizeRakuten(entry, context) {
       : [entry?.hotel || entry].filter(Boolean);
   const basic = findPart(parts, 'hotelBasicInfo') || entry?.hotelBasicInfo || {};
   const rating = findPart(parts, 'hotelRatingInfo') || {};
+  const reserve = findPart(parts, 'hotelReserveInfo') || {};
+  const room = findPart(parts, 'roomBasicInfo') || {};
+  const charge = findPart(parts, 'dailyCharge') || {};
   if (!basic.hotelName) return null;
-  const price = Number(basic.hotelMinCharge || 0);
+  const price = Number(charge.total || charge.rakutenCharge || basic.hotelMinCharge || 0);
+  const reserveCount = Number(reserve.reserveRecordCount || 0);
+  const reserveUrl = room.reserveUrl || basic.planListUrl || basic.hotelInformationUrl || basic.reviewUrl;
   return scoreItem({
     provider: '楽天トラベル',
     title: basic.hotelName,
-    url: basic.hotelInformationUrl || basic.planListUrl || basic.reviewUrl,
+    url: reserveUrl,
     image: basic.hotelThumbnailUrl || basic.hotelImageUrl,
     price: price ? `${price.toLocaleString('ja-JP')}円から` : '',
     address: compact([basic.address1, basic.address2]).join(''),
     access: basic.access || '',
     tags: compact([
+      options.available || reserveCount ? '空室候補あり' : '',
+      reserveCount ? `予約候補 ${reserveCount}件` : '',
       basic.nearestStation ? `${basic.nearestStation}周辺` : '',
       basic.parkingInformation ? '駐車場情報あり' : '',
+      room.roomName ? cleanText(room.roomName, 24) : '',
+      String(room.withBreakfastFlag || '') === '1' ? '朝食あり' : '',
+      String(room.withDinnerFlag || '') === '1' ? '夕食あり' : '',
       rating.reviewAverage ? `評価 ${rating.reviewAverage}` : ''
     ]).slice(0, 4),
     meta: compact([
       price ? `${price.toLocaleString('ja-JP')}円から` : '',
+      room.planName,
       basic.access,
       basic.parkingInformation
     ]).join(' / ')
@@ -439,13 +549,42 @@ function normalizeHotpepper(shop, context) {
   }, context, 'ホットペッパー');
 }
 
+function normalizeGooglePlace(place, context, isFood) {
+  const name = place.displayName?.text;
+  if (!name) return null;
+  const rating = Number(place.rating || 0);
+  const ratingCount = Number(place.userRatingCount || 0);
+  const typeName = place.primaryTypeDisplayName?.text || (isFood ? '飲食店' : '宿泊施設');
+  return scoreItem({
+    provider: 'Google Places',
+    title: name,
+    url: place.googleMapsUri,
+    image: '',
+    price: googlePriceText(place.priceLevel),
+    address: place.formattedAddress,
+    access: '',
+    meta: compact([
+      rating ? `Google評価 ${rating}${ratingCount ? ` (${ratingCount}件)` : ''}` : '',
+      googlePriceText(place.priceLevel),
+      place.formattedAddress,
+      place.editorialSummary?.text
+    ]).join(' / '),
+    tags: compact([
+      typeName,
+      rating ? `評価 ${rating}` : '',
+      ratingCount ? `口コミ ${ratingCount}件` : '',
+      isFood ? '地図で確認' : '周辺確認'
+    ]).slice(0, 4)
+  }, context, 'Google Places');
+}
+
 function scoreItem(item, context, provider) {
   const text = [
     item.title, item.meta, item.address, item.access,
     ...(item.tags || [])
   ].join(' ');
   const matches = context.conditions.filter(condition => hasToken(text, condition)).length;
-  const providerBonus = provider === 'ホットペッパー' && hasToken(text, 'お子様') ? 8 : 0;
+  const providerBonus = provider === 'ホットペッパー' && hasToken(text, 'お子様') ? 8 : provider === 'Google Places' ? 3 : 0;
   const score = Math.min(99, 52 + matches * 8 + providerBonus + (item.image ? 5 : 0) + (item.url ? 4 : 0));
   return {
     provider,
@@ -510,6 +649,82 @@ function rakutenKeyword(context) {
   return text.split(/\s+/).filter(Boolean).slice(0, 2).join(' ') || '東京';
 }
 
+function rakutenStayDates(context) {
+  const checkin = cleanText(context.params.checkin, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(checkin)) return null;
+  const date = new Date(`${checkin}T00:00:00+09:00`);
+  if (Number.isNaN(date.getTime())) return null;
+  const nights = clampNumber(context.params.nights, 1, 1, 14);
+  const checkout = addDateDays(checkin, nights);
+  return {
+    checkin,
+    checkout,
+    nights,
+    adults: clampNumber(context.params.adults, 2, 1, 10),
+    children: clampNumber(context.params.children, 0, 0, 10),
+    childAge: cleanText(context.params.childAge, 40)
+  };
+}
+
+function applyRakutenChildParams(params, context, children) {
+  if (!children) return;
+  const childAge = cleanText(context.params.childAge, 40);
+  if (childAge.includes('小学生')) {
+    params.set('lowClassNum', String(children));
+    return;
+  }
+  if (childAge.includes('3歳') || childAge.includes('4歳') || childAge.includes('5歳')) {
+    params.set('infantWithMBNum', String(children));
+    return;
+  }
+  if (childAge.includes('0歳') || childAge.includes('1歳') || childAge.includes('2歳')) {
+    params.set('infantWithoutMBNum', String(children));
+  }
+}
+
+function applyRakutenSqueeze(params, context) {
+  const squeeze = [];
+  if (hasAny(context.conditions, ['禁煙'])) squeeze.push('kinen');
+  if (hasAny(context.conditions, ['温泉', '貸切風呂', '家族風呂'])) squeeze.push('onsen');
+  if (hasAny(context.conditions, ['大浴場', '洗い場付き風呂'])) squeeze.push('daiyoku');
+  if (squeeze.length) params.set('squeezeCondition', [...new Set(squeeze)].join(','));
+}
+
+function googlePlacesQuery(context, isFood) {
+  return compact([
+    context.destination,
+    context.q,
+    isFood ? '子連れ レストラン' : '子連れ ホテル 宿',
+    context.conditions.slice(0, 4).join(' ')
+  ]).join(' ');
+}
+
+function googlePriceText(priceLevel) {
+  const labels = {
+    PRICE_LEVEL_FREE: '無料',
+    PRICE_LEVEL_INEXPENSIVE: '低価格',
+    PRICE_LEVEL_MODERATE: '中価格帯',
+    PRICE_LEVEL_EXPENSIVE: '高価格帯',
+    PRICE_LEVEL_VERY_EXPENSIVE: 'かなり高価格帯'
+  };
+  return labels[priceLevel] || '';
+}
+
+function addDateDays(value, days) {
+  const date = new Date(`${value}T00:00:00+09:00`);
+  date.setDate(date.getDate() + days);
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function clampNumber(value, fallback, min, max) {
+  const num = Number(value);
+  if (!Number.isFinite(num)) return fallback;
+  return Math.min(max, Math.max(min, Math.round(num)));
+}
+
 async function fetchJson(url, options = {}) {
   const res = await fetchWithTimeout(url, options);
   const text = await res.text();
@@ -562,8 +777,10 @@ async function fetchWithTimeout(url, options = {}) {
   const headers = options.headers || {};
   try {
     return await fetch(url, {
+      method: options.method || 'GET',
       signal: controller.signal,
       referrer: options.referrer,
+      body: options.body,
       headers: {
         'User-Agent': 'KAZ-MIO-family-trip-search/1.0',
         ...headers

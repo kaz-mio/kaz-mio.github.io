@@ -10,18 +10,18 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索 | KAZ &amp; MIO | LIFE, LIGHTLY</title>
-<meta name="description" content="小さい子ども連れの宿・食事場所探しに。楽天トラベル、じゃらん、ホットペッパーなどを見比べる前に、ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェアなどの条件を整理できます。">
+<meta name="description" content="小さい子ども連れの宿・食事場所探しに。楽天トラベル、ホットペッパー、Google Placesなどの候補を見比べながら、ベッドガード、畳、洗い場付き風呂、座敷、個室、キッズチェアなどの条件を整理できます。">
 <link rel="canonical" href="https://kaz-mio.github.io/family_stay_search.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
-<meta property="og:description" content="楽天トラベル、じゃらん、ホットペッパーなどを見比べる前に、子連れで見たい条件を整理できます。検索リンク、比較メモ、問い合わせ文例つき。">
+<meta property="og:description" content="楽天トラベル、ホットペッパー、Google Placesなどの候補を、子連れで見たい条件から整理できます。検索リンク、比較メモ、問い合わせ文例つき。">
 <meta property="og:url" content="https://kaz-mio.github.io/family_stay_search.html">
 <meta property="og:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
-<meta name="twitter:description" content="楽天トラベル、じゃらん、ホットペッパーなどを見比べる前に、子連れで見たい条件を整理できるページです。">
+<meta name="twitter:description" content="楽天トラベル、ホットペッパー、Google Placesなどの候補を、子連れで見たい条件から整理できるページです。">
 <meta name="twitter:image" content="https://kaz-mio.github.io/assets/kaz-mio-adventure-hero.png">
 <script type="application/ld+json">
 {
@@ -438,9 +438,9 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
     <div class="compare-panel" aria-labelledby="stay-compare-title">
       <div class="compare-head">
         <div>
-          <span class="compare-kicker">Rakuten / Jalan / Hotel Compare</span>
+          <span class="compare-kicker">Rakuten / Google Places / Hotel Compare</span>
           <h3 id="stay-compare-title">宿候補を並べて見る準備</h3>
-          <p>楽天トラベル・じゃらんなどで開いた候補を、子連れ目線の確認軸で見比べやすくします。</p>
+          <p>楽天トラベルの空室・施設候補を中心に、使えるAPIと検索リンクを子連れ目線の確認軸で見比べやすくします。</p>
         </div>
         <div class="compare-actions">
           <button class="copy-btn ghost" type="button" id="refreshStayCompare">比較候補を更新</button>
@@ -449,9 +449,9 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       </div>
       <div class="api-status" id="stayApiStatus"><strong>比較準備:</strong> 各掲載元を開いて、最新の空き状況・料金・設備を確認できる形にしています。</div>
       <div class="result-grid" id="stayResultGrid" aria-live="polite"></div>
-      <p class="compare-note">宿の設備や貸出品は部屋タイプ・プランで変わります。気になる候補は、掲載元の詳細ページと宿への確認で最終判断してください。じゃらんのAPIデータを表示する場合は、<a href="https://www.jalan.net/jw/jwp0000/jww0001.do" target="_blank" rel="noopener">じゃらん Web サービス</a>を利用します。</p>
+      <p class="compare-note">宿の設備や貸出品は部屋タイプ・プランで変わります。気になる候補は、掲載元の詳細ページと宿への確認で最終判断してください。Google Places はAPIキー設定後に周辺評価の補助候補として表示します。じゃらんのAPIデータを表示する場合は、<a href="https://www.jalan.net/jw/jwp0000/jww0001.do" target="_blank" rel="noopener">じゃらん Web サービス</a>を利用します。</p>
     </div>
-    <p class="note">※楽天トラベルとじゃらんは日本語の文字化けを避けるため、各サイト内をGoogle経由で探す形にしています。日付・人数はサイトによって反映範囲が異なるため、移動後の画面でも確認してください。<br>※選んだ条件はこのブラウザに自動で保存され、次に開いたときも残ります。「条件リンクをコピー」を使うと、同じ条件のままこのページを家族と共有できます。</p>
+    <p class="note">※「比較候補を更新」では楽天トラベルAPIの候補を表示します。日付を入れた場合は空室検索を優先し、日付がない場合や空室候補がない場合は施設検索に切り替えます。検索リンクは各掲載元の最新ページを開くための補助です。<br>※選んだ条件はこのブラウザに自動で保存され、次に開いたときも残ります。「条件リンクをコピー」を使うと、同じ条件のままこのページを家族と共有できます。</p>
   </section>
 
   <section class="search-panel" id="food-search" aria-labelledby="food-title">
@@ -607,9 +607,9 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
     <div class="compare-panel" aria-labelledby="food-compare-title">
       <div class="compare-head">
         <div>
-          <span class="compare-kicker">Hot Pepper / Maps / Gourmet Compare</span>
+          <span class="compare-kicker">Hot Pepper / Google Places / Gourmet Compare</span>
           <h3 id="food-compare-title">食事候補を並べて見る準備</h3>
-          <p>ホットペッパーや地図検索で見つけたお店を、座席・待ち時間・設備の観点で比べます。</p>
+          <p>ホットペッパーの店舗候補を中心に、Google Placesを補助にして、座席・待ち時間・設備の観点で比べます。</p>
         </div>
         <div class="compare-actions">
           <button class="copy-btn ghost" type="button" id="refreshFoodCompare">比較候補を更新</button>
@@ -618,7 +618,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       </div>
       <div class="api-status" id="foodApiStatus"><strong>比較準備:</strong> 各掲載元を開いて、最新の席情報・予約可否・設備を確認できる形にしています。</div>
       <div class="result-grid" id="foodResultGrid" aria-live="polite"></div>
-      <p class="compare-note">飲食店の席や設備は時間帯・店舗運用で変わります。気になる候補は、掲載元の詳細ページとお店への確認で最終判断してください。</p>
+      <p class="compare-note">飲食店の席や設備は時間帯・店舗運用で変わります。気になる候補は、掲載元の詳細ページとお店への確認で最終判断してください。Google Places はAPIキー設定後に地図評価の補助候補として表示します。</p>
     </div>
     <p class="note">※飲食店の設備は店舗や時間帯で変わることがあります。座敷・個室・ベビーカー可否・離乳食持ち込みは、予約前に店舗へ確認すると安心です。<br>※こちらの条件もブラウザに自動保存されます。条件リンクのコピーで共有もできます。</p>
   </section>
@@ -1054,7 +1054,7 @@ const renderFallbackComparison = type => {
 };
 const providerNoticeHtml = data => {
   const notices = Array.isArray(data?.providers)
-    ? data.providers.filter(provider => provider?.message).map(provider => `${provider.name}: ${provider.message}`)
+    ? data.providers.filter(provider => provider?.configured && provider?.message).map(provider => `${provider.name}: ${provider.message}`)
     : [];
   return notices.length ? `<span class="provider-note">${notices.map(escapeHtml).join(' / ')}</span>` : '';
 };
@@ -1073,6 +1073,7 @@ const fetchApiComparison = async type => {
     params.set('nights', String(clampNumber(nightsInput.value, 1, 1, 14)));
     params.set('adults', String(clampNumber(adultsInput.value, 2, 1, 8)));
     params.set('children', String(clampNumber(childrenInput.value, 1, 0, 6)));
+    params.set('childAge', stayChildAge.value || '');
   }
   try {
     if (location.protocol === 'file:') throw new Error('local-file');
