@@ -138,6 +138,7 @@ select{appearance:auto;cursor:pointer;}
 .copy-btn:hover{transform:translateY(-2px);background:var(--coral-d);box-shadow:0 16px 30px rgba(198,83,66,.24);}
 .copy-btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:0 6px 16px rgba(24,52,71,.08);}
 .copy-btn.ghost:hover{background:#fff;color:var(--coral-d);border-color:rgba(239,125,103,.42);box-shadow:var(--soft);}
+.copy-btn[hidden]{display:none;}
 .query-actions{display:flex;flex-direction:column;gap:.55rem;}
 .query-count{font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);margin-bottom:.3rem;}
 .preset-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
@@ -455,6 +456,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         </div>
         <div class="compare-actions">
           <button class="copy-btn ghost" type="button" id="useCurrentLocationStay">現在地で探す</button>
+          <button class="copy-btn ghost" type="button" id="clearCurrentLocationStay" hidden>選択エリアに戻す</button>
           <button class="copy-btn ghost" type="button" id="refreshStayCompare">比較候補を更新</button>
           <button class="copy-btn ghost" type="button" id="copyStayCompare">比較メモをコピー</button>
         </div>
@@ -630,6 +632,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
         </div>
         <div class="compare-actions">
           <button class="copy-btn ghost" type="button" id="useCurrentLocationFood">現在地で探す</button>
+          <button class="copy-btn ghost" type="button" id="clearCurrentLocationFood" hidden>選択エリアに戻す</button>
           <button class="copy-btn ghost" type="button" id="refreshFoodCompare">比較候補を更新</button>
           <button class="copy-btn ghost" type="button" id="copyFoodCompare">比較メモをコピー</button>
         </div>
@@ -752,6 +755,7 @@ const stayCompareContext = document.getElementById('stayCompareContext');
 const stayMapShell = document.getElementById('stayMapShell');
 const stayMapEl = document.getElementById('stayMap');
 const useCurrentLocationStay = document.getElementById('useCurrentLocationStay');
+const clearCurrentLocationStay = document.getElementById('clearCurrentLocationStay');
 const refreshStayCompare = document.getElementById('refreshStayCompare');
 const copyStayCompare = document.getElementById('copyStayCompare');
 const foodDestination = document.getElementById('foodDestination');
@@ -781,6 +785,7 @@ const foodCompareContext = document.getElementById('foodCompareContext');
 const foodMapShell = document.getElementById('foodMapShell');
 const foodMapEl = document.getElementById('foodMap');
 const useCurrentLocationFood = document.getElementById('useCurrentLocationFood');
+const clearCurrentLocationFood = document.getElementById('clearCurrentLocationFood');
 const refreshFoodCompare = document.getElementById('refreshFoodCompare');
 const copyFoodCompare = document.getElementById('copyFoodCompare');
 const stayPresets = {
@@ -1243,10 +1248,24 @@ const fetchApiResults = async params => {
   }
   throw lastError || new Error('api-unavailable');
 };
-const clearCurrentGeo = type => {
+const geoControls = type => type === 'stay'
+  ? {useButton: useCurrentLocationStay, clearButton: clearCurrentLocationStay}
+  : {useButton: useCurrentLocationFood, clearButton: clearCurrentLocationFood};
+const syncGeoControls = type => {
+  const {useButton, clearButton} = geoControls(type);
+  const hasCurrentGeo = Boolean(currentGeo[type]);
+  useButton.textContent = hasCurrentGeo ? '現在地を更新' : '現在地で探す';
+  clearButton.hidden = !hasCurrentGeo;
+};
+const clearCurrentGeo = (type, options = {}) => {
+  const hadCurrentGeo = Boolean(currentGeo[type]);
   currentGeo[type] = null;
-  const button = type === 'stay' ? useCurrentLocationStay : useCurrentLocationFood;
-  button.textContent = '現在地で探す';
+  syncGeoControls(type);
+  if (hadCurrentGeo) updateCompareContext(type);
+  if (hadCurrentGeo && options.refresh) {
+    if (type === 'stay') updateStayLinks();
+    if (type === 'food') updateFoodLinks();
+  }
 };
 const useCurrentLocation = type => {
   const button = type === 'stay' ? useCurrentLocationStay : useCurrentLocationFood;
@@ -1268,7 +1287,7 @@ const useCurrentLocation = type => {
         lng: Number(position.coords.longitude.toFixed(6))
       };
       button.disabled = false;
-      button.textContent = '現在地を更新';
+      syncGeoControls(type);
       fetchApiComparison(type);
     },
     () => {
@@ -1419,8 +1438,14 @@ const addSuggestedChecks = (inputs, values) => {
   const wanted = new Set(values || []);
   inputs.forEach(input => { if (wanted.has(input.value)) input.checked = true; });
 };
-[stayDestination, stayArea].forEach(el => el.addEventListener('change', () => clearCurrentGeo('stay'), true));
-[foodDestination, foodArea].forEach(el => el.addEventListener('change', () => clearCurrentGeo('food'), true));
+[stayDestination, stayArea].forEach(el => {
+  el.addEventListener('input', () => clearCurrentGeo('stay'), true);
+  el.addEventListener('change', () => clearCurrentGeo('stay'), true);
+});
+[foodDestination, foodArea].forEach(el => {
+  el.addEventListener('input', () => clearCurrentGeo('food'), true);
+  el.addEventListener('change', () => clearCurrentGeo('food'), true);
+});
 [stayDestination, stayArea, stayExtra, stayAge, stayChildAge, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
   el.addEventListener('input', updateStayLinks);
   el.addEventListener('change', updateStayLinks);
@@ -1445,6 +1470,8 @@ document.getElementById('shareStay').addEventListener('click', () => copyText(bu
 document.getElementById('shareFood').addEventListener('click', () => copyText(buildShareUrl(), document.getElementById('shareFood')));
 useCurrentLocationStay.addEventListener('click', () => useCurrentLocation('stay'));
 useCurrentLocationFood.addEventListener('click', () => useCurrentLocation('food'));
+clearCurrentLocationStay.addEventListener('click', () => clearCurrentGeo('stay', {refresh: true}));
+clearCurrentLocationFood.addEventListener('click', () => clearCurrentGeo('food', {refresh: true}));
 refreshStayCompare.addEventListener('click', () => fetchApiComparison('stay'));
 refreshFoodCompare.addEventListener('click', () => fetchApiComparison('food'));
 copyStayCompare.addEventListener('click', () => copyText(buildComparisonMemo('stay'), copyStayCompare));
@@ -1486,6 +1513,8 @@ hydrateDestinationSelect(stayDestination);
 hydrateDestinationSelect(foodDestination);
 updateAreaSelect(stayDestination, stayArea);
 updateAreaSelect(foodDestination, foodArea);
+syncGeoControls('stay');
+syncGeoControls('food');
 const initParams = new URLSearchParams(location.search);
 let restored = false;
 if (initParams.get('s')) {
