@@ -56,6 +56,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--shell:#fff8ea;--paper:#fffdf7;--sand:#ead8b8;--sun:#ffd66e;--coral:#ef7d67;--coral-d:#c65342;--aqua:#60c5d5;--blue:#1f5f7a;--navy:#183447;--leaf:#6fa978;--mint:#d8f1df;--ink:#18242b;--ink2:#52616a;--ink3:#88939a;--line:rgba(24,36,43,.12);--r:8px;--shadow:0 16px 46px rgba(24,52,71,.13);--soft:0 8px 24px rgba(24,52,71,.09);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -161,6 +162,13 @@ select{appearance:auto;cursor:pointer;}
 .compare-kicker{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);display:block;margin-bottom:.25rem;}
 .compare-actions{display:flex;gap:.55rem;flex-wrap:wrap;justify-content:flex-end;}
 .compare-actions .copy-btn{font-size:.76rem;padding:.62rem .88rem;box-shadow:0 6px 16px rgba(24,52,71,.08);}
+.map-shell{margin:.9rem 0 1rem;border:1px solid rgba(24,36,43,.1);border-radius:8px;overflow:hidden;background:#eef8f6;box-shadow:inset 0 1px 0 rgba(255,255,255,.75);}
+.map-shell[hidden]{display:none;}
+.compare-map{height:320px;width:100%;background:linear-gradient(135deg,#e9f7f4,#fff8ea);}
+.map-note{font-size:.7rem;color:var(--ink2);line-height:1.65;padding:.65rem .8rem;background:rgba(255,255,255,.82);border-top:1px solid rgba(24,36,43,.08);}
+.leaflet-container{font-family:'Noto Sans JP',sans-serif;}
+.map-popup-title{font-weight:800;color:var(--navy);line-height:1.45;margin-bottom:.2rem;}
+.map-popup-meta{font-size:.78rem;color:var(--ink2);line-height:1.55;}
 .api-status{border:1px dashed rgba(31,95,122,.22);border-radius:8px;background:#f4fbfb;color:var(--ink2);font-size:.76rem;line-height:1.75;padding:.72rem .82rem;margin-bottom:.85rem;}
 .api-status strong{color:var(--navy);}
 .api-status .provider-note{display:block;margin-top:.28rem;color:inherit;}
@@ -443,11 +451,16 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
           <p>楽天トラベルの空室・施設候補を中心に、使えるAPIと検索リンクを子連れ目線の確認軸で見比べやすくします。</p>
         </div>
         <div class="compare-actions">
+          <button class="copy-btn ghost" type="button" id="useCurrentLocationStay">現在地で探す</button>
           <button class="copy-btn ghost" type="button" id="refreshStayCompare">比較候補を更新</button>
           <button class="copy-btn ghost" type="button" id="copyStayCompare">比較メモをコピー</button>
         </div>
       </div>
       <div class="api-status" id="stayApiStatus"><strong>比較準備:</strong> 各掲載元を開いて、最新の空き状況・料金・設備を確認できる形にしています。</div>
+      <div class="map-shell" id="stayMapShell" hidden>
+        <div class="compare-map" id="stayMap" role="img" aria-label="宿候補の地図"></div>
+        <p class="map-note">地図のピンは候補の位置を見比べるための目安です。予約前に掲載元の住所とアクセスを確認してください。</p>
+      </div>
       <div class="result-grid" id="stayResultGrid" aria-live="polite"></div>
       <p class="compare-note">宿の設備や貸出品は部屋タイプ・プランで変わります。気になる候補は、掲載元の詳細ページと宿への確認で最終判断してください。Google Places はAPIキー設定後に周辺評価の補助候補として表示します。じゃらんのAPIデータを表示する場合は、<a href="https://www.jalan.net/jw/jwp0000/jww0001.do" target="_blank" rel="noopener">じゃらん Web サービス</a>を利用します。</p>
     </div>
@@ -612,11 +625,16 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
           <p>ホットペッパーの店舗候補を中心に、Google Placesを補助にして、座席・待ち時間・設備の観点で比べます。</p>
         </div>
         <div class="compare-actions">
+          <button class="copy-btn ghost" type="button" id="useCurrentLocationFood">現在地で探す</button>
           <button class="copy-btn ghost" type="button" id="refreshFoodCompare">比較候補を更新</button>
           <button class="copy-btn ghost" type="button" id="copyFoodCompare">比較メモをコピー</button>
         </div>
       </div>
       <div class="api-status" id="foodApiStatus"><strong>比較準備:</strong> 各掲載元を開いて、最新の席情報・予約可否・設備を確認できる形にしています。</div>
+      <div class="map-shell" id="foodMapShell" hidden>
+        <div class="compare-map" id="foodMap" role="img" aria-label="食事候補の地図"></div>
+        <p class="map-note">地図のピンは候補の位置を見比べるための目安です。席・設備・混雑状況は掲載元と店舗で確認してください。</p>
+      </div>
       <div class="result-grid" id="foodResultGrid" aria-live="polite"></div>
       <p class="compare-note">飲食店の席や設備は時間帯・店舗運用で変わります。気になる候補は、掲載元の詳細ページとお店への確認で最終判断してください。Google Places はAPIキー設定後に地図評価の補助候補として表示します。</p>
     </div>
@@ -688,6 +706,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
   <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY ─ 広告を含む場合があります</p>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const stayDestination = document.getElementById('destination');
 const stayArea = document.getElementById('stayArea');
@@ -718,8 +737,15 @@ const stayLinks = {
 const API_ENDPOINTS = location.hostname === 'kaz-mio.github.io'
   ? ['https://bespoke-twilight-56d54d.netlify.app/api/family-trip-search', '/api/family-trip-search']
   : ['/api/family-trip-search', '/.netlify/functions/family-trip-search'];
+const API_CACHE_PREFIX = 'kazmio_family_api_cache_v1:';
+const API_CACHE_TTL = 1000 * 60 * 10;
+const currentGeo = {stay: null, food: null};
+const comparisonMaps = {};
 const stayResultGrid = document.getElementById('stayResultGrid');
 const stayApiStatus = document.getElementById('stayApiStatus');
+const stayMapShell = document.getElementById('stayMapShell');
+const stayMapEl = document.getElementById('stayMap');
+const useCurrentLocationStay = document.getElementById('useCurrentLocationStay');
 const refreshStayCompare = document.getElementById('refreshStayCompare');
 const copyStayCompare = document.getElementById('copyStayCompare');
 const foodDestination = document.getElementById('foodDestination');
@@ -745,6 +771,9 @@ const foodLinks = {
 };
 const foodResultGrid = document.getElementById('foodResultGrid');
 const foodApiStatus = document.getElementById('foodApiStatus');
+const foodMapShell = document.getElementById('foodMapShell');
+const foodMapEl = document.getElementById('foodMap');
+const useCurrentLocationFood = document.getElementById('useCurrentLocationFood');
 const refreshFoodCompare = document.getElementById('refreshFoodCompare');
 const copyFoodCompare = document.getElementById('copyFoodCompare');
 const stayPresets = {
@@ -1011,6 +1040,8 @@ const normalizeApiItems = data => {
     image: item.image || item.imageUrl || item.photo || item.thumbnail || '',
     meta: item.meta || [item.price || item.charge || item.budget, item.address, item.access].filter(Boolean).join(' / '),
     tags: Array.isArray(item.tags) ? item.tags.slice(0, 4) : [item.genre, item.area, item.rating].filter(Boolean).slice(0, 4),
+    lat: item.lat === undefined || item.lat === '' ? NaN : Number(item.lat),
+    lng: item.lng === undefined || item.lng === '' ? NaN : Number(item.lng),
     label: item.label || (item.score ? `適合 ${item.score}` : item.reviewAverage ? `評価 ${item.reviewAverage}` : '候補')
   }));
 };
@@ -1022,6 +1053,52 @@ const safeUrl = value => {
   } catch {
     return '#';
   }
+};
+const mapConfig = {
+  stay: {shell: stayMapShell, el: stayMapEl},
+  food: {shell: foodMapShell, el: foodMapEl}
+};
+const hasMapPoint = item => Number.isFinite(item.lat) && Number.isFinite(item.lng) && Math.abs(item.lat) <= 90 && Math.abs(item.lng) <= 180;
+const initComparisonMap = type => {
+  const cfg = mapConfig[type];
+  if (!cfg?.el || !window.L) return null;
+  if (comparisonMaps[type]) return comparisonMaps[type];
+  const map = L.map(cfg.el, {scrollWheelZoom: false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  const layer = L.layerGroup().addTo(map);
+  comparisonMaps[type] = {map, layer};
+  return comparisonMaps[type];
+};
+const renderComparisonMap = (type, items) => {
+  const cfg = mapConfig[type];
+  const points = items.filter(hasMapPoint).slice(0, 10);
+  if (!cfg?.shell || !points.length || !window.L) {
+    if (cfg?.shell) cfg.shell.hidden = true;
+    return;
+  }
+  cfg.shell.hidden = false;
+  const state = initComparisonMap(type);
+  if (!state) return;
+  state.layer.clearLayers();
+  const bounds = [];
+  points.forEach((item, index) => {
+    const latlng = [item.lat, item.lng];
+    bounds.push(latlng);
+    L.marker(latlng)
+      .addTo(state.layer)
+      .bindPopup(`<div class="map-popup-title">${escapeHtml(item.title || `${index + 1}番目`)}</div><div class="map-popup-meta">${escapeHtml(item.provider || '')}<br>${escapeHtml(item.address || item.meta || '')}</div>`);
+  });
+  setTimeout(() => {
+    state.map.invalidateSize();
+    if (bounds.length === 1) {
+      state.map.setView(bounds[0], 14);
+    } else {
+      state.map.fitBounds(bounds, {padding: [28, 28], maxZoom: 14});
+    }
+  }, 80);
 };
 const renderComparisonCards = (type, items, label) => {
   const config = comparisonConfig[type];
@@ -1042,6 +1119,7 @@ const renderComparisonCards = (type, items, label) => {
       </article>
     `;
   }).join('');
+  renderComparisonMap(type, items);
   if (label) {
     config.status.className = 'api-status';
     config.status.innerHTML = label;
@@ -1058,10 +1136,37 @@ const providerNoticeHtml = data => {
     : [];
   return notices.length ? `<span class="provider-note">${notices.map(escapeHtml).join(' / ')}</span>` : '';
 };
+const apiCacheKey = params => `${API_CACHE_PREFIX}${params.toString()}`;
+const readApiCache = key => {
+  try {
+    const cached = JSON.parse(sessionStorage.getItem(key) || 'null');
+    if (!cached || !cached.time || Date.now() - cached.time > API_CACHE_TTL) {
+      sessionStorage.removeItem(key);
+      return null;
+    }
+    return {...cached.data, cacheHit: true};
+  } catch {
+    return null;
+  }
+};
+const writeApiCache = (key, data) => {
+  try {
+    sessionStorage.setItem(key, JSON.stringify({time: Date.now(), data}));
+  } catch {}
+};
+const applyCurrentGeoParams = (type, params) => {
+  const geo = currentGeo[type];
+  if (!geo) return;
+  params.set('lat', String(geo.lat));
+  params.set('lng', String(geo.lng));
+  params.set('geoLabel', '現在地付近');
+};
 const fetchApiComparison = async type => {
   const config = comparisonConfig[type];
   config.status.className = 'api-status';
-  config.status.innerHTML = '<strong>更新中:</strong> 条件に合わせて比較候補を整えています。';
+  config.status.innerHTML = currentGeo[type]
+    ? '<strong>更新中:</strong> 現在地付近の候補を整えています。'
+    : '<strong>更新中:</strong> 条件に合わせて比較候補を整えています。';
   const params = new URLSearchParams({
     type,
     q: config.query(),
@@ -1075,12 +1180,14 @@ const fetchApiComparison = async type => {
     params.set('children', String(clampNumber(childrenInput.value, 1, 0, 6)));
     params.set('childAge', stayChildAge.value || '');
   }
+  applyCurrentGeoParams(type, params);
   try {
     if (location.protocol === 'file:') throw new Error('local-file');
     const data = await fetchApiResults(params);
     const items = normalizeApiItems(data);
     if (!items.length) throw new Error('empty-api-results');
-    renderComparisonCards(type, items, `<strong>候補表示:</strong> 条件に近い候補を表示しています。予約前に各掲載元で最新情報を確認してください。${providerNoticeHtml(data)}`);
+    const cacheText = data.cacheHit ? '<span class="provider-note">同じ条件のため、直近の検索結果を再利用しています。</span>' : '';
+    renderComparisonCards(type, items, `<strong>候補表示:</strong> 条件に近い候補を表示しています。予約前に各掲載元で最新情報を確認してください。${cacheText}${providerNoticeHtml(data)}`);
     config.status.classList.add('is-live');
   } catch {
     renderFallbackComparison(type);
@@ -1089,18 +1196,54 @@ const fetchApiComparison = async type => {
   }
 };
 const fetchApiResults = async params => {
+  const key = apiCacheKey(params);
+  const cached = readApiCache(key);
+  if (cached) return cached;
   let lastError;
   for (const endpoint of API_ENDPOINTS) {
     try {
       const response = await fetch(`${endpoint}?${params.toString()}`, {headers: {'Accept': 'application/json'}});
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.message || `api-${response.status}`);
+      writeApiCache(key, data);
       return data;
     } catch (error) {
       lastError = error;
     }
   }
   throw lastError || new Error('api-unavailable');
+};
+const useCurrentLocation = type => {
+  const button = type === 'stay' ? useCurrentLocationStay : useCurrentLocationFood;
+  const config = comparisonConfig[type];
+  if (!navigator.geolocation) {
+    config.status.className = 'api-status is-error';
+    config.status.innerHTML = '<strong>現在地を使えません:</strong> このブラウザでは位置情報が利用できません。';
+    return;
+  }
+  const original = button.textContent;
+  button.disabled = true;
+  button.textContent = '取得中...';
+  config.status.className = 'api-status';
+  config.status.innerHTML = '<strong>現在地を確認中:</strong> ブラウザの許可画面が出たら許可してください。';
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      currentGeo[type] = {
+        lat: Number(position.coords.latitude.toFixed(6)),
+        lng: Number(position.coords.longitude.toFixed(6))
+      };
+      button.disabled = false;
+      button.textContent = '現在地を更新';
+      fetchApiComparison(type);
+    },
+    () => {
+      button.disabled = false;
+      button.textContent = original;
+      config.status.className = 'api-status is-error';
+      config.status.innerHTML = '<strong>現在地を取得できませんでした:</strong> 地名を選んで検索するか、ブラウザの位置情報許可を確認してください。';
+    },
+    {enableHighAccuracy: false, timeout: 10000, maximumAge: 300000}
+  );
 };
 const buildComparisonMemo = type => {
   const config = comparisonConfig[type];
@@ -1261,6 +1404,8 @@ document.getElementById('copyTemplate').addEventListener('click', () => copyText
 document.getElementById('copyFoodTemplate').addEventListener('click', () => copyText(document.getElementById('foodMessageTemplate').value, document.getElementById('copyFoodTemplate')));
 document.getElementById('shareStay').addEventListener('click', () => copyText(buildShareUrl(), document.getElementById('shareStay')));
 document.getElementById('shareFood').addEventListener('click', () => copyText(buildShareUrl(), document.getElementById('shareFood')));
+useCurrentLocationStay.addEventListener('click', () => useCurrentLocation('stay'));
+useCurrentLocationFood.addEventListener('click', () => useCurrentLocation('food'));
 refreshStayCompare.addEventListener('click', () => fetchApiComparison('stay'));
 refreshFoodCompare.addEventListener('click', () => fetchApiComparison('food'));
 copyStayCompare.addEventListener('click', () => copyText(buildComparisonMemo('stay'), copyStayCompare));

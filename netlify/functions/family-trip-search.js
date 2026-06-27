@@ -9,7 +9,7 @@ const SOURCE_DOCS = {
   googlePlaces: 'https://developers.google.com/maps/documentation/places/web-service/text-search'
 };
 
-const FUNCTION_VERSION = '2026-06-27-rakuten-vacancy-google-places';
+const FUNCTION_VERSION = '2026-06-27-location-map-cache';
 const JALAN_KEY_MESSAGE = 'じゃらんWebサービス専用の半角数字16桁以下のAPIキーが必要です。リクルートWebサービス/ホットペッパーのキーでは利用できません。';
 
 const GEO_POINTS = [
@@ -439,7 +439,7 @@ async function searchGooglePlaces(context) {
       headers: {
         'Content-Type': 'application/json',
         'X-Goog-Api-Key': key,
-        'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.googleMapsUri,places.primaryTypeDisplayName,places.rating,places.userRatingCount,places.priceLevel,places.editorialSummary'
+        'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.googleMapsUri,places.primaryTypeDisplayName,places.rating,places.userRatingCount,places.priceLevel,places.editorialSummary,places.location'
       },
       body: JSON.stringify(body)
     });
@@ -478,6 +478,8 @@ function normalizeRakuten(entry, context, options = {}) {
     title: basic.hotelName,
     url: reserveUrl,
     image: basic.hotelThumbnailUrl || basic.hotelImageUrl,
+    lat: normalizeCoordinate(basic.latitude, 'lat'),
+    lng: normalizeCoordinate(basic.longitude, 'lng'),
     price: price ? `${price.toLocaleString('ja-JP')}円から` : '',
     address: compact([basic.address1, basic.address2]).join(''),
     access: basic.access || '',
@@ -508,6 +510,8 @@ function parseJalanHotels(xml) {
       title: xmlValue(block, 'HotelName'),
       url: xmlValue(block, 'HotelDetailURL'),
       image: xmlValue(block, 'PictureURL'),
+      lat: normalizeCoordinate(xmlValue(block, 'Latitude') || xmlValue(block, 'Y'), 'lat'),
+      lng: normalizeCoordinate(xmlValue(block, 'Longitude') || xmlValue(block, 'X'), 'lng'),
       price: '',
       address: xmlValue(block, 'HotelAddress'),
       access: xmlValue(block, 'AccessInformation'),
@@ -531,6 +535,8 @@ function normalizeHotpepper(shop, context) {
     title: shop.name,
     url: shop.urls?.pc,
     image: shop.photo?.pc?.m || shop.photo?.pc?.l,
+    lat: normalizeCoordinate(shop.lat, 'lat'),
+    lng: normalizeCoordinate(shop.lng, 'lng'),
     price: shop.budget?.average || shop.budget?.name || '',
     address: shop.address,
     access: shop.access,
@@ -560,6 +566,8 @@ function normalizeGooglePlace(place, context, isFood) {
     title: name,
     url: place.googleMapsUri,
     image: '',
+    lat: normalizeCoordinate(place.location?.latitude, 'lat'),
+    lng: normalizeCoordinate(place.location?.longitude, 'lng'),
     price: googlePriceText(place.priceLevel),
     address: place.formattedAddress,
     access: '',
@@ -591,6 +599,8 @@ function scoreItem(item, context, provider) {
     title: cleanText(item.title, 80),
     url: item.url || '',
     image: item.image || '',
+    lat: normalizeCoordinate(item.lat, 'lat'),
+    lng: normalizeCoordinate(item.lng, 'lng'),
     price: item.price || '',
     address: cleanText(item.address, 120),
     access: cleanText(item.access, 140),
@@ -602,8 +612,17 @@ function scoreItem(item, context, provider) {
 }
 
 function findGeo(context) {
+  const requested = requestedGeo(context);
+  if (requested) return requested;
   const text = `${context.destination} ${context.q}`;
   return GEO_POINTS.find(point => point.tokens.some(token => text.includes(token)));
+}
+
+function requestedGeo(context) {
+  const lat = normalizeCoordinate(context.params.lat, 'lat');
+  const lng = normalizeCoordinate(context.params.lng, 'lng');
+  if (lat === null || lng === null) return null;
+  return {lat, lng};
 }
 
 function findJalanArea(context) {
@@ -708,6 +727,24 @@ function googlePriceText(priceLevel) {
     PRICE_LEVEL_VERY_EXPENSIVE: 'かなり高価格帯'
   };
   return labels[priceLevel] || '';
+}
+
+function normalizeCoordinate(value, kind) {
+  if (value === undefined || value === null || value === '') return null;
+  const num = Number(String(value).trim());
+  if (!Number.isFinite(num)) return null;
+  const limit = kind === 'lng' ? 180 : 90;
+  if (Math.abs(num) <= limit) return num;
+  const sign = num < 0 ? -1 : 1;
+  const abs = Math.abs(num);
+  const seconds = abs / 3600;
+  if (seconds <= limit) return Number((sign * seconds).toFixed(6));
+  const degrees = Math.floor(abs / 10000);
+  const minutes = Math.floor((abs - degrees * 10000) / 100);
+  const restSeconds = abs - degrees * 10000 - minutes * 100;
+  const decimal = degrees + minutes / 60 + restSeconds / 3600;
+  if (minutes < 60 && restSeconds < 60 && decimal <= limit) return Number((sign * decimal).toFixed(6));
+  return null;
 }
 
 function addDateDays(value, days) {
