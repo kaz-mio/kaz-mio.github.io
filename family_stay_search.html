@@ -162,6 +162,9 @@ select{appearance:auto;cursor:pointer;}
 .compare-kicker{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);display:block;margin-bottom:.25rem;}
 .compare-actions{display:flex;gap:.55rem;flex-wrap:wrap;justify-content:flex-end;}
 .compare-actions .copy-btn{font-size:.76rem;padding:.62rem .88rem;box-shadow:0 6px 16px rgba(24,52,71,.08);}
+.compare-context{display:flex;flex-wrap:wrap;gap:.45rem;margin:-.2rem 0 .85rem;}
+.context-chip{display:inline-flex;align-items:center;gap:.3rem;border:1px solid rgba(31,95,122,.14);border-radius:999px;background:#fff;color:var(--navy);font-size:.72rem;font-weight:800;line-height:1.35;padding:.42rem .66rem;max-width:100%;overflow-wrap:anywhere;}
+.context-chip strong{font-family:'Nunito',sans-serif;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-d);}
 .map-shell{margin:.9rem 0 1rem;border:1px solid rgba(24,36,43,.1);border-radius:8px;overflow:hidden;background:#eef8f6;box-shadow:inset 0 1px 0 rgba(255,255,255,.75);}
 .map-shell[hidden]{display:none;}
 .compare-map{height:320px;width:100%;background:linear-gradient(135deg,#e9f7f4,#fff8ea);}
@@ -456,6 +459,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
           <button class="copy-btn ghost" type="button" id="copyStayCompare">比較メモをコピー</button>
         </div>
       </div>
+      <div class="compare-context" id="stayCompareContext" aria-live="polite"></div>
       <div class="api-status" id="stayApiStatus"><strong>比較準備:</strong> 各掲載元を開いて、最新の空き状況・料金・設備を確認できる形にしています。</div>
       <div class="map-shell" id="stayMapShell" hidden>
         <div class="compare-map" id="stayMap" role="img" aria-label="宿候補の地図"></div>
@@ -630,6 +634,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
           <button class="copy-btn ghost" type="button" id="copyFoodCompare">比較メモをコピー</button>
         </div>
       </div>
+      <div class="compare-context" id="foodCompareContext" aria-live="polite"></div>
       <div class="api-status" id="foodApiStatus"><strong>比較準備:</strong> 各掲載元を開いて、最新の席情報・予約可否・設備を確認できる形にしています。</div>
       <div class="map-shell" id="foodMapShell" hidden>
         <div class="compare-map" id="foodMap" role="img" aria-label="食事候補の地図"></div>
@@ -743,6 +748,7 @@ const currentGeo = {stay: null, food: null};
 const comparisonMaps = {};
 const stayResultGrid = document.getElementById('stayResultGrid');
 const stayApiStatus = document.getElementById('stayApiStatus');
+const stayCompareContext = document.getElementById('stayCompareContext');
 const stayMapShell = document.getElementById('stayMapShell');
 const stayMapEl = document.getElementById('stayMap');
 const useCurrentLocationStay = document.getElementById('useCurrentLocationStay');
@@ -771,6 +777,7 @@ const foodLinks = {
 };
 const foodResultGrid = document.getElementById('foodResultGrid');
 const foodApiStatus = document.getElementById('foodApiStatus');
+const foodCompareContext = document.getElementById('foodCompareContext');
 const foodMapShell = document.getElementById('foodMapShell');
 const foodMapEl = document.getElementById('foodMap');
 const useCurrentLocationFood = document.getElementById('useCurrentLocationFood');
@@ -898,6 +905,7 @@ const destinationWords = (destination, area) => [destination.value.trim(), area.
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 }[char]));
+const contextChip = (label, value) => `<span class="context-chip"><strong>${escapeHtml(label)}</strong>${escapeHtml(value)}</span>`;
 const checkedValues = inputs => inputs.filter(input => input.checked).map(input => input.value);
 const buildStayQuery = () => {
   const words = [
@@ -1027,6 +1035,31 @@ const comparisonConfig = {
       }
     ]
   }
+};
+const staySummaryParts = () => {
+  const area = currentGeo.stay ? '現在地付近' : destinationWords(stayDestination, stayArea) || '未選択';
+  const dates = checkinDate.value
+    ? `${checkinDate.value}から${clampNumber(nightsInput.value, 1, 1, 14)}泊`
+    : '日付未指定';
+  const people = `大人${clampNumber(adultsInput.value, 2, 1, 8)}人・子ども${clampNumber(childrenInput.value, 1, 0, 6)}人`;
+  return [
+    ['AREA', area],
+    ['DATE', dates],
+    ['PEOPLE', people]
+  ];
+};
+const foodSummaryParts = () => {
+  const area = currentGeo.food ? '現在地付近' : destinationWords(foodDestination, foodArea) || '未選択';
+  return [
+    ['AREA', area],
+    ['TIME', foodTime.value || '時間帯未指定'],
+    ['AGE', foodChildAge.value || '年齢未指定']
+  ];
+};
+const updateCompareContext = type => {
+  const target = type === 'stay' ? stayCompareContext : foodCompareContext;
+  const parts = type === 'stay' ? staySummaryParts() : foodSummaryParts();
+  target.innerHTML = parts.map(([label, value]) => contextChip(label, value)).join('');
 };
 const normalizeApiItems = data => {
   const providerItems = Array.isArray(data?.providers)
@@ -1158,6 +1191,7 @@ const applyCurrentGeoParams = (type, params) => {
 };
 const fetchApiComparison = async type => {
   const config = comparisonConfig[type];
+  updateCompareContext(type);
   config.status.hidden = false;
   config.status.className = 'api-status';
   config.status.innerHTML = currentGeo[type]
@@ -1208,6 +1242,11 @@ const fetchApiResults = async params => {
     }
   }
   throw lastError || new Error('api-unavailable');
+};
+const clearCurrentGeo = type => {
+  currentGeo[type] = null;
+  const button = type === 'stay' ? useCurrentLocationStay : useCurrentLocationFood;
+  button.textContent = '現在地で探す';
 };
 const useCurrentLocation = type => {
   const button = type === 'stay' ? useCurrentLocationStay : useCurrentLocationFood;
@@ -1278,6 +1317,7 @@ const updateStayLinks = () => {
   stayLinks.googleHotels.href = `https://www.google.com/travel/hotels?q=${q}`;
   stayLinks.trivago.href = siteSearch('trivago.jp');
   stayLinks.google.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:travel.rakuten.co.jp OR site:jalan.net OR site:travel.yahoo.co.jp OR site:ikyu.com')}`;
+  updateCompareContext('stay');
   renderFallbackComparison('stay');
   saveState();
 };
@@ -1292,6 +1332,7 @@ const updateFoodLinks = () => {
   foodLinks.hotpepper.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:hotpepper.jp')}`;
   foodLinks.gnavi.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:gnavi.co.jp')}`;
   foodLinks.google.href = `https://www.google.com/search?q=${encodeURIComponent(query + ' site:tabelog.com OR site:hotpepper.jp OR site:gnavi.co.jp OR site:retty.me')}`;
+  updateCompareContext('food');
   renderFallbackComparison('food');
   saveState();
 };
@@ -1378,6 +1419,8 @@ const addSuggestedChecks = (inputs, values) => {
   const wanted = new Set(values || []);
   inputs.forEach(input => { if (wanted.has(input.value)) input.checked = true; });
 };
+[stayDestination, stayArea].forEach(el => el.addEventListener('change', () => clearCurrentGeo('stay'), true));
+[foodDestination, foodArea].forEach(el => el.addEventListener('change', () => clearCurrentGeo('food'), true));
 [stayDestination, stayArea, stayExtra, stayAge, stayChildAge, checkinDate, nightsInput, adultsInput, childrenInput, ...stayChecks].forEach(el => {
   el.addEventListener('input', updateStayLinks);
   el.addEventListener('change', updateStayLinks);
