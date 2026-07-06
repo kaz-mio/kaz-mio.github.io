@@ -132,7 +132,7 @@ const json = (statusCode, body, origin) => ({
 const corsHeaders = origin => {
   const extra = (process.env.FAMILY_API_ALLOWED_ORIGINS || '').split(',').map(v => v.trim()).filter(Boolean);
   const allowed = new Set([
-    'https://kaz-mio.github.io',
+    'https://kaz-mio.com',
     'https://regal-platypus-193128.netlify.app',
     'http://localhost:8888',
     'http://localhost:3000',
@@ -145,7 +145,7 @@ const corsHeaders = origin => {
       return {'Access-Control-Allow-Origin': origin, 'Vary': 'Origin'};
     }
   } catch {}
-  return {'Access-Control-Allow-Origin': 'https://kaz-mio.github.io', 'Vary': 'Origin'};
+  return {'Access-Control-Allow-Origin': 'https://kaz-mio.com', 'Vary': 'Origin'};
 };
 
 exports.handler = async event => {

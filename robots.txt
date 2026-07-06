@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kaz-mio.github.io/sitemap.xml
+Sitemap: https://kaz-mio.com/sitemap.xml
