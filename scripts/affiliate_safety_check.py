@@ -16,6 +16,13 @@ SKIP_DIRS = {".git", ".github", "assets", "scripts"}
 ALLOWED_AMAZON_FILES = {
     "editorial_policy.html",
     "privacy.html",
+    # もしも経由でAmazonと正式提携済み(かんたんリンク3モールカード設置ページ)
+    "cybex_pallas_g3_article.html",
+    "pet_sheet_diaper_article.html",
+    "mamakids_milky_lotion_article.html",
+    "hubdic_nasal_aspirator_article.html",
+    "popomi_baby_circle_article.html",
+    "amazon_prime_day_baby_2026.html",
 }
 
 RULES = [
@@ -172,10 +179,10 @@ def check_sitemap() -> list[str]:
     ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     locs = [el.text or "" for el in tree.findall(".//sm:loc", ns)]
     required = {
-        "https://kaz-mio.github.io/",
-        "https://kaz-mio.github.io/editorial_policy.html",
-        "https://kaz-mio.github.io/privacy.html",
-        "https://kaz-mio.github.io/contact.html",
+        "https://kaz-mio.com/",
+        "https://kaz-mio.com/editorial_policy.html",
+        "https://kaz-mio.com/privacy.html",
+        "https://kaz-mio.com/contact.html",
     }
     for url in sorted(required - set(locs)):
         findings.append(f"sitemap.xml: [sitemap_missing] 必須ページがありません: {url}")
