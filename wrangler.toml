@@ -1,0 +1,11 @@
+name = "kaz-mio-family-trip-search"
+main = "cloudflare/family-trip-search-worker.mjs"
+compatibility_date = "2026-07-09"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+preview_urls = false
+
+[vars]
+FAMILY_API_ALLOWED_ORIGINS = "https://kaz-mio.com"
+RAKUTEN_REFERER = "https://bespoke-twilight-56d54d.netlify.app"
+URL = "https://kaz-mio.com"
