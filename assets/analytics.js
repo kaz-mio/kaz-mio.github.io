@@ -1,4 +1,23 @@
 (function(){
+  if(!document.querySelector('link[data-km-experience]')){
+    try{
+      var experienceStyle = document.createElement('link');
+      experienceStyle.rel = 'stylesheet';
+      experienceStyle.href = '/assets/site-experience.css';
+      experienceStyle.dataset.kmExperience = 'true';
+      document.head.appendChild(experienceStyle);
+      if(!document.querySelector('script[data-km-experience]')){
+        var experienceScript = document.createElement('script');
+        experienceScript.src = '/assets/site-experience.js';
+        experienceScript.defer = true;
+        experienceScript.dataset.kmExperience = 'true';
+        document.head.appendChild(experienceScript);
+      }
+    }catch(error){
+      // Keep analytics and page behavior working when URL construction is unavailable.
+    }
+  }
+
   // Replace this with the GA4 measurement ID, e.g. G-XXXXXXXXXX.
   var GOOGLE_TAG_ID = 'G-ZKQ4EDMKBW';
   var hasTagId = /^(G|GT|AW|DC)-[A-Z0-9]+$/.test(GOOGLE_TAG_ID) && GOOGLE_TAG_ID !== 'G-XXXXXXXXXX';
