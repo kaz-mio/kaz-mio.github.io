@@ -108,7 +108,8 @@
         { "@type": "ListItem", "position": 48, "name": "ふるさと納税 控除上限額かんたん確認メモ", "url": "https://kaz-mio.com/furusato_tax_limit_check.html" },
         { "@type": "ListItem", "position": 49, "name": "敷地から考える住宅計画シミュレーター", "url": "https://kaz-mio.com/house_perspective_simulator.html" },
         { "@type": "ListItem", "position": 50, "name": "土地候補比較メモ", "url": "https://kaz-mio.com/land_candidate_compare.html" },
-        { "@type": "ListItem", "position": 51, "name": "家づくり総予算シミュレーター", "url": "https://kaz-mio.com/house_total_budget_simulator.html" }
+        { "@type": "ListItem", "position": 51, "name": "家づくり総予算シミュレーター", "url": "https://kaz-mio.com/house_total_budget_simulator.html" },
+        { "@type": "ListItem", "position": 52, "name": "北海道で家を建てる記録 第1回｜土地探しで雪置き場を甘く見ていた話", "url": "https://kaz-mio.com/hokkaido_house_land_snow_storage_log.html" }
       ]
     }
   ]
@@ -182,20 +183,20 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .social a:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px);}
 .main{margin-left:0;min-height:100vh;}
 .hero{position:relative;min-height:calc(100vh - 76px);padding:0 clamp(1rem,3.8vw,4.8rem);}
-.hero-stage{position:sticky;top:76px;min-height:calc(100vh - 76px);display:grid;grid-template-columns:minmax(460px,54vw) 1fr;align-items:center;overflow:hidden;}
+.hero-stage{position:sticky;top:76px;min-height:calc(100vh - 76px);display:grid;grid-template-columns:minmax(440px,50vw) minmax(0,1fr);align-items:center;overflow:hidden;}
 .brand-marquee{position:absolute;left:0;right:0;bottom:4.8rem;z-index:0;overflow:hidden;white-space:nowrap;pointer-events:none;}
 .brand-marquee-track{display:inline-flex;gap:4rem;min-width:max-content;font-family:Arial,sans-serif;font-size:clamp(4rem,9vw,9.4rem);font-weight:800;letter-spacing:.1em;color:rgba(34,34,34,.08);text-transform:uppercase;animation:brandMarquee 28s linear infinite;}
 .brand-marquee-track span{padding-right:4rem;}
 .brand-marquee.is-secondary{bottom:13.8rem;}
 .brand-marquee.is-secondary .brand-marquee-track{font-size:clamp(3.2rem,6.6vw,7.2rem);color:rgba(201,182,117,.13);animation-duration:36s;animation-direction:reverse;}
-.hero-visual{height:760px;align-self:start;overflow:hidden;background:#ddd;position:relative;z-index:1;isolation:isolate;box-shadow:0 28px 70px rgba(35,31,22,.12);}
+.hero-visual{height:720px;align-self:start;overflow:hidden;background:#ddd;position:relative;z-index:1;isolation:isolate;box-shadow:0 28px 70px rgba(35,31,22,.12);}
 .hero-visual::before{content:'';position:absolute;inset:-20%;z-index:3;pointer-events:none;background:linear-gradient(105deg,transparent 8%,rgba(255,255,255,.2) 42%,transparent 62%);mix-blend-mode:screen;animation:heroSweep 9s ease-in-out infinite;}
 .hero-visual::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,0) 34%,rgba(244,244,242,.08)),linear-gradient(180deg,rgba(0,0,0,.1),transparent 28%,rgba(0,0,0,.16));mix-blend-mode:multiply;}
 .hero-cue{display:inline-flex;align-items:center;gap:.72rem;margin-bottom:1rem;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:.62rem;font-weight:900;color:var(--gold2);}
 .hero-cue::before{content:'';width:42px;height:1px;background:var(--gold);}
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transform:scale(1.035);filter:saturate(.94) contrast(.98);transition:opacity .72s ease,transform 1.2s ease,filter .72s ease;will-change:opacity,transform;}
 .hero-slide.is-active{opacity:1;transform:scale(1);filter:saturate(1) contrast(1);animation:heroDrift 8.8s ease-out both;}
-.hero-copy{padding:7.2rem 0 0 3.4rem;position:relative;z-index:2;}
+.hero-copy{padding:4.8rem 0 2.2rem 3rem;position:relative;z-index:2;}
 .site-search{width:min(420px,100%);height:54px;margin:1.15rem 0 0;border:1px solid var(--line);background:#fff;color:#777;font-size:.86rem;display:flex;align-items:center;box-shadow:0 14px 34px rgba(34,34,34,.07);transition:border-color .2s,box-shadow .2s,transform .2s;}
 .site-search:hover,.site-search:focus-within{border-color:rgba(201,182,117,.7);box-shadow:0 20px 42px rgba(34,34,34,.1);transform:translateY(-2px);}
 .site-search input{min-width:0;flex:1;height:100%;border:0;background:transparent;color:#777;font:inherit;outline:0;padding:0 1.05rem;}
@@ -204,19 +205,25 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .site-search button:hover{background:var(--gold);color:#fff;}
 .round-contact{position:absolute;right:1.2rem;top:.45rem;width:98px;height:98px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:.72rem;line-height:1.55;box-shadow:0 16px 36px rgba(160,140,82,.18);transition:transform .2s,box-shadow .2s;}
 .round-contact:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(160,140,82,.24);}
-.hero h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.8rem,4.2vw,4.2rem);line-height:1.35;color:#b8b8b8;font-weight:500;letter-spacing:.04em;margin-bottom:2rem;}
+.hero h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.7rem,4vw,4rem);line-height:1.32;color:#555;font-weight:500;letter-spacing:.04em;margin-bottom:1.35rem;}
 .hero h1 span,.hero h1 em{display:inline-block;white-space:nowrap;}
-.hero h1 em{font-style:normal;color:#9f9f9f;}
-.hero-copy p{color:#9a9a9a;font-size:.96rem;max-width:33rem;margin-bottom:1.15rem;}
-.hero-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.8rem;margin-top:1rem;width:min(930px,100%);}
-.hero-links a{border:1px solid rgba(201,182,117,.62);background:rgba(255,255,255,.74);color:#777;min-width:0;text-align:left;padding:1rem;font-weight:700;font-size:.82rem;display:flex;flex-direction:column;gap:.36rem;transition:background .2s,color .2s,transform .2s,border-color .2s,box-shadow .2s;}
-.hero-links a.primary{background:var(--ink);border-color:var(--ink);color:#fff;}
-.hero-links a small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.56rem;color:var(--gold2);font-weight:900;}
-.hero-links a.primary small{color:var(--gold);}
-.hero-links a strong{font-family:'Shippori Mincho',serif;font-size:1.04rem;line-height:1.45;font-weight:600;color:inherit;}
-.hero-links a span{font-size:.72rem;line-height:1.55;color:inherit;opacity:.72;font-weight:500;}
-.hero-links a:hover{transform:translateY(-4px);background:#fff;border-color:var(--gold);box-shadow:0 18px 34px rgba(35,31,22,.1);}
-.hero-links a.primary:hover{background:#2c2c2c;color:#fff;}
+.hero h1 em{font-style:normal;color:#222;}
+.hero-copy>p{color:#686868;font-size:.94rem;max-width:38rem;margin-bottom:.65rem;}
+.hero-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.72rem;margin-top:1.25rem;width:min(760px,100%);}
+.hero-links a{position:relative;border:1px solid rgba(34,34,34,.12);border-top:4px solid var(--pillar,var(--gold));background:rgba(255,255,255,.86);color:#444;min-width:0;min-height:168px;text-align:left;padding:1.05rem;font-weight:700;font-size:.82rem;display:flex;flex-direction:column;gap:.38rem;box-shadow:0 14px 34px rgba(35,31,22,.06);transition:background .2s,color .2s,transform .2s,border-color .2s,box-shadow .2s;}
+.hero-links a.pillar-tools{--pillar:var(--sage);}
+.hero-links a.pillar-stories{--pillar:var(--sky);}
+.hero-links a.pillar-shopping{--pillar:var(--clay);}
+.hero-links a small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.56rem;color:var(--pillar,var(--gold2));font-weight:900;}
+.hero-links a strong{font-family:'Shippori Mincho',serif;font-size:1.28rem;line-height:1.4;font-weight:600;color:#222;}
+.hero-links a span{font-size:.72rem;line-height:1.6;color:#666;font-weight:500;}
+.hero-links a b{margin-top:auto;font-size:.7rem;color:#333;letter-spacing:.03em;}
+.hero-links a:hover{transform:translateY(-5px);background:#fff;border-color:var(--pillar,var(--gold));box-shadow:0 20px 42px rgba(35,31,22,.12);}
+.hero-featured{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem .7rem;margin-top:.9rem;color:#777;font-size:.7rem;}
+.hero-featured>span{font-weight:900;color:#444;}
+.hero-featured a{border-bottom:1px solid rgba(34,34,34,.25);padding:.15rem 0;transition:color .2s,border-color .2s;}
+.hero-featured a:hover{color:#111;border-color:var(--gold2);}
+#tools,#reviews,#articles{scroll-margin-top:110px;}
 .slide-nav{position:relative;color:#777;font-family:Arial,sans-serif;font-size:.8rem;display:flex;align-items:center;gap:.82rem;margin:1.45rem 0 .95rem;z-index:2;}
 .slide-dots{display:flex;gap:.82rem;}
 .slide-dot{width:7px;height:7px;border:0;border-radius:50%;background:#c9c9c9;cursor:pointer;padding:0;transition:background .22s,transform .22s;}
@@ -501,7 +508,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .mobile-sns{border:1px solid #222;color:#222;background:#fff;font-family:Arial,sans-serif;letter-spacing:.02em;}
   .main,.ft{margin-left:0;overflow:hidden;}
   .hero{display:block;padding:0 1rem 4rem;min-height:0;width:100%;max-width:100vw;overflow:hidden;}
-  .hero-stage{position:relative;top:auto;display:block;min-height:0;}
+  .hero-stage{position:relative;top:auto;display:flex;flex-direction:column;min-height:0;}
   .brand-marquee{top:31rem;bottom:auto;}
   .brand-marquee.is-secondary{top:39.2rem;bottom:auto;}
   .brand-marquee-track{font-size:4.8rem;animation-duration:24s;}
@@ -511,7 +518,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .hero-copy{order:1;padding:5rem 0 2rem;min-width:0;width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .hero h1,.hero-copy p{max-width:calc(100vw - 2rem);overflow-wrap:anywhere;}
   .hero-links,.hero-visual{width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
-  .hero-links{grid-template-columns:1fr;}
+  .hero-links{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .hero-featured{width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .site-search{width:calc(100vw - 2rem);max-width:calc(100vw - 2rem);}
   .round-contact{right:1rem;top:1rem;width:112px;height:112px;font-size:.75rem;}
   .slide-nav{margin:1rem 0 0;justify-content:flex-start;}
@@ -569,6 +577,20 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .ft-inner{grid-template-columns:1fr;}
   .ft-copy{text-align:left;}
 }
+@media(max-width:760px){
+  .hero-copy{padding:3.2rem 0 1.5rem;}
+  .hero h1{font-size:2.45rem;line-height:1.28;margin-bottom:1rem;}
+  .hero-copy>p{font-size:.88rem;line-height:1.72;margin-bottom:.42rem;}
+  .slide-nav{display:none;}
+  .hero-links{grid-template-columns:1fr;}
+  .hero-links{gap:.55rem;margin-top:1rem;}
+  .hero-links a{min-height:124px;padding:.85rem;gap:.24rem;}
+  .hero-links a strong{font-size:1.18rem;}
+  .hero-links a span{font-size:.69rem;line-height:1.55;}
+  .hero-featured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.25rem .75rem;}
+  .hero-featured>span{grid-column:1/-1;}
+  #tools,#reviews,#articles{scroll-margin-top:155px;}
+}
 @media(max-width:520px){
   .site-head{padding:.58rem .72rem;gap:.48rem;}
   .site-brand{gap:.5rem;}
@@ -593,11 +615,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .mobile-brand small{font-size:.52rem;}
   .mobile-actions{gap:.3rem;}
   .mobile-contact,.mobile-sns{width:36px;height:36px;font-size:.66rem;}
-  .hero h1{font-size:2.75rem;}
+  .hero h1{font-size:2.35rem;}
   .section-head h2{white-space:normal;}
   .brand-marquee{top:27rem;}
   .brand-marquee.is-secondary{top:33.8rem;}
-  .hero-copy p{max-width:320px;word-break:break-all;}
+  .hero-copy p{max-width:none;word-break:normal;overflow-wrap:anywhere;}
   .lead-text p,.section-head p,.about p{overflow-wrap:anywhere;}
   .family-navi-actions a{width:100%;}
   .route-actions a,.house-sim-actions a{width:100%;}
@@ -641,17 +663,18 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   </a>
   <nav class="site-nav" aria-label="サイトメニュー">
     <a href="#top">ホーム</a>
-    <a class="is-primary" href="mio_route_finder.html">迷ったらここから</a>
-    <a href="#search-guides">困りごとから探す</a>
+    <a class="is-primary" href="#tools">便利ツール</a>
+    <a href="#articles">体験記事</a>
+    <a href="#reviews">商品選び</a>
     <div class="nav-dropdown">
       <button class="nav-trigger" type="button" aria-expanded="false">メニュー</button>
       <div class="nav-panel">
         <div class="nav-group">
-          <p class="nav-group-title">Start</p>
+          <p class="nav-group-title">3 Ways to Start</p>
           <a href="mio_route_finder.html">迷ったらここから</a>
-          <a href="#search-guides">困りごとから探す</a>
-          <a href="#reviews">レビューのご案内</a>
-          <a href="#articles">記事一覧</a>
+          <a href="#tools">便利ツール</a>
+          <a href="#articles">体験記事</a>
+          <a href="#reviews">商品選び</a>
         </div>
         <div class="nav-group">
           <p class="nav-group-title">Money / House</p>
@@ -792,10 +815,10 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
       </div>
       <div class="hero-copy">
         <a class="round-contact" href="contact.html">お問い合わせは<br>こちらから</a>
-        <div class="hero-cue">Everyday Scene</div>
-        <h1><span>これ、うちでも</span><br><em>使いやすい？</em></h1>
-        <p>育児グッズも、家事ラク用品も、届いたあとに置く場所や毎日の手間で印象が変わります。</p>
-        <p>KAZ &amp; MIOでは、良かったところだけでなく、わが家なら先に見たいところも暮らしの言葉で残しています。</p>
+        <div class="hero-cue">3 Ways to Start</div>
+        <h1><span>暮らしの迷いを、</span><br><em>3つの入口から。</em></h1>
+        <p>今すぐ使えるチェックや診断、わが家の体験メモ、買う前に見たい商品選び。</p>
+        <p>KAZ &amp; MIOでは、今の困りごとに近い入口から必要なページへ進めます。</p>
         <div class="slide-nav" aria-label="Hero image navigation">
           <div class="slide-dots">
             <button class="slide-dot is-active" type="button" data-slide="0" aria-label="Slide 1"></button>
@@ -811,20 +834,16 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
           </div>
           <span class="slide-number">01</span>
         </div>
-        <div class="hero-links">
-          <a class="primary" href="mio_route_finder.html"><small>Start</small><strong>迷ったら<br>ここから</strong><span>今いちばん重い場面から近いメモへ。</span></a>
-          <a href="amazon_prime_day_baby_2026.html"><small>Prime Day</small><strong>育児アイテム<br>10選</strong><span>7/10〜13のセール前に買い足し候補を整理。</span></a>
-          <a href="family_stay_search.html"><small>Trip</small><strong>子連れ宿・<br>食事さがし</strong><span>泊まる場所と食べる場所を予約前に確認。</span></a>
-          <a href="outing_checklist.html"><small>Outing</small><strong>持ち物<br>チェック</strong><span>年齢、季節、行き先に合わせてバッグを整理。</span></a>
-          <a href="childcare_budget_memo.html"><small>Budget</small><strong>子育て<br>家計メモ</strong><span>育児まわりの支出を今月分だけ軽く見る。</span></a>
-          <a href="money_tax_flow_guide.html"><small>Money</small><strong>お金の<br>確認順</strong><span>扶養、副業、年末調整、ふるさと納税を分ける。</span></a>
-          <a href="furusato_tax_limit_check.html"><small>Money</small><strong>ふるさと納税<br>上限額</strong><span>今年いくらまで寄附できそうかを見る。</span></a>
-          <a href="fuyou_side_income_check.html"><small>Money</small><strong>扶養・副業<br>手取り</strong><span>年収の壁や申告の確認順を先に見る。</span></a>
-          <a href="year_end_adjustment_forms.html"><small>Work</small><strong>年末調整<br>申告書</strong><span>複数の申告書と住宅控除を提出前に確認する。</span></a>
-          <a href="side_income_tax_memo.html"><small>Work</small><strong>副業の<br>確定申告</strong><span>売上、経費、源泉徴収を毎月少しずつ残す。</span></a>
-          <a href="land_candidate_compare.html"><small>House</small><strong>土地候補<br>比較メモ</strong><span>敷地、駐車、雪置き場、生活条件を並べる。</span></a>
-          <a href="house_perspective_simulator.html"><small>House</small><strong>住宅計画<br>シミュレーター</strong><span>建坪、雪置き場、平面図、3Dパースを見る。</span></a>
-          <a href="house_total_budget_simulator.html"><small>Budget</small><strong>家づくり<br>総予算</strong><span>土地、建物、外構、諸費用、毎月返済を見る。</span></a>
+        <div class="hero-links" aria-label="3つの入口">
+          <a class="pillar-tools" href="#tools"><small>01 / Tools</small><strong>便利ツール</strong><span>チェック・診断・検索で、今の条件を整理。</span><b>今すぐ使う →</b></a>
+          <a class="pillar-stories" href="#articles"><small>02 / Stories</small><strong>体験記事</strong><span>子育て、北海道、家づくり。実体験から残したメモ。</span><b>体験から読む →</b></a>
+          <a class="pillar-shopping" href="#reviews"><small>03 / Shopping</small><strong>商品選び</strong><span>置き場所や手間まで見て、買う前の迷いを減らす。</span><b>悩みから選ぶ →</b></a>
+        </div>
+        <div class="hero-featured" aria-label="各カテゴリーのおすすめページ">
+          <span>まず見るなら</span>
+          <a href="family_stay_search.html">宿・食事さがし</a>
+          <a href="hokkaido_house_land_snow_storage_log.html">北海道の家づくり記録</a>
+          <a href="cybex_pallas_g3_article.html">チャイルドシートの使用メモ</a>
         </div>
         <form class="site-search" id="siteSearch" role="search">
           <input id="siteSearchInput" type="search" placeholder="気になる言葉で検索" aria-label="サイト内を検索">
@@ -1039,12 +1058,12 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
     </div>
   </section>
 
-  <section class="dark-band">
+  <section class="dark-band" id="tools">
     <div class="band-inner">
       <div>
-        <div class="kicker">Guide</div>
-        <h2>まずは、<br><span>今の場面から選ぶ。</span></h2>
-        <p>たくさん並べるより、今日の重さに近い場所をひとつ選ぶ。旅行前、おでかけ前、今月の見直し、副業の確定申告準備までつなげました。</p>
+        <div class="kicker">Useful Tools</div>
+        <h2>便利ツールで、<br><span>今の条件を整理する。</span></h2>
+        <p>旅行前、おでかけ前、今月の見直し、副業の確定申告準備まで。入力やチェックをしながら、次に確認することを絞れます。</p>
       </div>
       <div class="band-cards">
         <a class="band-card" href="mio_route_finder.html"><small>01 / START</small><h3>今の困りごとから<br>近いメモへ</h3><p>朝、部屋、車、おでかけ、自分ケア。今いちばん重いところから探せます。</p></a>
@@ -1199,8 +1218,8 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   <section class="section" id="reviews">
     <div class="section-head">
       <div>
-        <div class="kicker">Review</div>
-        <h2>悩み別レビュー</h2>
+        <div class="kicker">Shopping Guide</div>
+        <h2>商品選び</h2>
       </div>
       <p>「何を買うか」より先に、「どんな悩みをラクにしたいか」から選べるように整理しました。価格・割引・キャンペーンは変動するため、最新条件は各記事内の公式リンク先で確認してください。</p>
     </div>
@@ -1293,12 +1312,13 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   <section class="section" id="articles">
     <div class="section-head">
       <div>
-        <div class="kicker">Articles</div>
-        <h2>最近のメモ</h2>
+        <div class="kicker">Stories</div>
+        <h2>体験記事・暮らしのメモ</h2>
       </div>
       <p>子育て、ギフト、英語教育、暮らしの節約まで。気になったところからどうぞ。</p>
     </div>
     <div class="articles">
+      <a href="hokkaido_house_land_snow_storage_log.html" class="article"><span class="article-icon">雪</span><div><h3>北海道で家を建てる記録 第1回｜土地探しで雪置き場を甘く見ていた話</h3><p>北海道・家づくり・土地探し・雪置き場</p></div><span>→</span></a>
       <a href="mio_route_finder.html" class="article"><span class="article-icon">道</span><div><h3>迷ったらここから</h3><p>朝・部屋・車・おでかけ・自分ケア</p></div><span>→</span></a>
       <a href="kosodate_onsen_bath_bed_guide.html" class="article"><span class="article-icon">湯</span><div><h3>2歳連れの温泉宿は「お風呂」と「寝床」で決める</h3><p>子育て・北海道・温泉・宿選び</p></div><span>→</span></a>
       <a href="stroller_fit_check.html" class="article"><span class="article-icon">玄</span><div><h3>ベビーカー入る？玄関・車トランク診断ツール</h3><p>子育て・ベビーカー・買う前チェック</p></div><span>→</span></a>

@@ -436,4 +436,10 @@
     <loc>https://kaz-mio.com/kosodate_onsen_bath_bed_guide.html</loc>
     <lastmod>2026-07-06</lastmod>
   </url>
+  <url>
+    <loc>https://kaz-mio.com/hokkaido_house_land_snow_storage_log.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.84</priority>
+  </url>
 </urlset>
