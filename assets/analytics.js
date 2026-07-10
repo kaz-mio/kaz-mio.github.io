@@ -1,12 +1,12 @@
 (function(){
-  if(!document.querySelector('link[data-km-experience]')){
+  if(!document.querySelector('link[href*="/assets/site-experience.css"]')){
     try{
       var experienceStyle = document.createElement('link');
       experienceStyle.rel = 'stylesheet';
       experienceStyle.href = '/assets/site-experience.css';
       experienceStyle.dataset.kmExperience = 'true';
       document.head.appendChild(experienceStyle);
-      if(!document.querySelector('script[data-km-experience]')){
+      if(!document.querySelector('script[src*="/assets/site-experience.js"]')){
         var experienceScript = document.createElement('script');
         experienceScript.src = '/assets/site-experience.js';
         experienceScript.defer = true;

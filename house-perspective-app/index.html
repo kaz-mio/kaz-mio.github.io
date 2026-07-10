@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>House Perspective Studio</title>
-  <link rel="stylesheet" href="styles.css?v=20260622-2">
+  <title>住宅計画シミュレーター | KAZ &amp; MIO</title>
+  <link rel="stylesheet" href="styles.css?v=20260710">
 </head>
 <body>
   <div class="app">
@@ -12,13 +12,13 @@
       <div class="brand">
         <span class="brand-mark">HP</span>
         <div>
-          <h1>House Perspective Studio</h1>
-          <p id="projectSubtitle">実寸平面図と外構パース</p>
+          <h1>住宅計画シミュレーター</h1>
+          <p id="projectSubtitle">土地から、暮らしやすい家の形を考える</p>
         </div>
       </div>
       <div class="version-switch" aria-label="バージョン切替">
-        <button id="simpleVersionBtn" class="version-button">簡易</button>
-        <button id="detailVersionBtn" class="version-button active">詳細</button>
+        <button id="simpleVersionBtn" class="version-button">かんたん</button>
+        <button id="detailVersionBtn" class="version-button active">プロ編集</button>
       </div>
       <div class="top-actions">
         <button id="saveBtn" class="button">保存</button>
@@ -36,7 +36,46 @@
 
     <main class="workspace">
       <aside class="left-panel" aria-label="編集パネル">
-        <section class="panel">
+        <section class="panel quick-start-panel" aria-labelledby="quick-start-title">
+          <div class="quick-kicker">3 STEP PLANNING</div>
+          <div class="panel-title quick-title">
+            <div>
+              <h2 id="quick-start-title">希望を入れて自動作成</h2>
+              <p>分かる範囲だけで大丈夫です。</p>
+            </div>
+            <span class="badge quick-badge">約1分</span>
+          </div>
+          <ol class="quick-steps" aria-label="入力手順">
+            <li><span>1</span>土地</li>
+            <li><span>2</span>暮らし</li>
+            <li><span>3</span>提案</li>
+          </ol>
+          <div class="quick-form">
+            <fieldset>
+              <legend><span>1</span>土地の大きさ</legend>
+              <div class="field-grid two">
+                <label><span>間口</span><span class="input-unit"><input id="quickLandWidth" type="number" min="4" max="80" step="0.5" inputmode="decimal"><b>m</b></span></label>
+                <label><span>奥行</span><span class="input-unit"><input id="quickLandDepth" type="number" min="4" max="80" step="0.5" inputmode="decimal"><b>m</b></span></label>
+              </div>
+              <label class="stacked"><span>地域</span><select id="quickRegion"><option value="hokkaido">北海道</option><option value="snowy">多雪地域</option><option value="standard">標準地域</option><option value="urban">都市部</option></select></label>
+            </fieldset>
+            <fieldset>
+              <legend><span>2</span>家族と希望</legend>
+              <div class="field-grid two">
+                <label><span>家族</span><select id="quickResidents"><option value="2">2人</option><option value="3">3人</option><option value="4">4人</option><option value="5">5人</option><option value="6">6人以上</option></select></label>
+                <label><span>階数</span><select id="quickFloors"><option value="1">平屋</option><option value="2">2階建て</option></select></label>
+                <label><span>個室</span><select id="quickBedrooms"><option value="1">1室</option><option value="2">2室</option><option value="3">3室</option><option value="4">4室</option><option value="5">5室</option></select></label>
+                <label><span>駐車</span><select id="quickParking"><option value="0">なし</option><option value="1">1台</option><option value="2">2台</option><option value="3">3台</option></select></label>
+              </div>
+              <label class="stacked"><span>いちばん大切にしたいこと</span><select id="quickPriority"><option value="balance">バランス</option><option value="sunlight">日当たり</option><option value="snow">雪対策</option><option value="storage">収納</option><option value="garden">庭・外遊び</option><option value="cost">建築費を抑える</option></select></label>
+            </fieldset>
+          </div>
+          <button id="quickPlanBtn" class="button wide primary quick-plan-button">この条件で提案プランを作る</button>
+          <button id="quickSampleBtn" class="quick-text-button" type="button">北海道・4人家族の例に戻す</button>
+          <p class="quick-caution">法規・構造を確定するものではありません。住宅会社へ相談する前の比較資料としてお使いください。</p>
+        </section>
+
+        <section class="panel detail-only">
           <div class="panel-title">
             <h2>敷地</h2>
             <button id="sampleBtn" class="small-button">サンプル</button>
@@ -79,7 +118,7 @@
           </div>
         </section>
 
-        <section class="panel">
+        <section class="panel detail-only">
           <div class="panel-title">
             <h2>作図</h2>
             <div class="segmented">
@@ -128,6 +167,39 @@
       </section>
 
       <aside class="right-panel" aria-label="集計とパース">
+        <section class="panel professional-panel" aria-labelledby="professional-title">
+          <div class="panel-title">
+            <div>
+              <div class="quick-kicker">PLANNING REPORT</div>
+              <h2 id="professional-title">計画評価</h2>
+            </div>
+            <span id="planGrade" class="grade-badge">A</span>
+          </div>
+          <div class="score-hero">
+            <div id="planScoreRing" class="score-ring" style="--score:0">
+              <strong id="planScore">--</strong><small>/ 100</small>
+            </div>
+            <div>
+              <span id="planStatus" class="status-pill">入力待ち</span>
+              <h3 id="planHeadline">条件を入れると、計画の強みと注意点を整理します。</h3>
+            </div>
+          </div>
+          <div class="professional-metrics">
+            <div><span>延床目安</span><strong id="guidedFloorArea">--</strong><small>m²</small></div>
+            <div><span>建ぺい率</span><strong id="guidedCoverage">--</strong><small>%</small></div>
+            <div><span>外の余白</span><strong id="guidedExterior">--</strong><small>m²</small></div>
+          </div>
+          <div id="scoreBreakdown" class="score-breakdown"></div>
+          <div class="report-block">
+            <h3>設計前に確認したいこと</h3>
+            <ul id="professionalChecks" class="professional-checks"></ul>
+          </div>
+          <div class="report-actions">
+            <button id="copyPlanReportBtn" class="button">提案メモをコピー</button>
+            <button id="printPlanReportBtn" class="button primary">印刷・PDF保存</button>
+          </div>
+        </section>
+
         <section class="panel metrics-panel">
           <div class="panel-title">
             <h2>集計</h2>
@@ -187,7 +259,7 @@
           </div>
         </section>
 
-        <section class="panel recommendation-panel">
+        <section class="panel recommendation-panel detail-only">
           <div class="panel-title">
             <h2>敷地予測・推奨</h2>
             <span id="recommendationBadge" class="badge">自動</span>
@@ -288,6 +360,7 @@
     </main>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20260710"></script>
+  <script src="guided.js?v=20260710"></script>
 </body>
 </html>

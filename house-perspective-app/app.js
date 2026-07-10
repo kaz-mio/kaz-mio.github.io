@@ -133,8 +133,9 @@ let view = {
 function createSampleState() {
   return {
     land: { width: 16, depth: 12, orientation: "north", region: "hokkaido" },
+    brief: { residents: 4, floors: 1, bedrooms: 3, parking: 2, priority: "balance" },
     settings: {
-      version: "detail",
+      version: "simple",
       grid: 0.5,
       snap: true,
       showDimensions: true,
@@ -315,7 +316,8 @@ function calculateRecommendation() {
     d: Math.max(0.8, state.land.depth - setbacks.top - setbacks.bottom)
   };
   const buildableArea = buildable.w * buildable.d;
-  const parkingCount = state.land.width >= 12 && landArea >= 120 ? 2 : 1;
+  const requestedParking = Number(state.brief && state.brief.parking);
+  const parkingCount = Number.isFinite(requestedParking) ? clamp(Math.round(requestedParking), 0, 3) : (state.land.width >= 12 && landArea >= 120 ? 2 : 1);
   const parkingArea = parkingCount * profile.parkingWidth * profile.parkingDepth;
   const approachArea = Math.max(4.5, landArea * 0.035);
   const snowArea = Math.max(0, landArea * profile.snowRatio);
@@ -1593,30 +1595,39 @@ function addObjectAtSelection() {
   }
 }
 
-function applyRecommendedLayout() {
+function applyRecommendedLayout(options = {}) {
+  state.brief = { ...(state.brief || {}), ...options };
   const rec = calculateRecommendation();
+  const floors = clamp(Math.round(Number(state.brief.floors) || 1), 1, 2);
+  const bedrooms = clamp(Math.round(Number(state.brief.bedrooms) || 3), 1, 5);
   const r = rec.recommendedRect;
   const x = r.x;
   const y = r.y;
   const w = r.w;
   const d = r.d;
-  const topD = d * 0.56;
+  const topD = d * 0.62;
   const bottomD = d - topD;
-  const leftW = w * 0.58;
+  const leftW = w * 0.62;
   const rightW = w - leftW;
-  const lowerA = w * 0.28;
-  const lowerB = w * 0.24;
-  const lowerC = w * 0.22;
-  const lowerD = w - lowerA - lowerB - lowerC;
-  state.rooms = [
-    makeRoom("LDK", x, y, leftW, topD, "#f2d1a0"),
-    makeRoom("主寝室", x + leftW, y, rightW, topD * 0.58, "#d7dfc4"),
-    makeRoom(rec.recommendedTsubo >= 24 ? "子ども室" : "書斎", x + leftW, y + topD * 0.58, rightW, topD * 0.42, "#cfe0e8"),
+  const lowerA = leftW * 0.38;
+  const lowerB = leftW * 0.27;
+  const lowerC = leftW * 0.2;
+  const lowerD = leftW - lowerA - lowerB - lowerC;
+  const privateCount = floors === 1 ? bedrooms : 1;
+  const privateDepth = d / privateCount;
+  const roomColors = ["#d7dfc4", "#cfe0e8", "#d8d0e6", "#e4d6c4", "#d4e4d8"];
+  const rooms = [makeRoom("LDK", x, y, leftW, topD, "#f2d1a0")];
+  for (let index = 0; index < privateCount; index += 1) {
+    const name = floors === 2 ? "1階多目的室" : index === 0 ? "主寝室" : `個室 ${index + 1}`;
+    rooms.push(makeRoom(name, x + leftW, y + privateDepth * index, rightW, privateDepth, roomColors[index % roomColors.length]));
+  }
+  rooms.push(
     makeRoom("水回り", x, y + topD, lowerA, bottomD, "#d9e8ec"),
     makeRoom("玄関", x + lowerA, y + topD, lowerB, bottomD, "#ead9bf"),
     makeRoom("収納", x + lowerA + lowerB, y + topD, lowerC, bottomD, "#ded7c2"),
-    makeRoom("予備室", x + lowerA + lowerB + lowerC, y + topD, lowerD, bottomD, "#d8d0e6")
-  ].filter((room) => room.w >= 0.8 && room.d >= 0.8);
+    makeRoom(floors === 2 ? "階段・家事" : "家事・予備", x + lowerA + lowerB + lowerC, y + topD, lowerD, bottomD, "#d8d0e6")
+  );
+  state.rooms = rooms.filter((room) => room.w >= 0.8 && room.d >= 0.8);
 
   const parkingW = Math.min(state.land.width * 0.42, rec.parkingCount * rec.profile.parkingWidth + 0.8);
   const parkingD = Math.min(rec.profile.parkingDepth, state.land.depth * 0.32);
@@ -1636,7 +1647,7 @@ function applyRecommendedLayout() {
     configuredObject("path", x + lowerA + lowerB * 0.35, Math.min(y + d, state.land.depth - 4.5), 1.2, Math.min(4.5, state.land.depth - (y + d) + 0.4), 0),
     configuredObject("tree", Math.max(0.6, state.land.width - 2.2), Math.max(0.6, y - 0.1), 1.2, 1.2, 0),
     configuredObject("garden", Math.max(0.5, parkingX - 3.2), parkingY - 1.8, 3.0, 1.6, 0)
-  ];
+  ].filter((item) => rec.parkingCount > 0 || !["parking", "car"].includes(item.preset));
   rec.snowZones.forEach((zone, index) => {
     state.objects.push({
       id: `snow-${Date.now()}-${index}`,
@@ -1805,6 +1816,7 @@ function render() {
   renderInspector();
   renderEmbedSnippet();
   el.zoomReadout.textContent = `${Math.round(view.zoom * 100)}%`;
+  window.dispatchEvent(new CustomEvent("house-planner-render"));
 }
 
 function renderEmbedSnippet() {
@@ -1839,6 +1851,7 @@ function normalizeState(input) {
   const base = createSampleState();
   const normalized = {
     land: { ...base.land, ...(input.land || {}) },
+    brief: { ...base.brief, ...(input.brief || {}) },
     settings: { ...base.settings, ...(input.settings || {}) },
     rooms: Array.isArray(input.rooms) ? input.rooms : [],
     objects: Array.isArray(input.objects) ? input.objects : []
@@ -1965,6 +1978,133 @@ function clearProject() {
   render();
 }
 
+function normalizeBrief(input = {}) {
+  return {
+    residents: clamp(Math.round(Number(input.residents) || 4), 1, 6),
+    floors: clamp(Math.round(Number(input.floors) || 1), 1, 2),
+    bedrooms: clamp(Math.round(Number(input.bedrooms) || 3), 1, 5),
+    parking: clamp(Math.round(Number(input.parking) || 0), 0, 3),
+    priority: ["balance", "sunlight", "snow", "storage", "garden", "cost"].includes(input.priority) ? input.priority : "balance"
+  };
+}
+
+function applyGuidedBrief(input = {}) {
+  const brief = normalizeBrief(input);
+  state.land.width = clamp(Number(input.landWidth) || state.land.width || 16, 4, 80);
+  state.land.depth = clamp(Number(input.landDepth) || state.land.depth || 12, 4, 80);
+  state.land.region = ["hokkaido", "snowy", "standard", "urban"].includes(input.region) ? input.region : "hokkaido";
+  state.brief = brief;
+  state.settings.version = "simple";
+  state.settings.materialStyle = state.land.region === "hokkaido" || state.land.region === "snowy" ? "snow" : "realistic";
+  view.selectedId = null;
+  view.zoom = 1;
+  applyRecommendedLayout(brief);
+  flashSubtitle("提案プランを作成しました");
+  return buildProfessionalAssessment();
+}
+
+function buildProfessionalAssessment() {
+  const brief = normalizeBrief(state.brief || {});
+  const rec = calculateRecommendation();
+  const footprint = rectUnionArea(state.rooms);
+  const landArea = Math.max(1, rec.landArea);
+  const coverage = (footprint / landArea) * 100;
+  const floorFactor = brief.floors === 2 ? 1.82 : 1;
+  const totalFloorArea = footprint * floorFactor;
+  const targetFloorArea = 35 + brief.residents * 10.5 + brief.bedrooms * 2.5;
+  const exteriorArea = Math.max(0, landArea - footprint);
+  const exteriorRatio = exteriorArea / landArea;
+  const widthDepthRatio = Math.min(state.land.width, state.land.depth) / Math.max(state.land.width, state.land.depth);
+  const scores = {
+    "広さの適合": clamp(Math.round(96 - Math.abs(totalFloorArea - targetFloorArea) / Math.max(targetFloorArea, 1) * 72), 42, 98),
+    "外構の余白": clamp(Math.round(55 + exteriorRatio * 70 - brief.parking * 3), 38, 97),
+    "動線の作りやすさ": clamp(Math.round(68 + widthDepthRatio * 25 - (state.land.width < 7 ? 14 : 0)), 42, 96),
+    "採光の取りやすさ": clamp(Math.round(64 + exteriorRatio * 38 + (brief.priority === "sunlight" ? 6 : 0)), 45, 98),
+    "地域条件への対応": clamp(Math.round(78 + (rec.snowArea > 0 ? 9 : 4) + (brief.priority === "snow" ? 5 : 0)), 55, 98)
+  };
+  if (brief.priority === "garden") scores["外構の余白"] = clamp(scores["外構の余白"] + 6, 0, 100);
+  if (brief.priority === "cost") scores["広さの適合"] = clamp(scores["広さの適合"] + (totalFloorArea <= targetFloorArea * 1.05 ? 5 : -5), 0, 100);
+  if (brief.priority === "storage") scores["動線の作りやすさ"] = clamp(scores["動線の作りやすさ"] + 4, 0, 100);
+  const scoreValues = Object.values(scores);
+  const overall = Math.round(scoreValues.reduce((sum, value) => sum + value, 0) / scoreValues.length);
+  const grade = overall >= 88 ? "A+" : overall >= 80 ? "A" : overall >= 70 ? "B" : "C";
+  const status = overall >= 85 ? "計画しやすい条件" : overall >= 72 ? "比較しながら整えたい" : "優先順位の整理が必要";
+  const headline = brief.floors === 1
+    ? `${brief.residents}人・平屋を想定。外の余白と必要室数の両立を確認できる案です。`
+    : `${brief.residents}人・2階建てを想定。1階をコンパクトにして延床を確保する案です。`;
+  const checks = [
+    `建ぺい率・容積率・斜線制限・接道条件は、土地資料と自治体情報で必ず照合する`,
+    `駐車${brief.parking}台分に加え、乗り降りと玄関までの通路幅を現地寸法で確認する`
+  ];
+  if (state.land.region === "hokkaido" || state.land.region === "snowy") {
+    checks.push(`雪置き場約${format(rec.snowArea, 1)}m²、屋根の落雪方向、除雪車が残す雪の位置を確認する`);
+  }
+  if (brief.floors === 2) checks.push(`2階の個室配置と階段位置は、構造壁・上下階の水回りを合わせて検討する`);
+  if (state.land.width < 8) checks.push(`間口が限られるため、車の切り返しと建物脇のメンテナンス通路を優先確認する`);
+  if (brief.priority === "storage") checks.push(`玄関・食品・季節用品の収納量を、持ち物の実寸から再計算する`);
+  if (brief.priority === "garden") checks.push(`庭の日照時間と隣家からの視線、外構費、冬の管理範囲を一緒に確認する`);
+  if (brief.priority === "cost") checks.push(`面積を増やす前に、総二階・水回り集約・窓数・外構範囲で費用差を比較する`);
+  return {
+    brief,
+    rec,
+    footprint,
+    coverage,
+    totalFloorArea,
+    exteriorArea,
+    scores,
+    overall,
+    grade,
+    status,
+    headline,
+    checks: checks.slice(0, 5)
+  };
+}
+
+function professionalReportText() {
+  const result = buildProfessionalAssessment();
+  const regionLabel = result.rec.profile.label;
+  const priorityLabels = { balance: "バランス", sunlight: "日当たり", snow: "雪対策", storage: "収納", garden: "庭・外遊び", cost: "建築費" };
+  const scoreLines = Object.entries(result.scores).map(([label, value]) => `- ${label}: ${value}/100`);
+  return [
+    "住宅計画シミュレーター 提案メモ",
+    `作成日: ${new Date().toLocaleDateString("ja-JP")}`,
+    "",
+    `総合評価: ${result.overall}/100（${result.grade}） ${result.status}`,
+    result.headline,
+    "",
+    `敷地: ${format(result.rec.landArea, 1)}m² / ${format(result.rec.landTsubo, 1)}坪（間口${format(state.land.width, 1)}m × 奥行${format(state.land.depth, 1)}m）`,
+    `地域条件: ${regionLabel}`,
+    `家族・希望: ${result.brief.residents}人 / ${result.brief.floors === 1 ? "平屋" : "2階建て"} / 個室${result.brief.bedrooms}室 / 駐車${result.brief.parking}台`,
+    `優先事項: ${priorityLabels[result.brief.priority] || "バランス"}`,
+    `建築面積: ${format(result.footprint, 1)}m² / ${format(result.footprint / SQM_PER_TSUBO, 1)}坪`,
+    `延床目安: ${format(result.totalFloorArea, 1)}m² / 建ぺい率目安 ${format(result.coverage, 1)}%`,
+    `外の余白: ${format(result.exteriorArea, 1)}m² / 雪置き場目安 ${format(result.rec.snowArea, 1)}m²`,
+    "",
+    "評価内訳",
+    ...scoreLines,
+    "",
+    "設計前に確認したいこと",
+    ...result.checks.map((item) => `- ${item}`),
+    "",
+    "※初期比較用の概算です。法規、構造、積雪荷重、地盤、設備、見積りは建築士・住宅会社・自治体・専門家へ確認してください。",
+    "KAZ & MIO | LIFE, LIGHTLY"
+  ].join("\n");
+}
+
+window.HousePerspectiveStudio = {
+  applyGuidedBrief,
+  getAssessment: buildProfessionalAssessment,
+  getBrief: () => ({ ...normalizeBrief(state.brief || {}), landWidth: state.land.width, landDepth: state.land.depth, region: state.land.region }),
+  getReportText: professionalReportText,
+  resetSample: () => {
+    state = createSampleState();
+    view.selectedId = null;
+    view.zoom = 1;
+    applyRecommendedLayout(state.brief);
+    return buildProfessionalAssessment();
+  }
+};
+
 function bindEvents() {
   [
     el.landWidthInput,
@@ -1999,7 +2139,7 @@ function bindEvents() {
   el.addModeBtn.addEventListener("click", () => setMode("add"));
   el.addRoomBtn.addEventListener("click", () => addRoomAt());
   el.addObjectBtn.addEventListener("click", addObjectAtSelection);
-  el.applyRecommendationBtn.addEventListener("click", applyRecommendedLayout);
+  el.applyRecommendationBtn.addEventListener("click", () => applyRecommendedLayout());
   el.zoomOutBtn.addEventListener("click", () => {
     view.zoom = clamp(view.zoom - 0.12, 0.45, 2.4);
     render();

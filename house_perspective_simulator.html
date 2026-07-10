@@ -96,8 +96,8 @@ h1 span{color:#222}
 .sim-head{display:flex;justify-content:space-between;gap:1.4rem;align-items:end;margin-bottom:1rem}
 .sim-head h2,.info h2,.related h2,.case-panel h2,.faq-panel h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,3vw,2.8rem);font-weight:500;line-height:1.35;color:#666}
 .sim-head p{max-width:44rem;color:#69726b;font-size:.86rem}
-.sim-scroll{overflow-x:auto;overflow-y:hidden;background:#fff;border:1px solid rgba(34,34,34,.12);box-shadow:0 22px 58px rgba(34,48,42,.16)}
-.sim-scroll iframe{display:block;width:100%;min-width:1120px;height:clamp(880px,90vh,980px);border:0;background:#fff}
+.sim-scroll{overflow:hidden;background:#fff;border:1px solid rgba(34,34,34,.12);box-shadow:0 22px 58px rgba(34,48,42,.16)}
+.sim-scroll iframe{display:block;width:100%;min-width:0;height:clamp(960px,94vh,1080px);border:0;background:#fff;transition:height .25s ease}
 .sim-note{margin-top:.8rem;color:#737b74;font-size:.78rem;line-height:1.75}
 .info{display:grid;grid-template-columns:.8fr 1.2fr;gap:1.5rem;align-items:start;background:#fff;border:1px solid var(--line);padding:1.4rem;box-shadow:0 12px 34px rgba(35,31,22,.08);margin-bottom:1.5rem}
 .info p{color:#777;font-size:.88rem}
@@ -127,7 +127,7 @@ h1 span{color:#222}
 .ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68);transition:color .2s,transform .2s}
 .ft-nav a:hover{color:#fff;transform:translateY(-2px)}
 .ft-copy{max-width:1280px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38)}
-@media(max-width:980px){.hero,.info{grid-template-columns:1fr}.hero-card,.info-grid,.related-grid,.case-grid{grid-template-columns:1fr}.sim-head{display:block}.sim-head p{margin-top:.55rem}.wrap{padding:3rem 1rem 4rem}.sim-section{padding:.9rem}.sim-scroll iframe{height:940px}.ft-inner{align-items:flex-start;flex-direction:column}}
+@media(max-width:980px){.hero,.info{grid-template-columns:1fr}.hero-card,.info-grid,.related-grid,.case-grid{grid-template-columns:1fr}.sim-head{display:block}.sim-head p{margin-top:.55rem}.wrap{padding:3rem 1rem 4rem}.sim-section{padding:.9rem}.sim-scroll iframe{height:1800px}.ft-inner{align-items:flex-start;flex-direction:column}}
 @media(max-width:640px){.hd{height:60px;padding:0 .85rem}.brand-mark{width:34px;height:34px}.brand-ja{font-size:1rem}.nav a:not(.contact){display:none}.nav .contact{width:42px;height:42px;padding:0;font-size:0;position:relative}.nav .contact::after{content:'問';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.98rem}.actions{display:grid}.actions a{width:100%}h1{font-size:2.25rem}.lead,.sim-head p,.info p,.related>p{overflow-wrap:anywhere;line-break:strict}}
 </style>
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
@@ -172,12 +172,12 @@ h1 span{color:#222}
   <section class="sim-section" id="simulator" aria-labelledby="sim-title">
     <div class="sim-head">
       <h2 id="sim-title">住宅計画シミュレーター</h2>
-      <p>公開表示モードで埋め込んでいます。保存・JSON・埋込などの管理系ボタンは非表示にし、敷地入力、推奨建坪、平面図、3Dパース、高精細PNG出力を使える状態にしています。</p>
+      <p>土地と家族の条件を入れるだけで提案プランを自動作成できます。結果は総合評価、面積、建ぺい率、外構余白、地域条件別の確認事項まで一枚に整理します。</p>
     </div>
     <div class="sim-scroll">
-      <iframe src="/house-perspective-app/index.html#embed" loading="lazy" title="住宅計画シミュレーター"></iframe>
+      <iframe id="housePlannerFrame" src="/house-perspective-app/index.html?v=20260710#embed" loading="lazy" title="住宅計画シミュレーター"></iframe>
     </div>
-    <p class="sim-note">スマホではシミュレーター部分を横に動かして全体を確認できます。入力内容はブラウザ内で動作し、バックエンドへの送信はありません。</p>
+    <p class="sim-note">スマホでも横スクロールなしで使えます。入力内容はブラウザ内だけで処理され、バックエンドへの送信はありません。</p>
   </section>
 
   <section class="info" aria-labelledby="scope-title">
@@ -259,5 +259,17 @@ h1 span{color:#222}
   </div>
   <p class="ft-copy">&copy; 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります。</p>
 </footer>
+<script>
+(function(){
+  var frame=document.getElementById('housePlannerFrame');
+  if(!frame)return;
+  window.addEventListener('message',function(event){
+    if(event.origin!==window.location.origin||event.source!==frame.contentWindow)return;
+    if(!event.data||event.data.type!=='kaz-mio-house-planner-height')return;
+    var height=Math.max(760,Math.min(4200,Number(event.data.height)||0));
+    if(height)frame.style.height=height+'px';
+  });
+})();
+</script>
 </body>
 </html>
