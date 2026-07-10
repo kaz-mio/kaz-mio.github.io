@@ -993,6 +993,7 @@ body.embed-mode .professional-panel { order: -4; }
 .report-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
 
 @media (max-width: 760px) {
+  body.embed-mode .app { grid-template-rows: auto 1fr; }
   .professional-panel { order: -4; }
   .metrics-panel { order: -3; }
   .perspective-panel,
