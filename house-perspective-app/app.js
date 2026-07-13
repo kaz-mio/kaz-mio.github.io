@@ -3,6 +3,7 @@ const $ = (id) => document.getElementById(id);
 const SQM_PER_TSUBO = 3.305785;
 const SQM_PER_TATAMI = 1.62;
 const STORAGE_KEY = "house-perspective-studio-v1";
+const BOARD_SNAPSHOT_KEY = "kazmio_house_plan_board_v1";
 
 const presetGroups = [
   {
@@ -1816,7 +1817,36 @@ function render() {
   renderInspector();
   renderEmbedSnippet();
   el.zoomReadout.textContent = `${Math.round(view.zoom * 100)}%`;
+  saveBoardSnapshot();
   window.dispatchEvent(new CustomEvent("house-planner-render"));
+}
+
+function saveBoardSnapshot() {
+  try {
+    const result = buildProfessionalAssessment();
+    localStorage.setItem(BOARD_SNAPSHOT_KEY, JSON.stringify({
+      updatedAt: new Date().toISOString(),
+      land: { ...state.land },
+      brief: { ...result.brief },
+      assessment: {
+        overall: result.overall,
+        grade: result.grade,
+        status: result.status,
+        headline: result.headline,
+        landArea: result.rec.landArea,
+        landTsubo: result.rec.landTsubo,
+        snowArea: result.rec.snowArea,
+        footprint: result.footprint,
+        totalFloorArea: result.totalFloorArea,
+        coverage: result.coverage,
+        exteriorArea: result.exteriorArea,
+        scores: result.scores,
+        checks: result.checks
+      }
+    }));
+  } catch (error) {
+    // Private browsing or storage limits should not stop the simulator itself.
+  }
 }
 
 function renderEmbedSnippet() {

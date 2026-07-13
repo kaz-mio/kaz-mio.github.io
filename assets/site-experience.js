@@ -2,7 +2,7 @@
   function init(){
     var body = document.body;
     var path = location.pathname.toLowerCase();
-    if(!body || body.classList.contains('story-mode') || path.indexOf('/en/') === 0 || /(^|\/)index\.html$/.test(path) || path === '/'){
+    if(!body || body.classList.contains('story-mode') || body.classList.contains('dashboard-mode') || path.indexOf('/en/') === 0 || /(^|\/)index\.html$/.test(path) || path === '/'){
       return;
     }
 

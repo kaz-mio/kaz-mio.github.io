@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>わが家の暮らし計画ボード｜土地・間取り・総予算をひとつに整理</title>
+<meta name="description" content="土地候補比較、住宅計画、家づくり総予算の結果を自動でつなぎ、条件のずれ・次に確認すること・相談用メモを一画面にまとめる無料ツールです。">
+<link rel="canonical" href="https://kaz-mio.com/family_life_plan_board.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="わが家の暮らし計画ボード">
+<meta property="og:description" content="土地・住まい・お金の結果をつないで、わが家の計画を一画面に。">
+<meta property="og:url" content="https://kaz-mio.com/family_life_plan_board.html">
+<meta property="og:image" content="https://kaz-mio.com/assets/story-hokkaido-hero.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/family-life-plan-board.css?v=20260713">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"わが家の暮らし計画ボード","url":"https://kaz-mio.com/family_life_plan_board.html","applicationCategory":"FinanceApplication","operatingSystem":"Web","isAccessibleForFree":true,"description":"土地候補、住宅配置、総予算のシミュレーション結果を一画面で整理する無料ツール。","publisher":{"@type":"Organization","name":"KAZ & MIO | LIFE, LIGHTLY","url":"https://kaz-mio.com/"}}</script>
+<script src="assets/analytics.js"></script>
+</head>
+<body class="dashboard-mode">
+<header class="hd"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span></a><nav class="nav" aria-label="サイトメニュー"><a href="index.html">トップ</a><a class="active" href="family_life_plan_board.html">計画ボード</a><a class="contact" href="contact.html">お問い合わせ</a></nav></header>
+<main>
+  <section class="hero"><div class="hero-inner"><div class="eyebrow">Family Life Plan Board</div><h1>土地・住まい・お金を、<br><span>ひとつの計画</span>に。</h1><p class="hero-copy">3つの住宅ツールで入力した結果を、この端末の中だけで自動連携。面積や価格のずれを見つけ、比較案と「次にやること」を家族で共有しやすい形に整えます。</p><div class="hero-actions"><a class="btn primary" href="#board">今の計画を見る</a><button class="btn" id="reloadBtn" type="button">最新データを読み込む</button></div><span class="privacy-note">入力内容は送信されません。ブラウザ内だけで処理します。</span></div></section>
+  <div class="main" id="board">
+    <section class="overview" aria-label="計画の概要">
+      <div class="panel score-panel"><div class="eyebrow">Plan Readiness</div><div class="score-ring" id="scoreRing"><span><strong id="scoreValue">0</strong><small>/ 100</small></span></div><p id="scoreText">3つの結果がここに集まります。</p></div>
+      <div class="panel"><div class="section-head"><div><div class="eyebrow">Connected Tools</div><h2>3つの土台</h2></div><p>各ツールの保存結果を読み込みます。数字を変えたら、このページで再読み込みしてください。</p></div><div class="status-grid">
+        <article class="status-card" id="landStatus"><div class="status-top"><span class="status-icon land">土</span><span class="pill">これから</span></div><h3>土地候補</h3><div class="metric">未入力</div><p>候補の条件を比べます。</p><a class="tool-link" href="land_candidate_compare.html">土地を比べる →</a></article>
+        <article class="status-card" id="houseStatus"><div class="status-top"><span class="status-icon house">住</span><span class="pill">これから</span></div><h3>住まいの配置</h3><div class="metric">未入力</div><p>敷地に家を置きます。</p><a class="tool-link" href="house_perspective_simulator.html">配置を試す →</a></article>
+        <article class="status-card" id="budgetStatus"><div class="status-top"><span class="status-icon money">円</span><span class="pill">これから</span></div><h3>家づくり予算</h3><div class="metric">未入力</div><p>総額と返済を見ます。</p><a class="tool-link" href="house_total_budget_simulator.html">予算を計算 →</a></article>
+      </div></div>
+    </section>
+    <section class="panel board-section"><div class="section-head"><div><div class="eyebrow">Cross Check</div><h2>3つを重ねて、ずれを見る</h2></div><p>単独のアプリでは見落としやすい、土地面積・価格・建物面積・雪対策・返済のつながりを確認します。</p></div><div class="check-list" id="checkList"></div></section>
+    <section class="panel board-section"><div class="section-head"><div><div class="eyebrow">Scenario Compare</div><h2>家族で比べる3案</h2></div><p>土地や広さ、予算を変えた現在の組み合わせを保存。あとから同じ画面で比べられます。</p></div><div class="scenario-form"><input id="scenarioName" maxlength="24" placeholder="例：土地A・平屋案"><button class="btn primary" id="saveScenarioBtn" type="button">現在の結果を保存</button></div><div class="scenario-grid" id="scenarioGrid"></div></section>
+    <section class="two-col board-section">
+      <div class="panel"><div class="section-head"><div><div class="eyebrow">Next Actions</div><h2>次にやること</h2></div></div><div class="task-list" id="taskList"></div></div>
+      <div class="panel"><div class="section-head"><div><div class="eyebrow">Meeting Memo</div><h2>相談用メモ</h2></div><p>住宅会社、不動産会社、金融機関へ見せる前のたたき台です。</p></div><textarea class="memo" id="memo" readonly></textarea><div class="action-row"><button class="btn primary" id="copyBtn" type="button">相談メモをコピー</button><button class="btn" id="printBtn" type="button">印刷・PDF保存</button></div></div>
+    </section>
+    <section class="panel board-section"><div class="section-head"><div><div class="eyebrow">How To Use</div><h2>入力は、気になるところから</h2></div><p>順番は自由です。保存した結果は同じブラウザの計画ボードへ集まります。</p></div><div class="tool-steps"><article class="tool-step"><small>01 / LAND</small><h3>土地候補を並べる</h3><p>広さ、間口、価格、駐車、雪置き場、生活条件を候補ごとに記録。</p><a href="land_candidate_compare.html">土地候補比較へ →</a></article><article class="tool-step"><small>02 / HOUSE</small><h3>敷地に家を置く</h3><p>家族人数と希望を入れ、平面図・3D・外構余白を同時に確認。</p><a href="house_perspective_simulator.html">住宅計画へ →</a></article><article class="tool-step"><small>03 / MONEY</small><h3>暮らしに残る額を見る</h3><p>土地から引越しまでの総額、借入、毎月返済、手元現金を整理。</p><a href="house_total_budget_simulator.html">総予算へ →</a></article></div><p class="notice">このボードは初期比較用です。建築可否、法規、構造、地盤、設備、見積り、融資条件を確定するものではありません。契約前に各分野の専門家へ確認してください。</p></section>
+  </div>
+</main>
+<footer class="ft"><div class="ft-inner"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span></a><nav class="ft-nav"><a href="index.html">トップ</a><a href="family_life_plan_board.html">暮らし計画ボード</a><a href="editorial_policy.html">運営方針</a><a href="privacy.html">プライバシー</a><a href="contact.html">お問い合わせ</a></nav></div></footer>
+<script src="assets/family-life-plan-board.js?v=20260713"></script>
+</body>
+</html>
