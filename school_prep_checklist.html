@@ -131,6 +131,22 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
 .output{width:100%;min-height:150px;border:1px solid rgba(24,36,43,.12);border-radius:8px;background:#fff;padding:1rem;color:var(--ink2);line-height:1.8;resize:vertical;}
 .notice{font-size:.72rem;color:var(--ink3);line-height:1.7;margin-top:.65rem;}
 .tool-link{display:inline-flex;margin-top:.8rem;color:var(--coral-d);font-weight:900;font-size:.82rem;border-bottom:1px solid rgba(239,125,103,.45);}
+.printable-offer{margin:1.3rem 0;background:linear-gradient(135deg,#fff8e9,#eefbfb);border:1px solid rgba(24,36,43,.1);border-radius:8px;box-shadow:0 24px 64px rgba(24,52,71,.14);padding:1.2rem;position:relative;overflow:hidden;}
+.printable-offer::before{content:'';position:absolute;inset:0 0 auto;height:6px;background:linear-gradient(90deg,var(--coral),var(--sun),var(--aqua));}
+.printable-offer-grid{display:grid;grid-template-columns:minmax(230px,.7fr) minmax(0,1.3fr);gap:1.5rem;align-items:center;}
+.printable-offer-media{display:block;background:#fff;border:1px solid rgba(24,36,43,.1);border-radius:8px;padding:.55rem;box-shadow:var(--soft);transition:transform .22s,box-shadow .22s;}
+.printable-offer-media:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(24,52,71,.18);}
+.printable-offer-media img{display:block;width:100%;height:auto;border-radius:6px;}
+.printable-offer small{display:block;font-family:'Nunito',sans-serif;font-size:.62rem;font-weight:900;letter-spacing:.16em;color:var(--coral-d);text-transform:uppercase;margin-bottom:.5rem;}
+.printable-offer h2{font-family:'Shippori Mincho',serif;font-size:clamp(1.55rem,3vw,2.5rem);line-height:1.35;margin-bottom:.65rem;}
+.printable-offer p{color:var(--ink2);font-size:.88rem;line-height:1.85;}
+.printable-offer ul{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;margin:.9rem 0 1rem;}
+.printable-offer li{background:#fff;border:1px solid rgba(24,36,43,.1);border-radius:999px;padding:.38rem .66rem;color:var(--ink2);font-size:.72rem;font-weight:800;}
+.printable-offer-actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;}
+.printable-offer-buy{min-height:52px;border-radius:999px;background:var(--navy);color:#fff;padding:.82rem 1.25rem;font-size:.86rem;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;box-shadow:0 14px 30px rgba(24,52,71,.2);transition:transform .2s,background .2s,box-shadow .2s;}
+.printable-offer-buy::after{content:'↗';}
+.printable-offer-buy:hover{transform:translateY(-3px);background:var(--coral-d);box-shadow:0 18px 36px rgba(198,83,66,.24);}
+.printable-offer-price{font-family:'Nunito',sans-serif;color:var(--navy);font-size:.78rem;font-weight:900;}
 .tips{margin-top:1.3rem;}
 .tip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem;}
 .tip{background:#fff;border:1px solid rgba(24,36,43,.08);border-radius:8px;padding:1rem;box-shadow:var(--soft);}
@@ -156,7 +172,7 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
 .ft-nav a{font-size:.74rem;font-weight:800;color:rgba(255,255,255,.68);transition:color .2s,transform .2s;}
 .ft-nav a:hover{color:#fff;transform:translateY(-2px);}
 .ft-copy{max-width:1180px;margin:0 auto;text-align:center;font-size:.7rem;color:rgba(255,255,255,.38);}
-@media(max-width:980px){.hero,.app-shell,.prep-pick-grid{grid-template-columns:1fr;}.tip-grid{grid-template-columns:1fr;}}
+@media(max-width:980px){.hero,.app-shell,.prep-pick-grid,.printable-offer-grid{grid-template-columns:1fr;}.tip-grid{grid-template-columns:1fr;}.printable-offer-media{max-width:430px;margin:0 auto;}}
 @media(max-width:720px){.field-grid,.items,.tools,.action-row{grid-template-columns:1fr;}.hero-card img{height:290px;}.hero-card .memo{position:relative;left:auto;right:auto;bottom:auto;margin-top:.8rem;}.panel,.result-panel,.tips{padding:1rem;}.wrap{padding:2.6rem 1rem 4rem;}.lead,.panel p,.result-panel p,.tip p{overflow-wrap:anywhere;}}
 @media(max-width:640px){.hd{height:60px;padding:0 .85rem;overflow:hidden;}.brand-mark{width:34px;height:34px;}.brand-ja{font-size:1rem;}.nav a:not(.contact){display:none;}.nav .contact{width:42px;height:42px;padding:0;font-size:0;border-radius:50%;position:relative;flex-shrink:0;}.nav .contact::after{content:'✉';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;}h1{font-size:2.28rem;}.ft-inner{align-items:flex-start;flex-direction:column;}}
 </style>
@@ -278,6 +294,26 @@ select:focus,input[type="text"]:focus{border-color:var(--aqua);box-shadow:0 0 0 
       </div>
       <textarea class="output" id="textOutput" readonly aria-label="コピー用の準備リスト"></textarea>
       <p class="notice" id="statusText">条件を変えると自動で更新されます。</p>
+    </div>
+  </section>
+
+  <section class="printable-offer" aria-labelledby="printable-offer-title">
+    <div class="printable-offer-grid">
+      <a class="printable-offer-media" href="https://kaz-mio-life.booth.pm/items/8612558" target="_blank" rel="noopener" aria-label="入園・入学準備チェックリスト完全版をBOOTHで見る">
+        <img src="assets/school-prep-workbook-cover.png" alt="入園・入学準備チェックリスト完全版の表紙">
+      </a>
+      <div>
+        <small>Printable / 全10ページ</small>
+        <h2 id="printable-offer-title">チェックだけで終わらない、<br>準備の計画帳。</h2>
+        <p>この無料ツールで持ち物を洗い出したあと、買う日・名前をつける日・予算・提出書類・家族の担当まで紙でまとめたい人向けの完全版です。</p>
+        <ul aria-label="完全版に含まれる内容">
+          <li>逆算スケジュール</li><li>名前つけ計画</li><li>予算メモ</li><li>書類チェック</li><li>家族分担</li>
+        </ul>
+        <div class="printable-offer-actions">
+          <a class="printable-offer-buy" href="https://kaz-mio-life.booth.pm/items/8612558" target="_blank" rel="noopener" data-product="school-prep-workbook" data-placement="school-prep-page">BOOTHで購入する</a>
+          <span class="printable-offer-price">販売価格はBOOTHで確認</span>
+        </div>
+      </div>
     </div>
   </section>
 

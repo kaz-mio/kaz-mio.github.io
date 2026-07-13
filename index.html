@@ -362,6 +362,24 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
 .route-board small{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.58rem;color:var(--gold2);font-weight:900;}
 .route-board strong{font-family:'Shippori Mincho',serif;font-size:1.1rem;line-height:1.45;font-weight:600;}
 .route-board span{color:#777;font-size:.76rem;line-height:1.65;margin-top:auto;}
+.printable-feature{padding:4.8rem 5.8rem;background:linear-gradient(135deg,#fffaf0 0%,#f4fbfa 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.printable-feature::before{content:'PRINTABLE SHOP';position:absolute;right:-.5rem;top:.35rem;font-family:Arial,sans-serif;font-size:clamp(3.8rem,8vw,8rem);font-weight:900;line-height:1;letter-spacing:.08em;color:rgba(34,34,34,.04);white-space:nowrap;pointer-events:none;}
+.printable-feature-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);gap:2.6rem;align-items:center;}
+.printable-feature-media{display:block;background:#fff;border:1px solid rgba(34,34,34,.12);padding:.7rem;box-shadow:0 24px 54px rgba(34,48,42,.14);transition:transform .24s,box-shadow .24s;}
+.printable-feature-media:hover{transform:translateY(-6px) rotate(-.4deg);box-shadow:0 30px 68px rgba(34,48,42,.2);}
+.printable-feature-media img{display:block;width:100%;height:auto;}
+.printable-feature .kicker{margin-bottom:.65rem;}
+.printable-feature h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,3.7vw,3.8rem);font-weight:500;line-height:1.35;color:#626762;margin-bottom:1rem;}
+.printable-feature p{color:#6e756f;font-size:.94rem;max-width:44rem;}
+.printable-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.15rem 0;}
+.printable-meta span{background:#fff;border:1px solid rgba(34,34,34,.12);padding:.45rem .7rem;color:#626762;font-size:.72rem;font-weight:800;}
+.printable-feature-actions{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;}
+.printable-buy{min-height:52px;background:#222;color:#fff;border:2px solid #222;padding:.82rem 1.15rem;font-size:.86rem;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;box-shadow:0 16px 32px rgba(34,34,34,.16);transition:transform .2s,background .2s,border-color .2s,box-shadow .2s;}
+.printable-buy::after{content:'↗';font-size:1rem;}
+.printable-buy:hover{transform:translateY(-3px);background:var(--gold2);border-color:var(--gold2);box-shadow:0 20px 38px rgba(34,34,34,.22);}
+.printable-detail{min-height:52px;border:1px solid var(--gold);color:var(--gold2);padding:.82rem 1rem;font-size:.82rem;font-weight:900;display:inline-flex;align-items:center;justify-content:center;transition:transform .2s,background .2s,color .2s;}
+.printable-detail:hover{transform:translateY(-3px);background:var(--gold);color:#fff;}
+.printable-price{font-family:Arial,sans-serif;font-size:.82rem;font-weight:900;color:#515751;}
 .dark-band{background:#141414;color:#fff;padding:6.2rem 5.8rem;}
 .band-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:.72fr 1.28fr;gap:4rem;align-items:start;}
 .dark-band h2{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,4vw,4.4rem);font-weight:500;line-height:1.3;color:#e8e8e8;}
@@ -551,7 +569,9 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .mini-stage{min-height:0;grid-template-columns:1fr;}
   .mini-panel.bag{grid-row:auto;min-height:420px;}
   .mini-panel.room,.mini-panel.car{min-height:250px;}
-  .dark-band,.family-navi,.section,.about,.ft,.house-sim{padding:4rem 1rem;}
+  .dark-band,.family-navi,.section,.about,.ft,.house-sim,.printable-feature{padding:4rem 1rem;}
+  .printable-feature-inner{grid-template-columns:1fr;gap:1.6rem;}
+  .printable-feature-media{max-width:480px;margin:0 auto;}
   .route-teaser{padding:4rem 1rem;}
   .route-teaser-inner{grid-template-columns:1fr;gap:2rem;}
   .route-board{grid-template-columns:1fr 1fr;}
@@ -1061,6 +1081,27 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <a href="baby_room_safety_guide.html" data-route-intent="home_room"><small>Room</small><strong>部屋に置いたあとが気になる</strong><span>ベビーサークル、家具、通路幅。暮らしながら使えるかを見ます。</span></a>
         <a href="family_car_stroller_guide.html" data-route-intent="home_car"><small>Car</small><strong>車と玄関で毎回つまずく</strong><span>乗せ降ろし、畳む場所、トランク。外に出る前後の負担を見ます。</span></a>
         <a href="self_care_fitness_guide.html" data-route-intent="home_selfcare"><small>Self Care</small><strong>自分のことが後回しになる</strong><span>運動、服、時間。無理なく戻せる形を探します。</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="printable-feature" aria-labelledby="printable-feature-title">
+    <div class="printable-feature-inner">
+      <a class="printable-feature-media" href="https://kaz-mio-life.booth.pm/items/8612558" target="_blank" rel="noopener" aria-label="入園・入学準備チェックリスト完全版をBOOTHで見る">
+        <img src="assets/school-prep-workbook-cover.png" alt="入園・入学準備チェックリスト完全版の表紙">
+      </a>
+      <div>
+        <div class="kicker">Printable Shop / New</div>
+        <h2 id="printable-feature-title">入園・入学準備を、<br>一冊で見える化。</h2>
+        <p>持ち物だけでなく、買う日・名前をつける日・予算・書類・家族の分担まで。準備の全体を紙で見渡せる全10ページの印刷版です。</p>
+        <div class="printable-meta" aria-label="商品の特徴">
+          <span>PDF 全10ページ</span><span>A4印刷対応</span><span>家族で共有</span>
+        </div>
+        <div class="printable-feature-actions">
+          <a class="printable-buy" href="https://kaz-mio-life.booth.pm/items/8612558" target="_blank" rel="noopener" data-product="school-prep-workbook" data-placement="home-printable-feature">BOOTHで購入する</a>
+          <a class="printable-detail" href="school_prep_checklist.html">無料ツールと内容を見る</a>
+          <span class="printable-price">販売価格はBOOTHで確認</span>
+        </div>
       </div>
     </div>
   </section>
