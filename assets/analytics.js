@@ -1,4 +1,19 @@
 (function(){
+  if(!document.querySelector('link[href*="/assets/site-affordance.css"]')){
+    var affordanceStyle = document.createElement('link');
+    affordanceStyle.rel = 'stylesheet';
+    affordanceStyle.href = '/assets/site-affordance.css?v=20260713-2';
+    affordanceStyle.dataset.kmAffordance = 'true';
+    document.head.appendChild(affordanceStyle);
+  }
+  if(!document.querySelector('script[src*="/assets/site-affordance.js"]')){
+    var affordanceScript = document.createElement('script');
+    affordanceScript.src = '/assets/site-affordance.js?v=20260713-3';
+    affordanceScript.defer = true;
+    affordanceScript.dataset.kmAffordance = 'true';
+    document.head.appendChild(affordanceScript);
+  }
+
   if(!document.querySelector('link[href*="/assets/site-experience.css"]')){
     try{
       var experienceStyle = document.createElement('link');
