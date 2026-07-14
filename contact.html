@@ -35,40 +35,18 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .hd-nav a{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-decoration:none;color:var(--ink2);padding:.45rem .9rem;border-radius:24px;transition:background .2s,color .2s;}
 .hd-nav a:hover,.hd-nav a.active{background:var(--warm);color:var(--ink);}
 .hd-nav .nav-cta{background:var(--terracotta);color:#fff;margin-left:.4rem;}
-.page-wrap{max-width:660px;margin:0 auto;padding:5rem clamp(1.2rem,5vw,3rem) 8rem;}
+.page-wrap{max-width:820px;margin:0 auto;padding:5rem clamp(1.2rem,5vw,3rem) 8rem;}
 .page-eyebrow{font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--terracotta);display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;}
 .page-eyebrow::before{content:'';width:18px;height:2px;background:var(--terracotta);}
 .page-title{font-family:'Shippori Mincho',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.25;margin-bottom:1rem;}
 .page-lead{font-size:.96rem;line-height:2;color:var(--ink2);margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
 
-/* FORM */
-.form-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2.4rem 2.8rem;box-shadow:var(--sh-m);}
-.form-group{margin-bottom:1.8rem;}
-.form-label{display:block;font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-bottom:.6rem;}
-.form-label .req{color:var(--terracotta);margin-left:.3rem;}
-.form-input, .form-select, .form-textarea{
-  width:100%; padding:.85rem 1.1rem;
-  background:var(--cream); border:1.5px solid var(--border);
-  border-radius:var(--r); font-family:'Noto Sans JP',sans-serif;
-  font-size:.94rem; font-weight:300; color:var(--ink);
-  line-height:1.6; transition:border-color .2s, box-shadow .2s;
-  appearance:none; -webkit-appearance:none;
-}
-.form-input:focus, .form-select:focus, .form-textarea:focus{
-  outline:none; border-color:var(--terracotta);
-  box-shadow:0 0 0 3px rgba(201,106,58,.1);
-  background:#fff;
-}
-.form-input::placeholder, .form-textarea::placeholder{color:var(--ink3);}
-.form-textarea{min-height:180px; resize:vertical;}
-.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239A948C' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;}
-.form-note{font-family:'Nunito',sans-serif;font-size:.62rem;color:var(--ink3);margin-top:.45rem;line-height:1.6;}
-.form-submit-wrap{margin-top:2.2rem;text-align:center;}
-.form-submit{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;width:100%;max-width:320px;padding:.92em 0;background:var(--terracotta);color:#fff;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.08em;border:none;border-radius:30px;cursor:pointer;transition:background .2s, transform .2s, box-shadow .2s;}
-.form-submit:hover{background:var(--terra-dk);transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,106,58,.35);}
-.form-privacy{font-family:'Nunito',sans-serif;font-size:.62rem;color:var(--ink3);text-align:center;margin-top:1.2rem;line-height:1.7;}
-.form-privacy a{color:var(--terracotta);text-decoration:none;border-bottom:1px solid rgba(201,106,58,.3);}
-.form-privacy a:hover{border-color:var(--terracotta);}
+/* GOOGLE FORM */
+.form-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1rem;box-shadow:var(--sh-m);overflow:hidden;}
+.google-form-frame{display:block;width:100%;height:1180px;border:0;border-radius:10px;background:var(--paper);}
+.form-fallback{margin-top:1.1rem;text-align:center;font-size:.78rem;line-height:1.8;color:var(--ink3);}
+.form-fallback a{display:inline-flex;align-items:center;justify-content:center;margin-top:.65rem;padding:.7em 1.4em;border:1px solid var(--terracotta);border-radius:24px;color:var(--terracotta);font-family:'Nunito',sans-serif;font-weight:700;text-decoration:none;transition:background .2s,color .2s;}
+.form-fallback a:hover{background:var(--terracotta);color:#fff;}
 
 /* INFO CARDS */
 .info-strip{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;}
@@ -85,7 +63,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 .ft-nav a:hover{color:#fff;}
 .ft-copy{max-width:1180px;margin:0 auto;font-family:'Nunito',sans-serif;font-size:.62rem;letter-spacing:.06em;color:rgba(255,255,255,.22);text-align:center;}
 
-@media(max-width:640px){.hd-nav a:not(.nav-cta){display:none;}.form-card{padding:1.8rem 1.4rem;}.info-strip{grid-template-columns:1fr;}}
+@media(max-width:640px){.hd-nav a:not(.nav-cta){display:none;}.page-wrap{padding-top:3.5rem;}.form-card{padding:.35rem;}.google-form-frame{height:1280px;}.info-strip{grid-template-columns:1fr;}}
 </style>
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
 <script src="/assets/site-experience.js?v=20260710" defer></script>
@@ -103,37 +81,9 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
   <p class="page-lead">記事へのご質問、内容の誤りのご連絡、掲載・PRのご相談などはこちらからお送りください。内容を確認のうえ、必要に応じて返信いたします。</p>
 
   <div class="form-card">
-    <!-- Google Formsなどに差し替えてご利用ください -->
-    <form action="#" method="post">
-      <div class="form-group">
-        <label class="form-label" for="name">お名前<span class="req">*</span></label>
-        <input class="form-input" type="text" id="name" name="name" placeholder="山田 花子" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="email">メールアドレス<span class="req">*</span></label>
-        <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="category">お問い合わせの種類</label>
-        <select class="form-select" id="category" name="category">
-          <option value="">選択してください</option>
-          <option value="question">記事についてのご質問</option>
-          <option value="correction">誤りのご指摘</option>
-          <option value="pr">掲載・PR依頼</option>
-          <option value="other">その他</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="message">メッセージ<span class="req">*</span></label>
-        <textarea class="form-textarea" id="message" name="message" placeholder="ご質問・ご要望の内容をお書きください。" required></textarea>
-        <div class="form-note">※ 内容を確認のうえ、返信が必要な場合のみお返事します。</div>
-      </div>
-      <div class="form-submit-wrap">
-        <button type="submit" class="form-submit">送信する →</button>
-      </div>
-      <p class="form-privacy">送信することで<a href="privacy.html">プライバシーポリシー</a>に同意したものとみなします。</p>
-    </form>
+    <iframe class="google-form-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSfBompF0zZGKe7pQoqnPebzsltJqyXn3fap987esz0LJXDsAw/viewform?embedded=true" title="KAZ &amp; MIO | LIFE, LIGHTLY お問い合わせフォーム" loading="eager">読み込んでいます…</iframe>
   </div>
+  <p class="form-fallback">フォームが表示されない場合は、Googleフォームを別画面で開いてください。<br><a href="https://docs.google.com/forms/d/e/1FAIpQLSfBompF0zZGKe7pQoqnPebzsltJqyXn3fap987esz0LJXDsAw/viewform" target="_blank" rel="noopener">お問い合わせフォームを開く ↗</a></p>
 
   <div class="info-strip">
     <div class="ic">
