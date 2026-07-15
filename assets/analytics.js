@@ -1,8 +1,8 @@
 (function(){
   var affordanceStyleUrl = '/assets/site-affordance.css?v=20260716-1';
   var affordanceScriptUrl = '/assets/site-affordance.js?v=20260716-1';
-  var experienceStyleUrl = '/assets/site-experience.css?v=20260716-1';
-  var experienceScriptUrl = '/assets/site-experience.js?v=20260716-1';
+  var experienceStyleUrl = '/assets/site-experience.css?v=20260716-2';
+  var experienceScriptUrl = '/assets/site-experience.js?v=20260716-2';
 
   var affordanceStyle = document.querySelector('link[href*="assets/site-affordance.css"]');
   if(!affordanceStyle){
