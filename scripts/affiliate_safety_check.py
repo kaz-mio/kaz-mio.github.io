@@ -83,6 +83,8 @@ AFFILIATE_HREF_RE = re.compile(
     r"<a\b(?=[^>]*\bhref=[\"'][^\"']*(?:px\.a8\.net|af\.moshimo\.com)[^\"']*[\"'])[^>]*>",
     re.IGNORECASE,
 )
+VISIBLE_SPONSORED_RE = re.compile(r">\s*Sponsored\s*<", re.IGNORECASE)
+LEGACY_DOMAIN_RE = re.compile(r"kaz-mio\.github\.io", re.IGNORECASE)
 
 
 def iter_target_files() -> list[Path]:
@@ -155,6 +157,24 @@ def check_public_copy_tone(path: Path, content: str) -> list[str]:
     return findings
 
 
+def check_forbidden_site_copy(path: Path, content: str) -> list[str]:
+    findings: list[str] = []
+    rel = path.relative_to(ROOT).as_posix()
+
+    for match in LEGACY_DOMAIN_RE.finditer(content):
+        findings.append(
+            f"{rel}:{line_number(content, match.start())}: [legacy_domain] 正式URL https://kaz-mio.com/ を使用してください。"
+        )
+
+    if path.suffix.lower() == ".html":
+        for match in VISIBLE_SPONSORED_RE.finditer(content):
+            findings.append(
+                f"{rel}:{line_number(content, match.start())}: [visible_sponsored] 可視ラベルは Sponsored ではなく PR を使用してください。"
+            )
+
+    return findings
+
+
 def check_affiliate_links(path: Path, content: str) -> list[str]:
     findings: list[str] = []
     for match in AFFILIATE_HREF_RE.finditer(content):
@@ -210,6 +230,7 @@ def main() -> int:
         content = path.read_text(encoding="utf-8", errors="ignore")
         findings.extend(check_text_rules(path, content))
         findings.extend(check_public_copy_tone(path, content))
+        findings.extend(check_forbidden_site_copy(path, content))
         if path.suffix.lower() == ".html":
             findings.extend(check_affiliate_links(path, content))
     findings.extend(check_sitemap())

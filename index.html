@@ -663,6 +663,16 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
   .mini-item{min-width:58px;font-size:.66rem;}
   .review-photo{height:210px;}
 }
+@media(min-width:1101px) and (max-height:900px){
+  .hero-copy{padding-top:2.35rem;padding-bottom:1.5rem;}
+  .hero h1{font-size:clamp(2.45rem,3.35vw,3.45rem);line-height:1.25;margin-bottom:.9rem;}
+  .hero-copy>p{font-size:.88rem;line-height:1.65;margin-bottom:.35rem;}
+  .hero-links{margin-top:.85rem;}
+  .hero-links a{min-height:142px;padding:.9rem;}
+  .hero-featured{margin-top:.65rem;}
+  .site-search{height:48px;margin-top:.75rem;}
+  .hero-visual{height:min(680px,calc(100vh - 108px));}
+}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   .brand-marquee-track,.hero-slide.is-active,.hero-visual::before,.mini-item,.room-block::after,.room-dot,.mini-road{animation:none;}
@@ -838,7 +848,6 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(201,182,117,.55);out
         <img class="hero-slide" src="assets/kaz-mio-encyclopedia-hero-10.webp" alt="タラバガニとチンアナゴとオウギワシが夜の街を彩る図鑑風アニメイラスト" width="1672" height="941" loading="lazy" decoding="async" fetchpriority="low">
       </div>
       <div class="hero-copy">
-        <a class="round-contact" href="contact.html">お問い合わせは<br>こちらから</a>
         <div class="hero-cue">3 Ways to Start</div>
         <h1><span>暮らしの迷いを、</span><br><em>3つの入口から。</em></h1>
         <p>今すぐ使えるチェックや診断、わが家の体験メモ、買う前に見たい商品選び。</p>

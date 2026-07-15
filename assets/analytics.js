@@ -1,36 +1,46 @@
 (function(){
-  if(!document.querySelector('link[href*="/assets/site-affordance.css"]')){
-    var affordanceStyle = document.createElement('link');
+  var affordanceStyleUrl = '/assets/site-affordance.css?v=20260716-1';
+  var affordanceScriptUrl = '/assets/site-affordance.js?v=20260716-1';
+  var experienceStyleUrl = '/assets/site-experience.css?v=20260716-1';
+  var experienceScriptUrl = '/assets/site-experience.js?v=20260716-1';
+
+  var affordanceStyle = document.querySelector('link[href*="assets/site-affordance.css"]');
+  if(!affordanceStyle){
+    affordanceStyle = document.createElement('link');
     affordanceStyle.rel = 'stylesheet';
-    affordanceStyle.href = '/assets/site-affordance.css?v=20260713-2';
     affordanceStyle.dataset.kmAffordance = 'true';
     document.head.appendChild(affordanceStyle);
   }
-  if(!document.querySelector('script[src*="/assets/site-affordance.js"]')){
-    var affordanceScript = document.createElement('script');
-    affordanceScript.src = '/assets/site-affordance.js?v=20260713-3';
+  affordanceStyle.href = affordanceStyleUrl;
+
+  var affordanceScript = document.querySelector('script[src*="assets/site-affordance.js"]');
+  if(!affordanceScript){
+    affordanceScript = document.createElement('script');
     affordanceScript.defer = true;
     affordanceScript.dataset.kmAffordance = 'true';
     document.head.appendChild(affordanceScript);
   }
+  if(affordanceScript.getAttribute('src') !== affordanceScriptUrl){ affordanceScript.src = affordanceScriptUrl; }
 
-  if(!document.querySelector('link[href*="/assets/site-experience.css"]')){
-    try{
-      var experienceStyle = document.createElement('link');
+  try{
+    var experienceStyle = document.querySelector('link[href*="assets/site-experience.css"]');
+    if(!experienceStyle){
+      experienceStyle = document.createElement('link');
       experienceStyle.rel = 'stylesheet';
-      experienceStyle.href = '/assets/site-experience.css';
       experienceStyle.dataset.kmExperience = 'true';
       document.head.appendChild(experienceStyle);
-      if(!document.querySelector('script[src*="/assets/site-experience.js"]')){
-        var experienceScript = document.createElement('script');
-        experienceScript.src = '/assets/site-experience.js';
-        experienceScript.defer = true;
-        experienceScript.dataset.kmExperience = 'true';
-        document.head.appendChild(experienceScript);
-      }
-    }catch(error){
-      // Keep analytics and page behavior working when URL construction is unavailable.
     }
+    experienceStyle.href = experienceStyleUrl;
+    var experienceScript = document.querySelector('script[src*="assets/site-experience.js"]');
+    if(!experienceScript){
+      experienceScript = document.createElement('script');
+      experienceScript.defer = true;
+      experienceScript.dataset.kmExperience = 'true';
+      document.head.appendChild(experienceScript);
+    }
+    if(experienceScript.getAttribute('src') !== experienceScriptUrl){ experienceScript.src = experienceScriptUrl; }
+  }catch(error){
+    // Keep analytics and page behavior working when URL construction is unavailable.
   }
 
   // Replace this with the GA4 measurement ID, e.g. G-XXXXXXXXXX.

@@ -1,4 +1,7 @@
 (function(){
+  if(window.__kazMioExperienceLoaded){ return; }
+  window.__kazMioExperienceLoaded = true;
+
   function init(){
     var body = document.body;
     var path = location.pathname.toLowerCase();
@@ -65,13 +68,23 @@
 
     var trigger = null;
     var panel = null;
+    var chapterLinks = [];
+    var triggerCount = null;
+    var readingProgressText = null;
     if(headings.length >= 3){
       trigger = document.createElement('button');
       trigger.type = 'button';
       trigger.className = 'km-chapter-trigger';
-      trigger.textContent = '要点だけ見る';
       trigger.setAttribute('aria-expanded','false');
       trigger.setAttribute('aria-controls','km-chapter-panel');
+      var triggerLabel = document.createElement('span');
+      triggerLabel.className = 'km-chapter-trigger-label';
+      triggerLabel.textContent = 'ページ案内';
+      triggerCount = document.createElement('span');
+      triggerCount.className = 'km-chapter-trigger-count';
+      triggerCount.textContent = '1 / ' + headings.length;
+      trigger.appendChild(triggerLabel);
+      trigger.appendChild(triggerCount);
 
       panel = document.createElement('aside');
       panel.id = 'km-chapter-panel';
@@ -88,6 +101,18 @@
       head.appendChild(close);
       panel.appendChild(head);
 
+      var compactText = String(main.textContent || '').replace(/\s+/g,'');
+      var readingMinutes = Math.max(1,Math.ceil(compactText.length / 500));
+      var readingMeta = document.createElement('div');
+      readingMeta.className = 'km-reading-meta';
+      var readingSummary = document.createElement('span');
+      readingSummary.textContent = '全' + headings.length + '章・読了目安 約' + readingMinutes + '分';
+      readingProgressText = document.createElement('span');
+      readingProgressText.textContent = '0%';
+      readingMeta.appendChild(readingSummary);
+      readingMeta.appendChild(readingProgressText);
+      panel.appendChild(readingMeta);
+
       var list = document.createElement('nav');
       list.className = 'km-chapter-list';
       headings.forEach(function(heading,index){
@@ -100,6 +125,7 @@
         link.appendChild(number);
         link.appendChild(text);
         list.appendChild(link);
+        chapterLinks.push(link);
       });
       panel.appendChild(list);
       body.appendChild(panel);
@@ -120,7 +146,24 @@
     function updateProgress(){
       ticking = false;
       var travel = Math.max(1,document.documentElement.scrollHeight - window.innerHeight);
-      progressBar.style.width = (Math.max(0,Math.min(1,window.scrollY / travel)) * 100).toFixed(2) + '%';
+      var ratio = Math.max(0,Math.min(1,window.scrollY / travel));
+      progressBar.style.width = (ratio * 100).toFixed(2) + '%';
+      if(readingProgressText){ readingProgressText.textContent = Math.round(ratio * 100) + '%'; }
+      if(trigger){
+        trigger.classList.toggle('is-visible',window.scrollY > Math.min(360,Math.max(180,headings[0].offsetTop - window.innerHeight * .45)) || panel.classList.contains('is-open'));
+      }
+      if(chapterLinks.length){
+        var probe = window.scrollY + Math.min(window.innerHeight * .32,260);
+        var activeIndex = 0;
+        headings.forEach(function(heading,index){
+          if(heading.offsetTop <= probe){ activeIndex = index; }
+        });
+        chapterLinks.forEach(function(link,index){
+          if(index === activeIndex){ link.setAttribute('aria-current','location'); }
+          else{ link.removeAttribute('aria-current'); }
+        });
+        if(triggerCount){ triggerCount.textContent = (activeIndex + 1) + ' / ' + headings.length; }
+      }
     }
     function requestProgress(){
       if(ticking){ return; }
