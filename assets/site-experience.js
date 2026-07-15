@@ -150,13 +150,15 @@
       progressBar.style.width = (ratio * 100).toFixed(2) + '%';
       if(readingProgressText){ readingProgressText.textContent = Math.round(ratio * 100) + '%'; }
       if(trigger){
-        trigger.classList.toggle('is-visible',window.scrollY > Math.min(360,Math.max(180,headings[0].offsetTop - window.innerHeight * .45)) || panel.classList.contains('is-open'));
+        var firstHeadingTop = headings[0].getBoundingClientRect().top + window.scrollY;
+        trigger.classList.toggle('is-visible',window.scrollY > Math.min(360,Math.max(180,firstHeadingTop - window.innerHeight * .45)) || panel.classList.contains('is-open'));
       }
       if(chapterLinks.length){
         var probe = window.scrollY + Math.min(window.innerHeight * .32,260);
         var activeIndex = 0;
         headings.forEach(function(heading,index){
-          if(heading.offsetTop <= probe){ activeIndex = index; }
+          var headingTop = heading.getBoundingClientRect().top + window.scrollY;
+          if(headingTop <= probe){ activeIndex = index; }
         });
         chapterLinks.forEach(function(link,index){
           if(index === activeIndex){ link.setAttribute('aria-current','location'); }
