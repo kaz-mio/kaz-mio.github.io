@@ -152,6 +152,31 @@
     }, true);
   }
 
+  function setupProductTracking(){
+    document.addEventListener('click', function(event){
+      var link = event.target.closest('a[data-product],a[href*="kaz-mio-life.booth.pm/items/"]');
+      if(!link){ return; }
+
+      var href = link.getAttribute('href') || '';
+      var itemMatch = href.match(/booth\.pm\/items\/(\d+)/);
+      var metadataCarrier = link.closest('[data-product],[data-placement],[data-campaign],[data-ga-event]');
+      var inherited = metadataCarrier && metadataCarrier !== link ? metadataCarrier.dataset : {};
+      var linkData = link.dataset || {};
+
+      window.kazMioTrack(linkData.gaEvent || inherited.gaEvent || 'kazmio_product_click', {
+        page_slug: currentSlug(),
+        product_id: linkData.productId || inherited.productId || (itemMatch ? itemMatch[1] : undefined),
+        product_key: linkData.product || inherited.product,
+        product_name: linkData.productName || inherited.productName || cleanText(link.textContent || link.getAttribute('aria-label') || link.querySelector('img')?.alt),
+        product_platform: linkData.productPlatform || inherited.productPlatform || 'booth',
+        link_url: href,
+        link_text: cleanText(link.textContent || link.getAttribute('aria-label') || link.querySelector('img')?.alt),
+        placement: linkData.placement || inherited.placement,
+        campaign: linkData.campaign || inherited.campaign
+      });
+    }, true);
+  }
+
   function setupToolTracking(){
     var shell = document.querySelector('.app-shell,.quiz-shell');
     if(!shell){ return; }
@@ -206,11 +231,13 @@
     document.addEventListener('DOMContentLoaded', function(){
       setupToolTracking();
       setupAffiliateTracking();
+      setupProductTracking();
       setupRouteTracking();
     });
   }else{
     setupToolTracking();
     setupAffiliateTracking();
+    setupProductTracking();
     setupRouteTracking();
   }
 
