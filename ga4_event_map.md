@@ -31,6 +31,7 @@ Main flow:
 | `kazmio_route_copy` | A user copies the recommended route order from `mio_route_finder.html` | `route_key`, `route_title` | Which route plans are worth saving |
 | `kazmio_route_share` | A user copies a route-specific link from `mio_route_finder.html` | `route_key`, `route_title` | Which route plans users may reopen or share |
 | `kazmio_affiliate_click` | Any affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | Sitewide affiliate click tracking |
+| `kazmio_product_click` | An owned digital-product link is clicked | `page_slug`, `product_id`, `product_key`, `product_name`, `product_platform`, `link_url`, `link_text`, `placement`, `campaign` | Measure movement from the site to BOOTH and other owned-product storefronts |
 | `kazmio_search_preset` | A preset is selected in `family_stay_search.html` | `search_group`, `preset_label`, `preset_extra` | See whether lodging or meal-condition presets are used |
 | `leany_affiliate_click` | A LEANY affiliate link is clicked | `page_slug`, `link_url`, `link_text`, `affiliate_network`, `affiliate_offer`, `affiliate_placement`, `campaign` | LEANY article/guide/diagnosis click tracking |
 | `fitness_wear_diagnosis` | The fitness wear diagnosis is run | `result_type` | Which self-care/wear concern is strongest |
