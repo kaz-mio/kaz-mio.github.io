@@ -1,0 +1,16 @@
+.experience-facts{margin:1.5rem 0;padding:1.25rem;border:1px solid rgba(24,36,43,.12);border-radius:12px;background:linear-gradient(145deg,#fff,rgba(239,237,231,.72))}
+.experience-facts h2{margin:0 0 .9rem}
+.experience-facts-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}
+.experience-fact{padding:.85rem 1rem;border-radius:9px;background:#fff;border:1px solid rgba(24,36,43,.08)}
+.experience-fact small{display:block;margin-bottom:.2rem;font-size:.64rem;font-weight:900;letter-spacing:.12em;color:#7a6b50;text-transform:uppercase}
+.experience-fact strong{display:block;font-size:.92rem;line-height:1.65}
+.comparison-wrap{margin:1.2rem 0 1.8rem;overflow-x:auto;border:1px solid rgba(24,36,43,.12);border-radius:10px;background:#fff}
+.comparison-table{width:100%;min-width:620px;border-collapse:collapse;text-align:left}
+.comparison-table th,.comparison-table td{padding:.85rem 1rem;border-bottom:1px solid rgba(24,36,43,.09);vertical-align:top;line-height:1.7}
+.comparison-table th{background:#f2efe8;font-size:.78rem;letter-spacing:.05em}
+.comparison-table td{font-size:.84rem;color:#5f5b54}
+.comparison-table tbody tr:last-child td{border-bottom:0}
+.experience-conclusion{margin:2rem 0;padding:1.2rem 1.3rem;border-left:5px solid #9a8556;background:#fff;border-radius:0 10px 10px 0;box-shadow:0 14px 34px rgba(24,36,43,.08)}
+.experience-conclusion h2{margin:0 0 .65rem}
+.experience-conclusion p:last-child{margin-bottom:0}
+@media(max-width:700px){.experience-facts-grid{grid-template-columns:1fr}.experience-facts{padding:1rem}.comparison-table th,.comparison-table td{padding:.75rem .8rem}}
