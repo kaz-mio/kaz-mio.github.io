@@ -22,7 +22,6 @@ ALLOWED_AMAZON_FILES = {
     "mamakids_milky_lotion_article.html",
     "hubdic_nasal_aspirator_article.html",
     "popomi_baby_circle_article.html",
-    "amazon_prime_day_baby_2026.html",
 }
 
 RULES = [
