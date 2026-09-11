@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="運営方針・レビュー基準 | KAZ & MIO | LIFE, LIGHTLY">
 <meta name="twitter:description" content="KAZ & MIO | LIFE, LIGHTLYのレビュー基準と広告表記の考え方。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Nunito:wght@600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--cream:#FAF8F3;--paper:#fff;--warm:#ECE7DC;--terracotta:#C96A3A;--terra-dk:#A0502B;--ink:#1F1D19;--ink2:#4C4843;--ink3:#9A948C;--border:rgba(31,29,25,.09);--r:8px;--sh:0 18px 44px rgba(31,29,25,.09);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -68,14 +68,17 @@ h1{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,5vw,3.2rem);line-hei
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
 <script src="/assets/site-experience.js?v=20260710" defer></script>
 <script src="assets/analytics.js"></script>
+<link rel="stylesheet" href="/assets/life-lightly.css?v=20260912-1">
+<script src="/assets/site-dates.js?v=20260912-1" defer></script>
 </head>
-<body>
-<header class="hd">
-  <a href="/" class="hd-logo"><span class="hd-logo-en">KAZ &amp; MIO</span><span class="hd-logo-ja">LIFE, LIGHTLY</span></a>
-  <nav class="hd-nav"><a href="/">記事一覧</a><a href="profile.html">プロフィール</a><a href="editorial_policy.html" class="active">運営方針</a><a href="contact.html" class="nav-cta">お問い合わせ</a></nav>
+<body class="life-lightly" data-custom-affordance>
+<a class="ll-skip" href="#ll-main">本文へ進む</a>
+<header class="ll-header">
+  <a class="ll-wordmark" href="/" aria-label="KAZ &amp; MIO ホーム">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a>
+  <nav class="ll-nav" aria-label="メインナビゲーション"><a href="/#tools">無料ツール</a><a href="/#articles">記事</a><a href="/#booth">BOOTH</a><a href="/profile.html">サイトについて</a></nav>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="ll-main">
   <div class="eyebrow">Editorial Policy</div>
   <h1>運営方針</h1>
   <p class="lead">KAZ &amp; MIO | LIFE, LIGHTLYは、子育て・暮らし・節約・お買いものを、家族目線で正直にまとめる個人ブログです。読む人が「自分の家でも使いやすいか」を判断しやすいように、良かった点だけでなく、注意点や確認しておきたい条件も書くことを大切にしています。</p>
@@ -153,7 +156,7 @@ h1{font-family:'Shippori Mincho',serif;font-size:clamp(2rem,5vw,3.2rem);line-hei
     <a href="/" class="hd-logo ft-logo"><span class="hd-logo-en">KAZ &amp; MIO</span><span class="hd-logo-ja">LIFE, LIGHTLY</span></a>
     <nav class="ft-nav"><a href="profile.html">プロフィール</a><a href="editorial_policy.html">運営方針</a><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a></nav>
   </div>
-  <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
+  <p class="ft-copy">© <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
 </footer>
 </body>
 </html>

@@ -58,7 +58,7 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--cream:#FAF8F3;--paper:#F4F1EA;--warm:#ECE7DC;--terracotta:#C96A3A;--terra-lt:#F0E0D4;--terra-dk:#A0502B;--green:#4A7C5F;--sand:#C4A97D;--rose:#C96A8A;--rose-lt:#F5E0E8;--ink:#1F1D19;--ink2:#4C4843;--ink3:#9A948C;--border:rgba(31,29,25,.09);--r:8px;--sh-s:0 1px 12px rgba(31,29,25,.07);--sh-m:0 4px 28px rgba(31,29,25,.11);--sh-l:0 12px 48px rgba(31,29,25,.15);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
@@ -184,14 +184,17 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
 <script src="/assets/site-experience.js?v=20260710" defer></script>
 <script src="assets/analytics.js"></script>
+<link rel="stylesheet" href="/assets/life-lightly.css?v=20260912-1">
+<script src="/assets/site-dates.js?v=20260912-1" defer></script>
 </head>
-<body>
-<header class="hd">
-  <a href="/" class="hd-logo"><span class="hd-logo-en">KAZ &amp; MIO</span><span class="hd-logo-ja">LIFE, LIGHTLY</span></a>
-  <nav class="hd-nav"><a href="/">記事一覧</a><a href="profile.html">プロフィール</a><a href="privacy.html">プライバシー</a><a href="contact.html" class="nav-cta">お問い合わせ</a></nav>
+<body class="life-lightly" data-custom-affordance>
+<a class="ll-skip" href="#ll-main">本文へ進む</a>
+<header class="ll-header">
+  <a class="ll-wordmark" href="/" aria-label="KAZ &amp; MIO ホーム">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a>
+  <nav class="ll-nav" aria-label="メインナビゲーション"><a href="/#tools">無料ツール</a><a href="/#articles">記事</a><a href="/#booth">BOOTH</a><a href="/profile.html">サイトについて</a></nav>
 </header>
 
-<div class="art-layout">
+<div class="art-layout" id="ll-main">
 <article>
   <div class="art-hero">
     <div class="art-tag">ギフト・お祝い</div>
@@ -411,7 +414,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans JP',sans-se
     <a href="/" class="hd-logo ft-logo"><span class="hd-logo-en">KAZ &amp; MIO</span><span class="hd-logo-ja">LIFE, LIGHTLY</span></a>
     <nav class="ft-nav"><a href="profile.html">プロフィール</a><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a></nav>
   </div>
-  <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY ─ 広告を含む場合があります</p>
+  <p class="ft-copy">© <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY ─ 広告を含む場合があります</p>
 </footer>
 </body>
 </html>

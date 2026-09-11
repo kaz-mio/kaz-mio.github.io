@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://kaz-mio.com/assets/kaz-mio-sea-dino-rain-park.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://kaz-mio.com/buy_before_check.html#app","name":"買う前タイムマシン診断","url":"https://kaz-mio.com/buy_before_check.html","applicationCategory":"LifestyleApplication","operatingSystem":"Any","inLanguage":"ja","description":"玄関、車、リビング、在庫、季節の5問から、育児グッズを買う前に起きやすい後悔タイプを確認できる診断ツール"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://kaz-mio.com/"},{"@type":"ListItem","position":2,"name":"買う前タイムマシン診断","item":"https://kaz-mio.com/buy_before_check.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"買う前タイムマシン診断は何がわかる？","acceptedAnswer":{"@type":"Answer","text":"育児グッズを買う前に、玄関、車、リビング、在庫、季節のどこで困りやすいかを整理できます。結果から関連する診断ツールへ進めます。"}},{"@type":"Question","name":"診断結果だけで商品を決めてもいい？","acceptedAnswer":{"@type":"Answer","text":"診断結果は確認ポイントを整理するための目安です。実際に買う前は、家の寸法、使う場面、商品の最新情報を確認してください。"}}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Nunito:wght@700;900&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/search-intent.css">
 <style>
 .check-hero{position:relative;overflow:hidden;border-radius:8px;background:#172027;color:#fff;margin-bottom:1.3rem;min-height:430px;display:grid;grid-template-columns:minmax(0,1fr) 360px;align-items:stretch;box-shadow:var(--shadow)}
@@ -70,10 +70,16 @@
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
 <script src="/assets/site-experience.js?v=20260710" defer></script>
 <script src="assets/analytics.js"></script>
+<link rel="stylesheet" href="/assets/life-lightly.css?v=20260912-1">
+<script src="/assets/site-dates.js?v=20260912-1" defer></script>
 </head>
-<body>
-<header class="guide-header"><a href="/" class="guide-logo">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a><nav class="guide-nav"><a href="buy_before_timemachine.html">タイムマシン</a><a href="stroller_fit_check.html">収納診断</a><a href="car_seat_fit_check.html">乗せ降ろし</a><a href="baby_stock_manager.html">ストック</a></nav></header>
-<main class="guide-wrap">
+<body class="life-lightly" data-custom-affordance>
+<a class="ll-skip" href="#ll-main">本文へ進む</a>
+<header class="ll-header">
+  <a class="ll-wordmark" href="/" aria-label="KAZ &amp; MIO ホーム">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a>
+  <nav class="ll-nav" aria-label="メインナビゲーション"><a href="/#tools">無料ツール</a><a href="/#articles">記事</a><a href="/#booth">BOOTH</a><a href="/profile.html">サイトについて</a></nav>
+</header>
+<main class="guide-wrap" id="ll-main">
 <section class="check-hero"><div class="check-hero-copy"><div class="kicker">Time Machine Check</div><h1>うちの後悔タイプ、買う前に見ておく。</h1><p>5問だけ答えると、育児グッズを買ったあとに起きやすい「家庭内のつまずき」をタイプ分けします。結果は正解ではなく、買う前にどこを測るか、どのツールを見るかを決めるためのメモです。</p><div class="chips"><span>5問診断</span><span>買う前チェック</span><span>後悔タイプ</span><span>家族目線</span></div></div><div class="score-card"><strong>MIOメモ</strong><span>すごく良い商品でも、玄関に置けない、車で使いにくい、収納が苦しいとなると毎日じわっと効いてきます。そこだけ先に見ます。</span></div></section>
 <section class="quiz-shell" id="diagnosis">
 <div class="quiz-panel">
@@ -90,7 +96,7 @@
 <section class="related-box"><h2>診断のあとに使いたいページ</h2><div class="related-grid"><a href="buy_before_timemachine.html"><small>Concept</small><strong>買う前タイムマシン</strong><span>なぜ買う前に失敗を見に行くのか、考え方をまとめています。</span></a><a href="family_car_stroller_guide.html"><small>Guide</small><strong>車とベビーカーの入口</strong><span>車移動と収納の悩みをまとめて確認できます。</span></a><a href="diaper_size_stock_guide.html"><small>Stock</small><strong>おむつサイズと買い置き</strong><span>在庫とサイズ替えのタイミングを整理できます。</span></a></div></section>
 <section class="faq-box"><h2>よくある疑問</h2><div class="faq-item"><h3>診断結果は保存される？</h3><p>保存されません。このページ内で結果を見るだけの簡単な診断です。気になる結果が出たら、関連ツールで具体的に確認してください。</p></div><div class="faq-item"><h3>結果がしっくりこない時は？</h3><p>家の状況は日によって変わります。いちばん近いものを選び直して、買う前に測る場所や確認する場面を見つけるためのメモとして使ってください。</p></div></section>
 </main>
-<footer class="guide-footer">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</footer>
+<footer class="guide-footer">© <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</footer>
 <script>
 const resultData={
 entrance:{kicker:'Entrance Forecast',title:'玄関渋滞タイプ',text:'ベビーカー、靴、傘、買い物袋が玄関で重なりやすいタイプです。買う前に、畳んだサイズと置く向き、通れる幅を一回だけ測ると安心です。',meter:'88%',links:[['玄関収納の確認ポイントへ','family_car_stroller_guide.html#stroller-entry'],['ベビーカー収納診断へ','stroller_fit_check.html'],['おでかけ持ち物を確認','outing_checklist.html']]},

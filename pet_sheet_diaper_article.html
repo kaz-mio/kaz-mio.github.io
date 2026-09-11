@@ -34,7 +34,7 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Nunito:wght@600;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#faf8f3;--paper:#fff;--ink:#20201e;--muted:#6b6760;--line:rgba(32,32,30,.1);--key:#c96a3a;--mint:#9bc7b5;--aqua:#60c5d5;--navy:#183447;--gold:#dfcf98;--r:8px;--shadow:0 18px 48px rgba(24,52,71,.12);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -74,10 +74,16 @@ article{min-width:0}
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
 <script src="/assets/site-experience.js?v=20260710" defer></script>
 <script src="assets/analytics.js"></script>
+<link rel="stylesheet" href="/assets/life-lightly.css?v=20260912-1">
+<script src="/assets/site-dates.js?v=20260912-1" defer></script>
 </head>
-<body>
-<header class="hd"><a href="/" class="logo">KAZ &amp; MIO<br><small>LIFE, LIGHTLY</small></a><nav class="nav"><a href="/#articles">記事一覧</a><a href="diaper_size_check.html">おむつチェック</a><a href="contact.html">お問い合わせ</a></nav></header>
-<main class="wrap">
+<body class="life-lightly" data-custom-affordance>
+<a class="ll-skip" href="#ll-main">本文へ進む</a>
+<header class="ll-header">
+  <a class="ll-wordmark" href="/" aria-label="KAZ &amp; MIO ホーム">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a>
+  <nav class="ll-nav" aria-label="メインナビゲーション"><a href="/#tools">無料ツール</a><a href="/#articles">記事</a><a href="/#booth">BOOTH</a><a href="/profile.html">サイトについて</a></nav>
+</header>
+<main class="wrap" id="ll-main">
 <article>
 <div class="tag">Diaper Change Item</div>
 <div class="date">公開 2026.05.27 / 更新 2026.07.28</div>
@@ -161,6 +167,6 @@ msmaflink({"n":"アイリスオーヤマ ペットシーツ 超薄型 ホワイ�
 </article>
 <aside class="side"><div class="box"><h3>この記事の要点</h3><ul><li>おむつ替えの下敷きとして使いやすい</li><li>使い捨てしやすく衛生面がラク</li><li>大容量で気兼ねなく使いやすい</li><li>長時間の肌あて用途ではなく短時間の下敷き向き</li></ul></div><div class="box"><a href="baby_stock_manager.html">ストック管理も使う</a></div></aside>
 </main>
-<footer class="ft">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</footer>
+<footer class="ft">© <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</footer>
 </body>
 </html>

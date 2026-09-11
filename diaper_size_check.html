@@ -16,13 +16,13 @@
 <meta property="og:title" content="おむつサイズ＆買い置きチェック｜身長・体重から在庫目安">
 <meta property="og:description" content="体重・月齢・1日の交換枚数から、今のサイズを買い足す量とサイズアップの近さを確認できます。">
 <meta property="og:url" content="https://kaz-mio.com/diaper_size_check.html">
-<meta property="og:image" content="https://kaz-mio.com/assets/kaz-mio-adventure-hero.png">
+<meta property="og:image" content="https://kaz-mio.com/assets/home-life-hero.webp">
 <meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="おむつサイズ＆買い置きチェック">
 <meta name="twitter:description" content="今のサイズをあとどのくらい用意するか、メーカー別サイズ目安と一緒に確認できます。">
-<meta name="twitter:image" content="https://kaz-mio.com/assets/kaz-mio-adventure-hero.png">
+<meta name="twitter:image" content="https://kaz-mio.com/assets/home-life-hero.webp">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,7 +55,7 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--shell:#fff8ea;--paper:#fffdf7;--sun:#ffd66e;--coral:#ef7d67;--coral-d:#c65342;--aqua:#60c5d5;--blue:#1f5f7a;--navy:#183447;--ink:#18242b;--ink2:#52616a;--ink3:#88939a;--line:rgba(24,36,43,.12);--shadow:0 18px 54px rgba(24,52,71,.13);--soft:0 8px 24px rgba(24,52,71,.09);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -158,25 +158,17 @@ select:focus,input[type="number"]:focus,input[type="text"]:focus{border-color:va
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
 <script src="/assets/site-experience.js?v=20260710" defer></script>
 <script src="assets/analytics.js"></script>
+<link rel="stylesheet" href="/assets/life-lightly.css?v=20260912-1">
+<script src="/assets/site-dates.js?v=20260912-1" defer></script>
 </head>
-<body>
-<header class="hd">
-  <a href="/" class="brand">
-    <span class="brand-mark" aria-hidden="true"></span>
-    <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
-  </a>
-  <nav class="nav">
-    <a href="/#reviews">レビュー</a>
-    <a href="diaper_size_check.html" class="active">おむつ</a>
-    <a href="baby_stock_manager.html">ストック</a>
-    <a href="kids_size_check.html">サイズ確認</a>
-    <a href="outing_checklist.html">持ち物</a>
-    <a href="school_prep_checklist.html">入園準備</a>
-    <a href="contact.html" class="contact">お問い合わせ</a>
-  </nav>
+<body class="life-lightly" data-custom-affordance>
+<a class="ll-skip" href="#ll-main">本文へ進む</a>
+<header class="ll-header">
+  <a class="ll-wordmark" href="/" aria-label="KAZ &amp; MIO ホーム">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a>
+  <nav class="ll-nav" aria-label="メインナビゲーション"><a href="/#tools">無料ツール</a><a href="/#articles">記事</a><a href="/#booth">BOOTH</a><a href="/profile.html">サイトについて</a></nav>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="ll-main">
   <section class="hero">
     <div>
       <div class="eyebrow">Diaper Size Planner</div>
@@ -190,8 +182,8 @@ select:focus,input[type="number"]:focus,input[type="text"]:focus{border-color:va
       </div>
     </div>
     <div class="hero-card">
-      <img src="assets/kaz-mio-adventure-hero.png" alt="家族でおむつの買い置きを確認するイメージイラスト">
-      <div class="memo"><b>おむつは、余らせると地味に困る。</b><p>サイズアップ前は、安さより「使い切れる量」を優先すると気持ちがラクです。</p></div>
+      <img src="/assets/home-life-hero.webp" alt="子育てと暮らしのイメージ写真" width="1513" height="1039" decoding="async">
+      <div class="memo"><b>おむつは、余らせると地味に困る。</b><p>サイズアップ前は、安さより「使い切れる量」を優先すると気持ちがラクです。</p><small class="ll-photo-credit">写真はイメージです。</small></div>
     </div>
   </section>
 
@@ -359,7 +351,7 @@ select:focus,input[type="number"]:focus,input[type="text"]:focus{border-color:va
     </a>
     <nav class="ft-nav"><a href="/">トップ</a><a href="baby_stock_manager.html">ストック管理</a><a href="kids_size_check.html">服・靴サイズ</a><a href="outing_checklist.html">持ち物チェック</a><a href="school_prep_checklist.html">入園準備</a><a href="family_stay_search.html">宿・食事さがし</a><a href="contact.html">お問い合わせ</a></nav>
   </div>
-  <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
+  <p class="ft-copy">© <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
 </footer>
 
 <script>

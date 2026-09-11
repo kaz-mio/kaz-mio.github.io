@@ -16,13 +16,13 @@
 <meta property="og:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
 <meta property="og:description" content="楽天トラベル、ホットペッパー、Google Placesなどの候補を、子連れで見たい条件から整理できます。検索リンク、比較メモ、問い合わせ文例つき。">
 <meta property="og:url" content="https://kaz-mio.com/family_stay_search.html">
-<meta property="og:image" content="https://kaz-mio.com/assets/kaz-mio-adventure-hero.png">
+<meta property="og:image" content="https://kaz-mio.com/assets/home-life-hero.webp">
 <meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="子連れ宿・食事さがしナビ｜ファミリー向け条件で横断検索">
 <meta name="twitter:description" content="楽天トラベル、ホットペッパー、Google Placesなどの候補を、子連れで見たい条件から整理できるページです。">
-<meta name="twitter:image" content="https://kaz-mio.com/assets/kaz-mio-adventure-hero.png">
+<meta name="twitter:image" content="https://kaz-mio.com/assets/home-life-hero.webp">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,7 +55,7 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--shell:#fff8ea;--paper:#fffdf7;--sand:#ead8b8;--sun:#ffd66e;--coral:#ef7d67;--coral-d:#c65342;--aqua:#60c5d5;--blue:#1f5f7a;--navy:#183447;--leaf:#6fa978;--mint:#d8f1df;--ink:#18242b;--ink2:#52616a;--ink3:#88939a;--line:rgba(24,36,43,.12);--r:8px;--shadow:0 16px 46px rgba(24,52,71,.13);--soft:0 8px 24px rgba(24,52,71,.09);}
@@ -220,24 +220,18 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
 <script src="/assets/site-experience.js?v=20260710" defer></script>
 <script src="assets/analytics.js" defer></script>
+<link rel="stylesheet" href="/assets/life-lightly.css?v=20260912-1">
+<script src="/assets/site-dates.js?v=20260912-1" defer></script>
 </head>
-<body>
-<header class="hd">
-  <a href="/" class="brand">
-    <span class="brand-mark" aria-hidden="true"></span>
-    <span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span>
-  </a>
-  <nav class="nav">
-    <a href="/#reviews">レビュー</a>
-      <a href="family_stay_search.html" class="active">宿・食事さがし</a>
-    <a href="outing_checklist.html">持ち物リスト</a>
-    <a href="profile.html">プロフィール</a>
-    <a href="contact.html" class="contact">お問い合わせ</a>
-  </nav>
+<body class="life-lightly" data-custom-affordance>
+<a class="ll-skip" href="#ll-main">本文へ進む</a>
+<header class="ll-header">
+  <a class="ll-wordmark" href="/" aria-label="KAZ &amp; MIO ホーム">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a>
+  <nav class="ll-nav" aria-label="メインナビゲーション"><a href="/#tools">無料ツール</a><a href="/#articles">記事</a><a href="/#booth">BOOTH</a><a href="/profile.html">サイトについて</a></nav>
 </header>
 
-<main class="wrap">
-  <section class="hero">
+<main class="wrap" id="ll-main">
+  <section class="hero ll-text-hero">
     <div>
       <div class="eyebrow">Family Stay & Meal Finder</div>
       <h1>小さい子連れで<br><em>困らない場所</em>を探す。</h1>
@@ -250,7 +244,6 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
       </div>
     </div>
     <div class="hero-card">
-      <img src="assets/kaz-mio-adventure-hero.png" alt="家族で楽しく旅先を探すイメージイラスト">
       <div class="memo"><b>検索後は、最終確認。</b><p>設備はプラン・部屋タイプ・店舗で変わることがあります。気になる条件は予約前に確認すると安心です。</p></div>
     </div>
   </section>
@@ -714,7 +707,7 @@ textarea{width:100%;min-height:126px;border-radius:8px;border:1px solid rgba(255
     </a>
     <nav class="ft-nav"><a href="/">トップ</a><a href="outing_checklist.html">持ち物チェック</a><a href="profile.html">プロフィール</a><a href="privacy.html">プライバシー</a><a href="contact.html">お問い合わせ</a></nav>
   </div>
-  <p class="ft-copy">© 2026 KAZ &amp; MIO | LIFE, LIGHTLY ─ 広告を含む場合があります</p>
+  <p class="ft-copy">© <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY ─ 広告を含む場合があります</p>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

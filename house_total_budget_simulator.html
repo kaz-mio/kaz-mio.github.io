@@ -19,13 +19,13 @@
 <meta property="og:title" content="家づくり総予算シミュレーター">
 <meta property="og:description" content="市区町村別の土地坪単価、建物、外構、諸費用、手元資金、世帯年収、毎月返済を、ひとつの画面でざっくり確認できます。">
 <meta property="og:url" content="https://kaz-mio.com/house_total_budget_simulator.html">
-<meta property="og:image" content="https://kaz-mio.com/assets/kaz-mio-adventure-hero.webp">
+<meta property="og:image" content="https://kaz-mio.com/assets/home-life-hero.webp">
 <meta property="og:site_name" content="KAZ & MIO | LIFE, LIGHTLY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="家づくり総予算シミュレーター">
 <meta name="twitter:description" content="市区町村別の土地坪単価、建物、外構、諸費用、世帯年収、住宅ローン返済をまとめて確認できます。">
-<meta name="twitter:image" content="https://kaz-mio.com/assets/kaz-mio-adventure-hero.webp">
+<meta name="twitter:image" content="https://kaz-mio.com/assets/home-life-hero.webp">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,7 +62,7 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3f2ed;--ink:#242424;--muted:#747474;--line:#dedbd3;--gold:#dfcf98;--gold2:#b9a45d;--sage:#6f7c70;--clay:#a67861;--soft:0 18px 46px rgba(35,31,22,.12)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -98,21 +98,17 @@ h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.05rem,4.8vw,4.2rem);lin
 <link rel="stylesheet" href="/assets/site-experience.css?v=20260710">
 <script src="/assets/site-experience.js?v=20260710" defer></script>
 <script src="assets/analytics.js"></script>
+<link rel="stylesheet" href="/assets/life-lightly.css?v=20260912-1">
+<script src="/assets/site-dates.js?v=20260912-1" defer></script>
 </head>
-<body>
-<header class="hd">
-  <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span></a>
-  <nav class="nav" aria-label="サイト内メニュー">
-    <a href="/">Home</a>
-    <a href="land_candidate_compare.html">Land</a>
-    <a class="active" href="house_total_budget_simulator.html">Budget</a>
-    <a href="house_perspective_simulator.html">House</a>
-    <a href="money_tax_flow_guide.html">Money</a>
-    <a class="contact" href="contact.html">Contact</a>
-  </nav>
+<body class="life-lightly" data-custom-affordance>
+<a class="ll-skip" href="#ll-main">本文へ進む</a>
+<header class="ll-header">
+  <a class="ll-wordmark" href="/" aria-label="KAZ &amp; MIO ホーム">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a>
+  <nav class="ll-nav" aria-label="メインナビゲーション"><a href="/#tools">無料ツール</a><a href="/#articles">記事</a><a href="/#booth">BOOTH</a><a href="/profile.html">サイトについて</a></nav>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="ll-main">
   <section class="hero">
     <div class="hero-copy">
       <div class="kicker">House Total Budget</div>
@@ -219,7 +215,7 @@ h1{font-family:'Shippori Mincho',serif;font-size:clamp(2.05rem,4.8vw,4.2rem);lin
   </div></section>
 </main>
 
-<footer class="ft"><div class="ft-inner"><a href="/" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span></a><nav class="ft-nav"><a href="/">トップ</a><a href="family_life_plan_board.html">暮らし計画ボード</a><a href="land_candidate_compare.html">土地候補比較メモ</a><a href="house_total_budget_simulator.html">家づくり総予算</a><a href="house_perspective_simulator.html">住宅計画シミュレーター</a><a href="editorial_policy.html">運営方針</a><a href="contact.html">お問い合わせ</a></nav></div><p class="ft-copy">&copy; 2026 KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります。</p></footer>
+<footer class="ft"><div class="ft-inner"><a href="/" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text"><span class="brand-en">KAZ &amp; MIO</span><span class="brand-ja">LIFE, LIGHTLY</span></span></a><nav class="ft-nav"><a href="/">トップ</a><a href="family_life_plan_board.html">暮らし計画ボード</a><a href="land_candidate_compare.html">土地候補比較メモ</a><a href="house_total_budget_simulator.html">家づくり総予算</a><a href="house_perspective_simulator.html">住宅計画シミュレーター</a><a href="editorial_policy.html">運営方針</a><a href="contact.html">お問い合わせ</a></nav></div><p class="ft-copy">&copy; <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります。</p></footer>
 
 <script>
 const STORAGE_KEY='kazmio_house_total_budget_v3';
