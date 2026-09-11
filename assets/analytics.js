@@ -1,6 +1,6 @@
 (function(){
   var affordanceStyleUrl = '/assets/site-affordance.css?v=20260716-1';
-  var affordanceScriptUrl = '/assets/site-affordance.js?v=20260716-1';
+  var affordanceScriptUrl = '/assets/site-affordance.js?v=20260912-1';
   var experienceStyleUrl = '/assets/site-experience.css?v=20260716-2';
   var experienceScriptUrl = '/assets/site-experience.js?v=20260716-2';
 
@@ -46,6 +46,8 @@
   // Replace this with the GA4 measurement ID, e.g. G-XXXXXXXXXX.
   var GOOGLE_TAG_ID = 'G-ZKQ4EDMKBW';
   var hasTagId = /^(G|GT|AW|DC)-[A-Z0-9]+$/.test(GOOGLE_TAG_ID) && GOOGLE_TAG_ID !== 'G-XXXXXXXXXX';
+  // Local previews must not inflate the production site's audience or event data.
+  hasTagId = hasTagId && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };

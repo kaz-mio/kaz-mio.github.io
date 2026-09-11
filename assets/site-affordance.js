@@ -67,6 +67,7 @@
   }
 
   function init(){
+    if(document.body && document.body.hasAttribute('data-custom-affordance')){ return; }
     enhance(document);
     var queued = false;
     var observer = new MutationObserver(function(records){
