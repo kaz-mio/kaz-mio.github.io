@@ -11,21 +11,24 @@ NENCHO_PAGE = "https://www.nta.go.jp/users/gensen/nencho/index.htm"
 FORMS_PAGE = "https://www.nta.go.jp/users/gensen/nencho/shinkokusyo/index.htm"
 
 EXPECTED_TERMS = [
-    "年末調整がよくわかるページ（令和７年分）",
+    "年末調整がよくわかるページ（令和８年分）",
     "基礎控除",
     "給与所得控除",
     "特定親族特別控除",
+    "令和９年分扶養控除等",
 ]
 
 EXPECTED_LINKS = {
-    "combined_form_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_06.pdf",
-    "combined_form_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_06_input.pdf",
-    "combined_form_example_pdf": "https://www.nta.go.jp/publication/pamph/gensen/nencho2025/pdf/306.pdf",
-    "dependent_form_2025_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_01.pdf",
-    "dependent_form_2025_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_01_input.pdf",
-    "insurance_form_2025_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_04.pdf",
-    "insurance_form_2025_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2025bun_04_input.pdf",
-    "housing_credit_example_2025_pdf": "https://www.nta.go.jp/publication/pamph/gensen/nencho2025/pdf/308.pdf",
+    "combined_form_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2026bun_06.pdf",
+    "combined_form_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2026bun_06_input.pdf",
+    "combined_form_example_pdf": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/306.pdf",
+    "dependent_form_2026_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2026bun_01.pdf",
+    "dependent_form_2026_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2026bun_01_input.pdf",
+    "dependent_form_2027_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2027bun_01.pdf",
+    "dependent_form_2027_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2027bun_01_input.pdf",
+    "insurance_form_2026_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2026bun_04.pdf",
+    "insurance_form_2026_input_pdf": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/pdf/2026bun_04_input.pdf",
+    "housing_credit_example_2026_pdf": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/308.pdf",
 }
 
 
