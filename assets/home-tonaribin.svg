@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800" role="img" aria-labelledby="title desc">
+  <title id="title">となり便で、スマホとPCをつなぐ</title>
+  <desc id="desc">同じWi-Fiに接続したスマートフォンとパソコンの間で、写真・動画・書類を双方向に転送する利用イメージ。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#746348" flood-opacity=".15"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 8 5 0 9" fill="none" stroke="#a64c31" stroke-width="2" stroke-linejoin="round"/></marker>
+  </defs>
+  <g font-family="'Noto Sans JP','Yu Gothic',sans-serif" fill="#173f38">
+    <rect x="36" y="76" width="928" height="632" rx="36" fill="#fffdf3" filter="url(#shadow)"/>
+    <text x="500" y="154" text-anchor="middle" font-size="34" font-weight="700">同じWi-Fiで、すぐとなりへ。</text>
+    <path d="M440 218 Q500 165 560 218 M460 241 Q500 207 540 241 M482 261 Q500 246 518 261" fill="none" stroke="#8c9375" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="500" cy="285" r="7" fill="#8c9375"/>
+    <g filter="url(#shadow)">
+      <rect x="110" y="267" width="220" height="344" rx="30" fill="#334641"/>
+      <rect x="124" y="282" width="192" height="310" rx="18" fill="#f3f0e5"/>
+      <rect x="180" y="287" width="80" height="12" rx="6" fill="#334641"/>
+      <rect x="148" y="328" width="144" height="124" rx="12" fill="#dbe6d8"/>
+      <circle cx="253" cy="357" r="16" fill="#e6c775"/>
+      <path d="m148 429 47-55 35 34 29-26 33 47v23H148Z" fill="#8c9375"/>
+      <rect x="148" y="475" width="144" height="14" rx="7" fill="#d2d5c9"/>
+      <rect x="148" y="503" width="103" height="14" rx="7" fill="#d2d5c9"/>
+      <rect x="148" y="540" width="144" height="28" rx="14" fill="#2c5c49"/>
+      <rect x="586" y="306" width="292" height="232" rx="18" fill="#334641"/>
+      <rect x="600" y="320" width="264" height="198" rx="8" fill="#f3f0e5"/>
+      <text x="732" y="360" text-anchor="middle" font-size="24" font-weight="700">となり便</text>
+      <rect x="620" y="381" width="104" height="110" rx="9" fill="#dbe6d8"/>
+      <path d="m636 461 25-31 19 17 18-21 10 35Z" fill="#8c9375"/>
+      <circle cx="699" cy="404" r="9" fill="#e6c775"/>
+      <rect x="743" y="388" width="96" height="12" rx="6" fill="#cbd0c8"/>
+      <rect x="743" y="414" width="80" height="12" rx="6" fill="#cbd0c8"/>
+      <rect x="743" y="452" width="96" height="28" rx="14" fill="#2c5c49"/>
+      <path d="M566 539h332l34 37q4 14-14 14H548q-18 0-14-14Z" fill="#aeb5a9"/>
+      <path d="M686 540h92l9 19H677Z" fill="#879386"/>
+    </g>
+    <path d="M365 398h167 M532 449H365" fill="none" stroke="#a64c31" stroke-width="7" stroke-linecap="round" marker-end="url(#arrow)"/>
+    <text x="220" y="650" text-anchor="middle" font-size="25" font-weight="700">スマホ</text>
+    <text x="732" y="650" text-anchor="middle" font-size="25" font-weight="700">Windows / Mac</text>
+    <text x="500" y="756" text-anchor="middle" font-size="25" fill="#64706b">写真・動画・書類を、行ったり来たり。</text>
+  </g>
+</svg>
