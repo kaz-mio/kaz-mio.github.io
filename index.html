@@ -27,28 +27,59 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/home-life-hero.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/film/forest-poster.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/home.css?v=20260912">
+<link rel="stylesheet" href="assets/home-film.css?v=20261108-3">
+<script src="assets/vendor/gsap-3.13.0.min.js" defer></script>
+<script src="assets/vendor/ScrollTrigger-3.13.0.min.js" defer></script>
+<script type="module" src="assets/home-film.mjs?v=20261108-3"></script>
 <script src="assets/analytics.js" defer></script>
 <script src="assets/home.js?v=20260912" defer></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaz-mio.com/#website","url":"https://kaz-mio.com/","name":"KAZ & MIO | LIFE, LIGHTLY","description":"子育てと暮らしの無料ツールとメモ","inLanguage":"ja","publisher":{"@type":"Person","name":"MIO"},"sameAs":["https://x.com/kaaz361001","https://www.instagram.com/oqdsfy/"]},{"@type":"WebPage","@id":"https://kaz-mio.com/#webpage","url":"https://kaz-mio.com/","name":"子育てと暮らしの無料ツールとメモ","isPartOf":{"@id":"https://kaz-mio.com/#website"},"dateModified":"2026-11-01"}]}
+{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaz-mio.com/#website","url":"https://kaz-mio.com/","name":"KAZ & MIO | LIFE, LIGHTLY","description":"子育てと暮らしの無料ツールとメモ","inLanguage":"ja","publisher":{"@type":"Person","name":"MIO"},"sameAs":["https://x.com/kaaz361001","https://www.instagram.com/oqdsfy/"]},{"@type":"WebPage","@id":"https://kaz-mio.com/#webpage","url":"https://kaz-mio.com/","name":"子育てと暮らしの無料ツールとメモ","isPartOf":{"@id":"https://kaz-mio.com/#website"},"dateModified":"2026-11-08"}]}
 </script>
 <script src="/assets/site-dates.js?v=20260912-1" defer></script>
 </head>
-<body class="home-refresh" id="top" data-custom-affordance>
-<a class="skip-link" href="#main">本文へ進む</a>
+<body class="home-refresh home-film-page" id="top" data-custom-affordance>
+<a class="skip-link" href="#everyday">本文へ進む</a>
 <header class="site-header wrap">
 <a class="wordmark" href="/" aria-label="KAZ & MIO ホーム">KAZ &amp; MIO<span>LIFE, LIGHTLY</span></a>
 <nav class="main-nav" aria-label="メインナビゲーション"><a href="#tools">無料ツール</a><a href="#articles">記事</a><a href="#booth">BOOTH</a><a href="profile.html">サイトについて</a></nav>
 </header>
 <main id="main">
-<section class="home-hero" aria-labelledby="hero-title">
-<img class="hero-photo" src="assets/home-life-hero.webp" width="1513" height="1039" alt="" fetchpriority="high">
-<div class="hero-inner wrap"><div class="hero-copy">
-<p class="eyebrow">子育てと暮らしの、無料ツールとメモ。</p>
+<section class="home-film" id="home-film" aria-label="森から温かい家へ" data-progress="0">
+<div class="home-film-visual" aria-hidden="true">
+<img id="film-poster" src="assets/film/forest-poster.webp" width="1280" height="720" alt="" fetchpriority="high">
+<video id="home-film-video" data-src="assets/film/forest-to-home-v1.mp4" preload="none" muted playsinline disablepictureinpicture poster="assets/film/forest-poster.webp"></video>
+</div>
+<div class="film-copy film-copy-start">
+<p class="film-eyebrow">子育てと暮らしの、無料ツールとメモ。</p>
 <h1 id="hero-title"><span>子育ての</span><span>「どうしよう」を、</span><br><span>ひとつずつ。</span></h1>
-<p class="hero-intro">おむつの買い置き、服のサイズ、お出かけの持ち物。<br class="desktop-break">気になることを、ここで確認。</p>
+<p>森の先の、いつもの暮らしへ。</p>
+<a class="film-cta" href="#everyday">無料ツールを使う <span aria-hidden="true">↗</span></a>
+</div>
+<div class="film-copy film-copy-end" aria-hidden="true">
+<p class="film-eyebrow">LIFE, LIGHTLY.</p>
+<p class="film-arrival-title">ただいま。<br>いつもの毎日へ。</p>
+<a class="film-cta" href="#everyday" tabindex="-1">暮らしの道具を見る <span aria-hidden="true">↗</span></a>
+</div>
+<p class="film-status" id="film-status" role="status">森の入口から、スクロールで先へ。</p>
+<div class="film-dock">
+<div class="film-dock-top"><p><span id="film-chapter-label">森の入口</span><small id="film-time">0 / 24 秒</small></p>
+<div class="film-actions"><button id="film-play" type="button" aria-pressed="false" disabled>自動で見る</button><button id="film-motion" type="button">動きを止める</button><a href="#everyday">演出を飛ばす <span aria-hidden="true">↓</span></a></div></div>
+<nav class="film-chapters" aria-label="動画の場面">
+<span class="film-progress" aria-hidden="true"><span id="film-progress"></span></span>
+<button type="button" data-chapter="0" aria-current="step"><span>01</span>森</button>
+<button type="button" data-chapter="1"><span>02</span>木の中</button>
+<button type="button" data-chapter="2"><span>03</span>遊び場</button>
+<button type="button" data-chapter="3"><span>04</span>帰り道</button>
+<button type="button" data-chapter="4"><span>05</span>庭</button>
+<button type="button" data-chapter="5"><span>06</span>ただいま</button>
+</nav>
+</div>
+</section>
+<section class="everyday wrap" id="everyday" aria-labelledby="everyday-title" tabindex="-1">
+<div class="everyday-copy"><p class="eyebrow">LIFE, LIGHTLY.</p><h2 id="everyday-title">家族の毎日に、<br>小さな余白を。</h2><p>おむつの買い置き、服のサイズ、お出かけの持ち物。<br>気になることを、ここで確認。</p><p class="everyday-note">買い足す前に、出かける前に。<br>小さな確認を、ひとつずつ。</p></div>
 <form class="stock-note" id="stock-form" novalidate aria-labelledby="stock-title">
 <img class="brass-clip" src="assets/home-brass-clip.png" width="120" height="120" alt="">
 <h2 id="stock-title">おむつの買い置き、足りる？</h2>
@@ -63,7 +94,6 @@
 </div>
 <noscript><p class="form-error">計算にはJavaScriptが必要です。<a href="diaper_size_stock_guide.html">おむつサイズと買い置きのメモを読む</a></p></noscript>
 </form>
-</div></div>
 </section>
 <div class="tool-entry wrap"><a href="kids_size_check.html" data-route-intent="home_size" data-placement="hero">服のサイズを確認<span aria-hidden="true"> →</span></a><a href="outing_checklist.html" data-route-intent="home_outing" data-placement="hero">お出かけの持ち物<span aria-hidden="true"> →</span></a><a href="#tools" class="all-tools-link">すべての無料ツール<span aria-hidden="true"> →</span></a></div>
 <div class="catalog-wrap wrap">
