@@ -1,0 +1,52 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const rules=require('../assets/tax-rules-2026.js');
+let cases=0;
+function eq(a,b){assert.equal(a,b);cases++;}
+for(const [s,n] of [[0,0],[740999,0],[741000,1000],[1300000,560000],[1360000,620000],[1360001,620001],[1700000,960000],[1780000,1040000],[2190999,1450999],[2191000,1451000],[2192999,1451000],[2193000,1453000],[2195999,1453000],[2196000,1456000],[2199999,1456000],[2200000,1460000],[2203999,1460000],[2204000,1462800],[3599999,2437200],[3600000,2440000],[6599999,4836800],[6600000,4840000],[8499999,6549999],[8500000,6550000],[10000000,8050000]]) eq(rules.salaryIncome(s),n);
+for(const [n,b] of [[0,1040000],[4890000,1040000],[4890001,670000],[6550000,670000],[6550001,620000],[23500000,620000],[23500001,480000],[24000000,480000],[24000001,320000],[24500000,320000],[24500001,160000],[25000000,160000],[25000001,0]]) eq(rules.basicDeduction(n),b);
+for(const [n,b] of [[24000000,430000],[24000001,290000],[24500000,290000],[24500001,150000],[25000000,150000],[25000001,0]])eq(rules.residentBasicDeduction(n),b);
+function page(file){
+ const html=fs.readFileSync(path.join(root,file),'utf8');
+ const nodes=new Map();
+ for(const [,id] of html.matchAll(/\bid="([^"]+)"/g))nodes.set(id,{value:'',checked:false,innerHTML:'',classList:{toggle(){}},addEventListener(){},getAttribute(){return '';}});
+ const store=new Map();
+ const ctx={KazMioTax2026:rules,console,document:{getElementById:id=>nodes.get(id),querySelectorAll:()=>[]},localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v),removeItem:k=>store.delete(k)}};
+ const scripts=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)].filter(m=>!m[1].includes('application/ld+json')&&!/\bsrc=/.test(m[1]));
+ const code=scripts.find(m=>m[2].includes('var STORAGE_KEY'))[2];
+ const instrumented=code.replace(/  load\(\);\s*  render\(\);\s*\}\)\(\);/,"  globalThis.api={collect:collect,render:render,save:save,load:load,compute:"+(file.startsWith('fuyou')?'analyze':'estimate')+",memo:buildMemo};\n})();");
+ vm.runInNewContext(instrumented,ctx,{filename:file});assert.ok(ctx.api);
+ return {html,nodes,api:ctx.api,set:(k,v)=>{nodes.get(k).value=String(v);},check:(k,v)=>{nodes.get(k).checked=v;}};
+}
+const f=page('fuyou_side_income_check.html');
+f.set('salaryIncome',1700000);f.set('familyType','child');f.set('familyAge',17);f.set('familySalary',1300000);f.set('salaryAdjusted','yes');
+let r=f.api.compute(f.api.collect());eq(r.salaryInc,960000);eq(r.approxTaxable,0);eq(r.familyTotalIncome,560000);assert.ok(r.notices.some(n=>n.title==='扶養控除の候補'));cases++;
+f.set('familySalary',1360000);assert.ok(f.api.compute(f.api.collect()).notices.some(n=>n.title==='扶養控除の候補'));cases++;
+f.set('familySalary',1360001);assert.ok(f.api.compute(f.api.collect()).notices.some(n=>n.title==='税の扶養控除は対象外寄り'));cases++;
+f.set('familyAge',20);assert.ok(f.api.compute(f.api.collect()).notices.some(n=>n.title==='特定親族特別控除の候補'));cases++;
+f.set('familyAge',23);assert.ok(!f.api.compute(f.api.collect()).notices.some(n=>n.title==='特定親族特別控除の候補'));cases++;
+f.set('familyType','spouse');f.set('familySalary',1360000);assert.ok(f.api.compute(f.api.collect()).notices.some(n=>n.title==='配偶者控除の候補'));cases++;
+f.set('familySalary',1360001);assert.ok(f.api.compute(f.api.collect()).notices.some(n=>n.title==='配偶者特別控除の候補'));cases++;
+f.set('salaryIncome',12000000);assert.ok(f.api.compute(f.api.collect()).notices.some(n=>n.title.includes('本人所得')));cases++;
+f.set('weeklyHours',20);f.set('monthlyWage',50000);f.set('companySize','over50');assert.ok(f.api.compute(f.api.collect()).notices.some(n=>n.title==='社会保険加入の確認候補'));cases++;
+f.check('isStudent',true);assert.ok(!f.api.compute(f.api.collect()).notices.some(n=>n.title==='社会保険加入の確認候補'));cases++;
+f.api.render();assert.match(f.nodes.get('memoOutput').value,/対象：2026年分/);cases++;
+const t=page('furusato_tax_limit_check.html');t.set('quickProfile','single');t.set('salaryIncome',5000000);t.set('socialInsurance',750000);t.check('wantsOneStop',true);
+r=t.api.compute(t.api.collect());eq(r.salaryInc,3560000);eq(r.incomeTaxable,1770000);eq(r.rate,.05);eq(r.residentTaxable,2380000);eq(r.residentLevy,235500);eq(r.roundedLimit,57000);eq(r.safeLimit,50000);
+t.set('socialInsurance',0);eq(t.api.collect().socialInsurance,0);eq(t.api.collect().socialInsuranceAuto,false);
+t.set('residentIncomeLevy',0);r=t.api.compute(t.api.collect());eq(r.residentLevy,0);eq(r.roundedLimit,0);eq(r.safeLimit,0);assert.match(r.answerTitle,/出せません/);cases++;
+t.set('residentIncomeLevy',200000);t.set('donatedSoFar',10000);r=t.api.compute(t.api.collect());eq(r.residentLevy,200000);assert.ok(r.safeRemaining<=r.safeLimit-10000);cases++;
+t.set('municipalityCount',6);assert.ok(t.api.compute(t.api.collect()).notices.some(n=>n.title.includes('5団体')));cases++;
+t.set('willFileReturn','');t.check('willFileReturn',true);assert.ok(t.api.compute(t.api.collect()).notices.some(n=>n.title==='ワンストップではなく確定申告寄り'));cases++;
+t.api.render();assert.match(t.nodes.get('memoOutput').value,/2027年度住民税/);cases++;
+t.api.save();t.set('salaryIncome',0);t.api.load();eq(t.api.collect().salaryIncome,5000000);
+t.set('socialInsurance','');t.set('residentIncomeLevy','');t.api.save();t.set('socialInsurance',0);t.api.load();eq(t.api.collect().socialInsuranceAuto,true);eq(t.api.collect().residentIncomeLevyManual,false);
+t.set('socialInsurance',0);t.set('residentIncomeLevy',0);t.api.save();t.set('socialInsurance','');t.set('residentIncomeLevy','');t.api.load();eq(t.api.collect().socialInsuranceAuto,false);eq(t.api.collect().residentIncomeLevyManual,true);
+for(const p of [f,t]){assert.doesNotMatch(p.html,/salaryIncome2025|basicDeduction(?:Income)?2025/);assert.match(p.html,/id="taxYearNotice"/);cases+=2;}
+const housing=fs.readFileSync(path.join(root,'house_total_budget_simulator.html'),'utf8');assert.match(housing,/https:\/\/www\.mizuhobank\.co\.jp\/loan_housing\/housingloancost\/index\.html/);assert.doesNotMatch(housing,/mizuhobank\.co\.jp\/loan\/housing\/interest/);cases+=2;
+eq(fs.readFileSync(path.join(root,'CNAME'),'utf8').trim(),'kaz-mio.com');
+console.log(`PASS: ${cases} tax-2026 boundary, page integration, zero/manual, storage and link assertions.`);

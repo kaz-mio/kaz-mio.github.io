@@ -177,7 +177,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 <main class="wrap" id="ll-main">
   <section class="hero">
     <div class="hero-copy">
-      <div class="eyebrow">Everyday Money Check</div>
+      <div class="eyebrow">Everyday Money Check / 2026</div>
+      <p class="notice" id="taxYearNotice">対象は2026年分（令和8年分）の通常の年末調整・確定申告です。12月1日施行の改正を反映し、給与所得控除の最低額74万円、扶養等の所得要件62万円で確認します。11月30日以前の死亡・出国に伴う申告、年金・分離課税・所得金額調整控除等は対象外です。年齢は2026年12月31日時点で入力してください。社会保険は2026年10月以降の条件で、税とは別に確認します。</p>
       <h1>扶養・副業・手取りを<br><em>まず何から確認するか</em></h1>
       <p class="lead">給与収入、副業所得、家族の収入見込を入れると、所得税の確定申告、税の扶養、社会保険の扶養、年末調整で見る順番を整理します。年末だけでなく、働き方や収入調整を考える時期に使う確認メモです。</p>
       <div class="hero-actions">
@@ -201,7 +202,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     <div class="answer-grid">
       <div class="check-card"><small>Side Job</small><strong>副業の確定申告目安</strong><p>給与所得者の副業所得が20万円を超えるか、住民税の確認が必要かを分けて表示します。</p></div>
       <div class="check-card"><small>Tax Dependent</small><strong>税の扶養・配偶者控除</strong><p>家族の所得見込から、配偶者控除、配偶者特別控除、扶養控除の候補を確認します。</p></div>
-      <div class="check-card"><small>Social Insurance</small><strong>社会保険の扶養</strong><p>106万円、130万円、19歳以上23歳未満の確認点を、税とは別に表示します。</p></div>
+      <div class="check-card"><small>Social Insurance</small><strong>社会保険の扶養</strong><p>2026年10月の賃金要件撤廃、130万円、19歳以上23歳未満の確認点を、税とは別に表示します。</p></div>
       <div class="check-card"><small>Next Step</small><strong>次に入力する順番</strong><p>副業メモ、年末調整申告書、勤務先・健康保険の確認を、状況に合わせて並べます。</p></div>
     </div>
   </section>
@@ -238,7 +239,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <div class="section-label">Social Insurance</div>
       <div class="grid three">
         <label class="field"><span class="label">家族の週の勤務時間</span><input id="weeklyHours" type="number" min="0" step="1" inputmode="numeric" placeholder="例: 20"><span class="field-help">社会保険加入の確認に使います。</span></label>
-        <label class="field"><span class="label">家族の月額賃金</span><input id="monthlyWage" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 88000"><span class="field-help">所定内賃金の目安です。交通費等の扱いは勤務先で確認します。</span></label>
+        <label class="field"><span class="label">家族の月額賃金</span><input id="monthlyWage" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 88000"><span class="field-help">参考用。2026年10月以降、一般の短時間労働者は8.8万円未満でも加入対象になり得ます。減額特例等は勤務先で確認します。</span></label>
         <label class="field"><span class="label">勤務先の従業員規模</span><select id="companySize"><option value="unknown">わからない</option><option value="over50">50人超</option><option value="under50">50人以下</option></select><span class="field-help">社会保険の適用拡大は会社規模も確認します。</span></label>
       </div>
       <div class="toggle-grid">
@@ -275,7 +276,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <div class="trust-card"><small>できること</small><strong>確認順を分ける</strong><p>給与収入、副業所得、家族の収入見込みから、税の扶養、社会保険、副業申告の順番を出します。</p></div>
       <div class="trust-card"><small>できないこと</small><strong>認定や申告要否を確定しない</strong><p>健康保険の扶養認定、勤務先手当、住民税申告、個別の申告要否は確定できません。</p></div>
       <div class="trust-card"><small>確認先</small><strong>勤務先と公式情報で照合する</strong><p>勤務先、加入している健康保険、自治体、国税庁、厚生労働省の案内で確認します。</p></div>
-      <div class="trust-card"><small>更新日</small><strong>2026年6月22日確認</strong><p>税制改正、勤務先手当、健康保険の扶養認定は変わるため、提出前に公式情報へ戻ります。</p></div>
+      <div class="trust-card"><small>更新日</small><strong>2026年11月8日確認</strong><p>2026年分の税制を反映。勤務先手当、健康保険の扶養認定は別途確認してください。</p></div>
     </div>
   </section>
 
@@ -305,7 +306,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     <h2 id="source-title">確認した公式情報</h2>
     <p>数字や制度は変わることがあります。最終確認は公式ページと勤務先・自治体・健康保険の案内で行ってください。</p>
     <div class="source-grid">
-      <a class="source-link" href="https://www.nta.go.jp/users/gensen/2025kiso/index.htm" target="_blank" rel="noopener">国税庁 令和7年度税制改正</a>
+      <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" target="_blank" rel="noopener">国税庁 2026年分の基礎控除</a>
+      <a class="source-link" href="https://www.nenkin.go.jp/oshirase/taisetu/jigyosho/2026/202610/100104.html" target="_blank" rel="noopener">日本年金機構 2026年10月の賃金要件撤廃</a>
       <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" target="_blank" rel="noopener">国税庁 給与所得者で確定申告が必要な人</a>
       <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" target="_blank" rel="noopener">国税庁 給与所得控除</a>
       <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" target="_blank" rel="noopener">国税庁 扶養控除</a>
@@ -333,6 +335,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   <p class="ft-copy">© <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
 </footer>
 
+<script src="assets/tax-rules-2026.js?v=20261108"></script>
 <script>
 (function(){
   'use strict';
@@ -364,29 +367,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
     });
   }
-  function salaryDeduction2025(salary){
-    if(salary <= 0) return 0;
-    if(salary <= 1900000) return 650000;
-    if(salary <= 3600000) return salary * 0.3 + 80000;
-    if(salary <= 6600000) return salary * 0.2 + 440000;
-    if(salary <= 8500000) return salary * 0.1 + 1100000;
-    return 1950000;
-  }
-  function salaryIncome2025(salary){
-    if(salary <= 0) return 0;
-    return Math.max(0, Math.floor(salary - salaryDeduction2025(salary)));
-  }
-  function basicDeduction2025(totalIncome){
-    if(totalIncome <= 1320000) return 950000;
-    if(totalIncome <= 3360000) return 880000;
-    if(totalIncome <= 4890000) return 680000;
-    if(totalIncome <= 6550000) return 630000;
-    if(totalIncome <= 23500000) return 580000;
-    if(totalIncome <= 24000000) return 480000;
-    if(totalIncome <= 24500000) return 320000;
-    if(totalIncome <= 25000000) return 160000;
-    return 0;
-  }
+  var taxRules = KazMioTax2026;
   function collect(){
     return {
       mode: activeMode,
@@ -411,12 +392,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     return {kind:kind || '', title:title, text:text};
   }
   function analyze(data){
-    var salaryInc = salaryIncome2025(data.salaryIncome);
+    var salaryInc = taxRules.salaryIncome(data.salaryIncome);
     var sideProfit = Math.max(0, data.sideRevenue - data.sideExpense);
     var totalIncome = salaryInc + sideProfit;
-    var basic = basicDeduction2025(totalIncome);
+    var basic = taxRules.basicDeduction(totalIncome);
     var approxTaxable = Math.max(0, totalIncome - basic);
-    var familySalaryInc = salaryIncome2025(data.familySalary);
+    var familySalaryInc = taxRules.salaryIncome(data.familySalary);
     var familyTotalIncome = familySalaryInc + data.familyOtherIncome;
     var familyAnnualIncome = data.familySalary + data.familyOtherIncome;
     var notices = [];
@@ -451,12 +432,16 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 
     if(data.familyType !== 'none' || data.familySalary || data.familyOtherIncome){
       if(data.familyType === 'spouse'){
-        if(familyTotalIncome <= 580000){
-          notices.push(makeNotice('','配偶者控除の候補', '配偶者の合計所得金額が58万円以下なら、配偶者控除の候補です。給与のみなら給与収入123万円以下が目安です。'));
+        if(totalIncome > 10000000){
+          notices.push(makeNotice('no','本人所得が配偶者控除等の上限を超えています', '本人の合計所得が1,000万円超の場合、配偶者控除・配偶者特別控除は対象外です。'));
+          answerTitle = '本人の所得上限を確認してください。';
+          answerText = '家族の収入だけでなく、本人の合計所得も条件になります。';
+        } else if(familyTotalIncome <= 620000){
+          notices.push(makeNotice('','配偶者控除の候補', '2026年分は配偶者の合計所得金額62万円以下が条件の一つです。給与のみなら給与収入136万円以下が目安です。生計・婚姻・専従者等の条件も確認してください。'));
           answerTitle = '配偶者控除の候補です。年末調整の配偶者欄を確認。';
           answerText = '本人の合計所得金額が1,000万円以下か、配偶者の所得見込を年末調整ページで確認します。';
         } else if(familyTotalIncome <= 1330000) {
-          notices.push(makeNotice('warn','配偶者特別控除の候補', '配偶者の合計所得金額が58万円超133万円以下なら、配偶者特別控除の候補です。'));
+          notices.push(makeNotice('warn','配偶者特別控除の候補', '2026年分は配偶者の合計所得金額62万円超133万円以下が条件の一つです。本人所得や控除の重複、その他の適用条件も確認してください。'));
           answerTitle = '配偶者特別控除の候補です。所得見込を丁寧に確認。';
           answerText = '配偶者の給与所得とその他所得を分け、年末調整申告書に転記する流れが向いています。';
         } else {
@@ -464,12 +449,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         }
         order.push(['配偶者の所得見込を確認','給与収入、給与以外の所得、勤務先の年末調整案内をそろえます。']);
       } else if(data.familyType === 'child') {
-        if(data.familyAge >= 19 && data.familyAge < 23 && familyTotalIncome > 580000 && familyTotalIncome <= 1230000){
-          notices.push(makeNotice('warn','特定親族特別控除の候補', '19歳以上23歳未満の親族で、合計所得金額が58万円超123万円以下なら、特定親族特別控除の確認候補です。'));
+        if(data.familyAge >= 19 && data.familyAge < 23 && familyTotalIncome > 620000 && familyTotalIncome <= 1230000){
+          notices.push(makeNotice('warn','特定親族特別控除の候補', '2026年分は19歳以上23歳未満の親族で、合計所得金額62万円超123万円以下が条件の一つです。生計・専従者・重複申告等も確認してください。'));
           answerTitle = '特定親族特別控除の候補です。年末調整の新しい欄を確認。';
           answerText = 'アルバイト収入が扶養控除の枠を超えても、特定親族特別控除の対象になる場合があります。';
-        } else if(data.familyAge >= 16 && familyTotalIncome <= 580000) {
-          notices.push(makeNotice('','扶養控除の候補', '16歳以上の親族で合計所得金額が58万円以下なら、扶養控除の候補です。'));
+        } else if(data.familyAge >= 16 && familyTotalIncome <= 620000) {
+          notices.push(makeNotice('','扶養控除の候補', '2026年分は16歳以上の親族で合計所得金額62万円以下が条件の一つです。給与のみなら136万円以下が目安です。生計・専従者・重複申告等も確認してください。'));
           answerTitle = '扶養控除の候補です。扶養控除等申告書を確認。';
           answerText = '年齢、生計を一にしているか、所得見込を確認して勤務先の案内に沿って入力します。';
         } else if(data.familyAge < 16) {
@@ -481,8 +466,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       }
 
       if(data.weeklyHours || data.monthlyWage || familyAnnualIncome){
-        if(data.weeklyHours >= 20 && data.monthlyWage >= 88000 && data.companySize === 'over50' && !data.isStudent){
-          notices.push(makeNotice('warn','社会保険加入の確認候補', '週20時間以上、月額賃金8.8万円以上、従業員50人超などに当てはまる場合は、健康保険・厚生年金の加入を勤務先に確認します。'));
+        if(data.weeklyHours >= 20 && data.companySize === 'over50' && !data.isStudent){
+          notices.push(makeNotice('warn','社会保険加入の確認候補', '2026年10月以降は月額8.8万円の賃金要件が撤廃されています。週20時間以上、従業員50人超、学生でない等の条件と雇用見込みを勤務先に確認してください。最低賃金の減額特例対象者等は別確認です。'));
         }
         if(data.familyType === 'child' && data.familyAge >= 19 && data.familyAge < 23 && familyAnnualIncome >= 1300000 && familyAnnualIncome < 1500000){
           notices.push(makeNotice('warn','19歳以上23歳未満の社会保険扶養を確認', '19歳以上23歳未満の親族は、社会保険の被扶養者認定で年間収入要件が150万円未満へ見直されています。加入先に確認してください。'));
@@ -545,6 +530,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function buildMemo(data, result){
     var lines = [];
     lines.push('扶養・副業・手取り確認メモ');
+    lines.push('対象：2026年分（通常の年末調整・確定申告）／社会保険は2026年10月以降');
     lines.push('給与収入: ' + yen(data.salaryIncome));
     lines.push('給与所得の目安: ' + yen(result.salaryInc));
     lines.push('副業売上: ' + yen(data.sideRevenue));

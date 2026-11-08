@@ -183,8 +183,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 <main class="wrap" id="ll-main">
   <section class="hero">
     <div class="hero-copy">
-      <div class="eyebrow">Furusato Tax Limit</div>
-      <h1>ふるさと納税は<br><em>今年いくらまで</em>寄附できそう？</h1>
+      <div class="eyebrow">Furusato Tax Limit / 2026</div>
+      <h1>ふるさと納税は<br><em>2026年いくらまで</em>寄附できそう？</h1>
+      <p class="notice" id="taxYearNotice">対象は2026年の寄附（2026年分所得税・2027年度住民税）です。12月1日施行の所得税改正と翌年度住民税の給与所得控除を反映。住民税の基礎控除は所得税の104万円ではなく、原則43万円です。退職・年金・分離課税・所得金額調整控除・非課税判定など特殊な条件は計算しません。所得税の税率区分をまたぐ寄附や住宅ローン控除との併用は、表示額だけで判断しないでください。</p>
       <p class="lead">年収と家族構成だけでも、自己負担の基準額に近づきやすい寄附上限額の目安を確認できます。社会保険料や扶養控除は自動で仮置きし、詳しく見たい人だけ実額に置き換えられます。</p>
       <div class="hero-actions">
         <a href="#tool">上限額を確認する</a>
@@ -219,7 +220,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <div class="trust-card"><small>できること</small><strong>寄附前の目安を出す</strong><p>年収、家族構成、すでに寄附した金額から、あと寄附できる目安を表示します。</p></div>
       <div class="trust-card"><small>できないこと</small><strong>控除額を確定しない</strong><p>実際の控除額、ワンストップ特例の適用、確定申告の必要性は個別確認が必要です。</p></div>
       <div class="trust-card"><small>確認先</small><strong>公式情報で照合する</strong><p>国税庁、総務省、自治体、勤務先資料、住民税決定通知書を寄附前・申告前に確認します。</p></div>
-      <div class="trust-card"><small>更新日</small><strong>2026年6月22日確認</strong><p>制度変更や自治体の案内に備え、ページ末尾の公式リンクと照合しながら使います。</p></div>
+      <div class="trust-card"><small>更新日</small><strong>2026年11月8日確認</strong><p>2026年分所得税・2027年度住民税の前提を反映。実際の控除額は自治体等で確認してください。</p></div>
     </div>
   </section>
 
@@ -268,7 +269,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
             <label class="field"><span class="label">生命保険料控除など</span><input id="otherDeductions" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 80000"><span class="field-help">生命保険料控除、地震保険料控除などです。分からなければ空欄でOK。</span></label>
             <label class="field"><span class="label">医療費控除の見込</span><input id="medicalDeduction" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">金額が分かる場合だけ入力。使う予定だけなら上のチェックで十分です。</span></label>
             <label class="field"><span class="label">住宅ローン控除の見込</span><input id="housingCredit" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 0"><span class="field-help">税額控除です。金額が分かる場合だけ入力してください。</span></label>
-            <label class="field"><span class="label">住民税所得割額が分かる場合</span><input id="residentIncomeLevy" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 245000"><span class="field-help">通知書の「所得割額」等が分かる場合だけ入力。ここを最優先します。</span></label>
+            <label class="field"><span class="label">住民税所得割額が分かる場合</span><input id="residentIncomeLevy" type="number" min="0" step="1000" inputmode="numeric" placeholder="例: 245000"><span class="field-help">2026年の所得に対応する2027年度の、調整控除後・寄附金控除等の税額控除前の額（市区町村分＋都道府県分）。今年届いた2026年度通知書は前年所得です。空欄なら概算、0なら0を優先します。</span></label>
             <label class="field"><span class="label">寄附先の自治体数</span><input id="municipalityCount" type="number" min="0" step="1" inputmode="numeric" placeholder="例: 3"><span class="field-help">ワンストップ特例を使いたい場合の確認用です。</span></label>
           </div>
         </div>
@@ -314,6 +315,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm" target="_blank" rel="noopener">国税庁 ふるさと納税（寄附金控除）</a>
       <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" target="_blank" rel="noopener">国税庁 所得税の税率</a>
       <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" target="_blank" rel="noopener">国税庁 給与所得控除</a>
+      <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" target="_blank" rel="noopener">国税庁 基礎控除</a>
+      <a class="source-link" href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" target="_blank" rel="noopener">東京都主税局 個人住民税・2027年度の改正</a>
       <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" target="_blank" rel="noopener">国税庁 配偶者控除</a>
       <a class="source-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" target="_blank" rel="noopener">国税庁 扶養控除</a>
       <a class="source-link" href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/080430_2_kojin.html" target="_blank" rel="noopener">総務省 ふるさと納税ポータルサイト</a>
@@ -338,6 +341,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   <p class="ft-copy">© <span data-current-year>2026</span> KAZ &amp; MIO | LIFE, LIGHTLY - 広告を含む場合があります</p>
 </footer>
 
+<script src="assets/tax-rules-2026.js?v=20261108"></script>
 <script>
 (function(){
   'use strict';
@@ -365,29 +369,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
     });
   }
-  function salaryDeduction2025(salary){
-    if(salary <= 0) return 0;
-    if(salary <= 1900000) return 650000;
-    if(salary <= 3600000) return salary * 0.3 + 80000;
-    if(salary <= 6600000) return salary * 0.2 + 440000;
-    if(salary <= 8500000) return salary * 0.1 + 1100000;
-    return 1950000;
-  }
-  function salaryIncome2025(salary){
-    if(salary <= 0) return 0;
-    return Math.max(0, Math.floor(salary - salaryDeduction2025(salary)));
-  }
-  function basicDeductionIncome2025(totalIncome){
-    if(totalIncome <= 1320000) return 950000;
-    if(totalIncome <= 3360000) return 880000;
-    if(totalIncome <= 4890000) return 680000;
-    if(totalIncome <= 6550000) return 630000;
-    if(totalIncome <= 23500000) return 580000;
-    if(totalIncome <= 24000000) return 480000;
-    if(totalIncome <= 24500000) return 320000;
-    if(totalIncome <= 25000000) return 160000;
-    return 0;
-  }
+  var taxRules = KazMioTax2026;
   function incomeTaxRate(taxable){
     if(taxable <= 0) return 0;
     if(taxable <= 1949000) return .05;
@@ -424,9 +406,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       quickProfile: value('quickProfile'),
       quickProfileLabel: profile.label,
       otherIncome: num('otherIncome'),
-      socialInsurance: rawSocialInsurance || estimatedSocialInsurance,
+      socialInsurance: value('socialInsurance') === '' ? estimatedSocialInsurance : rawSocialInsurance,
       socialInsuranceInput: rawSocialInsurance,
-      socialInsuranceAuto: !rawSocialInsurance && salary > 0,
+      socialInsuranceAuto: value('socialInsurance') === '' && salary > 0,
       socialInsuranceEstimate: estimatedSocialInsurance,
       ideco: num('ideco'),
       spouseDeduction: spouseInput || profile.spouse,
@@ -438,6 +420,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       medicalDeduction: num('medicalDeduction'),
       housingCredit: num('housingCredit'),
       residentIncomeLevy: num('residentIncomeLevy'),
+      residentIncomeLevyManual: value('residentIncomeLevy') !== '',
       donatedSoFar: num('donatedSoFar'),
       plannedDonation: num('plannedDonation'),
       municipalityCount: num('municipalityCount'),
@@ -452,21 +435,28 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function route(title, text){ return [title, text]; }
   function floorThousand(value){ return Math.max(0, Math.floor(value / 1000) * 1000); }
   function estimate(data){
-    var salaryInc = salaryIncome2025(data.salaryIncome);
+    var salaryInc = taxRules.salaryIncome(data.salaryIncome);
     var totalIncome = salaryInc + data.otherIncome;
-    var incomeDeductions = basicDeductionIncome2025(totalIncome) + data.socialInsurance + data.ideco + data.spouseDeduction + data.dependentDeduction + data.otherDeductions + data.medicalDeduction;
+    var incomeDeductions = taxRules.basicDeduction(totalIncome) + data.socialInsurance + data.ideco + data.spouseDeduction + data.dependentDeduction + data.otherDeductions + data.medicalDeduction;
     var incomeTaxable = Math.max(0, Math.floor((totalIncome - incomeDeductions) / 1000) * 1000);
     var rate = incomeTaxRate(incomeTaxable);
     var rateWithSpecial = rate === 0 ? 0 : rate * 1.021;
-    var residentDeductions = 430000 + data.socialInsurance + data.ideco + Math.round(data.spouseDeduction * .87) + Math.round(data.dependentDeduction * .87) + Math.round(data.otherDeductions * .7) + data.medicalDeduction;
-    var residentTaxable = Math.max(0, totalIncome - residentDeductions);
-    var estimatedResidentLevy = Math.max(0, residentTaxable * .10 - Math.min(data.housingCredit, 97500));
-    var residentLevy = data.residentIncomeLevy > 0 ? data.residentIncomeLevy : estimatedResidentLevy;
+    var residentSpouse = ({0:0,380000:330000,260000:220000,130000:110000})[data.spouseDeduction];
+    if(residentSpouse === undefined) residentSpouse = Math.round(data.spouseDeduction * .87);
+    var residentDeductions = taxRules.residentBasicDeduction(totalIncome) + data.socialInsurance + data.ideco + residentSpouse + Math.round(data.dependentDeduction * .87) + Math.round(data.otherDeductions * .7) + data.medicalDeduction;
+    var residentTaxable = Math.max(0, Math.floor((totalIncome - residentDeductions) / 1000) * 1000);
+    // 所得割20%の基準は調整控除後・住宅ローン等の税額控除前。
+    // 家族控除の住民税換算は概算のため、詳細額は自治体で確認する。
+    var personalDifference = totalIncome <= 25000000 ? 50000 : 0;
+    if(totalIncome <= 24000000) personalDifference += Math.max(0, data.spouseDeduction - residentSpouse) + Math.max(0, data.dependentDeduction - Math.round(data.dependentDeduction * .87));
+    var adjustment = totalIncome > 25000000 ? 0 : (residentTaxable <= 2000000 ? Math.min(personalDifference, residentTaxable) : Math.max(50000, personalDifference - (residentTaxable - 2000000))) * .05;
+    var estimatedResidentLevy = Math.max(0, residentTaxable * .10 - adjustment);
+    var residentLevy = data.residentIncomeLevyManual ? data.residentIncomeLevy : estimatedResidentLevy;
     var denominator = Math.max(.01, .90 - rateWithSpecial);
     var theoretical = 2000 + (residentLevy * .20 / denominator);
     var incomeCap = totalIncome * .40 + 2000;
     var limit = Math.min(theoretical, incomeCap || theoretical);
-    var roundedLimit = floorThousand(limit);
+    var roundedLimit = residentLevy > 0 && totalIncome > 0 ? floorThousand(limit) : 0;
     var safeFactor = .88;
     if(data.hasMedicalExpense && !data.medicalDeduction) safeFactor = Math.min(safeFactor, .82);
     if(data.hasHousingCredit && !data.housingCredit) safeFactor = Math.min(safeFactor, .78);
@@ -502,13 +492,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     if(data.quickProfileApplied){
       notices.push(notice('', '家族構成から控除を仮置き', '詳細欄の配偶者控除・扶養控除が未入力のため、選んだ家族構成から控除額を仮置きしています。'));
     }
-    if(data.residentIncomeLevy > 0){
-      notices.push(notice('', '住民税所得割額を優先', '入力された住民税所得割額を使って上限額を出しています。通知書の年度と寄附する年の収入見込が近いか確認してください。'));
-    } else if(data.salaryIncome > 0) {
-      notices.push(notice('warn', '住民税所得割額は概算', '住民税所得割額が未入力のため、給与収入と控除から概算しています。通知書がある場合は所得割額を入れると見直しやすくなります。'));
+    if(data.residentIncomeLevyManual){
+      notices.push(notice('', '住民税所得割額を優先', '2026年の所得に対応する2027年度の調整控除後・寄附金控除等の税額控除前の所得割額を使います。2026年度の通知書は前年所得のため、そのまま今年の確定値にはなりません。'));
+    } else if(totalIncome > 0) {
+      notices.push(notice('warn', '住民税所得割額は概算', '2027年度の所得割額を給与収入と控除から概算しています。扶養・その他控除の住民税額は簡易換算で、非課税判定は含みません。前年所得の通知書は参考値として扱い、自治体等で確認してください。'));
     }
     if(data.hasHousingCredit || data.housingCredit > 0){
-      notices.push(notice('warn', '住宅ローン控除あり', data.housingCredit > 0 ? '住宅ローン控除の金額を入れて概算しています。所得税と住民税の控除の出方で実質負担が変わることがあるため、公式確認してください。' : '金額が未入力のため、上限額はそのまま、安全寄りの目安を控えめにしています。金額が分かる場合は詳細欄に入れてください。'));
+      notices.push(notice('warn', '住宅ローン控除あり', '所得割20%の基準から住宅ローン控除を直接差し引いてはいません。所得税・住民税への配分や控除の競合は未計算のため、自己負担の表示額は確定値として使わず、自治体等で確認してください。'));
     }
     if(data.hasMedicalExpense || data.medicalDeduction > 0){
       notices.push(notice('warn', '医療費控除あり', data.medicalDeduction > 0 ? '医療費控除で確定申告する場合、ワンストップ特例は使えません。寄附金控除も確定申告に含めます。' : '医療費控除を使うかもしれない場合は、ワンストップではなく確定申告で寄附金控除も一緒に確認します。'));
@@ -525,8 +515,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       notices.push(notice('warn', '寄附合計が上限目安を超えています', '自己負担が基準額より増えやすい状態です。追加額を下げるか、住民税所得割額を入れて見直してください。'));
     } else if(data.plannedDonation > 0 && data.plannedDonation > safeRemaining) {
       notices.push(notice('warn', '追加したい金額が安全寄りの残り枠を超えています', '上限目安内でも、控えめに見るなら追加額を下げるか、実額入力で見直してください。'));
-    } else if(donation > 0) {
+    } else if(donation > 0 && roundedLimit > 0) {
       notices.push(notice('', '寄附合計は目安内', '入力条件では、すでに寄附した分と追加予定分の合計は上限目安の範囲内です。'));
+    }
+    if(roundedLimit === 0 && (totalIncome > 0 || donation > 0)){
+      answerTitle = 'この条件では、全額控除の上限目安を出せません。';
+      answerText = '住民税の課税・控除条件を自治体等で確認し、結果だけで追加寄附額を決めないでください。';
+      notices.push(notice('warn', '控除枠を確認できません', '所得割額が0、または収入が未入力です。寄附すれば控除されるとは限りません。'));
     }
     if(data.wantsOneStop){
       if(data.willFileReturn || data.hasMedicalExpense || data.medicalDeduction > 0 || data.otherIncome > 200000){
@@ -540,7 +535,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     order.push(route('追加寄附の目安を決める', '安全寄りなら、まずあと ' + yen(safeRemaining) + ' くらいまでを候補にします。'));
     if(data.socialInsuranceAuto) order.push(route('源泉徴収票が出たら実額で見直す', '社会保険料等の金額が分かったら詳細欄に入れて、目安を近づけます。'));
     if(data.quickProfileApplied) order.push(route('家族構成の控除だけ確認', '配偶者控除や扶養控除の対象が合っているかだけ確認します。細かい金額が分かれば詳細欄で上書きできます。'));
-    if(!data.residentIncomeLevy) order.push(route('住民税所得割額が分かれば入力', '住民税決定通知書などで所得割額が分かる場合は、再入力して目安を近づけます。'));
+    if(!data.residentIncomeLevyManual) order.push(route('2027年度の住民税所得割額を確認', '2026年の収入に対応する調整控除後・寄附金控除等の税額控除前の額を使います。前年所得の通知書は参考値です。'));
     if(data.willFileReturn || data.hasMedicalExpense || data.medicalDeduction > 0 || data.otherIncome > 200000 || data.overFiveMunicipalities || data.municipalityCount > 5){
       order.push(route('確定申告に寄附金控除を入れる', 'ワンストップ特例ではなく、確定申告書の寄附金控除と住民税欄に反映します。'));
     } else {
@@ -582,7 +577,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       ['上限額の目安', yen(result.roundedLimit), '自己負担の基準額に近づきやすい寄附額の概算です。'],
       ['安全寄りの目安', yen(result.safeLimit), '控除や収入見込のズレを考え、少し控えめに見た金額です。'],
       ['寄附合計後の自己負担目安', donationTotal ? yen(result.selfPay) : '未入力', 'すでに寄附した金額と追加予定額の合計で見ます。'],
-      ['住民税所得割額の目安', yen(result.residentLevy), data.residentIncomeLevy ? '入力値を優先しています。' : '収入と控除から概算しています。'],
+      ['住民税所得割額の目安', yen(result.residentLevy), data.residentIncomeLevyManual ? '2027年度の入力値を優先しています。' : '2026年の収入と控除から概算しています。'],
       ['社会保険料控除', yen(data.socialInsurance), data.socialInsuranceAuto ? '年収から自動で仮置きしています。' : '入力された金額を使っています。'],
       ['家族構成の控除', yen(data.spouseDeduction + data.dependentDeduction), data.quickProfileApplied ? '選んだ家族構成から仮置きしています。' : '詳細欄または扶養なしで見ています。']
     ].map(function(item){
@@ -599,6 +594,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function buildMemo(data, result){
     var lines = [];
     lines.push('ふるさと納税 控除上限額確認メモ');
+    lines.push('対象：2026年の寄附／2026年分所得税・2027年度住民税（概算）');
     lines.push('給与収入: ' + yen(data.salaryIncome));
     lines.push('給与所得目安: ' + yen(result.salaryInc));
     lines.push('家族構成: ' + data.quickProfileLabel);
@@ -608,7 +604,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     lines.push('iDeCo等: ' + yen(data.ideco));
     lines.push('医療費控除: ' + yen(data.medicalDeduction) + (data.hasMedicalExpense && !data.medicalDeduction ? '（使うかもしれない）' : ''));
     lines.push('住宅ローン控除見込: ' + yen(data.housingCredit) + (data.hasHousingCredit && !data.housingCredit ? '（あり・金額未入力）' : ''));
-    lines.push('住民税所得割額: ' + yen(result.residentLevy) + (data.residentIncomeLevy ? '（入力値）' : '（概算）'));
+    lines.push('2027年度住民税所得割額: ' + yen(result.residentLevy) + (data.residentIncomeLevyManual ? '（入力値）' : '（概算）'));
     lines.push('上限額の目安: ' + yen(result.roundedLimit));
     lines.push('安全寄りの目安: ' + yen(result.safeLimit));
     lines.push('今年すでに寄附した金額: ' + yen(data.donatedSoFar));
@@ -629,7 +625,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
     return lines.join('\n');
   }
   function save(){
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(collect())); } catch(e) {}
+    var saved = {taxRuleYear:2026};
+    fields.forEach(function(id){
+      var el = document.getElementById(id);
+      saved[id] = el.type === 'checkbox' ? el.checked : el.value;
+    });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(saved)); } catch(e) {}
   }
   function load(){
     try {
@@ -638,7 +639,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
         var el = document.getElementById(id);
         if(!el || saved[id] === undefined) return;
         if(el.type === 'checkbox') el.checked = !!saved[id];
-        else el.value = saved[id];
+        else el.value = (id === 'socialInsurance' && saved.socialInsuranceAuto === true) ? '' : saved[id];
       });
     } catch(e) {}
   }

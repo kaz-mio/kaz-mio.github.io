@@ -1,0 +1,16 @@
+name: Tax Tools 2026 Check
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  tax-tools:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/test_tax_tools_2026.cjs
