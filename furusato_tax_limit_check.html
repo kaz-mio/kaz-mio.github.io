@@ -287,6 +287,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
       <h2>今年の目安</h2>
       <p>自己負担の基準額に近づきやすい寄附上限額と、ワンストップ特例の確認点を表示します。</p>
       <div class="result-title" id="mainAnswer"></div>
+      <div id="furusatoHonpoAd" class="result-title" hidden>
+        <span>PR・広告 ｜ 返礼品を探す</span>
+        <a href="https://px.a8.net/svt/ejp?a8mat=4BGR91+2Z8CI+5IMU+BW8O2&amp;a8ejpredirect=https%3A%2F%2Ffurusatohonpo.jp%2F" rel="nofollow sponsored">ふるさと本舗で返礼品を探す</a><img width="1" height="1" loading="lazy" src="https://www19.a8.net/0.gif?a8mat=4BGR91+2Z8CI+5IMU+BW8O2" alt="">
+      </div>
       <div class="summary-grid" id="summaryGrid"></div>
       <div class="section-label">Check Points</div>
       <div class="notice-list" id="noticeList"></div>
@@ -567,6 +571,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
   function render(){
     var data = collect();
     var result = estimate(data);
+    document.getElementById('furusatoHonpoAd').hidden = !(result.afterPlanRemaining > 0);
     mainAnswer.innerHTML = '<strong>' + escapeHtml(result.answerTitle) + '</strong><span>' + escapeHtml(result.answerText) + '</span>';
     var donationTotal = data.donatedSoFar + data.plannedDonation;
     var usage = result.roundedLimit > 0 && donationTotal > 0 ? Math.min(100, donationTotal / result.roundedLimit * 100) : 0;

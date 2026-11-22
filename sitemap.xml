@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kaz-mio.com/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -146,7 +146,7 @@
   </url>
   <url>
     <loc>https://kaz-mio.com/furusato_tax_limit_check.html</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.86</priority>
   </url>
@@ -411,5 +411,9 @@
     <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://kaz-mio.com/takumi_osechi_2027.html</loc>
+    <lastmod>2026-11-22</lastmod>
   </url>
 </urlset>

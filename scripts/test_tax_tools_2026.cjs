@@ -36,6 +36,12 @@ f.set('weeklyHours',20);f.set('monthlyWage',50000);f.set('companySize','over50')
 f.check('isStudent',true);assert.ok(!f.api.compute(f.api.collect()).notices.some(n=>n.title==='社会保険加入の確認候補'));cases++;
 f.api.render();assert.match(f.nodes.get('memoOutput').value,/対象：2026年分/);cases++;
 const t=page('furusato_tax_limit_check.html');t.set('quickProfile','single');t.set('salaryIncome',5000000);t.set('socialInsurance',750000);t.check('wantsOneStop',true);
+const adVisibility=page('furusato_tax_limit_check.html');
+function checkAdHidden(expected){adVisibility.api.render();eq(adVisibility.nodes.get('furusatoHonpoAd').hidden,expected);}
+checkAdHidden(true);
+adVisibility.set('salaryIncome',5000000);checkAdHidden(false);
+adVisibility.set('plannedDonation',1000000);checkAdHidden(true);
+adVisibility.set('plannedDonation',0);adVisibility.set('donatedSoFar',1000000);checkAdHidden(true);
 r=t.api.compute(t.api.collect());eq(r.salaryInc,3560000);eq(r.incomeTaxable,1770000);eq(r.rate,.05);eq(r.residentTaxable,2380000);eq(r.residentLevy,235500);eq(r.roundedLimit,57000);eq(r.safeLimit,50000);
 t.set('socialInsurance',0);eq(t.api.collect().socialInsurance,0);eq(t.api.collect().socialInsuranceAuto,false);
 t.set('residentIncomeLevy',0);r=t.api.compute(t.api.collect());eq(r.residentLevy,0);eq(r.roundedLimit,0);eq(r.safeLimit,0);assert.match(r.answerTitle,/出せません/);cases++;
